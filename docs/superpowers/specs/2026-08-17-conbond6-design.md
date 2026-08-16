@@ -1,6 +1,8 @@
 # conbond6 — měřitelná cesta od psaného textu ke znalosti
 
-**Stav:** návrh k odsouhlasení J., 17. 8. 2026.
+**Stav:** cíle (§ 0, invarianty) zadal J.; cestu (moduly, pořadí, co je v1)
+rozhoduje Claude a zdůvodňuje — J. má právo veta, ne povinnost schvalovat
+(pravidlo J. ze 17. 8. 2026). Rozhodčí je benchmark, ne názor.
 **Vychází z:** conbond5 (jádro: čtení bez brány, grafová paměť, logika, dialog,
 první bench 10/27), inventury conbond0–4 ze 17. 8. 2026 a zadání J. z téhož dne.
 **Vztah k conbond5:** conbond6 **přenáší** kód conbond5 s historií (klon, ne
@@ -152,6 +154,8 @@ Pravidla triáže jsou **tabulka jako data** (stejný princip jako `defaults`):
 | kopula s nejasným kernelem (member × subset) | `SAFE` s výchozí volbou (conbond5) — **není** hypotéza, protože tabulka volbu určuje a je odvolatelná; bench to nicméně vidí přes `defaults` |
 | konstrukce, pro kterou jádro nemá sémantiku (např. srovnání „větší než“, modalita s podmínkou, nepřímá řeč bez mluvčího) | `REJECTED(reason)`, tokeny do `residue`, `OPEN(relation)` |
 | přímá řeč | obsah = výrok s rámcem `říci(kdo=mluvčí, co=⟨výrok⟩)`; vnitřní výrok `SAFE` jen jako obsah promluvy, nikdy jako fakt o světě; mluvčí z registru (§ 4.3), jinak `OPEN(speaker)` |
+| **podmínková spojka** (`advcl` s `mark` pokud / jestliže / ‑li / jen pokud / pouze když / právě když; `když` v prézentu/futuru bez časového údaje → podmínka [výchozí], v minulém čase → čas) | hlavní klauze **není tvrzení**: vznikne výrok `kind=rule` (`SAFE` jakožto pravidlo: `if přijít(kdo:Jana) then přijít(kdo:Karel, kam:oslava)`; „jen pokud“ obrací směr, „právě když“ dává obě); žádný `SAFE` fakt o hlavní klauzi. Porušení = halucinace, kterou precision audit počítá jako „netvrdí“ |
+| disjunkce / kardinalita („nebo“, „buď – nebo“, „aspoň/právě/nejvýše jeden“) | v1: `REJECTED(reason="disjunkce bez prostoru modelů")` + `OPEN(relation)`; tokeny do zbytku. Prostor modelů je měřený tah (§ 6.2) |
 
 Test triáže: pro každý zlatý rozbor je výsledek statusů zapsaný jako data
 (`tests/data/triage.json`) a hlídá se **oběma směry** — nic `SAFE` navíc, nic
@@ -232,7 +236,7 @@ knihovna; jádro na něm nezávisí, on na jádru ano.
 | `wiki` | 65 wiki dokumentů, ~26 000 vět; zlaté otázky `otazky.json` 682 (kde/kdy s číslem věty), `etalon.json` 40, `conbond.json` 95 | conBond2 `data/raw`, `data/gold` |
 | `korpus` | 35 dokumentů, ~10 000 vět (NZ po knihách, Čapek, Neruda, Hrabal, fotosyntéza, elektromotor, gravitace, Vesmír, Hudba); 120 otázek s číslem věty a lemmatem | `~/Projects/conBondCorpus/corpus` |
 | `cb4` | 238 + 836 vět, 135 otázek, adversariální sada | conbond4 / conbond4‑utils |
-| `dialogy` | A–F, opravy, replay | conbond5 `tests/` |
+| `dialogy` | A–F (conbond5), **G** = encyklopedický text + otázky, hypotéza, konflikt, `!ukaž`, otevřené položky; **H** = podmínkové věty (oslava): po vložení jen podmínek „Přijde Karel?“ → NEVÍM (ne ANO), po faktu řetěz odvození s `derived_from`; opravy, replay | conbond5 `tests/` + nové |
 
 Data se do repa **nekopírují**; `bench/config.json` ukazuje cesty; bench
 zaznamená otisk (hash) použitých souborů do zprávy (I‑7). Rozbory jdou přes
@@ -345,10 +349,34 @@ s minulostí. Neúspěch adaptéru se zapíše, neblokuje.
 ### 6.2 Nemění se (dokud bench neukáže potřebu)
 
 - `read.py` — žádné nové konstrukce v v1. Kandidáti na později, **každý jako
-  měřený tah**: valence jako data (`valence.json` conbond1 → `defaults`,
-  případně VALLEX), relativní čas (`chronos` conbond1), nominalizace
-  (svatba ↔ oženit se), rekurze v dotazu (jellyAI3 `SubQuery`).
-- Logika, uzávěry, aktivace — beze změny.
+  měřený tah** (pořadí rozhodne rozklad chyb z benche, ne názor): valence
+  jako data (`valence.json` conbond1 → `defaults`, případně VALLEX), relativní
+  čas (`chronos` conbond1), nominalizace (svatba ↔ oženit se), rekurze
+  v dotazu (jellyAI3 `SubQuery`), **prostor modelů** pro disjunkci /
+  ekvivalenci / kardinalitu (přenos `conBond3/cb_logic/models.py`:
+  `enumerate_models`, `classify_atoms` → *určitě / možná / určitě ne*
+  s protipříklady; ověřeno na 13 úlohách Bartlové z dat).
+- Logika, uzávěry, aktivace — beze změny, s jednou výjimkou plynoucí
+  z triáže: pravidla `kind=rule` nad konkrétními entitami (z podmínkových
+  vět) se **uplatňují** nejmenším pevným bodem (conbond4 `engine.py`
+  přístup; conbond5 `Memory.add_rule` se rozšíří o vazbu na termy) a
+  odvozený výrok nese `derived_from` + `rule` (I‑12). Bez toho by pravidlo
+  jen leželo v grafu.
+
+### 6.4 Neuronové složky (rozhodnutí)
+
+J. NN nevylučuje („pokud by trénovaný na malém korpusu evidentně pomohl“).
+Rozhodnutí pro v1 na základě evidence z inventury: **žádná složka
+trénovaná na našem korpusu v cestě znalosti** — conbond0/1 to zkoušely
+(logistická brána: LOO −2 vs. reálně −19; perceptronový ranker: 66/84 →
+66/84, „výměna bez zeleného řádku“) a na etalonech této velikosti se
+přeučily. Předtrénované nástroje ano (UDPipe 2 je NN; koreferenční model
+CorPipe je kandidát na *navrhovatele* v § 4 jako měřený tah). LM jako
+soudce věrnosti ano (§ 5.4). **Přehodnocení je datově podmíněné:** až
+precision audit nashromáždí ≥ 2 000 lidsky/soudcovsky označených výroků,
+zkusí se jako měřený tah *naučená triáž* (klasifikátor rysů čtení →
+předpověď verdiktu auditu), která smí jen **snižovat status** (`SAFE →
+HYPOTHESIS`), nikdy zvyšovat — I‑6 a I‑9 platí.
 
 ### 6.3 Mimo rozsah conbond6 v1
 
