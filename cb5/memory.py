@@ -317,6 +317,10 @@ class Memory:
             self._by_term[t].append(stmt.id)
         ids = stmt.term_ids()
         self.activate(ids, 1.0)
+        # podmět nese téma dál — o něco silnější aktivace (sliding window)
+        subj = stmt.role("kdo")
+        if subj:
+            self.activate(subj.terms, 0.5)
         self.co_mention(ids)
         return stmt
 
