@@ -97,10 +97,7 @@ def time_from_tokens(tokens: Sequence[Token]) -> TimeSpec | None:
     """
     toks = [t for t in tokens if t.upos != "PUNCT" or t.form in ("–", "-", "—")]
     lemmas = [t.lemma for t in toks]
-    # pojmenované časy
-    for t in toks:
-        if t.lemma in WEEKDAYS or t.lemma in SEASONS or t.lemma in RELATIVE_DAYS:
-            return TimeSpec("name", t.lemma)
+    named = next((t.lemma for t in toks if t.lemma in WEEKDAYS or t.lemma in SEASONS or t.lemma in RELATIVE_DAYS), None)
     # století: „20. století“
     for i, t in enumerate(toks):
         if t.lemma == "století":
@@ -134,7 +131,8 @@ def time_from_tokens(tokens: Sequence[Token]) -> TimeSpec | None:
             dates.append((year, 0, 0))
         i += 1
     if not dates:
-        return None
+        # pojmenovaný čas jen bez ukotveného data („v sobotu 21. prosince“ = datum)
+        return TimeSpec("name", named) if named else None
     if len(dates) >= 2 and any(l in ("–", "-", "—", "a", "až", "nebo") for l in lemmas):
         first, second = dates[0], dates[1]
         joiner = "nebo" if "nebo" in lemmas else "–"

@@ -204,6 +204,9 @@ class Memory:
         self.soft: dict[tuple[str, str], float] = defaultdict(float)
         self.learned: dict[str, dict[str, str]] = {"roles": {}, "synonyms": {}}
         self.exceptions: list[tuple[str, str, str]] = []  # (pred, group_id, excluded_id)
+        #: verze báze — mění se každým zápisem/odvoláním; klíč keše uzávěrů
+        self.version = 0
+        self._edge_cache: dict[tuple[int, str], dict[str, list[tuple[str, str]]]] = {}
         # indexy
         self._groups: dict[tuple[str, tuple[str, ...]], str] = {}
         self._times: dict[tuple[object, ...], str] = {}
@@ -244,13 +247,20 @@ class Memory:
             keys = [self._name_key(x) for x in n.names]
             if q in keys:
                 exact.append(n)
-            elif any(set(q) <= set(k) or set(k) <= set(q) for k in keys if k):
+                continue
+            # částečná shoda JEN proti kanonickému (nejdelšímu) jménu — krátké
+            # tvary („Jirásek“) v seznamu jmen nesmí scelit „Josefa Jiráska“
+            # s „Aloisem Jiráskem“
+            canon = max(keys, key=len) if keys else ()
+            if canon and (set(q) < set(canon) or (set(canon) < set(q) and len(canon) > 1)):
                 partial.append(n)
         return exact or partial
 
     def ensure_entity(self, name_lemmas: Sequence[str], forms: Sequence[str] = (), *, kind: str = "entity",
-                      gender: str | None = None, number: str | None = None, doc: str = "") -> tuple[Node, bool]:
-        """Najdi entitu podle jména, nebo ji založ. Vrací (uzel, nová?)."""
+                      gender: str | None = None, number: str | None = None, doc: str = "",
+                      prefer: str | None = None) -> tuple[Node, bool]:
+        """Najdi entitu podle jména, nebo ji založ. Vrací (uzel, nová?).
+        Při víc kandidátech vyhrává `prefer` (téma dokumentu), jinak aktivace."""
         found = self.find_entity(name_lemmas, kinds=(kind,) if kind == "place" else ("entity", "place"))
         if len(found) == 1:
             n = found[0]
@@ -262,8 +272,12 @@ class Memory:
                     n.names.append(f)
             return n, False
         if len(found) > 1:
-            # víc kandidátů: nejaktivnější
-            best = max(found, key=lambda n: (self.activation_.get(n.id, 0.0), -int(n.id[1:])))
+            # víc kandidátů: téma dokumentu, jinak nejaktivnější
+            preferred = [n for n in found if n.id == prefer]
+            best = preferred[0] if preferred else max(found, key=lambda n: (self.activation_.get(n.id, 0.0), -int(n.id[1:])))
+            full = " ".join(name_lemmas)
+            if full not in best.names:
+                best.names.append(full)
             return best, False
         names = [" ".join(name_lemmas)] + [f for f in forms if f]
         return self.new_node(kind, " ".join(name_lemmas), names=names, gender=gender, number=number, doc=doc), True
@@ -311,6 +325,7 @@ class Memory:
         if not stmt.id:
             stmt.id = self._next("s")
         self.statements[stmt.id] = stmt
+        self.version += 1
         if stmt.pred:
             self._by_pred[stmt.pred].append(stmt.id)
         for t in stmt.term_ids():
@@ -332,6 +347,7 @@ class Memory:
             return out
         st.status = "revoked"
         st.reason = reason
+        self.version += 1
         out.append(sid)
         for other in list(self.statements.values()):
             if other.derived_from == sid and other.status == "active":
@@ -398,7 +414,13 @@ class Memory:
     # ---- uzávěry ---------------------------------------------------------------
 
     def _kernel_edges(self, kernel: str) -> dict[str, list[tuple[str, str]]]:
-        """Tvrdé hrany daného jádra z aktivních nenegovaných výroků: a → (b, sid)."""
+        """Tvrdé hrany daného jádra z aktivních nenegovaných výroků: a → (b, sid).
+        Kešované podle verze báze (zúžené group přibývají bez výroku, proto
+        je v klíči i počet uzlů)."""
+        key = (self.version * 100003 + len(self.nodes), kernel)
+        hit = self._edge_cache.get(key)
+        if hit is not None:
+            return hit
         edges: dict[str, list[tuple[str, str]]] = defaultdict(list)
         for st in self.active():
             if st.kernel != kernel or st.neg:
@@ -412,6 +434,9 @@ class Memory:
             for n in self.nodes.values():
                 if n.kind == "group" and n.base:
                     edges[n.id].append((n.base, f"restricts:{n.id}"))
+        if len(self._edge_cache) > 64:
+            self._edge_cache.clear()
+        self._edge_cache[key] = edges
         return edges
 
     @staticmethod
@@ -425,12 +450,13 @@ class Memory:
             return []
         edges = self._kernel_edges(kernel)
         if symmetric:
-            back: dict[str, list[tuple[str, str]]] = defaultdict(list)
+            # nesahat do kešované mapy — postavit vlastní kopii s opačnými hranami
+            both: dict[str, list[tuple[str, str]]] = defaultdict(list)
             for x, ys in edges.items():
+                both[x].extend(ys)
                 for y, sid in ys:
-                    back[y].append((x, sid))
-            for x, ys in back.items():
-                edges[x].extend(ys)
+                    both[y].append((x, sid))
+            edges = both
         seen = {a}
         frontier: list[tuple[str, list[str]]] = [(a, [])]
         while frontier:

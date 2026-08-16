@@ -16,7 +16,7 @@ from __future__ import annotations
 #: (předložka, Pád) → jméno role podle druhu výplně: `place` / `time` / `*`.
 #: Chybí-li klíč, role si nechá povrchové jméno a vznikne otevřená položka.
 ROLE_BY_CASE: dict[tuple[str, str], dict[str, str]] = {
-    ("v", "Loc"): {"place": "kde", "time": "kdy", "*": "v+Loc"},
+    ("v", "Loc"): {"place": "kde", "time": "kdy", "duration": "kdy", "*": "v+Loc"},
     ("v", "Acc"): {"time": "kdy", "*": "v+Acc"},
     ("na", "Loc"): {"place": "kde", "time": "kdy", "*": "na+Loc"},
     ("na", "Acc"): {"place": "kam", "*": "na+Acc"},
@@ -31,9 +31,10 @@ ROLE_BY_CASE: dict[tuple[str, str], dict[str, str]] = {
     ("po", "Loc"): {"place": "kudy", "time": "po_kdy", "*": "po+Loc"},
     ("před", "Ins"): {"place": "kde", "time": "před_kdy", "*": "před+Ins"},
     ("za", "Gen"): {"time": "kdy", "*": "za+Gen"},
-    ("za", "Acc"): {"time": "kdy", "*": "za+Acc"},
     ("za", "Ins"): {"place": "kde", "*": "za+Ins"},
-    ("během", "Gen"): {"time": "kdy", "*": "během+Gen"},
+    ("během", "Gen"): {"time": "kdy", "duration": "kdy", "*": "během+Gen"},
+    ("po", "Acc"): {"duration": "jak_dlouho", "time": "jak_dlouho", "*": "po+Acc"},
+    ("za", "Acc"): {"time": "kdy", "duration": "jak_dlouho", "*": "za+Acc"},
     ("mezi", "Ins"): {"place": "kde", "time": "kdy", "*": "mezi+Ins"},
     ("přes", "Acc"): {"place": "kudy", "*": "přes+Acc"},
     ("kolem", "Gen"): {"time": "kdy", "place": "kde", "*": "kolem+Gen"},
@@ -53,8 +54,8 @@ ROLE_BY_CASE: dict[tuple[str, str], dict[str, str]] = {
     ("jako", ""): {"*": "jako"},
     ("", "Ins"): {"*": "čím"},
     ("", "Dat"): {"*": "komu"},
-    ("", "Gen"): {"*": "čeho"},
-    ("", "Acc"): {"time": "jak_dlouho", "*": "obl:Acc"},
+    ("", "Gen"): {"time": "kdy", "duration": "jak_dlouho", "*": "čeho"},
+    ("", "Acc"): {"time": "kdy", "duration": "jak_dlouho", "*": "obl:Acc"},
     ("", "Loc"): {"place": "kde", "time": "kdy", "*": "obl:Loc"},
     ("", "Nom"): {"*": "obl:Nom"},
 }

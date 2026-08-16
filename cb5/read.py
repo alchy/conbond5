@@ -23,7 +23,9 @@ from dataclasses import dataclass, field
 from typing import Literal, Mapping
 
 from cb5 import defaults as D
-from cb5.chronos import TimeSpec, is_time_noun, time_from_tokens
+from cb5.chronos import MONTHS, TimeSpec, is_time_noun, time_from_tokens
+
+MONTH_LEMMAS = frozenset(MONTHS)
 from cb5.oracle import Parse, Token
 
 Quant = Literal["∀", "∃", "·"]
@@ -421,6 +423,16 @@ class _Reader:
         if wh is not None:
             role.name, role.wh_kind = wh
             role.wh = True
+            if self.case_of(t.index) or any(c.base_deprel == "mark" for c in self.p.children(t.index)):
+                # „Jako co“, „S kým“, „V čem“ — díra má jméno podle předložky
+                mark = next((c.lemma for c in self.p.children(t.index) if c.base_deprel == "mark"), "")
+                if mark == "jako":
+                    role.name = "jako"
+                    for c in self.p.children(t.index):
+                        self.mark(c.index, "particle")
+                elif self.case_of(t.index):
+                    rname, rsurface, _ = self._obl_role(t, arg=False)
+                    role.name, role.surface = rname, rsurface
             self.mark(t.index, f"role:{role.name}")
             self._mark_structure(t.index, f"role:{role.name}")
             if role.wh_kind == "count":
@@ -455,11 +467,15 @@ class _Reader:
     # ---- okolnosti ---------------------------------------------------------
 
     def _filler_kind(self, t: Token) -> str:
-        """`place` / `time` / `*` — druh výplně pro tabulku rolí."""
+        """`place` / `time` / `duration` / `*` — druh výplně pro tabulku rolí.
+        `duration` = časové substantivum bez ukotveného data („čtrnáct let“)."""
         sub = self.p.subtree(t.index)
         if is_time_noun(t.lemma) or (t.upos == "NUM" and time_from_tokens([t])) or (
             t.upos in ("NOUN", "NUM", "ADJ") and time_from_tokens(sub) is not None and not (t.feat("NameType"))
         ):
+            spec = time_from_tokens(sub)
+            if is_time_noun(t.lemma) and spec is None:
+                return "duration"  # „celý život“, „čtrnáct let“ — bez ukotveného data
             return "time"
         if t.feat("NameType") == "Geo" or t.lemma in D.PLACE_NOUNS:
             return "place"
@@ -480,6 +496,10 @@ class _Reader:
             if kind in ("place", "place?") and "place" in table:
                 return table["place"], surface, "default"
             if kind == "time" and "time" in table:
+                return table["time"], surface, "default"
+            if kind == "duration" and "duration" in table:
+                return table["duration"], surface, "default"
+            if kind == "duration" and "time" in table:
                 return table["time"], surface, "default"
         if "*" in table:
             name = table["*"]
@@ -745,6 +765,10 @@ class _Reader:
             # jen hlava + PŘÍMÉ číslovky/předložky/flat — ne celý podstrom (kořen
             # věty má pod sebou všechno, včetně letopočtů cizích členů)
             sub = [x for x in self.p.subtree(t.index) if x.index == t.index or (x.head == t.index and x.base_deprel in ("nummod", "case", "flat"))]
+            if is_time_noun(t.lemma):
+                # „dne 12. srpna 1879“, „v sobotu 21. prosince“: datum visí pod časovým
+                # substantivem hlouběji (nmod) — u časového slova je celý podstrom jeho
+                sub = [x for x in self.p.subtree(t.index) if x.upos in ("NUM", "NOUN", "ADP", "PUNCT", "ADJ") and (x.index == t.index or x.lemma in MONTH_LEMMAS or x.upos in ("NUM", "PUNCT") or is_time_noun(x.lemma))]
             time = time_from_tokens(sub) if (is_time_noun(t.lemma) or any(x.upos == "NUM" for x in sub)) else None
             if is_time_noun(t.lemma) or time is not None:
                 kind = "time"

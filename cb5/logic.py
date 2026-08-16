@@ -73,6 +73,10 @@ def _same_pred(a: str | None, b: str | None, learned: dict[str, str] | None = No
     return None
 
 
+PLACE_FAMILY = ("kde", "kam", "odkud", "kudy")
+TIME_FAMILY = ("kdy", "od_kdy", "do_kdy", "po_kdy", "před_kdy", "jak_dlouho")
+
+
 class Evaluator:
     def __init__(self, memory: Memory) -> None:
         self.m = memory
@@ -352,6 +356,7 @@ class Evaluator:
         fillers: list[tuple[str, Proof]] = []
         seen: set[str] = set()
         near: list[str] = []
+        matched: list[tuple[Statement, Proof]] = []
         for f in m.active():
             if self.same_pred(q.pred, f.pred) is None or f.neg:
                 continue
@@ -360,6 +365,7 @@ class Evaluator:
                 if self._near(q, f):
                     near.append(f.id)
                 continue
+            matched.append((f, p))
             fr = f.role(hole.name)
             if fr is None or (not fr.terms and not fr.nested):
                 # díra bez výplně ve výroku: dotaz na roli, kterou výrok nemá
@@ -393,6 +399,37 @@ class Evaluator:
                     seen.add(t)
                     p.steps.append(f"pravidlo {rule.id}: {rule.src_pred}→{rule.dst_pred}")
                     fillers.append((t, p))
+        # rodina rolí: „kde“ bez `kde` → sourozenci (kam/odkud/kudy) s přiznáním; totéž čas
+        family = PLACE_FAMILY if hole.name in PLACE_FAMILY else TIME_FAMILY if hole.name in TIME_FAMILY else ()
+        if not fillers and family and hole.wh_kind == "filler":
+            for f, p in matched:
+                for sib in family:
+                    if sib == hole.name:
+                        continue
+                    fr = f.role(sib)
+                    if fr is None:
+                        continue
+                    for t in fr.terms:
+                        if t not in seen:
+                            seen.add(t)
+                            p2 = Proof(list(p.statements), list(p.steps) + [f"role „{sib}“ — ptal ses „{hole.name}“"], list(p.defaults), p.grade)
+                            fillers.append((t, p2))
+        # místo uvnitř výplně: „gymnázium v Broumově“ → nmod:v+Loc(gymnázium, Broumov)
+        if not fillers and hole.name in PLACE_FAMILY and hole.wh_kind == "filler":
+            for f, p in matched:
+                for r in f.roles:
+                    for t in r.terms:
+                        for st in m.statements_about(t):
+                            if st.kind != "nmod" or st.status != "active":
+                                continue
+                            kdo, co = st.role("kdo"), st.role("co")
+                            if not (kdo and t in kdo.terms and co):
+                                continue
+                            for pl in co.terms:
+                                if self._kind(pl) == "place" and pl not in seen:
+                                    seen.add(pl)
+                                    p2 = Proof(list(p.statements) + [st.id], list(p.steps) + [f"místo uvnitř: {m.node(t).label()} — {st.pred}"], list(p.defaults), weakest(p.grade, "derived"))
+                                    fillers.append((pl, p2))
         if fillers:
             fillers.sort(key=lambda x: (-GRADE_RANK[x[1].grade], len(x[1].statements)))
             return Verdict("ANO", [p for _, p in fillers], fillers=fillers, near=near)

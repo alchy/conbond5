@@ -55,7 +55,7 @@ class Grounder:
         if t.kind == "wh":
             return None
         if t.kind == "entity":
-            node, new = self.m.ensure_entity(t.name_lemmas or (t.lemma,), t.forms, gender=t.gender, number=t.number, doc=self.prov.doc)
+            node, new = self.m.ensure_entity(t.name_lemmas or (t.lemma,), t.forms, gender=t.gender, number=t.number, doc=self.prov.doc, prefer=self.topic)
             if new:
                 self.out.nodes.append(node)
                 self.out.notes.append(f"{node.label()} → {node.id} (založen)")

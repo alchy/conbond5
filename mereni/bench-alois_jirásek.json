@@ -1,0 +1,427 @@
+[
+ {
+  "doc": "alois_jirásek",
+  "sentences": 429,
+  "written": 429,
+  "with_role": 429,
+  "statements": 1353,
+  "residue_tokens": 447,
+  "tokens": 4057,
+  "open": 245,
+  "questions": 27,
+  "hits": 18,
+  "text_hits": 22,
+  "misses": {
+   "role/logika (blízký výrok je)": 4,
+   "špatná výplň": 3,
+   "bez výroku": 2
+  },
+  "results": [
+   {
+    "q": "Kde pracoval Alois Jirásek?",
+    "expect": [
+     "Litomyšli"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "gymnázium",
+     "Litomyšl",
+     "Praha"
+    ],
+    "why": "",
+    "reading": "pracovat(kde:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Kde se narodil Alois Jirásek?",
+    "expect": [
+     "Hronově"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "Hronov"
+    ],
+    "why": "",
+    "reading": "narodit_se(kde:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Kde navštěvoval Alois Jirásek?",
+    "expect": [
+     "Broumově"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "navštěvovat(kde:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Kde žil Alois Jirásek?",
+    "expect": [
+     "Litomyšli"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "byt"
+    ],
+    "why": "špatná výplň",
+    "reading": "žít(kde:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Kdy se oženil Alois Jirásek?",
+    "expect": [
+     "12 . srpna 1879"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "12. 8. 1879"
+    ],
+    "why": "",
+    "reading": "oženit_se(kdy:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Kdy přesídlil Alois Jirásek?",
+    "expect": [
+     "roce 1888"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1888"
+    ],
+    "why": "",
+    "reading": "přesídlit(kdy:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Kde přesídlil Alois Jirásek?",
+    "expect": [
+     "Prahy"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Praha"
+    ],
+    "why": "",
+    "reading": "přesídlit(kde:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Kdy žil Alois Jirásek?",
+    "expect": [
+     "roku 1903"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1903",
+     "smrt"
+    ],
+    "why": "",
+    "reading": "žít(kdy:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Kde pokračoval Alois Jirásek?",
+    "expect": [
+     "Praze"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Praha"
+    ],
+    "why": "",
+    "reading": "pokračovat(kde:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Kde zajížděl Alois Jirásek?",
+    "expect": [
+     "Prahy"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Hronov",
+     "Praha"
+    ],
+    "why": "",
+    "reading": "zajíždět(kde:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Kdy navštívil Alois Jirásek?",
+    "expect": [
+     "roce 1876"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1876"
+    ],
+    "why": "",
+    "reading": "navštívit(kdy:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Kde navštívil Alois Jirásek?",
+    "expect": [
+     "Chodsko"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "navštívit(kde:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Kde se podíval Alois Jirásek?",
+    "expect": [
+     "Drážďan"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Drážďany",
+     "Čechy",
+     "Kostnice",
+     "Itálie",
+     "Slovensko",
+     "Bled"
+    ],
+    "why": "",
+    "reading": "podívat_se(kde:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Kdy podepsal Alois Jirásek?",
+    "expect": [
+     "1917"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "5/1917"
+    ],
+    "why": "",
+    "reading": "podepsat(kdy:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Kdy se účastnil Alois Jirásek?",
+    "expect": [
+     "28 . října 1918"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "účastnit_se(kdy:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Kdy vítal Alois Jirásek?",
+    "expect": [
+     "21 . prosince 1918"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "21. 12. 1918"
+    ],
+    "why": "",
+    "reading": "vítat(kdy:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Kde vítal Alois Jirásek?",
+    "expect": [
+     "Praze"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "nádraží"
+    ],
+    "why": "špatná výplň",
+    "reading": "vítat(kde:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Kdy vystoupil Alois Jirásek?",
+    "expect": [
+     "23 . září 1921"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "23. 9. 1921"
+    ],
+    "why": "",
+    "reading": "vystoupit(kdy:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Kdy zemřel Alois Jirásek?",
+    "expect": [
+     "1930"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "12. 3. 1930"
+    ],
+    "why": "",
+    "reading": "zemřít(kdy:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Kde zemřel Alois Jirásek?",
+    "expect": [
+     "Praze"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "Praha"
+    ],
+    "why": "",
+    "reading": "zemřít(kde:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Kdy získal Alois Jirásek?",
+    "expect": [
+     "roce 1920"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "volba (parlamentní)"
+    ],
+    "why": "špatná výplň",
+    "reading": "získat(kdy:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Kdy psal Alois Jirásek?",
+    "expect": [
+     "1878"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "psát(kdy:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Kdy nedokončil Alois Jirásek?",
+    "expect": [
+     "roku 1464"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "bez výroku",
+    "reading": "¬dokončit(kdy:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Kde se líčí Alois Jirásek?",
+    "expect": [
+     "Ronova"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "bez výroku",
+    "reading": "líčit(kde:?, co:·Alois Jirásek)"
+   },
+   {
+    "q": "Kdy se narodil Alois Jirásek?",
+    "expect": [
+     "1851"
+    ],
+    "sada": "etalon",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "23. 8. 1851"
+    ],
+    "why": "",
+    "reading": "narodit_se(kdy:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Kdy se oženil Alois Jirásek?",
+    "expect": [
+     "1879"
+    ],
+    "sada": "etalon",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "12. 8. 1879"
+    ],
+    "why": "",
+    "reading": "oženit_se(kdy:?, kdo:·Alois Jirásek)"
+   },
+   {
+    "q": "Jako co pracoval Alois Jirásek?",
+    "expect": [
+     "učitel"
+    ],
+    "sada": "etalon",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "učitel",
+     "redaktor"
+    ],
+    "why": "",
+    "reading": "pracovat(jako:?, kdo:·Alois Jirásek)"
+   }
+  ],
+  "t_ingest": 0.2,
+  "t_ask": 0.1
+ }
+]
