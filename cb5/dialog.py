@@ -127,6 +127,9 @@ class Session:
         g = ground(reading, self.memory, prov, "read", topic=self.topics.get(doc))
         self._update_topic(doc, g)
         self.memory.tick()
+        # téma dokumentu drží slabou stálou aktivaci — dokument JE o něm
+        if doc in self.topics:
+            self.memory.activate([self.topics[doc]], 0.3)
         return {
             "text": parse.text,
             "reading": str(reading.main),

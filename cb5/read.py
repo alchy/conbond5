@@ -837,7 +837,7 @@ class _Reader:
             name, kind = self._wh_of(s) or ("co", "filler")
             self.mark(s.index, f"role:{name}")
             subject_role = RoleFill("kdo", "cop-swap", pred_role.terms, "structural")
-            pred_role = RoleFill(name if name in ("co", "kdo") else "co", "cop", wh=True, wh_kind=kind)
+            pred_role = RoleFill("jaký" if kind == "attr" else "co", "cop", wh=True, wh_kind=kind)
             p.roles.append(subject_role)
             p.defaults.append("kopula: tázací podmět, definice kořene")
         elif subj:

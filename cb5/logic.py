@@ -20,7 +20,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Literal
 
-from cb5.defaults import synonym_class
+from cb5.defaults import PLACE_NOUNS, synonym_class
 from cb5.memory import Memory, Role, Statement
 
 Grade = Literal["said", "read", "derived"]
@@ -70,6 +70,10 @@ def _same_pred(a: str | None, b: str | None, learned: dict[str, str] | None = No
         return ""
     if synonym_class(a, learned) == synonym_class(b, learned):
         return f"synonymum: {a} ~ {b}"
+    # zvratné „se/si“ jako slabá shoda („uprchnout_se“ z otázky × „uprchnout“)
+    sa, sb = a.split("_se")[0].split("_si")[0], b.split("_se")[0].split("_si")[0]
+    if sa == sb or synonym_class(sa, learned) == synonym_class(sb, learned):
+        return f"zvratné se: {a} ~ {b}"
     return None
 
 
@@ -410,6 +414,12 @@ class Evaluator:
                     if fr is None:
                         continue
                     for t in fr.terms:
+                        # jen výplně správného druhu: čas pro čas, místo pro místo
+                        k = self._kind(t)
+                        if family is TIME_FAMILY and k != "time":
+                            continue
+                        if family is PLACE_FAMILY and not (k == "place" or (k == "group" and m.nodes[t].lemma in PLACE_NOUNS)):
+                            continue
                         if t not in seen:
                             seen.add(t)
                             p2 = Proof(list(p.statements), list(p.steps) + [f"role „{sib}“ — ptal ses „{hole.name}“"], list(p.defaults), p.grade)

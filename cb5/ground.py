@@ -119,6 +119,12 @@ class Grounder:
             cands = []
         if cands:
             node = cands[0]
+            # téma dokumentu má přednost, dokud není jiný kandidát VÝRAZNĚ čerstvější
+            # (encyklopedický text: vedlejší osoby se zmíní jednou, téma se vrací)
+            topic = self.m.nodes.get(self.topic) if self.topic else None
+            if topic is not None and topic in cands and topic is not node:
+                if self.m.activation(topic.id) * 3.0 >= self.m.activation(node.id):
+                    node = topic
             self._defaults.append(f"{role}: „{t.lemma if t.lemma != '∅' else 'nevyslovený podmět'}“ = {node.label()} (z aktivace)")
             return node.id
         if self.topic and self.topic in self.m.nodes and t.person not in ("1", "2"):
