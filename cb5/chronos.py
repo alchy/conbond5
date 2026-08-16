@@ -136,17 +136,15 @@ def time_from_tokens(tokens: Sequence[Token]) -> TimeSpec | None:
     if not dates:
         return None
     if len(dates) >= 2 and any(l in ("–", "-", "—", "a", "až", "nebo") for l in lemmas):
-        a, b = dates[0], dates[1]
+        first, second = dates[0], dates[1]
         joiner = "nebo" if "nebo" in lemmas else "–"
-        return TimeSpec("interval", f"{_fmt(a)} {joiner} {_fmt(b)}", a, b)
-    d = dates[0]
-    if d[1] and d[2]:
-        return TimeSpec("point", _fmt(d), d, d)
-    if d[1]:
-        return TimeSpec("point", _fmt(d), d, d)
-    if d[0] == 0:
+        return TimeSpec("interval", f"{_fmt(first)} {joiner} {_fmt(second)}", first, second)
+    date = dates[0]
+    if date[1]:
+        return TimeSpec("point", _fmt(date), date, date)
+    if date[0] == 0:
         return None
-    return TimeSpec("year", str(d[0]), d, d)
+    return TimeSpec("year", str(date[0]), date, date)
 
 
 def is_time_noun(lemma: str) -> bool:

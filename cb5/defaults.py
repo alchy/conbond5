@@ -1,0 +1,177 @@
+"""Výchozí volby čtení jako DATA (spec § 2/3, § 5).
+
+Proč zvláštní modul: tohle je přesně to, co conbond4 odmítal rozhodnout bez
+člověka („v+Loc není v osivu, aby se systém zeptal“). conbond5 rozhoduje
+sám, ale **každou volbu označí** (`authority="default"`) a dialog ji může
+přepsat (`!role v+Loc = kde`) nebo odvolat. Nic z toho není zadrátované
+v kódu čtení — čtení tabulky jen čte.
+
+Konvence: klíče rolí jsou česká slova (`kde`, `kam`, `kdy`, `kdo`, `co`,
+`komu`, `čím`, `s_kým`, `jak`), protože je pak render i otázka „kde“ čte
+stejně; povrchové jméno role je `předložka+Pád` (`v+Loc`) nebo holý pád.
+"""
+
+from __future__ import annotations
+
+#: (předložka, Pád) → jméno role podle druhu výplně: `place` / `time` / `*`.
+#: Chybí-li klíč, role si nechá povrchové jméno a vznikne otevřená položka.
+ROLE_BY_CASE: dict[tuple[str, str], dict[str, str]] = {
+    ("v", "Loc"): {"place": "kde", "time": "kdy", "*": "v+Loc"},
+    ("v", "Acc"): {"time": "kdy", "*": "v+Acc"},
+    ("na", "Loc"): {"place": "kde", "time": "kdy", "*": "na+Loc"},
+    ("na", "Acc"): {"place": "kam", "*": "na+Acc"},
+    ("do", "Gen"): {"place": "kam", "time": "do_kdy", "*": "do+Gen"},
+    ("z", "Gen"): {"place": "odkud", "time": "od_kdy", "*": "z+Gen"},
+    ("od", "Gen"): {"place": "odkud", "time": "od_kdy", "*": "od+Gen"},
+    ("k", "Dat"): {"place": "kam", "*": "k+Dat"},
+    ("u", "Gen"): {"place": "kde", "*": "u+Gen"},
+    ("s", "Ins"): {"*": "s_kým"},
+    ("o", "Loc"): {"*": "o_čem"},
+    ("o", "Acc"): {"*": "o+Acc"},
+    ("po", "Loc"): {"place": "kudy", "time": "po_kdy", "*": "po+Loc"},
+    ("před", "Ins"): {"place": "kde", "time": "před_kdy", "*": "před+Ins"},
+    ("za", "Gen"): {"time": "kdy", "*": "za+Gen"},
+    ("za", "Acc"): {"time": "kdy", "*": "za+Acc"},
+    ("za", "Ins"): {"place": "kde", "*": "za+Ins"},
+    ("během", "Gen"): {"time": "kdy", "*": "během+Gen"},
+    ("mezi", "Ins"): {"place": "kde", "time": "kdy", "*": "mezi+Ins"},
+    ("přes", "Acc"): {"place": "kudy", "*": "přes+Acc"},
+    ("kolem", "Gen"): {"time": "kdy", "place": "kde", "*": "kolem+Gen"},
+    ("okolo", "Gen"): {"time": "kdy", "place": "kde", "*": "okolo+Gen"},
+    ("při", "Loc"): {"time": "kdy", "*": "při+Loc"},
+    ("nad", "Ins"): {"place": "kde", "*": "nad+Ins"},
+    ("pod", "Ins"): {"place": "kde", "*": "pod+Ins"},
+    ("vedle", "Gen"): {"place": "kde", "*": "vedle+Gen"},
+    ("uvnitř", "Gen"): {"place": "kde", "*": "uvnitř+Gen"},
+    ("blízko", "Gen"): {"place": "kde", "*": "blízko+Gen"},
+    ("pro", "Acc"): {"*": "pro_koho"},
+    ("bez", "Gen"): {"*": "bez+Gen"},
+    ("podle", "Gen"): {"*": "podle+Gen"},
+    ("proti", "Dat"): {"*": "proti+Dat"},
+    ("díky", "Dat"): {"*": "díky+Dat"},
+    ("kvůli", "Dat"): {"*": "kvůli+Dat"},
+    ("jako", ""): {"*": "jako"},
+    ("", "Ins"): {"*": "čím"},
+    ("", "Dat"): {"*": "komu"},
+    ("", "Gen"): {"*": "čeho"},
+    ("", "Acc"): {"time": "jak_dlouho", "*": "obl:Acc"},
+    ("", "Loc"): {"place": "kde", "time": "kdy", "*": "obl:Loc"},
+    ("", "Nom"): {"*": "obl:Nom"},
+}
+
+#: Naučené přepisy povrchových jmen rolí (dialog `!role přes+Acc = kudy`),
+#: čtou se PŘED tabulkou výše. Plní je `Session`, tady je jen tvar.
+LEARNED_ROLES: dict[str, str] = {}
+
+#: Determinátor → kvantifikátor. `∀neg` = „žádný“: ∀ + negace predikace.
+DETERMINER_QUANT: dict[str, str] = {
+    "každý": "∀", "všechen": "∀", "všechno": "∀", "veškerý": "∀", "kterýkoli": "∀",
+    "žádný": "∀neg", "nikdo": "∀neg", "nic": "∀neg",
+    "ten": "·", "tento": "·", "tenhle": "·", "onen": "·", "tamten": "·",
+    "nějaký": "∃", "některý": "∃", "jeden": "∃", "jistý": "∃", "leckterý": "∃",
+    "mnohý": "∃", "několik": "∃", "málokterý": "∃",
+}
+
+#: Přivlastňovací determinátory a zájmena — odkaz na aktivní uzel.
+POSSESSIVE = frozenset({"jeho", "její", "jejich", "můj", "tvůj", "náš", "váš", "svůj"})
+
+#: Částice a příslovce bez role: neztrácejí se (jsou „particle“), ale
+#: nemění strukturu. `ne` se čte jako negace, ne částice.
+PARTICLES = frozenset(
+    {"také", "též", "taky", "i", "jen", "pouze", "už", "již", "ještě", "asi", "prý",
+     "však", "ale", "tedy", "totiž", "například", "zejména", "hlavně", "především",
+     "přece", "snad", "přitom", "vůbec", "právě", "zase", "opět", "spíše", "spíš",
+     "dokonce", "možná", "vlastně", "prostě", "ovšem", "sice", "zřejmě", "patrně",
+     "pravděpodobně", "často", "obvykle", "většinou", "zpravidla", "někdy", "vždy",
+     "nikdy", "stále", "pořád", "dále", "dál", "tak", "také", "ano", "ne", "nikoli", "nikoliv"}
+)
+
+#: Příslovce pořadí a času, která NEjsou částice: nesou roli.
+SEQUENCE_ADVERBS = frozenset(
+    {"nejprve", "nejdřív", "nejdříve", "poté", "pak", "potom", "později", "nakonec",
+     "tehdy", "kdysi", "dříve", "dřív", "následně", "posléze", "mezitím", "současně",
+     "zároveň", "brzy", "záhy", "hned", "ihned", "okamžitě", "nedávno", "dosud", "doposud"}
+)
+
+#: Modální slovesa: lemma → druh modality (příznak výroku, ne operátor).
+MODAL_VERBS: dict[str, str] = {
+    "moci": "možnost", "smět": "možnost", "lze": "možnost", "dokázat": "možnost",
+    "umět": "možnost", "muset": "nutnost", "mít": "povinnost", "chtít": "vůle",
+    "hodlat": "vůle", "začít": "fáze", "začínat": "fáze", "přestat": "fáze",
+    "pokračovat": "fáze", "snažit_se": "vůle", "pokusit_se": "vůle",
+}
+
+#: Tázací slovo → (jméno role, druh díry). Druh: `filler` (chce výplň),
+#: `count` (chce počet), `attr` (chce vlastnost).
+WH: dict[str, tuple[str, str]] = {
+    "kde": ("kde", "filler"), "kam": ("kam", "filler"), "odkud": ("odkud", "filler"),
+    "kudy": ("kudy", "filler"), "kdy": ("kdy", "filler"), "odkdy": ("od_kdy", "filler"),
+    "dokdy": ("do_kdy", "filler"), "kdo": ("kdo", "filler"), "co": ("co", "filler"),
+    "koho": ("co", "filler"), "komu": ("komu", "filler"), "čím": ("čím", "filler"),
+    "kolik": ("count", "count"), "jaký": ("jaký", "attr"), "který": ("který", "attr"),
+    "proč": ("advcl:protože", "filler"), "čí": ("čí", "filler"), "jak": ("jak", "filler"),
+    "jak_dlouho": ("jak_dlouho", "filler"),
+}
+
+#: Obecná jména míst — výplň v `v+Loc` apod. je pak MÍSTO i bez NameType=Geo.
+PLACE_NOUNS = frozenset(
+    {"město", "vesnice", "ves", "obec", "země", "stát", "říše", "království", "kraj",
+     "oblast", "region", "provincie", "okres", "čtvrť", "ulice", "náměstí", "řeka",
+     "hora", "pohoří", "ostrov", "moře", "oceán", "jezero", "les", "pole", "louka",
+     "škola", "gymnázium", "univerzita", "fakulta", "akademie", "ústav", "institut",
+     "kavárna", "hospoda", "dům", "byt", "vila", "zámek", "hrad", "klášter", "kostel",
+     "divadlo", "nemocnice", "továrna", "závod", "podnik", "kancelář", "redakce",
+     "dálnice", "silnice", "cesta", "most", "nádraží", "letiště", "přístav", "vězení",
+     "tábor", "fronta", "kontinent", "světadíl", "svět", "vesmír", "domov", "exil",
+     "emigrace", "zahraničí", "venkov", "centrum", "střed", "okraj", "sever", "jih",
+     "východ", "západ", "Evropa", "Amerika", "Asie", "Afrika"}
+)
+
+#: Předložky, po nichž je PROPN skoro jistě místo (i bez NameType).
+PLACE_PREPS = frozenset({"v", "do", "z", "u", "na", "k", "od", "přes", "po", "za", "mezi", "nad", "pod", "vedle", "před", "kolem", "okolo"})
+
+#: Zájmena, která odkazují (osobní), a jejich rod/číslo pro shodu.
+PERSONAL_PRONOUNS = frozenset({"on", "ona", "ono", "oni", "ony", "já", "ty", "my", "vy", "sebe"})
+
+#: Třídy synonym predikátů — OSIVO. Shoda dotazu s výrokem bere i synonymum
+#: a důkaz to přizná (`[synonymum: kázat ~ hlásat]`). Dialog přidává
+#: `!synonymum kázat = hlásat`. Klíč je reprezentant, hodnota členové.
+SYNONYMS: dict[str, frozenset[str]] = {
+    "říci": frozenset({"říci", "říkat", "tvrdit", "hlásat", "kázat", "prohlásit", "prohlašovat",
+                        "uvést", "uvádět", "pravit", "sdělit", "sdělovat", "oznámit", "oznamovat",
+                        "konstatovat", "vyhlásit", "vyhlašovat", "učit", "vyučovat", "poučit"}),
+    "pracovat": frozenset({"pracovat", "působit", "sloužit", "zaměstnat_se", "dělat", "vykonávat"}),
+    "narodit_se": frozenset({"narodit_se", "přijít_na_svět"}),
+    "zemřít": frozenset({"zemřít", "umřít", "skonat", "zahynout", "padnout", "zesnout"}),
+    "bydlet": frozenset({"bydlet", "žít", "sídlit", "pobývat", "přebývat", "usadit_se", "usídlit_se"}),
+    "napsat": frozenset({"napsat", "sepsat", "psát", "vydat", "vydávat", "publikovat", "uveřejnit",
+                         "sepisovat", "zveřejnit"}),
+    "studovat": frozenset({"studovat", "vystudovat", "absolvovat", "navštěvovat", "chodit"}),
+    "založit": frozenset({"založit", "zakládat", "ustavit", "zřídit", "vytvořit", "vybudovat"}),
+    "stát_se": frozenset({"stát_se", "stávat_se"}),
+    "získat": frozenset({"získat", "získávat", "obdržet", "dostat", "dostávat", "vyhrát"}),
+    "odejít": frozenset({"odejít", "odjet", "odcestovat", "emigrovat", "odstěhovat_se", "opustit"}),
+    "vrátit_se": frozenset({"vrátit_se", "vracet_se", "navrátit_se"}),
+    "obsahovat": frozenset({"obsahovat", "zahrnovat", "mít"}),
+    "jet": frozenset({"jet", "jezdit", "cestovat", "odjet", "přijet", "dojet"}),
+    "létat": frozenset({"létat", "letět"}),
+    "vyžadovat": frozenset({"vyžadovat", "potřebovat", "vyžádat_si"}),
+    "oženit_se": frozenset({"oženit_se", "vdát_se", "vzít_si", "uzavřít_sňatek"}),
+    "zúčastnit_se": frozenset({"zúčastnit_se", "účastnit_se", "podílet_se"}),
+    "začít": frozenset({"začít", "začínat", "zahájit", "započít"}),
+}
+
+
+def synonym_class(pred: str) -> str:
+    """Reprezentant třídy synonym (nebo predikát sám, když třídu nemá)."""
+    for rep, members in SYNONYMS.items():
+        if pred == rep or pred in members:
+            return rep
+    return pred
+
+
+def learn_synonym(a: str, b: str) -> None:
+    """Dialogové doučení: `a` a `b` jsou synonyma. Sloučí třídy obou."""
+    ra, rb = synonym_class(a), synonym_class(b)
+    members = set(SYNONYMS.pop(ra, frozenset({ra}))) | set(SYNONYMS.pop(rb, frozenset({rb}))) | {a, b}
+    SYNONYMS[ra] = frozenset(members)

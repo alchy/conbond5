@@ -135,16 +135,19 @@ class Parse:
 def token_from_json(item: Mapping[str, object]) -> Token:
     """Token z odpovědi služby (`feats` je dict) i z našeho JSON (list dvojic)."""
     raw = item.get("feats") or {}
+    feats: tuple[tuple[str, str], ...]
     if isinstance(raw, dict):
         feats = tuple(sorted((str(k), str(v)) for k, v in raw.items()))
+    elif isinstance(raw, list):
+        feats = tuple((str(k), str(v)) for k, v in raw)
     else:
-        feats = tuple((str(k), str(v)) for k, v in raw)  # type: ignore[union-attr]
+        feats = ()
     return Token(
-        index=int(item["id"]),  # type: ignore[arg-type]
+        index=int(str(item["id"])),
         form=str(item["form"]),
         lemma=str(item.get("lemma") or item["form"]),
         upos=str(item.get("upos") or "X"),
-        head=int(item.get("head") or 0),  # type: ignore[arg-type]
+        head=int(str(item.get("head") or 0)),
         deprel=str(item.get("deprel") or "dep"),
         feats=feats,
     )

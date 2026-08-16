@@ -1,0 +1,1162 @@
+"""Čtení: rozbor jedné věty → predikace, ve které **nic se neztrácí**.
+
+Proč takhle: conbond4 měl 22 pater kaskády, která si předávala kandidáty
+a každé mohlo čtení zastavit otázkou. conbond5 čte **tabulkově**: kořen
+rozhodne druh predikace (sloveso / kopula / fragment), každý závislý člen
+se podle deprelu zařadí do role, atributu, vnořené predikace, částice —
+a co nikam nepatří, skončí ve **zbytku** s cestou deprelů. Výsledek je
+vždy: čtení existuje, a je vidět, co v něm chybí.
+
+Výchozí volby (jméno role z předložky + pádu, kvantifikátor z tvaru,
+kopula → member/subset/within) se berou z `defaults.py` a **každá se
+zapíše** do `Predication.defaults`, aby ji paměť a odpověď mohly citovat.
+
+Vstup: `Parse` (viz `oracle.py`), volitelně `mood`.
+Výstup: `Reading` = hlavní predikace + vedlejší predikace + zbytek +
+`placement()` (index tokenu → kam se dostal). Test „každý token má právě
+jedno místo“ je pojistka proti tichému zahazování.
+"""
+
+from __future__ import annotations
+
+from dataclasses import dataclass, field
+from typing import Literal
+
+from cb5 import defaults as D
+from cb5.chronos import TimeSpec, is_time_noun, time_from_tokens
+from cb5.oracle import Parse, Token
+
+Quant = Literal["∀", "∃", "·"]
+Kind = Literal["entity", "group", "place", "time", "value", "pron", "wh"]
+
+#: Deprely, které nesou strukturu, ne obsah — pohltí je jejich hlava.
+STRUCTURAL = frozenset(
+    {"aux", "aux:pass", "cop", "cc", "cc:preconj", "mark", "case", "det", "det:numgov",
+     "det:nummod", "expl:pv", "expl:pass", "expl", "fixed", "flat", "flat:name",
+     "flat:foreign", "compound", "goeswith", "reparandum", "punct", "clf", "dep:aux"}
+)
+
+
+@dataclass
+class TermSpec:
+    """Jeden term v roli: co věta jmenuje, ještě před zakotvením do paměti.
+
+    `kind` říká, jaký uzel má vzniknout (entita, group, místo, čas, hodnota,
+    zájmeno k rozřešení, tázací díra); `attrs` jsou pohlcené přívlastky
+    (`amod`), `count` číslovka, `time` rozpoznaný čas; `quant` + autorita
+    kvantifikátoru; `tokens` = všechny tokeny, které term spotřeboval.
+    """
+
+    head: int
+    lemma: str
+    forms: tuple[str, ...]
+    upos: str
+    kind: Kind
+    attrs: tuple[str, ...] = ()
+    count: int | None = None
+    time: TimeSpec | None = None
+    gender: str | None = None
+    number: str | None = None
+    person: str | None = None
+    quant: Quant | None = None
+    quant_authority: str = ""
+    tokens: tuple[int, ...] = ()
+    name_tokens: tuple[int, ...] = ()
+    #: Lemmata tokenů jména (klíč identity entity: „Alois Jirásek“).
+    name_lemmas: tuple[str, ...] = ()
+    #: Přivlastnění: `("pron", "jeho")` nebo `("adj", "Filipův")` — rozřeší se v paměti.
+    possessor: tuple[str, str] | None = None
+    #: Zúžení group vztažnou / participiální větou apod. jen jako poznámka pro render.
+    note: str = ""
+
+    def label(self) -> str:
+        if self.kind in ("entity", "place") and self.name_lemmas:
+            return " ".join(self.name_lemmas)
+        if self.kind == "time" and self.time is not None:
+            return self.time.label
+        out = self.lemma
+        if self.count is not None:
+            out += f"#{self.count}"
+        if self.possessor:
+            out += f"⟨{self.possessor[1]}⟩"
+        return out
+
+
+@dataclass
+class RoleFill:
+    """Role predikace: jméno (`kdo`, `kde`, `v+Loc`…), termy (koordinace =
+    víc termů), autorita jména (`structural` / `default` / `learned` /
+    `surface`), případně vnořená predikace nebo tázací díra."""
+
+    name: str
+    surface: str
+    terms: list[TermSpec] = field(default_factory=list)
+    authority: str = "structural"
+    nested: "Predication | None" = None
+    wh: bool = False
+    wh_kind: str = ""
+
+    def __str__(self) -> str:
+        if self.nested is not None:
+            return f"{self.name}:[{self.nested}]"
+        if self.wh and not self.terms:
+            return f"{self.name}:?"
+        prefix = f"{self.name}:?{self.wh_kind}:" if self.wh else f"{self.name}:"
+        return prefix + "+".join(
+            (t.quant or "") + t.label() + ("".join(f"[{a}]" for a in t.attrs)) for t in self.terms
+        )
+
+
+@dataclass
+class Predication:
+    """Jedna predikace: predikát + role + polarita + modalita (+ jádrová
+    relace u kopuly). `secondary` jsou další predikace téže věty (vztažná
+    věta, přívlastek jako vztah, souřadný přísudek, životopisná závorka)."""
+
+    pred: str | None
+    kind: Literal["verb", "copula", "fragment", "nmod", "appos"]
+    neg: bool = False
+    modality: str | None = None
+    kernel: str | None = None
+    roles: list[RoleFill] = field(default_factory=list)
+    mood: Literal["assert", "question"] = "assert"
+    head: int = 0
+    tokens: tuple[int, ...] = ()
+    defaults: list[str] = field(default_factory=list)
+    secondary: list["Predication"] = field(default_factory=list)
+    tense: str | None = None
+    #: „Ne, …“ na začátku: věta opravuje předchozí tvrzení (dialog).
+    correction: bool = False
+    #: U kopuly jméno role predikátového nominálu (`co` / `jaký` / `kde`…).
+    pred_role_name: str = ""
+
+    def role(self, name: str) -> RoleFill | None:
+        for r in self.roles:
+            if r.name == name:
+                return r
+        return None
+
+    def __str__(self) -> str:
+        head = self.pred or "∅"
+        if self.neg:
+            head = "¬" + head
+        if self.modality:
+            head = f"{self.modality}:{head}"
+        body = ", ".join(str(r) for r in self.roles)
+        k = f" ⟨{self.kernel}⟩" if self.kernel else ""
+        return f"{head}({body}){k}"
+
+
+@dataclass
+class Reading:
+    """Výsledek čtení jedné věty."""
+
+    parse: Parse
+    main: Predication
+    residue: list[tuple[str, str]] = field(default_factory=list)
+    _placement: dict[int, str] = field(default_factory=dict)
+
+    def placement(self) -> dict[int, str]:
+        return dict(self._placement)
+
+    def all_predications(self) -> list[Predication]:
+        out: list[Predication] = []
+
+        def walk(p: Predication) -> None:
+            out.append(p)
+            for r in p.roles:
+                if r.nested is not None:
+                    walk(r.nested)
+            for s in p.secondary:
+                walk(s)
+
+        walk(self.main)
+        return out
+
+
+# ==========================================================================
+# Čtečka
+# ==========================================================================
+
+
+class _Reader:
+    """Stavová čtečka jedné věty (drží rozbor a mapu umístění tokenů)."""
+
+    def __init__(self, parse: Parse, mood: str | None) -> None:
+        self.p = parse
+        self.place: dict[int, str] = {}
+        self.residue: list[tuple[str, str]] = []
+        self.mood: str = mood or ("question" if parse.text.rstrip().endswith("?") or self._has_wh() else "assert")
+
+    # ---- pomocníci -------------------------------------------------------
+
+    def _has_wh(self) -> bool:
+        first = next((t for t in self.p.tokens if t.upos != "PUNCT"), None)
+        return bool(first and "Int" in (first.feat("PronType") or "") and self.p.text.rstrip().endswith("?"))
+
+    def kids(self, i: int, *deprels: str) -> list[Token]:
+        """Děti podle ZÁKLADNÍHO deprelu (`obl` bere i `obl:arg`)."""
+        return [t for t in self.p.children(i) if not deprels or t.base_deprel in deprels or t.deprel in deprels]
+
+    def mark(self, indices: int | list[int] | tuple[int, ...], where: str) -> None:
+        if isinstance(indices, int):
+            indices = [indices]
+        for i in indices:
+            self.place.setdefault(i, where)
+
+    def case_of(self, i: int) -> str:
+        """Předložka členu (lemma `case`; víceslovná přes `fixed` se spojí)."""
+        for c in self.p.children(i):
+            if c.base_deprel == "case":
+                parts = [c.lemma] + [f.lemma for f in self.p.children(c.index) if f.base_deprel == "fixed"]
+                return " ".join(parts)
+        return ""
+
+    def is_neg(self, t: Token) -> bool:
+        return t.feat("Polarity") == "Neg" and t.upos in ("VERB", "AUX", "ADJ")
+
+    # ---- vstup -------------------------------------------------------------
+
+    def read(self) -> Reading:
+        root = self.p.root()
+        cop = self.kids(root.index, "cop")
+        if cop:
+            main = self._copula(root, cop[0])
+        elif root.upos in ("VERB",) or (root.upos == "AUX" and root.lemma == "být"):
+            if root.upos == "AUX":
+                main = self._aux_root(root)
+            else:
+                main = self._verb(root)
+        else:
+            main = self._fragment(root)
+        main.mood = self.mood  # type: ignore[assignment]
+        self._sweep()
+        return Reading(parse=self.p, main=main, residue=self.residue, _placement=self.place)
+
+    def _sweep(self) -> None:
+        """Každý token dostane místo: co není umístěné, je částice
+        (strukturní deprel) nebo zbytek s cestou deprelů."""
+        for t in self.p.tokens:
+            if t.index in self.place:
+                continue
+            if t.upos == "PUNCT" or t.base_deprel == "punct":
+                self.place[t.index] = "punct"
+            elif t.deprel in STRUCTURAL or t.base_deprel in STRUCTURAL:
+                self.place[t.index] = "particle"
+            elif t.lemma in D.PARTICLES and t.upos in ("ADV", "PART", "CCONJ", "SCONJ", "INTJ"):
+                self.place[t.index] = "particle"
+            else:
+                self.place[t.index] = "residue"
+                self.residue.append((t.form, self.p.path(t.index)))
+
+    # ---- predikace slovesa -------------------------------------------------
+
+    def _verb(self, head: Token, *, shared_subject: RoleFill | None = None) -> Predication:
+        pred_head = head
+        modality: str | None = None
+        heads = [head]
+        # modální / fázové sloveso + infinitiv → predikát je infinitiv
+        if head.lemma in D.MODAL_VERBS:
+            inf = [t for t in self.kids(head.index, "xcomp") if t.upos == "VERB" and t.feat("VerbForm") == "Inf"]
+            if inf:
+                modality = D.MODAL_VERBS[head.lemma]
+                pred_head = inf[0]
+                heads = [head, inf[0]]
+                self.mark(head.index, "pred")
+            else:
+                # „může být fatální“ — xcomp se sponou: kopula s modalitou
+                copx = [t for t in self.kids(head.index, "xcomp") if self.kids(t.index, "cop")]
+                if copx:
+                    self.mark(head.index, "pred")
+                    subj = [t for t in self.kids(head.index, "nsubj")]
+                    p = self._copula(copx[0], self.kids(copx[0].index, "cop")[0])
+                    p.modality = D.MODAL_VERBS[head.lemma]
+                    if subj and p.role("kdo") is not None and p.role("kdo").authority == "prodrop":  # type: ignore[union-attr]
+                        p.roles.remove(p.role("kdo"))  # type: ignore[arg-type]
+                    if subj and p.role("kdo") is None:
+                        self._add_role(p, "kdo", subj[0].deprel, subj[0])
+                        p.roles.insert(0, p.roles.pop())
+                        self._quantify(p)
+                        pr = p.role(p.pred_role_name)
+                        if pr is not None:
+                            p.kernel = self._copula_kernel(p, pr)
+                    for a in self.kids(head.index, "aux"):
+                        self.mark(a.index, "particle")
+                    for t in self.p.children(head.index):
+                        if t.base_deprel in ("obl", "advmod", "advcl") and t.index not in self.place:
+                            self._roles_of_single(t, p)
+                    return p
+        pred = self._lemma_with_refl(pred_head)
+        p = Predication(pred=pred, kind="verb", modality=modality, head=pred_head.index)
+        p.tense = pred_head.feat("Tense") or head.feat("Tense")
+        self.mark(pred_head.index, "pred")
+        neg = self.is_neg(head) or self.is_neg(pred_head)
+        for h in heads:
+            for a in self.kids(h.index, "aux"):
+                if self.is_neg(a):
+                    neg = True
+                self.mark(a.index, "particle")
+            for adv in self.kids(h.index, "advmod"):
+                if adv.lemma == "ne" or (adv.upos == "PART" and adv.feat("Polarity") == "Neg"):
+                    if adv.index == 1 and len(self.p.tokens) > 1 and self.p.token(2).form == ",":
+                        p.correction = True  # „Ne, …“ = oprava předchozího, ne zápor věty
+                    else:
+                        neg = True
+                    self.mark(adv.index, "particle")
+        p.neg = neg
+        passive = any(t.deprel == "nsubj:pass" for h in heads for t in self.p.children(h.index)) or any(
+            a.deprel == "aux:pass" for h in heads for a in self.p.children(h.index)
+        )
+        for h in heads:
+            self._roles_of(h, p, passive=passive)
+        if shared_subject is not None and p.role("kdo") is None:
+            p.roles.insert(0, RoleFill("kdo", shared_subject.surface, list(shared_subject.terms), "shared"))
+        self._subject_from_ambiguity(p)
+        self._prodrop(p, heads)
+        self._quantify(p)
+        # souřadné přísudky: druhá predikace se sdíleným podmětem
+        for h in heads:
+            for c in self.kids(h.index, "conj"):
+                if c.upos == "VERB" or self.kids(c.index, "cop"):
+                    self.mark(c.index, "secondary")
+                    shared = p.role("kdo")
+                    if self.kids(c.index, "cop"):
+                        sec = self._copula(c, self.kids(c.index, "cop")[0], shared_subject=shared)
+                    else:
+                        sec = self._verb(c, shared_subject=shared)
+                    p.secondary.append(sec)
+                    self.mark(c.index, "secondary")
+        return p
+
+    def _lemma_with_refl(self, t: Token) -> str:
+        lemma = t.lemma
+        for c in self.p.children(t.index):
+            if c.deprel in ("expl:pv", "expl") and c.lemma in ("se", "si"):
+                lemma = f"{lemma}_{c.lemma}"
+                self.mark(c.index, "particle")
+        return lemma
+
+    def _roles_of(self, h: Token, p: Predication, *, passive: bool) -> None:
+        for t in self.p.children(h.index):
+            d, base = t.deprel, t.base_deprel
+            if t.index in self.place and self.place[t.index] in ("pred", "secondary"):
+                continue
+            if base in ("nsubj", "csubj"):
+                name = "co" if d.endswith(":pass") else "kdo"
+                if base == "csubj":
+                    p.roles.append(RoleFill(name, "csubj", nested=self._verb_or_cop(t), authority="structural"))
+                    self.mark(t.index, "nested")
+                else:
+                    self._add_role(p, name, d, t)
+            elif base == "obj":
+                self._add_role(p, "co", d, t)
+            elif base == "iobj":
+                self._add_role(p, "komu", d, t)
+            elif base == "obl":
+                if d == "obl:agent":
+                    self._add_role(p, "kdo", d, t)
+                else:
+                    name, surface, authority = self._obl_role(t, arg=(d == "obl:arg"))
+                    self._add_role(p, name, surface, t, authority=authority)
+            elif base == "advmod":
+                self._advmod(t, p)
+            elif base == "xcomp":
+                if t.upos == "VERB":
+                    p.roles.append(RoleFill("co", "xcomp", nested=self._verb(t), authority="structural"))
+                    self.mark(t.index, "nested")
+                else:
+                    self._add_role(p, "co", "xcomp", t)
+            elif base == "ccomp":
+                p.roles.append(RoleFill("co", "ccomp", nested=self._verb_or_cop(t), authority="structural"))
+                self.mark(t.index, "nested")
+            elif base == "advcl":
+                self._advcl(t, p)
+            elif base == "conj":
+                if t.upos in ("VERB",) or self.kids(t.index, "cop"):
+                    continue  # souřadný přísudek řeší volající
+                # souřadný člen pod slovesem: ADV, nebo nominál s pádem → další okolnost
+                self._conj_under_verb(t, p)
+            elif base == "parataxis":
+                if t.upos == "VERB" or self.kids(t.index, "cop"):
+                    sec = self._verb_or_cop(t)
+                    p.secondary.append(sec)
+                    self.mark(t.index, "secondary")
+                # jinak nechat sweepu (zbytek)
+            elif base == "vocative":
+                self._add_role(p, "oslovení", d, t)
+            elif base == "obl:tmod" or base == "nmod":
+                name, surface, authority = self._obl_role(t, arg=False)
+                self._add_role(p, name, surface, t, authority=authority)
+            # ostatní (dep, orphan, discourse, list…) → sweep → zbytek
+
+    def _verb_or_cop(self, t: Token) -> Predication:
+        cop = self.kids(t.index, "cop")
+        if cop:
+            return self._copula(t, cop[0])
+        if t.upos in ("VERB", "AUX"):
+            return self._verb(t)
+        # participium / adjektivum jako predikát vedlejší věty („nejsou splněny požadavky“)
+        return self._participle(t)
+
+    def _participle(self, t: Token) -> Predication:
+        """ADJ‑participium jako přísudek („splněny“, „způsobené“, „provedená“)."""
+        p = Predication(pred=t.lemma, kind="verb", head=t.index)
+        self.mark(t.index, "pred")
+        neg = self.is_neg(t)
+        for a in self.kids(t.index, "aux"):
+            neg = neg or self.is_neg(a)
+            self.mark(a.index, "particle")
+        p.neg = neg
+        p.tense = next((a.feat("Tense") for a in self.kids(t.index, "aux") if a.feat("Tense")), None)
+        self._roles_of(t, p, passive=True)
+        self._quantify(p)
+        return p
+
+    def _add_role(
+        self, p: Predication, name: str, surface: str, t: Token, *, authority: str = "structural"
+    ) -> None:
+        wh = self._wh_of(t)
+        role = RoleFill(name, surface, authority=authority)
+        if wh is not None:
+            role.name, role.wh_kind = wh
+            role.wh = True
+            self.mark(t.index, f"role:{role.name}")
+            self._mark_structure(t.index, f"role:{role.name}")
+            if role.wh_kind == "count":
+                # „kolik zubů“: díra je počet, term zůstává
+                role.terms = [self._term(t)]
+                role.name = name
+            p.roles.append(role)
+            return
+        role.terms = self._term_group(t)
+        if len(role.terms) > 1:
+            p.defaults.append(f"koordinace:{name}:distribuce")
+        p.roles.append(role)
+
+    def _wh_of(self, t: Token) -> tuple[str, str] | None:
+        """Je token tázací díra? Vrací (jméno role, druh)."""
+        if self.mood != "question":
+            return None
+        if "Int" in (t.feat("PronType") or "") and t.lemma in D.WH:
+            return D.WH[t.lemma]
+        for c in self.p.children(t.index):
+            if c.base_deprel == "det" and c.lemma in D.WH and (
+                "Int" in (c.feat("PronType") or "") or D.WH[c.lemma][1] == "count"
+            ):
+                return D.WH[c.lemma]
+        return None
+
+    def _mark_structure(self, i: int, where: str) -> None:
+        for c in self.p.children(i):
+            if c.deprel in STRUCTURAL or c.base_deprel in STRUCTURAL:
+                self.mark(c.index, "particle")
+
+    # ---- okolnosti ---------------------------------------------------------
+
+    def _filler_kind(self, t: Token) -> str:
+        """`place` / `time` / `*` — druh výplně pro tabulku rolí."""
+        sub = self.p.subtree(t.index)
+        if is_time_noun(t.lemma) or (t.upos == "NUM" and time_from_tokens([t])) or (
+            t.upos in ("NOUN", "NUM", "ADJ") and time_from_tokens(sub) is not None and not (t.feat("NameType"))
+        ):
+            return "time"
+        if t.feat("NameType") == "Geo" or t.lemma in D.PLACE_NOUNS:
+            return "place"
+        if t.upos == "PROPN" and self.case_of(t.index) in D.PLACE_PREPS and t.feat("NameType") in (None, "Geo"):
+            # PROPN bez NameType po místní předložce — místo je nejlepší sázka, ale je to výchozí
+            return "place?"
+        return "*"
+
+    def _obl_role(self, t: Token, *, arg: bool) -> tuple[str, str, str]:
+        prep = self.case_of(t.index)
+        case = t.feat("Case") or ""
+        surface = f"{prep}+{case}" if prep else (case or t.deprel)
+        if surface in D.LEARNED_ROLES:
+            return D.LEARNED_ROLES[surface], surface, "learned"
+        table = D.ROLE_BY_CASE.get((prep, case)) or D.ROLE_BY_CASE.get((prep, "")) or {}
+        kind = self._filler_kind(t)
+        if not arg:
+            if kind in ("place", "place?") and "place" in table:
+                return table["place"], surface, "default"
+            if kind == "time" and "time" in table:
+                return table["time"], surface, "default"
+        if "*" in table:
+            name = table["*"]
+            return name, surface, ("default" if name != surface else "surface")
+        return surface, surface, "surface"
+
+    def _advmod(self, t: Token, p: Predication) -> None:
+        if t.lemma == "ne":
+            return
+        wh = self._wh_of(t)
+        if wh is not None:
+            name, kind = wh
+            p.roles.append(RoleFill(name, "advmod", wh=True, wh_kind=kind))
+            self.mark(t.index, f"role:{name}")
+            return
+        if "Rel" in (t.feat("PronType") or "") and t.lemma in D.WH:
+            # vztažné příslovce („kde se scházeli“) — místo vyplní hlava vztažné věty
+            name, _ = D.WH[t.lemma]
+            p.roles.append(RoleFill(name, "advmod", authority="relative"))
+            self.mark(t.index, f"role:{name}")
+            return
+        if t.lemma in D.PARTICLES:
+            self.mark(t.index, "particle")
+            return
+        from cb5.chronos import RELATIVE_DAYS
+
+        if t.lemma in RELATIVE_DAYS or t.lemma in D.SEQUENCE_ADVERBS:
+            name = "kdy" if t.lemma in RELATIVE_DAYS else "pořadí"
+            term = TermSpec(t.index, t.lemma, (t.form,), t.upos, "time", time=TimeSpec("name", t.lemma), quant="·", quant_authority="structural", tokens=(t.index,))
+            role = p.role(name)
+            if role is None:
+                role = RoleFill(name, "advmod")
+                p.roles.append(role)
+            role.terms.append(term)
+            self.mark(t.index, f"role:{name}")
+            for c in self.kids(t.index, "conj"):
+                self._conj_under_verb(c, p)
+            return
+        # ostatní příslovce = způsob
+        role = p.role("jak")
+        if role is None:
+            role = RoleFill("jak", "advmod")
+            p.roles.append(role)
+        role.terms.append(TermSpec(t.index, t.lemma, (t.form,), t.upos, "group", quant="·", quant_authority="structural", tokens=(t.index,)))
+        self.mark(t.index, "role:jak")
+        for c in self.kids(t.index, "conj"):
+            self._conj_under_verb(c, p)
+
+    def _advcl(self, t: Token, p: Predication) -> None:
+        marks = [c for c in self.p.children(t.index) if c.base_deprel == "mark"]
+        marker = marks[0].lemma if marks else ""
+        for m in marks:
+            self.mark(m.index, "particle")
+        if t.deprel == "advcl:pred" or (marker == "jako" and t.upos in ("NOUN", "PROPN", "ADJ") and not self.kids(t.index, "cop")):
+            # „pracoval jako učitel“ — doplněk, ne věta
+            self._add_role(p, "jako", "advcl:pred", t, authority="structural")
+            return
+        name = f"advcl:{marker}" if marker else "advcl"
+        nested = self._verb_or_cop(t)
+        p.roles.append(RoleFill(name, name, nested=nested, authority="surface"))
+        self.mark(t.index, "nested")
+
+    def _conj_under_verb(self, t: Token, p: Predication) -> None:
+        """Souřadný člen zavěšený pod sloveso/příslovce: `nejprve v Litomyšli a poté v Praze`."""
+        for c in self.p.children(t.index):
+            if c.base_deprel == "cc":
+                self.mark(c.index, "particle")
+        if t.upos == "VERB" or self.kids(t.index, "cop") or (t.upos == "ADJ" and self.kids(t.index, "aux", "nsubj")):
+            p.secondary.append(self._verb_or_cop(t) if t.upos != "ADJ" or self.kids(t.index, "cop") else self._participle(t))
+            self.mark(t.index, "secondary")
+            return
+        if t.upos == "ADV":
+            self._advmod(t, p)
+            return
+        if t.upos in ("NOUN", "PROPN", "PRON", "NUM", "ADJ", "DET"):
+            name, surface, authority = self._obl_role(t, arg=False)
+            role = p.role(name)
+            term = self._term(t)
+            if role is None:
+                p.roles.append(RoleFill(name, surface, [term], authority))
+            else:
+                role.terms.append(term)
+            for c in self.kids(t.index, "conj"):
+                self._conj_under_verb(c, p)
+            return
+        if t.upos == "VERB" or self.kids(t.index, "cop"):
+            p.secondary.append(self._verb_or_cop(t))
+            self.mark(t.index, "secondary")
+
+    # ---- podmět nevyslovený, kvantifikace ---------------------------------
+
+    def _subject_from_ambiguity(self, p: Predication) -> None:
+        """Nom = Acc: parser dal dva `obj` a žádný podmět („Obsahuje citron
+        vitamín C?“). Podmět je ten, který se shoduje s přísudkem v čísle;
+        při shodě obou první v pořadí věty. Výchozí volba, označená."""
+        if p.role("kdo") is not None:
+            return
+        objs = [r for r in p.roles if r.name == "co" and r.surface == "obj" and r.terms and not r.wh]
+        if len(objs) < 2:
+            return
+        head = self.p.token(p.head)
+        number = head.feat("Number") or next((a.feat("Number") for a in self.kids(head.index, "aux") if a.feat("Number")), None)
+        agreeing = [r for r in objs if r.terms[0].number == number] if number else objs
+        chosen = min(agreeing or objs, key=lambda r: r.terms[0].head)
+        chosen.name = "kdo"
+        chosen.authority = "default"
+        p.defaults.append("kdo:podmět z pádové dvojznačnosti (shoda čísla, pořadí)")
+        for r in objs:
+            for t in r.terms:
+                t.quant = None
+                t.quant_authority = ""
+
+    def _prodrop(self, p: Predication, heads: list[Token]) -> None:
+        if p.role("kdo") is not None or p.role("co") and any(r.surface == "nsubj:pass" for r in p.roles):
+            return
+        if any(r.surface == "nsubj:pass" for r in p.roles):
+            return
+        h = heads[0]
+        finite = h.feat("VerbForm") in ("Fin", "Part") or any(a.feat("VerbForm") == "Fin" for a in self.kids(h.index, "aux"))
+        if not finite:
+            return
+        person = h.feat("Person") or next((a.feat("Person") for a in self.kids(h.index, "aux") if a.feat("Person")), None)
+        gender = h.feat("Gender")
+        number = h.feat("Number") or next((a.feat("Number") for a in self.kids(h.index, "aux") if a.feat("Number")), None)
+        # neosobní: 3. os. sg. neutrum bez podmětu („prší“, „jedná se“) → nedosazovat
+        if person == "3" and gender == "Neut" and number == "Sing" and p.pred and p.pred.endswith("_se"):
+            return
+        term = TermSpec(0, "∅", (), "PRON", "pron", gender=gender, number=number, person=person, quant="·", quant_authority="prodrop")
+        p.roles.insert(0, RoleFill("kdo", "prodrop", [term], "prodrop"))
+        p.defaults.append("kdo:pro-drop z kontextu")
+
+    def _quantify(self, p: Predication) -> None:
+        """Kvantifikátor role podle tvaru — a autorita každé volby."""
+        generic = (p.tense == "Pres") or (p.kind == "copula" and p.tense in (None, "Pres"))
+        for r in p.roles:
+            for t in r.terms:
+                if t.quant is not None:
+                    continue
+                if t.kind in ("entity", "place", "time", "value", "pron"):
+                    t.quant, t.quant_authority = "·", "structural"
+                elif t.kind == "wh":
+                    continue
+                elif r.name == "kdo" or (r.name == "co" and r.surface == "nsubj:pass"):
+                    if generic:
+                        t.quant, t.quant_authority = "∀", "default:generický prézens"
+                        p.defaults.append(f"{r.name}:∀ generický prézens")
+                    else:
+                        t.quant, t.quant_authority = "·", "default:epizoda"
+                        p.defaults.append(f"{r.name}:· epizoda")
+                else:
+                    t.quant, t.quant_authority = "∃", "default:předmět"
+
+    # ---- termy -------------------------------------------------------------
+
+    def _term_group(self, t: Token) -> list[TermSpec]:
+        """Term + jeho souřadné členy (`conj`) jako víc termů jedné role."""
+        terms = [self._term(t)]
+        for c in self.kids(t.index, "conj"):
+            if c.upos in ("VERB",) or self.kids(c.index, "cop"):
+                continue
+            for cc in self.kids(c.index, "cc"):
+                self.mark(cc.index, "particle")
+            terms.extend(self._term_group(c))
+        return terms
+
+    def _term(self, t: Token) -> TermSpec:
+        where = "term"
+        consumed: list[int] = [t.index]
+        self.mark(t.index, where)
+        self._mark_structure(t.index, where)
+        forms = [t.form]
+        name_tokens = [t.index]
+        name_lemmas = [t.lemma]
+        attrs: list[str] = []
+        count: int | None = None
+        possessor: tuple[str, str] | None = None
+        quant: Quant | None = None
+        qauth = ""
+        kind: Kind
+        # víceslovné jméno
+        for f in self.p.children(t.index):
+            if f.base_deprel == "flat" or f.deprel == "compound" or (
+                f.base_deprel == "nmod" and t.upos == "NOUN" and not self.case_of(f.index)
+                and not self.p.children(f.index) and f.feat("NameType") != "Geo"
+                and (f.upos in ("PROPN", "X", "SYM", "NUM") or f.feat("Abbr") == "Yes" or (len(f.form) <= 2 and not f.feat("Case")))
+            ):
+                # víceslovné jméno; i „vitamín C“, „skupina B“ (holé nmod bez pádu a bez dětí)
+                forms.append(f.form)
+                name_tokens.append(f.index)
+                name_lemmas.append(f.lemma)
+                consumed.append(f.index)
+                self.mark(f.index, where)
+                for g in self.p.subtree(f.index):
+                    self.mark(g.index, where)
+                    if g.index != f.index:
+                        consumed.append(g.index)
+        # determinátory, číslovky, přívlastky
+        for c in self.p.children(t.index):
+            d = c.base_deprel
+            if d == "det":
+                q = D.DETERMINER_QUANT.get(c.lemma)
+                if q:
+                    quant, qauth = ("∀" if q == "∀neg" else q), "determiner"  # type: ignore[assignment]
+                    if q == "∀neg":
+                        attrs.append("¬")  # značka pro predikaci
+                elif c.lemma in D.POSSESSIVE or c.feat("Poss") == "Yes":
+                    possessor = ("pron", c.lemma)
+                elif "Int" in (c.feat("PronType") or ""):
+                    pass  # díra řešená v _add_role
+                self.mark(c.index, "particle")
+                consumed.append(c.index)
+            elif d == "nummod":
+                raw = c.form.replace(",", ".").replace(" ", "").replace("\u00a0", "").rstrip(".")
+                if raw.isdigit():
+                    count = int(raw)
+                self.mark(c.index, where)
+                consumed.append(c.index)
+            elif d == "amod":
+                if c.feat("Poss") == "Yes" and c.upos == "ADJ":
+                    possessor = ("adj", c.lemma)
+                elif self.kids(c.index, "obl", "obj", "nsubj", "advmod", "nmod", "advcl", "xcomp", "iobj") and c.feat("VerbForm") == "Part":
+                    # participium s vlastními členy = vedlejší predikace o hlavě
+                    self._pending_secondary.append((t, c))
+                    continue
+                else:
+                    attrs.append(("ne" if self.is_neg(c) and not c.lemma.startswith("ne") else "") + c.lemma)
+                self.mark(c.index, where)
+                consumed.append(c.index)
+                for g in self.p.subtree(c.index):
+                    if g.index != c.index and (g.base_deprel in ("advmod", "conj", "cc") or g.deprel in STRUCTURAL):
+                        self.mark(g.index, "particle")
+                        consumed.append(g.index)
+                for cc in self.kids(c.index, "conj"):
+                    if cc.upos == "ADJ":
+                        attrs.append(cc.lemma)
+                        self.mark(cc.index, where)
+                        consumed.append(cc.index)
+            elif d in ("nmod", "appos", "acl", "parataxis", "obl", "advcl"):
+                if c.index in consumed:
+                    continue
+                self._pending_secondary.append((t, c))
+            elif d == "advmod" and c.lemma in D.PARTICLES:
+                self.mark(c.index, "particle")
+        # druh
+        time = None
+        if "Int" in (t.feat("PronType") or ""):
+            kind = "wh"
+        elif t.upos == "PROPN":
+            kind = "place" if (t.feat("NameType") == "Geo" or self._filler_kind(t) == "place?") else "entity"
+            quant, qauth = quant or "·", qauth or "structural"
+        elif t.upos == "PRON" or (t.upos == "DET" and not self.p.children(t.index)):
+            kind = "pron"
+            quant, qauth = "·", "structural"
+        elif t.upos == "NUM":
+            kind = "value"
+            time = time_from_tokens([t])
+            if time:
+                kind = "time"
+            else:
+                raw = t.form.replace(",", ".")
+                count = int(raw) if raw.isdigit() else None
+        else:
+            # jen hlava + PŘÍMÉ číslovky/předložky/flat — ne celý podstrom (kořen
+            # věty má pod sebou všechno, včetně letopočtů cizích členů)
+            sub = [x for x in self.p.subtree(t.index) if x.index == t.index or (x.head == t.index and x.base_deprel in ("nummod", "case", "flat"))]
+            time = time_from_tokens(sub) if (is_time_noun(t.lemma) or any(x.upos == "NUM" for x in sub)) else None
+            if is_time_noun(t.lemma) or time is not None:
+                kind = "time"
+                if time is None:
+                    time = TimeSpec("name", t.lemma)
+                for x in sub:
+                    self.mark(x.index, where)
+            elif t.lemma in D.PLACE_NOUNS and False:
+                kind = "place"
+            else:
+                kind = "group"
+        spec = TermSpec(
+            head=t.index, lemma=" ".join(name_lemmas) if kind == "group" else t.lemma, forms=tuple(forms), upos=t.upos, kind=kind,
+            attrs=tuple(a for a in attrs if a != "¬"), count=count, time=time,
+            gender=t.feat("Gender"), number=t.feat("Number"), person=t.feat("Person"),
+            quant=quant, quant_authority=qauth, tokens=tuple(sorted(set(consumed))),
+            name_tokens=tuple(name_tokens), name_lemmas=tuple(name_lemmas), possessor=possessor,
+        )
+        if possessor is not None and spec.quant is None:
+            spec.quant, spec.quant_authority = "·", "default:přivlastnění"
+        if "¬" in attrs:
+            spec.note = "žádný"
+        return spec
+
+    _pending_secondary: list[tuple[Token, Token]]
+
+    # ---- kopula ------------------------------------------------------------
+
+    def _copula(self, root: Token, cop: Token | None, *, shared_subject: RoleFill | None = None) -> Predication:
+        p = Predication(pred="být", kind="copula", head=root.index)
+        p.tense = cop.feat("Tense") if cop else None
+        if cop is not None:
+            self.mark(cop.index, "pred")
+        p.neg = (self.is_neg(cop) if cop else False) or self.is_neg(root)
+        for a in self.kids(root.index, "aux"):
+            p.neg = p.neg or self.is_neg(a)
+            self.mark(a.index, "particle")
+        for adv in self.kids(root.index, "advmod"):
+            if adv.lemma == "ne":
+                p.neg = True
+                self.mark(adv.index, "particle")
+        subj = [t for t in self.p.children(root.index) if t.base_deprel in ("nsubj", "csubj")]
+        # predikátový nominál = kořen sám
+        wh = self._wh_of(root)
+        prep = self.case_of(root.index)
+        pred_role: RoleFill
+        if wh is not None:
+            name, kind = wh
+            pred_role = RoleFill("co", "cop", wh=True, wh_kind=kind)
+            self.mark(root.index, "role:co")
+            self._mark_structure(root.index, "role:co")
+        elif root.upos == "ADJ":
+            pred_role = RoleFill("jaký", "cop", self._term_group(root), "structural")
+        elif root.upos == "ADV":
+            pred_role = RoleFill("jak", "cop", self._term_group(root), "structural")
+        elif prep:
+            name, surface, authority = self._obl_role(root, arg=False)
+            pred_role = RoleFill(name, surface, self._term_group(root), authority)
+        else:
+            pred_role = RoleFill("co", "cop", self._term_group(root), "structural")
+        # podmět
+        if subj:
+            s = subj[0]
+            if s.base_deprel == "csubj":
+                p.roles.append(RoleFill("kdo", "csubj", nested=self._verb_or_cop(s)))
+                self.mark(s.index, "nested")
+            else:
+                self._add_role(p, "co" if s.deprel.endswith(":pass") else "kdo", s.deprel, s)
+        elif shared_subject is not None:
+            p.roles.append(RoleFill("kdo", shared_subject.surface, list(shared_subject.terms), "shared"))
+        p.roles.append(pred_role)
+        p.pred_role_name = pred_role.name
+        # okolnosti u kopuly (byl v Praze učitelem…)
+        for t in self.p.children(root.index):
+            if t.base_deprel in ("obl", "advmod", "advcl", "xcomp", "ccomp", "obj", "iobj", "conj", "parataxis"):
+                if t.base_deprel == "conj" and t.upos not in ("VERB",) and not self.kids(t.index, "cop"):
+                    continue  # nominální koordinace už je v _term_group kořene
+                if t.base_deprel == "advmod" and t.lemma == "ne":
+                    continue
+                if t.base_deprel == "conj":
+                    p.secondary.append(self._verb_or_cop(t) if t.upos == "VERB" else self._copula(t, self.kids(t.index, "cop")[0], shared_subject=p.role("kdo")))
+                    self.mark(t.index, "secondary")
+                    continue
+                self._roles_of_single(t, p)
+        if p.role("kdo") is None and shared_subject is None:
+            self._prodrop(p, [cop or root])
+        self._quantify(p)
+        p.kernel = self._copula_kernel(p, pred_role)
+        return p
+
+    def _roles_of_single(self, t: Token, p: Predication) -> None:
+        """Jedna okolnost pod kopulou — stejná tabulka jako u slovesa."""
+        fake = Predication(pred=None, kind="verb")
+        # využij _roles_of nad "virtuální hlavou": zpracujeme jen tento token
+        d, base = t.deprel, t.base_deprel
+        if base == "obl":
+            name, surface, authority = self._obl_role(t, arg=(d == "obl:arg"))
+            self._add_role(p, name, surface, t, authority=authority)
+        elif base == "advmod":
+            self._advmod(t, p)
+        elif base == "advcl":
+            self._advcl(t, p)
+        elif base in ("xcomp", "ccomp"):
+            p.roles.append(RoleFill("co", base, nested=self._verb_or_cop(t)))
+            self.mark(t.index, "nested")
+        elif base in ("obj", "iobj"):
+            self._add_role(p, "co" if base == "obj" else "komu", d, t)
+        elif base == "parataxis" and (t.upos == "VERB" or self.kids(t.index, "cop")):
+            p.secondary.append(self._verb_or_cop(t))
+            self.mark(t.index, "secondary")
+        del fake
+
+    def _copula_kernel(self, p: Predication, pred_role: RoleFill) -> str | None:
+        subj = p.role("kdo")
+        if subj is None or not subj.terms or pred_role.wh:
+            return None
+        s = subj.terms[0]
+        if pred_role.name == "kde" and s.kind == "place":
+            p.defaults.append("kernel:within (místo v místě)")
+            return "within"
+        if pred_role.name != "co" or not pred_role.terms:
+            return None
+        o = pred_role.terms[0]
+        if o.kind == "time":
+            return None
+        if s.kind in ("entity", "pron") or (s.kind == "group" and s.quant == "·"):
+            if o.kind == "entity":
+                p.defaults.append("kernel:same_as (dvě jména)")
+                return "same_as"
+            p.defaults.append("kernel:member (určitý podmět)")
+            return "member"
+        if s.kind == "group" and s.quant in ("∀", "∃"):
+            p.defaults.append("kernel:subset (obecný podmět)")
+            return "subset"
+        return None
+
+    def _aux_root(self, root: Token) -> Predication:
+        """Kořen je AUX `být` bez `cop` — otázka „Je jezevčík pes?“, „Byl Petr v Česku?“."""
+        subj = [t for t in self.p.children(root.index) if t.base_deprel == "nsubj"]
+        # predikátový nominál zavěšený jako nmod(Nom) pod podmět, nebo obj/xcomp pod kořen
+        nominal: Token | None = None
+        if subj:
+            for c in self.p.children(subj[0].index):
+                if c.base_deprel in ("nmod", "appos") and c.feat("Case") == "Nom" and not self.case_of(c.index):
+                    nominal = c
+                    break
+        if nominal is None:
+            for c in self.p.children(root.index):
+                if c.base_deprel in ("obj", "xcomp", "nmod") and c.upos in ("NOUN", "PROPN", "ADJ"):
+                    nominal = c
+                    break
+        p = Predication(pred="být", kind="copula", head=root.index)
+        p.tense = root.feat("Tense")
+        self.mark(root.index, "pred")
+        p.neg = self.is_neg(root)
+        if subj:
+            self._add_role(p, "kdo", subj[0].deprel, subj[0])
+        pred_role: RoleFill | None = None
+        if nominal is not None:
+            pred_role = RoleFill("jaký" if nominal.upos == "ADJ" else "co", "cop", self._term_group(nominal), "structural")
+            p.roles.append(pred_role)
+        for t in self.p.children(root.index):
+            if t.base_deprel in ("obl", "advmod", "advcl", "ccomp", "conj", "parataxis"):
+                self._roles_of_single(t, p)
+        if p.role("kdo") is None:
+            self._prodrop(p, [root])
+        self._quantify(p)
+        if pred_role is not None:
+            p.kernel = self._copula_kernel(p, pred_role)
+        elif p.role("kde") is not None:
+            s = p.role("kdo")
+            if s and s.terms and s.terms[0].kind == "place":
+                p.kernel = "within"
+        return p
+
+    # ---- fragment ----------------------------------------------------------
+
+    def _fragment(self, root: Token) -> Predication:
+        p = Predication(pred=None, kind="fragment", head=root.index)
+        if root.upos in ("NOUN", "PROPN", "ADJ", "NUM", "PRON", "DET", "ADV", "SYM", "X"):
+            self._add_role(p, "téma", "root", root)
+        else:
+            self.mark(root.index, "residue")
+            self.residue.append((root.form, "root"))
+        self._quantify(p)
+        return p
+
+
+# ==========================================================================
+# vedlejší predikace z podstromů termů (nmod, acl, appos, závorka)
+# ==========================================================================
+
+
+class Reader(_Reader):
+    """Čtečka s druhým průchodem: vedlejší predikace z přívlastků a jmen."""
+
+    def __init__(self, parse: Parse, mood: str | None) -> None:
+        super().__init__(parse, mood)
+        self._pending_secondary = []
+        self._bio_done: set[int] = set()
+
+    def read(self) -> Reading:
+        root = self.p.root()
+        main = self._clause(root)
+        if main is None:
+            # nadpis + věta („Obezita: Domácí mazlíčci jsou…“): kořen je nominál,
+            # věta visí pod ním jako appos/parataxis/conj/dep — ta je hlavní
+            clause = next(
+                (c for c in self.p.children(root.index)
+                 if c.base_deprel in ("appos", "parataxis", "conj", "dep", "acl")
+                 and (c.upos == "VERB" or self.kids(c.index, "cop") or (c.upos == "AUX" and c.lemma == "být")
+                      or (c.upos == "ADJ" and (self.kids(c.index, "aux", "nsubj", "csubj"))))),
+                None,
+            )
+            if clause is not None:
+                self._pending_secondary = [(h, d) for (h, d) in self._pending_secondary if d.index != clause.index]
+                main = self._clause(clause) or self._fragment(clause)
+                heading = self._fragment(root)
+                heading.defaults.append("nadpis před větou")
+                main.secondary.insert(0, heading)
+            else:
+                main = self._fragment(root)
+        main.mood = self.mood  # type: ignore[assignment]
+        # druhý průchod: přívlastky jako vztahy vedle věty, závorky, vztažné věty
+        seen: set[tuple[int, int]] = set()
+        while self._pending_secondary:
+            head, dep = self._pending_secondary.pop(0)
+            if (head.index, dep.index) in seen:
+                continue
+            seen.add((head.index, dep.index))
+            for sec in self._secondary_from(head, dep, main):
+                main.secondary.append(sec)
+        self._sweep()
+        return Reading(parse=self.p, main=main, residue=self.residue, _placement=self.place)
+
+    def _clause(self, root: Token) -> Predication | None:
+        """Je token hlavou věty (klauze)? Vrátí predikaci, jinak `None`."""
+        cop = self.kids(root.index, "cop")
+        if cop:
+            return self._copula(root, cop[0])
+        if root.upos == "VERB":
+            return self._verb(root)
+        if root.upos == "AUX" and root.lemma == "být":
+            return self._aux_root(root)
+        if root.upos == "ADJ" and (self.kids(root.index, "aux", "nsubj", "csubj") or root.feat("VerbForm") == "Part" and self.kids(root.index, "obl", "obj")):
+            p = self._participle(root)
+            self._subject_from_ambiguity(p)
+            return p
+        if root.upos in ("NOUN", "PROPN", "ADV", "NUM", "PRON", "DET") and self.kids(root.index, "nsubj", "csubj"):
+            # spona vypadla (parser), ale podmět je: čti jako kopulu bez spony
+            return self._copula(root, None)
+        return None
+
+    def _head_term(self, head: Token) -> TermSpec:
+        """Term hlavy pro vedlejší predikaci — bez opětovného pohlcení dětí."""
+        flats = [f for f in self.p.children(head.index) if f.base_deprel == "flat"]
+        forms = [head.form] + [f.form for f in flats]
+        lemmas = tuple([head.lemma] + [f.lemma for f in flats])
+        kind: Kind = "entity" if head.upos == "PROPN" else "group"
+        if head.upos == "PROPN" and head.feat("NameType") == "Geo":
+            kind = "place"
+        if is_time_noun(head.lemma):
+            kind = "time"
+        attrs = tuple(c.lemma for c in self.p.children(head.index) if c.base_deprel == "amod" and c.feat("Poss") != "Yes" and not (c.feat("VerbForm") == "Part" and self.kids(c.index, "obl", "obj", "nsubj", "advmod", "nmod")))
+        return TermSpec(head.index, head.lemma, tuple(forms), head.upos, kind, attrs=attrs, quant="·" if kind != "group" else None, quant_authority="structural", tokens=(head.index,), name_tokens=(head.index,) + tuple(f.index for f in flats), name_lemmas=lemmas, gender=head.feat("Gender"), number=head.feat("Number"))
+
+    def _secondary_from(self, head: Token, dep: Token, main: Predication) -> list[Predication]:
+        d = dep.base_deprel
+        out: list[Predication] = []
+        if d == "parataxis":
+            if head.upos == "PROPN":
+                return self._bio_parenthesis(head)
+            if dep.upos == "VERB" or self.kids(dep.index, "cop"):
+                out.append(self._verb_or_cop(dep))
+                self.mark(dep.index, "secondary")
+            return out
+        if d == "nmod":
+            # životopisná závorka: `Jirásek (23. srpna 1851 Hronov – 12. března 1930 Praha)`
+            if head.upos == "PROPN":
+                bio = self._bio_parenthesis(head)
+                if bio:
+                    return bio
+            prep = self.case_of(dep.index)
+            case = dep.feat("Case") or ""
+            surface = f"nmod:{prep}+{case}" if prep else f"nmod:{case}"
+            p = Predication(pred=surface, kind="nmod", head=dep.index)
+            p.roles.append(RoleFill("kdo", "head", [self._head_term(head)], "structural"))
+            p.roles.append(RoleFill("co", surface, self._term_group(dep), "surface"))
+            p.tense = None
+            self._quantify(p)
+            out.append(p)
+        elif d == "appos":
+            if head.upos == "PROPN" and self._bio_parenthesis(head):
+                return self._bio_parenthesis(head)
+            clause = self._clause(dep)
+            if clause is not None:
+                self.mark(dep.index, "secondary")
+                return [clause]
+            p = Predication(pred="být", kind="appos", head=dep.index)
+            p.roles.append(RoleFill("kdo", "head", [self._head_term(head)], "structural"))
+            p.roles.append(RoleFill("co", "appos", self._term_group(dep), "structural"))
+            self._quantify(p)
+            p.kernel = self._copula_kernel(p, p.roles[1])
+            p.defaults.append("appos jako být")
+            out.append(p)
+        elif d in ("acl", "amod", "advcl"):
+            out.append(self._acl(head, dep))
+        elif d == "obl":
+            prep = self.case_of(dep.index)
+            case = dep.feat("Case") or ""
+            surface = f"nmod:{prep}+{case}" if prep else f"nmod:{case}"
+            p = Predication(pred=surface, kind="nmod", head=dep.index)
+            p.roles.append(RoleFill("kdo", "head", [self._head_term(head)], "structural"))
+            p.roles.append(RoleFill("co", surface, self._term_group(dep), "surface"))
+            self._quantify(p)
+            out.append(p)
+        return out
+
+    def _acl(self, head: Token, dep: Token) -> Predication:
+        """Vztažná / participiální věta o hlavě: hlava vyplní roli, kterou
+        drží vztažné zájmeno (`který`), u participia patiens (`co`)."""
+        for m in self.p.children(dep.index):
+            if m.base_deprel == "mark":
+                self.mark(m.index, "particle")
+        if dep.upos == "VERB" or self.kids(dep.index, "cop"):
+            p = self._verb_or_cop(dep)
+        else:
+            p = self._participle(dep)
+        head_term = self._head_term(head)
+        # najdi vztažné zájmeno mezi rolemi
+        placed = False
+        for r in p.roles:
+            if r.authority == "relative" and not r.terms:
+                r.terms.append(head_term)
+                placed = True
+            for i, t in enumerate(list(r.terms)):
+                tok = self.p.token(t.head) if t.head else None
+                if tok is not None and "Rel" in (tok.feat("PronType") or "") and tok.lemma in ("který", "jenž", "co", "kdo", "kde", "kdy", "jaký"):
+                    r.terms[i] = head_term
+                    placed = True
+        if not placed:
+            if p.kind == "verb" and dep.upos == "ADJ":
+                # participium: hlava je patiens (způsobené pády → co:úraz)
+                role = p.role("co")
+                if role is None:
+                    p.roles.insert(0, RoleFill("co", "acl", [head_term], "structural"))
+                elif not role.terms:
+                    role.terms.append(head_term)
+                else:
+                    p.roles.insert(0, RoleFill("kdo", "acl", [head_term], "structural"))
+            else:
+                subj = p.role("kdo")
+                if subj is None or (subj.terms and subj.terms[0].kind == "pron" and subj.authority == "prodrop"):
+                    if subj is not None:
+                        p.roles.remove(subj)
+                    p.roles.insert(0, RoleFill("kdo", "acl", [head_term], "structural"))
+                else:
+                    p.roles.append(RoleFill("o_kom", "acl", [head_term], "structural"))
+        p.defaults.append("acl: predikace o hlavě")
+        self.mark(dep.index, "secondary")
+        return p
+
+    def _bio_parenthesis(self, name_head: Token) -> list[Predication]:
+        """`X (datum místo – datum místo) …` → narodit_se / zemřít o X.
+        Vrací se jen jednou na jméno (závorka má víc členů, každý ji spustí)."""
+        if name_head.index in self._bio_done:
+            return []
+        # tokeny mezi „(“ a „)“ hned za jménem
+        idxs = [t.index for t in self.p.tokens]
+        last_name = max([name_head.index] + [f.index for f in self.p.children(name_head.index) if f.base_deprel == "flat"])
+        if last_name + 1 > len(idxs) or self.p.token(last_name + 1).form != "(":
+            return []
+        inside: list[Token] = []
+        i = last_name + 2
+        while i <= len(idxs) and self.p.token(i).form != ")":
+            inside.append(self.p.token(i))
+            i += 1
+        if not inside or i > len(idxs):
+            return []
+        # rozděl pomlčkou
+        parts: list[list[Token]] = [[]]
+        for t in inside:
+            if t.form in ("–", "-", "—"):
+                parts.append([])
+            else:
+                parts[-1].append(t)
+        preds: list[Predication] = []
+        subject = self._head_term(name_head)
+        for label, part in zip(("narodit_se", "zemřít"), parts):
+            time = time_from_tokens(part)
+            places = [t for t in part if t.upos == "PROPN" and (t.feat("NameType") == "Geo" or t.upos == "PROPN")]
+            if time is None and not places:
+                continue
+            p = Predication(pred=label, kind="verb", head=part[0].index if part else name_head.index)
+            p.roles.append(RoleFill("kdo", "bio", [subject], "structural"))
+            if time is not None:
+                p.roles.append(RoleFill("kdy", "bio", [TermSpec(part[0].index, time.label, tuple(t.form for t in part if t.upos in ("NUM", "NOUN")), "NUM", "time", time=time, quant="·", quant_authority="structural")], "default"))
+            if places:
+                pl = places[0]
+                p.roles.append(RoleFill("kde", "bio", [TermSpec(pl.index, pl.lemma, (pl.form,), "PROPN", "place", quant="·", quant_authority="structural", tokens=(pl.index,), name_tokens=(pl.index,))], "default"))
+            p.defaults.append("životopisná závorka")
+            p.tense = "Past"
+            preds.append(p)
+        if preds:
+            self._bio_done.add(name_head.index)
+            for t in inside:
+                self.mark(t.index, "secondary")
+            self.mark(last_name + 1, "punct")
+            self.mark(i, "punct")
+        return preds
+
+
+def read(parse: Parse, mood: str | None = None) -> Reading:
+    """Přečti jednu větu. `mood` = `assert` / `question`; když se nezadá,
+    rozhodne otazník."""
+    return Reader(parse, mood).read()
