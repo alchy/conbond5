@@ -156,7 +156,13 @@ def year_of(t: TimeSpec | None) -> int | None:
 
 
 def _key(d: Date) -> tuple[int, int, int]:
+    """Začátek: neurčený měsíc/den = 1."""
     return (d[0], d[1] or 1, d[2] or 1)
+
+
+def _key_end(d: Date) -> tuple[int, int, int]:
+    """Konec: neurčený měsíc/den = poslední (rok 1851 končí 31. 12. 1851)."""
+    return (d[0], d[1] or 12, d[2] or 31)
 
 
 def before(a: TimeSpec, b: TimeSpec) -> bool | None:
@@ -167,7 +173,7 @@ def before(a: TimeSpec, b: TimeSpec) -> bool | None:
         return None
     if a.end[0] == 0 or b.start[0] == 0:
         return None
-    return _key(a.end) < _key(b.start)
+    return _key_end(a.end) < _key(b.start)
 
 
 def within(a: TimeSpec, b: TimeSpec) -> bool | None:
@@ -179,8 +185,7 @@ def within(a: TimeSpec, b: TimeSpec) -> bool | None:
         return None
     if a.start[0] == 0 or b.start[0] == 0:
         return None
-    lo, hi = _key(b.start), (b.end[0], b.end[1] or 12, b.end[2] or 31)
-    return lo <= _key(a.start) and (a.end[0], a.end[1] or 12, a.end[2] or 31) <= hi
+    return _key(b.start) <= _key(a.start) and _key_end(a.end) <= _key_end(b.end)
 
 
 def same(a: TimeSpec, b: TimeSpec) -> bool:
