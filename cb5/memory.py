@@ -22,7 +22,7 @@ import json
 from collections import defaultdict
 from dataclasses import asdict, dataclass, field
 from pathlib import Path
-from typing import Iterator, Literal, Sequence
+from typing import Any, Iterator, Literal, Sequence
 
 import networkx as nx
 
@@ -60,13 +60,13 @@ class Node:
             return f"{self.lemma}[{','.join(self.attrs)}]"
         return self.lemma or self.text or self.id
 
-    def to_json(self) -> dict[str, object]:
+    def to_json(self) -> dict[str, Any]:
         d = asdict(self)
         d["time"] = asdict(self.time) if self.time else None
         return d
 
     @classmethod
-    def from_json(cls, d: dict[str, object]) -> "Node":
+    def from_json(cls, d: dict[str, Any]) -> "Node":
         t = d.get("time")
         time = None
         if isinstance(t, dict):
@@ -156,13 +156,13 @@ class Statement:
             out.extend(r.terms)
         return out
 
-    def to_json(self) -> dict[str, object]:
+    def to_json(self) -> dict[str, Any]:
         d = asdict(self)
         d["residue"] = [list(x) for x in self.residue]
         return d
 
     @classmethod
-    def from_json(cls, d: dict[str, object]) -> "Statement":
+    def from_json(cls, d: dict[str, Any]) -> "Statement":
         roles = [Role(**r) for r in d.get("roles", [])]  # type: ignore[union-attr]
         prov = Provenance(**d.get("prov", {}))  # type: ignore[arg-type]
         return cls(
@@ -605,8 +605,8 @@ class Memory:
         for n in self.nodes.values():
             if n.kind == "group" and n.base:
                 g.add_edge(n.id, n.base, type="restricts", soft=False)
-        for (a, b), w in self.soft.items():
-            g.add_edge(a, b, type="co_mention", soft=True, weight=w)
+        for (sa, sb), w in self.soft.items():
+            g.add_edge(sa, sb, type="co_mention", soft=True, weight=w)
         return g
 
     def render_short(self, st: Statement) -> str:
@@ -639,7 +639,7 @@ class Memory:
             out.append(f"{st.id}: {self.render_short(st)} @{st.grade} @{st.prov.doc}#{st.prov.sent_no}{flag}")
         return out
 
-    def to_json(self) -> dict[str, object]:
+    def to_json(self) -> dict[str, Any]:
         return {
             "format": "conbond5-memory/1",
             "counters": dict(self.counters),
@@ -654,7 +654,7 @@ class Memory:
         }
 
     @classmethod
-    def from_json(cls, d: dict[str, object]) -> "Memory":
+    def from_json(cls, d: dict[str, Any]) -> "Memory":
         m = cls()
         m.counters = defaultdict(int, d.get("counters", {}))  # type: ignore[arg-type]
         for nd in d.get("nodes", []):  # type: ignore[union-attr]
