@@ -21,7 +21,6 @@ from typing import Sequence
 
 import networkx as nx
 
-from cb5 import defaults as D
 from cb5.ground import Grounded, ground
 from cb5.logic import Verdict, enumerate_, evaluate
 from cb5.memory import Memory, OpenItem, Provenance, Statement
@@ -66,10 +65,11 @@ class Session:
     # ---- pomocníci -------------------------------------------------------------
 
     def _restore_learned(self) -> None:
-        for surface, name in self.memory.learned.get("roles", {}).items():
-            D.LEARNED_ROLES[surface] = name
-        for a, b in self.memory.learned.get("synonyms", {}).items():
-            D.learn_synonym(a, b)
+        self.memory.learned.setdefault("roles", {})
+        self.memory.learned.setdefault("synonyms", {})
+
+    def _read(self, parse: Parse, mood: str | None = None) -> Reading:
+        return read(parse, mood, learned_roles=self.memory.learned.get("roles", {}))
 
     def _turn(self, kind: str, text: str, doc: str = "") -> Turn:
         self.turn_no += 1
@@ -122,7 +122,7 @@ class Session:
         return reports
 
     def _ingest_sentence(self, parse: Parse, doc: str) -> dict[str, object]:
-        reading = read(parse, "assert")
+        reading = self._read(parse, "assert")
         prov = self._prov(doc, parse.text)
         g = ground(reading, self.memory, prov, "read", topic=self.topics.get(doc))
         self._update_topic(doc, g)
@@ -157,7 +157,7 @@ class Session:
                       revoked=[r for a in answers for r in a.revoked], verdict=answers[-1].verdict)
 
     def _say_one(self, parse: Parse, doc: str) -> Answer:
-        reading = read(parse)
+        reading = self._read(parse)
         if reading.main.mood == "question":
             return self._answer(reading, doc)
         return self._assert(reading, doc)
@@ -317,7 +317,6 @@ class Session:
             if not mt:
                 return "užití: !role v+Loc = kde"
             surface, name = mt.group(1), mt.group(2)
-            D.LEARNED_ROLES[surface] = name
             m.learned.setdefault("roles", {})[surface] = name
             n = 0
             for st in m.active():
@@ -335,7 +334,6 @@ class Session:
             if not mt:
                 return "užití: !synonymum kázat = hlásat"
             a, b = mt.group(1), mt.group(2)
-            D.learn_synonym(a, b)
             m.learned.setdefault("synonyms", {})[a] = b
             return f"naučeno: {a} ~ {b}"
         if cmd == "pravidlo":
@@ -392,10 +390,11 @@ class Session:
             Path(arg).write_text(json.dumps(data, ensure_ascii=False, indent=1), encoding="utf-8")
             return f"graf uložen do {arg}: {g.number_of_nodes()} uzlů, {g.number_of_edges()} hran"
         if cmd in ("kdo", "co", "popiš", "popis"):
-            cands = m.find_entity(arg.split()) or ([m.find_group(arg)] if m.find_group(arg) else [])
-            if not cands or cands[0] is None:
+            found = m.find_entity(arg.split())
+            grp = m.find_group(arg)
+            node = found[0] if found else grp
+            if node is None:
                 return f"neznám {arg}"
-            node = cands[0]
             lines = [f"{node.id} {describe_node(m, node.id)}:"]
             for st in m.statements_about(node.id):
                 lines.append("  " + render_statement(m, st, with_source=True))

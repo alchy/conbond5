@@ -81,7 +81,9 @@ def test_synonym_command(s: Session) -> None:
     s.say("Hrabal napsal Postřižiny.")
     s.say("!synonymum napsat = stvořit")
     from cb5.defaults import synonym_class
-    assert synonym_class("stvořit") == synonym_class("napsat")
+    assert synonym_class("stvořit", s.memory.learned["synonyms"]) == synonym_class("napsat")
+    assert synonym_class("stvořit") != synonym_class("napsat")  # bez paměti nic
+    assert s.say("Kdo stvořil Postřižiny?").verdict.value == "ANO"  # type: ignore[union-attr]
 
 
 def test_quantifier_fix(s: Session) -> None:

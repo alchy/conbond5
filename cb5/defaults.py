@@ -59,9 +59,9 @@ ROLE_BY_CASE: dict[tuple[str, str], dict[str, str]] = {
     ("", "Nom"): {"*": "obl:Nom"},
 }
 
-#: Naučené přepisy povrchových jmen rolí (dialog `!role přes+Acc = kudy`),
-#: čtou se PŘED tabulkou výše. Plní je `Session`, tady je jen tvar.
-LEARNED_ROLES: dict[str, str] = {}
+#: Naučené přepisy povrchových jmen rolí (dialog `!role přes+Acc = kudy`)
+#: drží PAMĚŤ (`Memory.learned["roles"]`) a čtení je dostane parametrem —
+#: žádný globální stav, dvě paměti se nesmějí ovlivnit.
 
 #: Determinátor → kvantifikátor. `∀neg` = „žádný“: ∀ + negace predikace.
 DETERMINER_QUANT: dict[str, str] = {
@@ -162,16 +162,29 @@ SYNONYMS: dict[str, frozenset[str]] = {
 }
 
 
-def synonym_class(pred: str) -> str:
-    """Reprezentant třídy synonym (nebo predikát sám, když třídu nemá)."""
-    for rep, members in SYNONYMS.items():
-        if pred == rep or pred in members:
-            return rep
-    return pred
+def synonym_class(pred: str, learned: dict[str, str] | None = None) -> str:
+    """Reprezentant třídy synonym (nebo predikát sám, když třídu nemá).
 
-
-def learn_synonym(a: str, b: str) -> None:
-    """Dialogové doučení: `a` a `b` jsou synonyma. Sloučí třídy obou."""
-    ra, rb = synonym_class(a), synonym_class(b)
-    members = set(SYNONYMS.pop(ra, frozenset({ra}))) | set(SYNONYMS.pop(rb, frozenset({rb}))) | {a, b}
-    SYNONYMS[ra] = frozenset(members)
+    `learned` jsou dvojice `a → b` naučené dialogem (drží je paměť);
+    slučují třídy obou stran, takže reprezentant je ten seedový."""
+    def seed_rep(x: str) -> str:
+        for rep, members in SYNONYMS.items():
+            if x == rep or x in members:
+                return rep
+        return x
+    rep = seed_rep(pred)
+    if not learned:
+        return rep
+    # union-find nad naučenými dvojicemi
+    parent: dict[str, str] = {}
+    def find(x: str) -> str:
+        parent.setdefault(x, x)
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+    for a, b in learned.items():
+        ra, rb = find(seed_rep(a)), find(seed_rep(b))
+        if ra != rb:
+            parent[max(ra, rb)] = min(ra, rb)
+    return find(rep)

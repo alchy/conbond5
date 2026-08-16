@@ -36,7 +36,8 @@ def recall(memory: Memory, node_ids: Sequence[str], k: int = 3, *, pred: str | N
             terms = set(st.term_ids())
             overlap = len(terms & set(ids))
             score = 3.0 * overlap
-            if pred and st.pred and synonym_class(st.pred) == synonym_class(pred):
+            syn = memory.learned.get("synonyms", {})
+            if pred and st.pred and synonym_class(st.pred, syn) == synonym_class(pred, syn):
                 score += 2.0
             score += 0.3 * GRADE_RANK[st.grade]
             score += 0.1 * sum(memory.activation(t) for t in terms)

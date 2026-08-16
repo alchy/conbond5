@@ -8693,6 +8693,103 @@
 }
 ]
 },
+"Kdo stvořil Postřižiny?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kdo stvořil Postřižiny?",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Kdo",
+"head": 2,
+"id": 1,
+"lemma": "kdo",
+"upos": "PRON"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "stvořil",
+"head": 0,
+"id": 2,
+"lemma": "stvořit",
+"upos": "VERB"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "Postřižiny",
+"head": 2,
+"id": 3,
+"lemma": "postřižina",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 2,
+"id": 4,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
 "Kdy jel Petr do Prahy?": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Kdy jel Petr do Prahy?",

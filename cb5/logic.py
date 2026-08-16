@@ -62,13 +62,13 @@ def weakest(a: str, b: str) -> Grade:
     return a if GRADE_RANK[a] <= GRADE_RANK[b] else b  # type: ignore[return-value]
 
 
-def _same_pred(a: str | None, b: str | None) -> str | None:
+def _same_pred(a: str | None, b: str | None, learned: dict[str, str] | None = None) -> str | None:
     """Shoda predikátu: přesná, nebo přes třídu synonym (vrací popis kroku)."""
     if a is None or b is None:
         return None
     if a == b:
         return ""
-    if synonym_class(a) == synonym_class(b):
+    if synonym_class(a, learned) == synonym_class(b, learned):
         return f"synonymum: {a} ~ {b}"
     return None
 
@@ -76,6 +76,10 @@ def _same_pred(a: str | None, b: str | None) -> str | None:
 class Evaluator:
     def __init__(self, memory: Memory) -> None:
         self.m = memory
+        self.syn = memory.learned.get("synonyms", {})
+
+    def same_pred(self, a: str | None, b: str | None) -> str | None:
+        return _same_pred(a, b, self.syn)
 
     # ---- termy ---------------------------------------------------------------
 
@@ -167,7 +171,7 @@ class Evaluator:
 
     def match(self, q: Statement, f: Statement, *, depth: int = 0) -> Proof | None:
         """Shoda dotazu `q` s výrokem `f` (bez ohledu na polaritu — tu řeší volající)."""
-        step = _same_pred(q.pred, f.pred)
+        step = self.same_pred(q.pred, f.pred)
         if step is None:
             return None
         if f.mood == "question":
@@ -262,7 +266,7 @@ class Evaluator:
                     return kv
                 neg.extend(kv.counter)
                 pos.extend(kv.proofs)
-        candidates = [f for f in m.active() if _same_pred(q.pred, f.pred) is not None]
+        candidates = [f for f in m.active() if self.same_pred(q.pred, f.pred) is not None]
         for f in candidates:
             p = self.match(q, f, depth=depth)
             if p is None:
@@ -281,7 +285,7 @@ class Evaluator:
         # pravidla (můstky)
         if depth == 0:
             for rule in m.rules:
-                if _same_pred(rule.dst_pred, q.pred) is None:
+                if self.same_pred(rule.dst_pred, q.pred) is None:
                     continue
                 inv = {v: k for k, v in rule.role_map.items()}
                 q2 = Statement("", rule.src_pred, q.kind, roles=[Role(inv.get(r.name, r.name), list(r.terms), r.quant, r.authority, r.surface, wh=r.wh, wh_kind=r.wh_kind, counts=dict(r.counts)) for r in q.roles], mood="question")
@@ -323,7 +327,7 @@ class Evaluator:
                     out.append(f"o {m.node(t).label()} nevím nic")
         if not near and not out and q.pred:
             preds = {s.pred for s in m.active() if s.pred}
-            if not any(_same_pred(q.pred, p) is not None for p in preds):
+            if not any(self.same_pred(q.pred, p) is not None for p in preds):
                 out.append(f"o „{q.pred}“ nemám žádný výrok")
         return out
 
@@ -349,7 +353,7 @@ class Evaluator:
         seen: set[str] = set()
         near: list[str] = []
         for f in m.active():
-            if _same_pred(q.pred, f.pred) is None or f.neg:
+            if self.same_pred(q.pred, f.pred) is None or f.neg:
                 continue
             p = self.match(q, f)
             if p is None:
@@ -379,7 +383,7 @@ class Evaluator:
                 fillers.append((fr.nested, p))
         # pravidla
         for rule in m.rules:
-            if _same_pred(rule.dst_pred, q.pred) is None:
+            if self.same_pred(rule.dst_pred, q.pred) is None:
                 continue
             inv = {v: k for k, v in rule.role_map.items()}
             q2 = Statement("", rule.src_pred, q.kind, roles=[Role(inv.get(r.name, r.name), list(r.terms), r.quant, r.authority, r.surface, wh=r.wh, wh_kind=r.wh_kind) for r in q.roles], mood="question")

@@ -20,7 +20,7 @@ jedno místo“ je pojistka proti tichému zahazování.
 from __future__ import annotations
 
 from dataclasses import dataclass, field
-from typing import Literal
+from typing import Literal, Mapping
 
 from cb5 import defaults as D
 from cb5.chronos import TimeSpec, is_time_noun, time_from_tokens
@@ -182,8 +182,9 @@ class Reading:
 class _Reader:
     """Stavová čtečka jedné věty (drží rozbor a mapu umístění tokenů)."""
 
-    def __init__(self, parse: Parse, mood: str | None) -> None:
+    def __init__(self, parse: Parse, mood: str | None, learned_roles: Mapping[str, str] | None = None) -> None:
         self.p = parse
+        self.learned_roles: Mapping[str, str] = learned_roles or {}
         self.place: dict[int, str] = {}
         self.residue: list[tuple[str, str]] = []
         self.mood: str = mood or ("question" if parse.text.rstrip().endswith("?") or self._has_wh() else "assert")
@@ -471,8 +472,8 @@ class _Reader:
         prep = self.case_of(t.index)
         case = t.feat("Case") or ""
         surface = f"{prep}+{case}" if prep else (case or t.deprel)
-        if surface in D.LEARNED_ROLES:
-            return D.LEARNED_ROLES[surface], surface, "learned"
+        if surface in self.learned_roles:
+            return self.learned_roles[surface], surface, "learned"
         table = D.ROLE_BY_CASE.get((prep, case)) or D.ROLE_BY_CASE.get((prep, "")) or {}
         kind = self._filler_kind(t)
         if not arg:
@@ -950,8 +951,8 @@ class _Reader:
 class Reader(_Reader):
     """Čtečka s druhým průchodem: vedlejší predikace z přívlastků a jmen."""
 
-    def __init__(self, parse: Parse, mood: str | None) -> None:
-        super().__init__(parse, mood)
+    def __init__(self, parse: Parse, mood: str | None, learned_roles: Mapping[str, str] | None = None) -> None:
+        super().__init__(parse, mood, learned_roles)
         self._pending_secondary = []
         self._bio_done: set[int] = set()
 
@@ -1166,7 +1167,8 @@ class Reader(_Reader):
         return preds
 
 
-def read(parse: Parse, mood: str | None = None) -> Reading:
+def read(parse: Parse, mood: str | None = None, *, learned_roles: Mapping[str, str] | None = None) -> Reading:
     """Přečti jednu větu. `mood` = `assert` / `question`; když se nezadá,
-    rozhodne otazník."""
-    return Reader(parse, mood).read()
+    rozhodne otazník. `learned_roles` = přepisy povrchových rolí naučené
+    dialogem (drží je paměť, ne modul)."""
+    return Reader(parse, mood, learned_roles).read()
