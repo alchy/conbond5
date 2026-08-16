@@ -469,7 +469,11 @@ class _Reader:
     def _filler_kind(self, t: Token) -> str:
         """`place` / `time` / `duration` / `*` — druh výplně pro tabulku rolí.
         `duration` = časové substantivum bez ukotveného data („čtrnáct let“)."""
-        sub = self.p.subtree(t.index)
+        # pro rozpoznání času jen hlava + přímé číslovky/předložky — celý podstrom by
+        # z „v parlamentních volbách v roce 1920“ udělal čas („volba“)
+        sub = [x for x in self.p.subtree(t.index) if x.index == t.index or (x.head == t.index and x.base_deprel in ("nummod", "case", "flat"))]
+        if is_time_noun(t.lemma):
+            sub = [x for x in self.p.subtree(t.index) if x.index == t.index or x.lemma in MONTH_LEMMAS or x.upos in ("NUM", "PUNCT") or is_time_noun(x.lemma)]
         if is_time_noun(t.lemma) or (t.upos == "NUM" and time_from_tokens([t])) or (
             t.upos in ("NOUN", "NUM", "ADJ") and time_from_tokens(sub) is not None and not (t.feat("NameType"))
         ):
