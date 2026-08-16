@@ -1,0 +1,157 @@
+[
+ {
+  "doc": "eduard_bass",
+  "sentences": 127,
+  "written": 127,
+  "with_role": 127,
+  "statements": 295,
+  "residue_tokens": 189,
+  "tokens": 1182,
+  "open": 87,
+  "questions": 9,
+  "hits": 4,
+  "text_hits": 9,
+  "misses": {
+   "bez výroku": 2,
+   "špatná výplň": 2,
+   "role/logika (blízký výrok je)": 1
+  },
+  "results": [
+   {
+    "q": "Kdy se odmaturoval Eduard Bass?",
+    "expect": [
+     "roce 1905"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "bez výroku",
+    "reading": "odmaturovat(kdy:?, co:·Eduard Bass)"
+   },
+   {
+    "q": "Kde se odmaturoval Eduard Bass?",
+    "expect": [
+     "Praze"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "bez výroku",
+    "reading": "odmaturovat(kde:?, co:·Eduard Bass)"
+   },
+   {
+    "q": "Kdy vystupoval Eduard Bass?",
+    "expect": [
+     "roku 1910"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1910",
+     "1913"
+    ],
+    "why": "",
+    "reading": "vystupovat(kdy:?, kdo:·Eduard Bass)"
+   },
+   {
+    "q": "Kdy začal vystupovat Eduard Bass?",
+    "expect": [
+     "roce 1912"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1910",
+     "1913"
+    ],
+    "why": "špatná výplň",
+    "reading": "fáze:vystupovat(kdy:?, kdo:·Eduard Bass)"
+   },
+   {
+    "q": "Kdy sloužil Eduard Bass?",
+    "expect": [
+     "letech 1914"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1914",
+     "1920"
+    ],
+    "why": "",
+    "reading": "sloužit(kdy:?, kdo:·Eduard Bass)"
+   },
+   {
+    "q": "Kde sloužil Eduard Bass?",
+    "expect": [
+     "Hradčanech"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "nemocnice (vojenský)"
+    ],
+    "why": "špatná výplň",
+    "reading": "sloužit(kde:?, kdo:·Eduard Bass)"
+   },
+   {
+    "q": "Kdy pracoval Eduard Bass?",
+    "expect": [
+     "letech 1920"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1914",
+     "1920"
+    ],
+    "why": "",
+    "reading": "pracovat(kdy:?, kdo:·Eduard Bass)"
+   },
+   {
+    "q": "Kdy bydlel Eduard Bass?",
+    "expect": [
+     "1404"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "bydlet(kdy:?, kdo:·Eduard Bass)"
+   },
+   {
+    "q": "Kde bydlel Eduard Bass?",
+    "expect": [
+     "Podskalí"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Podskalí"
+    ],
+    "why": "",
+    "reading": "bydlet(kde:?, kdo:·Eduard Bass)"
+   }
+  ],
+  "t_ingest": 0.0,
+  "t_ask": 0.0
+ }
+]

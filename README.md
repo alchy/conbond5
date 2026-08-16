@@ -87,11 +87,26 @@ python3.11 -m venv .venv && .venv/bin/pip install -e ".[dev]"
 | `cb5/dialog.py` | `Session`: `ingest`, `say`, opravy („Ne, …“, „To není pravda.“, „Ne každý X.“), hlášení konfliktu, příkazy, backlog, žurnál a `replay` |
 | `cb5/bench.py` | měření nad korpusem conBond2 (66 wiki dokumentů, 682 + 135 zlatých otázek) |
 
-## Měření
+## Měření (17. 8. 2026, `mereni/bench-vse.md`)
 
 `python -m cb5.bench` klonuje conBond2 do `data/corpus/`, každý dokument
-vloží do čerstvé paměti a položí k němu zlaté otázky. Výsledky jdou do
-`mereni/`. Viz [MĚŘENÍ](#výsledky-prvního-běhu) níže.
+vloží do čerstvé paměti a položí k němu zlaté otázky (682 automaticky
+generovaných kde/kdy z `otazky.json` + 40 z `etalon.json`, k dokumentům
+se sadou). Rozbory se kešují, druhý běh trvá vteřiny.
+
+| | conbond4 (16. 8.) | conbond5 v1 (17. 8.) |
+|---|---|---|
+| korpus conbond4 (238 vět): zapsáno | 8 | **233 s rolí**, zbytek 5,6 % tokenů |
+| korpus conBond2 (66 dok., 13 899 vět): zapsáno | — | **13 899** (46 256 výroků, zbytek 8,6 % tokenů, 11 839 otevřených položek) |
+| zlaté otázky (722): správná výplň | 0 | **440 (60,9 %)** |
+| zlaté otázky: správná odpověď aspoň v „vím: …“ | 0 | 610 (84 %) |
+| rozklad chyb | — | role/logika 134 · špatná výplň 100 · bez výroku 45 · predikát chybí 3 |
+| dialogy A–F ze zadání conbond4 | — | zelené (`tests/test_dialogues_af.py`) |
+| „Bydlí Petr v Brně?“ po „Petr bydlí v Praze.“ | ANO (nepravda) | NEVÍM + „vím: bydlí v Praze“ |
+
+Čas: celý korpus (13 899 vět) se z keše vloží za ~10 s a 722 otázek se
+zodpoví za ~4 s. Poctivost zůstává: každá odpověď cituje větu a přiznává
+výchozí volby (∀ z generického prézentu, podmět z aktivace…).
 
 ## Meze v1 (řečené, ne mlčené)
 

@@ -245,7 +245,7 @@ class Memory:
             if n.kind not in kinds:
                 continue
             keys = [self._name_key(x) for x in n.names]
-            if q in keys:
+            if q in keys or any(set(q) == set(k) for k in keys):
                 exact.append(n)
                 continue
             # částečná shoda JEN proti kanonickému (nejdelšímu) jménu — krátké
