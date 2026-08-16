@@ -72,3 +72,19 @@ Kde pracoval Alois Jirásek?
 Má dospělý pes 42 zubů?
 Ne každý pták.
 To není pravda.
+# --- Task 7: logika
+Má chov negativní dopad?
+Kde žije Petr?
+Ovoce obsahuje vitamín C?
+Napsal Hrabal román?
+Co napsal Hrabal?
+Hrabal napsal román.
+Bydlel Petr v Praze v roce 1990?
+Narodil se Jirásek v roce 1851?
+Kdo je Hrabal?
+Co je jezevčík?
+Je citron ovoce?
+Kolik je druhů ovoce?
+Nelétá tučňák?
+Může chov mít negativní dopad?
+Jaké je Filipovo auto?

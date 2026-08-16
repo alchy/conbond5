@@ -747,6 +747,7 @@ class _Reader:
             time = time_from_tokens(sub) if (is_time_noun(t.lemma) or any(x.upos == "NUM" for x in sub)) else None
             if is_time_noun(t.lemma) or time is not None:
                 kind = "time"
+                count = None  # letopočet není počet
                 if time is None:
                     time = TimeSpec("name", t.lemma)
                 for x in sub:
@@ -792,9 +793,9 @@ class _Reader:
         pred_role: RoleFill
         if wh is not None:
             name, kind = wh
-            pred_role = RoleFill("co", "cop", wh=True, wh_kind=kind)
-            self.mark(root.index, "role:co")
-            self._mark_structure(root.index, "role:co")
+            pred_role = RoleFill("jaký" if kind == "attr" else "co", "cop", wh=True, wh_kind=kind)
+            self.mark(root.index, f"role:{pred_role.name}")
+            self._mark_structure(root.index, f"role:{pred_role.name}")
         elif root.upos == "ADJ":
             pred_role = RoleFill("jaký", "cop", self._term_group(root), "structural")
         elif root.upos == "ADV":
@@ -805,7 +806,16 @@ class _Reader:
         else:
             pred_role = RoleFill("co", "cop", self._term_group(root), "structural")
         # podmět
-        if subj:
+        if subj and self._wh_of(subj[0]) is not None and root.upos in ("NOUN", "PROPN", "ADJ") and wh is None:
+            # „Co je jezevčík?“ — tázací podmět, nominál v kořeni: ptá se na definici kořene
+            s = subj[0]
+            name, kind = self._wh_of(s) or ("co", "filler")
+            self.mark(s.index, f"role:{name}")
+            subject_role = RoleFill("kdo", "cop-swap", pred_role.terms, "structural")
+            pred_role = RoleFill(name if name in ("co", "kdo") else "co", "cop", wh=True, wh_kind=kind)
+            p.roles.append(subject_role)
+            p.defaults.append("kopula: tázací podmět, definice kořene")
+        elif subj:
             s = subj[0]
             if s.base_deprel == "csubj":
                 p.roles.append(RoleFill("kdo", "csubj", nested=self._verb_or_cop(s)))
