@@ -334,6 +334,9 @@ class CachedOracle:
             assert isinstance(parts, list)
             return tuple(parse_from_json(p) for p in parts)
         if self.inner is None:
+            single = self._data.get(text)
+            if single is not None:
+                return (parse_from_json(single),)  # nahraná jedna věta = jedna věta
             raise KeyError(f"segmentace pro {text[:40]!r}… není v {self.path}")
         parses = self.inner.segment(text)
         self._data[key] = {"parts": [parse_to_json(p) for p in parses]}

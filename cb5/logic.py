@@ -29,10 +29,14 @@ GRADE_RANK = {"said": 3, "read": 2, "derived": 1}
 
 @dataclass
 class Proof:
+    """Důkaz: výroky, kroky, výchozí volby, stupeň = nejslabší premisa.
+    Prázdný důkaz (žádná premisa) má stupeň `said`, aby slučováním nic
+    neoslabil."""
+
     statements: list[str] = field(default_factory=list)
     steps: list[str] = field(default_factory=list)
     defaults: list[str] = field(default_factory=list)
-    grade: Grade = "read"
+    grade: Grade = "said"
 
     def merged(self, other: "Proof") -> "Proof":
         return Proof(

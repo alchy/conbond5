@@ -88,3 +88,26 @@ Kolik je druhů ovoce?
 Nelétá tučňák?
 Může chov mít negativní dopad?
 Jaké je Filipovo auto?
+# --- Task 8/9: dialog
+Štěká pes?
+Jak rychle může jezdit auto po dálnici?
+Slouží auto k přesunu osob?
+Dopravní prostředek slouží k přesunu nákladů nebo osob.
+Dálnice má omezenou rychlost na 130 km/h.
+Napsal Postřižiny i nějaký stroj?
+Kam jel Petr dřív?
+Byl Petr ve středu v Česku?
+Co je Ford?
+Filip má Ford.
+Je to to auto.
+Létají ptáci?
+Kdo je Hrabal?
+Ovoce obsahuje každý vitamín.
+Citron obsahuje vitamín C.
+Nevím.
+Rozšířil se vesmír?
+Bydlí Petr v Praze v roce 2020?
+Kdy jel Petr do Prahy?
+Co dělal Petr v pondělí?
+Kolik druhů ovoce znáš?
+Jaké znáš spisovatele?

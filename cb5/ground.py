@@ -89,7 +89,7 @@ class Grounder:
                 if self.m.member_star(cand.id, group.id) is not None:
                     self._defaults.append(f"{role}: „{t.lemma}“ = {cand.label()} (určitý popis z aktivace)")
                     return cand.id
-        if (t.quant == "∃" and role != "kdo" and subject_specific and self.write
+        if (t.quant == "∃" and role == "co" and subject_specific and self.write
                 and pred not in ("být",) and t.count is None):
             # neurčitá zmínka u konkrétního podmětu → nová instance („Filip má auto“ → a1 ∈ auto)
             inst = self.m.new_node("entity", t.lemma, names=[], attrs=t.attrs, doc=self.prov.doc, gender=t.gender, number=t.number)
@@ -198,7 +198,7 @@ class Grounder:
                     role.quant = t.quant
                 if t.quant_authority.startswith("default") and t.quant_authority not in ("default:předmět",):
                     pass  # už je v p.defaults z čtení
-            if rf.authority == "surface" and not rf.wh:
+            if rf.authority == "surface" and not rf.wh and p.kind not in ("nmod", "appos"):
                 self._pending_open.append(("role_name", rf.surface, f"Co znamená role „{rf.name}“ ({rf.surface})? (kde, kdy, kudy, čím, …)", ["kde", "kdy", "kam", "odkud", "kudy", "čím", "s_kým", "komu"]))
             st.roles.append(role)
         st.defaults = list(dict.fromkeys(self._defaults))

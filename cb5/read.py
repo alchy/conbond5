@@ -1018,7 +1018,7 @@ class Reader(_Reader):
         if is_time_noun(head.lemma):
             kind = "time"
         attrs = tuple(c.lemma for c in self.p.children(head.index) if c.base_deprel == "amod" and c.feat("Poss") != "Yes" and not (c.feat("VerbForm") == "Part" and self.kids(c.index, "obl", "obj", "nsubj", "advmod", "nmod")))
-        return TermSpec(head.index, head.lemma, tuple(forms), head.upos, kind, attrs=attrs, quant="·" if kind != "group" else None, quant_authority="structural", tokens=(head.index,), name_tokens=(head.index,) + tuple(f.index for f in flats), name_lemmas=lemmas, gender=head.feat("Gender"), number=head.feat("Number"))
+        return TermSpec(head.index, head.lemma, tuple(forms), head.upos, kind, attrs=attrs, quant="·", quant_authority="structural", tokens=(head.index,), name_tokens=(head.index,) + tuple(f.index for f in flats), name_lemmas=lemmas, gender=head.feat("Gender"), number=head.feat("Number"))
 
     def _secondary_from(self, head: Token, dep: Token, main: Predication) -> list[Predication]:
         d = dep.base_deprel
