@@ -1,0 +1,10106 @@
+{
+"Alois Jirásek (23. srpna 1851 Hronov – 12. března 1930 Praha) byl český prozaik, dramatik, středoškolský učitel, a politik.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Alois Jirásek (23. srpna 1851 Hronov – 12. března 1930 Praha) byl český prozaik, dramatik, středoškolský učitel, a politik.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Alois",
+"head": 16,
+"id": 1,
+"lemma": "Alois",
+"upos": "PROPN"
+},
+{
+"deprel": "flat",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Jirásek",
+"head": 1,
+"id": 2,
+"lemma": "Jirásek",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "(",
+"head": 5,
+"id": 3,
+"lemma": "(",
+"upos": "PUNCT"
+},
+{
+"deprel": "nummod:gov",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "23.",
+"head": 5,
+"id": 4,
+"lemma": "23.",
+"upos": "NUM"
+},
+{
+"deprel": "parataxis",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "srpna",
+"head": 1,
+"id": 5,
+"lemma": "srpen",
+"upos": "NOUN"
+},
+{
+"deprel": "nummod",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "1851",
+"head": 5,
+"id": 6,
+"lemma": "1851",
+"upos": "NUM"
+},
+{
+"deprel": "parataxis",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Hronov",
+"head": 1,
+"id": 7,
+"lemma": "Hronov",
+"upos": "PROPN"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Gen"
+]
+],
+"form": "–",
+"head": 10,
+"id": 8,
+"lemma": "–",
+"upos": "ADP"
+},
+{
+"deprel": "nummod:gov",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "12.",
+"head": 10,
+"id": 9,
+"lemma": "12.",
+"upos": "NUM"
+},
+{
+"deprel": "nmod",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "března",
+"head": 7,
+"id": 10,
+"lemma": "březen",
+"upos": "NOUN"
+},
+{
+"deprel": "nummod",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "1930",
+"head": 10,
+"id": 11,
+"lemma": "1930",
+"upos": "NUM"
+},
+{
+"deprel": "parataxis",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Praha",
+"head": 1,
+"id": 12,
+"lemma": "Praha",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ")",
+"head": 12,
+"id": 13,
+"lemma": ")",
+"upos": "PUNCT"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "byl",
+"head": 16,
+"id": 14,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "amod",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "český",
+"head": 16,
+"id": 15,
+"lemma": "český",
+"upos": "ADJ"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "prozaik",
+"head": 0,
+"id": 16,
+"lemma": "prozaik",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ",",
+"head": 18,
+"id": 17,
+"lemma": ",",
+"upos": "PUNCT"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "dramatik",
+"head": 16,
+"id": 18,
+"lemma": "dramatik",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ",",
+"head": 21,
+"id": 19,
+"lemma": ",",
+"upos": "PUNCT"
+},
+{
+"deprel": "amod",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "středoškolský",
+"head": 21,
+"id": 20,
+"lemma": "středoškolský",
+"upos": "ADJ"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "učitel",
+"head": 16,
+"id": 21,
+"lemma": "učitel",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ",",
+"head": 24,
+"id": 22,
+"lemma": ",",
+"upos": "PUNCT"
+},
+{
+"deprel": "cc",
+"feats": [],
+"form": "a",
+"head": 24,
+"id": 23,
+"lemma": "a",
+"upos": "CCONJ"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "politik",
+"head": 16,
+"id": 24,
+"lemma": "politik",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 16,
+"id": 25,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Alois Jirásek se narodil ve východočeském Hronově u Náchoda.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Alois Jirásek se narodil ve východočeském Hronově u Náchoda.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Alois",
+"head": 4,
+"id": 1,
+"lemma": "Alois",
+"upos": "PROPN"
+},
+{
+"deprel": "flat",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Jirásek",
+"head": 1,
+"id": 2,
+"lemma": "Jirásek",
+"upos": "PROPN"
+},
+{
+"deprel": "expl:pv",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"PronType",
+"Prs"
+],
+[
+"Reflex",
+"Yes"
+],
+[
+"Variant",
+"Short"
+]
+],
+"form": "se",
+"head": 4,
+"id": 3,
+"lemma": "se",
+"upos": "PRON"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "narodil",
+"head": 0,
+"id": 4,
+"lemma": "narodit",
+"upos": "VERB"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Voc"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "ve",
+"head": 7,
+"id": 5,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "amod",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Loc"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "východočeském",
+"head": 7,
+"id": 6,
+"lemma": "východočeský",
+"upos": "ADJ"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Hronově",
+"head": 4,
+"id": 7,
+"lemma": "Hronov",
+"upos": "PROPN"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Gen"
+]
+],
+"form": "u",
+"head": 9,
+"id": 8,
+"lemma": "u",
+"upos": "ADP"
+},
+{
+"deprel": "nmod",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Náchoda",
+"head": 7,
+"id": 9,
+"lemma": "Náchod",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 4,
+"id": 10,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Auto je dopravní prostředek.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Auto je dopravní prostředek.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Auto",
+"head": 4,
+"id": 1,
+"lemma": "auto",
+"upos": "NOUN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 4,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "amod",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "dopravní",
+"head": 4,
+"id": 3,
+"lemma": "dopravní",
+"upos": "ADJ"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "prostředek",
+"head": 0,
+"id": 4,
+"lemma": "prostředek",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 4,
+"id": 5,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Bydlí Petr v Brně?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Bydlí Petr v Brně?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Bydlí",
+"head": 0,
+"id": 1,
+"lemma": "bydlet",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Petr",
+"head": 1,
+"id": 2,
+"lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "v",
+"head": 4,
+"id": 3,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Brně",
+"head": 1,
+"id": 4,
+"lemma": "Brno",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 5,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Bydlí Petr v Praze?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Bydlí Petr v Praze?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Bydlí",
+"head": 0,
+"id": 1,
+"lemma": "bydlet",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Petr",
+"head": 1,
+"id": 2,
+"lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "v",
+"head": 4,
+"id": 3,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Praze",
+"head": 1,
+"id": 4,
+"lemma": "Praha",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 5,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Byl Petr v pondělí v Česku?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Byl Petr v pondělí v Česku?",
+"tokens": [
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Byl",
+"head": 6,
+"id": 1,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Petr",
+"head": 6,
+"id": 2,
+"lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Acc"
+]
+],
+"form": "v",
+"head": 4,
+"id": 3,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "pondělí",
+"head": 6,
+"id": 4,
+"lemma": "pondělí",
+"upos": "NOUN"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "v",
+"head": 6,
+"id": 5,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Česku",
+"head": 0,
+"id": 6,
+"lemma": "Česko",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 6,
+"id": 7,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Celý život pracoval jako učitel dějepisu na gymnáziu, nejprve v Litomyšli a poté v Praze.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Celý život pracoval jako učitel dějepisu na gymnáziu, nejprve v Litomyšli a poté v Praze.",
+"tokens": [
+{
+"deprel": "amod",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "Celý",
+"head": 2,
+"id": 1,
+"lemma": "celý",
+"upos": "ADJ"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "život",
+"head": 3,
+"id": 2,
+"lemma": "život",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "pracoval",
+"head": 0,
+"id": 3,
+"lemma": "pracovat",
+"upos": "VERB"
+},
+{
+"deprel": "mark",
+"feats": [],
+"form": "jako",
+"head": 5,
+"id": 4,
+"lemma": "jako",
+"upos": "SCONJ"
+},
+{
+"deprel": "advcl:pred",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "učitel",
+"head": 3,
+"id": 5,
+"lemma": "učitel",
+"upos": "NOUN"
+},
+{
+"deprel": "nmod",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "dějepisu",
+"head": 5,
+"id": 6,
+"lemma": "dějepis",
+"upos": "NOUN"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "na",
+"head": 8,
+"id": 7,
+"lemma": "na",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "gymnáziu",
+"head": 3,
+"id": 8,
+"lemma": "gymnázium",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ",",
+"head": 10,
+"id": 9,
+"lemma": ",",
+"upos": "PUNCT"
+},
+{
+"deprel": "conj",
+"feats": [],
+"form": "nejprve",
+"head": 3,
+"id": 10,
+"lemma": "nejprve",
+"upos": "ADV"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "v",
+"head": 12,
+"id": 11,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Litomyšli",
+"head": 10,
+"id": 12,
+"lemma": "Litomyšl",
+"upos": "PROPN"
+},
+{
+"deprel": "cc",
+"feats": [],
+"form": "a",
+"head": 14,
+"id": 13,
+"lemma": "a",
+"upos": "CCONJ"
+},
+{
+"deprel": "conj",
+"feats": [],
+"form": "poté",
+"head": 10,
+"id": 14,
+"lemma": "poté",
+"upos": "ADV"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "v",
+"head": 16,
+"id": 15,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Praze",
+"head": 10,
+"id": 16,
+"lemma": "Praha",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 17,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Chov domácích zvířat může mít negativní dopad na jejich zdraví, pokud nejsou splněny určité požadavky.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Chov domácích zvířat může mít negativní dopad na jejich zdraví, pokud nejsou splněny určité požadavky.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Chov",
+"head": 4,
+"id": 1,
+"lemma": "chov",
+"upos": "NOUN"
+},
+{
+"deprel": "amod",
+"feats": [
+[
+"Case",
+"Gen"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Plur"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "domácích",
+"head": 3,
+"id": 2,
+"lemma": "domácí",
+"upos": "ADJ"
+},
+{
+"deprel": "nmod",
+"feats": [
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "zvířat",
+"head": 1,
+"id": 3,
+"lemma": "zvíře",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "může",
+"head": 0,
+"id": 4,
+"lemma": "moci",
+"upos": "VERB"
+},
+{
+"deprel": "xcomp",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"VerbForm",
+"Inf"
+]
+],
+"form": "mít",
+"head": 4,
+"id": 5,
+"lemma": "mít",
+"upos": "VERB"
+},
+{
+"deprel": "amod",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "negativní",
+"head": 7,
+"id": 6,
+"lemma": "negativní",
+"upos": "ADJ"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "dopad",
+"head": 5,
+"id": 7,
+"lemma": "dopad",
+"upos": "NOUN"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Acc"
+]
+],
+"form": "na",
+"head": 10,
+"id": 8,
+"lemma": "na",
+"upos": "ADP"
+},
+{
+"deprel": "det",
+"feats": [
+[
+"Number[psor]",
+"Plur"
+],
+[
+"Person",
+"3"
+],
+[
+"Poss",
+"Yes"
+],
+[
+"PronType",
+"Prs"
+]
+],
+"form": "jejich",
+"head": 10,
+"id": 9,
+"lemma": "jeho",
+"upos": "DET"
+},
+{
+"deprel": "nmod",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "zdraví",
+"head": 7,
+"id": 10,
+"lemma": "zdraví",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ",",
+"head": 14,
+"id": 11,
+"lemma": ",",
+"upos": "PUNCT"
+},
+{
+"deprel": "mark",
+"feats": [],
+"form": "pokud",
+"head": 14,
+"id": 12,
+"lemma": "pokud",
+"upos": "SCONJ"
+},
+{
+"deprel": "aux:pass",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Plur"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Neg"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "nejsou",
+"head": 14,
+"id": 13,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "advcl",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Aspect",
+"Perf"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Fem,Masc"
+],
+[
+"Number",
+"Plur"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Variant",
+"Short"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Pass"
+]
+],
+"form": "splněny",
+"head": 4,
+"id": 14,
+"lemma": "splněný",
+"upos": "ADJ"
+},
+{
+"deprel": "amod",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Plur"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "určité",
+"head": 16,
+"id": 15,
+"lemma": "určitý",
+"upos": "ADJ"
+},
+{
+"deprel": "nsubj:pass",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "požadavky",
+"head": 14,
+"id": 16,
+"lemma": "požadavek",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 4,
+"id": 17,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Citron je ovoce.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Citron je ovoce.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Citron",
+"head": 3,
+"id": 1,
+"lemma": "citron",
+"upos": "NOUN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 3,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "ovoce",
+"head": 0,
+"id": 3,
+"lemma": "ovoce",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 4,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Co má Filip?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Co má Filip?",
+"tokens": [
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Acc"
+],
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Co",
+"head": 2,
+"id": 1,
+"lemma": "co",
+"upos": "PRON"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "má",
+"head": 0,
+"id": 2,
+"lemma": "mít",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Filip",
+"head": 2,
+"id": 3,
+"lemma": "Filip",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 2,
+"id": 4,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Co obsahuje ovoce?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Co obsahuje ovoce?",
+"tokens": [
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Acc"
+],
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Co",
+"head": 2,
+"id": 1,
+"lemma": "co",
+"upos": "PRON"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "obsahuje",
+"head": 0,
+"id": 2,
+"lemma": "obsahovat",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "ovoce",
+"head": 2,
+"id": 3,
+"lemma": "ovoce",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 2,
+"id": 4,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Domácí mazlíčci vyžadují pravidelnou péči majitele.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Domácí mazlíčci vyžadují pravidelnou péči majitele.",
+"tokens": [
+{
+"deprel": "amod",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Plur"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "Domácí",
+"head": 2,
+"id": 1,
+"lemma": "domácí",
+"upos": "ADJ"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "mazlíčci",
+"head": 3,
+"id": 2,
+"lemma": "mazlíček",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Plur"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "vyžadují",
+"head": 0,
+"id": 3,
+"lemma": "vyžadovat",
+"upos": "VERB"
+},
+{
+"deprel": "amod",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "pravidelnou",
+"head": 5,
+"id": 4,
+"lemma": "pravidelný",
+"upos": "ADJ"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "péči",
+"head": 3,
+"id": 5,
+"lemma": "péče",
+"upos": "NOUN"
+},
+{
+"deprel": "nmod",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "majitele",
+"head": 5,
+"id": 6,
+"lemma": "majitel",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 7,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Dopravní prostředek jezdí po dálnici.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Dopravní prostředek jezdí po dálnici.",
+"tokens": [
+{
+"deprel": "amod",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "Dopravní",
+"head": 2,
+"id": 1,
+"lemma": "dopravní",
+"upos": "ADJ"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "prostředek",
+"head": 3,
+"id": 2,
+"lemma": "prostředek",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "jezdí",
+"head": 0,
+"id": 3,
+"lemma": "jezdit",
+"upos": "VERB"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "po",
+"head": 5,
+"id": 4,
+"lemma": "po",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "dálnici",
+"head": 3,
+"id": 5,
+"lemma": "dálnice",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 6,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Dospělý pes má 42 zubů.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Dospělý pes má 42 zubů.",
+"tokens": [
+{
+"deprel": "amod",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "Dospělý",
+"head": 2,
+"id": 1,
+"lemma": "dospělý",
+"upos": "ADJ"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "pes",
+"head": 3,
+"id": 2,
+"lemma": "pes",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "má",
+"head": 0,
+"id": 3,
+"lemma": "mít",
+"upos": "VERB"
+},
+{
+"deprel": "nummod:gov",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "42",
+"head": 5,
+"id": 4,
+"lemma": "42",
+"upos": "NUM"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "zubů",
+"head": 3,
+"id": 5,
+"lemma": "zub",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 6,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Filip má auto.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Filip má auto.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Filip",
+"head": 2,
+"id": 1,
+"lemma": "Filip",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "má",
+"head": 0,
+"id": 2,
+"lemma": "mít",
+"upos": "VERB"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "auto",
+"head": 2,
+"id": 3,
+"lemma": "auto",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 4,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Filipovo auto je modré.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Filipovo auto je modré.",
+"tokens": [
+{
+"deprel": "amod",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Gender[psor]",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Poss",
+"Yes"
+]
+],
+"form": "Filipovo",
+"head": 2,
+"id": 1,
+"lemma": "Filipův",
+"upos": "ADJ"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "auto",
+"head": 4,
+"id": 2,
+"lemma": "auto",
+"upos": "NOUN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 4,
+"id": 3,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "modré",
+"head": 0,
+"id": 4,
+"lemma": "modrý",
+"upos": "ADJ"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 4,
+"id": 5,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Hrabal je spisovatel.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Hrabal je spisovatel.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Hrabal",
+"head": 3,
+"id": 1,
+"lemma": "Hrabal",
+"upos": "PROPN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 3,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "spisovatel",
+"head": 0,
+"id": 3,
+"lemma": "spisovatel",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 4,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Hrabal napsal Postřižiny.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Hrabal napsal Postřižiny.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Hrabal",
+"head": 2,
+"id": 1,
+"lemma": "Hrabal",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "napsal",
+"head": 0,
+"id": 2,
+"lemma": "napsat",
+"upos": "VERB"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "Postřižiny",
+"head": 2,
+"id": 3,
+"lemma": "postřižina",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 4,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Isaac Newton (4. ledna 1643 – 31. března 1727) byl anglický fyzik, matematik, astronom, alchymista a teolog.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Isaac Newton (4. ledna 1643 – 31. března 1727) byl anglický fyzik, matematik, astronom, alchymista a teolog.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Isaac",
+"head": 14,
+"id": 1,
+"lemma": "Isaac",
+"upos": "PROPN"
+},
+{
+"deprel": "flat",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Newton",
+"head": 1,
+"id": 2,
+"lemma": "Newton",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "(",
+"head": 4,
+"id": 3,
+"lemma": "(",
+"upos": "PUNCT"
+},
+{
+"deprel": "nummod:gov",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "4.",
+"head": 5,
+"id": 4,
+"lemma": "4.",
+"upos": "NUM"
+},
+{
+"deprel": "parataxis",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "ledna",
+"head": 1,
+"id": 5,
+"lemma": "leden",
+"upos": "NOUN"
+},
+{
+"deprel": "nummod",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "1643",
+"head": 5,
+"id": 6,
+"lemma": "1643",
+"upos": "NUM"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Gen"
+]
+],
+"form": "–",
+"head": 9,
+"id": 7,
+"lemma": "–",
+"upos": "ADP"
+},
+{
+"deprel": "nummod:gov",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "31.",
+"head": 9,
+"id": 8,
+"lemma": "31.",
+"upos": "NUM"
+},
+{
+"deprel": "dep",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "března",
+"head": 1,
+"id": 9,
+"lemma": "březen",
+"upos": "NOUN"
+},
+{
+"deprel": "nummod",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "1727",
+"head": 9,
+"id": 10,
+"lemma": "1727",
+"upos": "NUM"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ")",
+"head": 9,
+"id": 11,
+"lemma": ")",
+"upos": "PUNCT"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "byl",
+"head": 14,
+"id": 12,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "amod",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "anglický",
+"head": 14,
+"id": 13,
+"lemma": "anglický",
+"upos": "ADJ"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "fyzik",
+"head": 0,
+"id": 14,
+"lemma": "fyzik",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ",",
+"head": 16,
+"id": 15,
+"lemma": ",",
+"upos": "PUNCT"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "matematik",
+"head": 14,
+"id": 16,
+"lemma": "matematik",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ",",
+"head": 18,
+"id": 17,
+"lemma": ",",
+"upos": "PUNCT"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "astronom",
+"head": 14,
+"id": 18,
+"lemma": "astronom",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ",",
+"head": 20,
+"id": 19,
+"lemma": ",",
+"upos": "PUNCT"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "alchymista",
+"head": 14,
+"id": 20,
+"lemma": "alchymista",
+"upos": "NOUN"
+},
+{
+"deprel": "cc",
+"feats": [],
+"form": "a",
+"head": 22,
+"id": 21,
+"lemma": "a",
+"upos": "CCONJ"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "teolog",
+"head": 14,
+"id": 22,
+"lemma": "teolog",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 14,
+"id": 23,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Je Hrabal stroj?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Je Hrabal stroj?",
+"tokens": [
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Je",
+"head": 3,
+"id": 1,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Hrabal",
+"head": 3,
+"id": 2,
+"lemma": "Hrabal",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "stroj",
+"head": 0,
+"id": 3,
+"lemma": "stroj",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 3,
+"id": 4,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Je Hrabal člověk?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Je Hrabal člověk?",
+"tokens": [
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Je",
+"head": 3,
+"id": 1,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Hrabal",
+"head": 3,
+"id": 2,
+"lemma": "Hrabal",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "člověk",
+"head": 0,
+"id": 3,
+"lemma": "člověk",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 3,
+"id": 4,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Je Praha v Česku?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Je Praha v Česku?",
+"tokens": [
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Je",
+"head": 4,
+"id": 1,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Praha",
+"head": 4,
+"id": 2,
+"lemma": "Praha",
+"upos": "PROPN"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "v",
+"head": 4,
+"id": 3,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Česku",
+"head": 0,
+"id": 4,
+"lemma": "Česko",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 4,
+"id": 5,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Je jezevčík pes?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Je jezevčík pes?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Je",
+"head": 0,
+"id": 1,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "jezevčík",
+"head": 1,
+"id": 2,
+"lemma": "jezevčík",
+"upos": "NOUN"
+},
+{
+"deprel": "nmod",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "pes",
+"head": 2,
+"id": 3,
+"lemma": "pes",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 4,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Jezdí auto po dálnici?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Jezdí auto po dálnici?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Jezdí",
+"head": 0,
+"id": 1,
+"lemma": "jezdit",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "auto",
+"head": 1,
+"id": 2,
+"lemma": "auto",
+"upos": "NOUN"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "po",
+"head": 4,
+"id": 3,
+"lemma": "po",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "dálnici",
+"head": 1,
+"id": 4,
+"lemma": "dálnice",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 5,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Jezevčík je pes.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Jezevčík je pes.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Jezevčík",
+"head": 3,
+"id": 1,
+"lemma": "jezevčík",
+"upos": "NOUN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 3,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "pes",
+"head": 0,
+"id": 3,
+"lemma": "pes",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 4,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Jirásek zemřel v Praze.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Jirásek zemřel v Praze.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Jirásek",
+"head": 2,
+"id": 1,
+"lemma": "Jirásek",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "zemřel",
+"head": 0,
+"id": 2,
+"lemma": "zemřít",
+"upos": "VERB"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "v",
+"head": 4,
+"id": 3,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Praze",
+"head": 2,
+"id": 4,
+"lemma": "Praha",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 5,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Kam jel Petr v pondělí?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kam jel Petr v pondělí?",
+"tokens": [
+{
+"deprel": "advmod",
+"feats": [
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Kam",
+"head": 2,
+"id": 1,
+"lemma": "kam",
+"upos": "ADV"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "jel",
+"head": 0,
+"id": 2,
+"lemma": "jet",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Petr",
+"head": 2,
+"id": 3,
+"lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Acc"
+]
+],
+"form": "v",
+"head": 5,
+"id": 4,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "pondělí",
+"head": 2,
+"id": 5,
+"lemma": "pondělí",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 2,
+"id": 6,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Každý spisovatel je člověk.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Každý spisovatel je člověk.",
+"tokens": [
+{
+"deprel": "det",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"PronType",
+"Tot"
+]
+],
+"form": "Každý",
+"head": 2,
+"id": 1,
+"lemma": "každý",
+"upos": "DET"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "spisovatel",
+"head": 4,
+"id": 2,
+"lemma": "spisovatel",
+"upos": "NOUN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 4,
+"id": 3,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "člověk",
+"head": 0,
+"id": 4,
+"lemma": "člověk",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 4,
+"id": 5,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Kde bydlí Petr?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kde bydlí Petr?",
+"tokens": [
+{
+"deprel": "advmod",
+"feats": [
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Kde",
+"head": 2,
+"id": 1,
+"lemma": "kde",
+"upos": "ADV"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "bydlí",
+"head": 0,
+"id": 2,
+"lemma": "bydlet",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Petr",
+"head": 2,
+"id": 3,
+"lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 2,
+"id": 4,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Kde pracoval Alois Jirásek?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kde pracoval Alois Jirásek?",
+"tokens": [
+{
+"deprel": "advmod",
+"feats": [
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Kde",
+"head": 2,
+"id": 1,
+"lemma": "kde",
+"upos": "ADV"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "pracoval",
+"head": 0,
+"id": 2,
+"lemma": "pracovat",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Alois",
+"head": 2,
+"id": 3,
+"lemma": "Alois",
+"upos": "PROPN"
+},
+{
+"deprel": "flat",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Jirásek",
+"head": 3,
+"id": 4,
+"lemma": "Jirásek",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 2,
+"id": 5,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Kde se narodil Alois Jirásek?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kde se narodil Alois Jirásek?",
+"tokens": [
+{
+"deprel": "advmod",
+"feats": [
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Kde",
+"head": 3,
+"id": 1,
+"lemma": "kde",
+"upos": "ADV"
+},
+{
+"deprel": "expl:pv",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"PronType",
+"Prs"
+],
+[
+"Reflex",
+"Yes"
+],
+[
+"Variant",
+"Short"
+]
+],
+"form": "se",
+"head": 3,
+"id": 2,
+"lemma": "se",
+"upos": "PRON"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "narodil",
+"head": 0,
+"id": 3,
+"lemma": "narodit",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Alois",
+"head": 3,
+"id": 4,
+"lemma": "Alois",
+"upos": "PROPN"
+},
+{
+"deprel": "flat",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Jirásek",
+"head": 4,
+"id": 5,
+"lemma": "Jirásek",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 3,
+"id": 6,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Kde zemřel Alois Jirásek?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kde zemřel Alois Jirásek?",
+"tokens": [
+{
+"deprel": "advmod",
+"feats": [
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Kde",
+"head": 2,
+"id": 1,
+"lemma": "kde",
+"upos": "ADV"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "zemřel",
+"head": 0,
+"id": 2,
+"lemma": "zemřít",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Alois",
+"head": 2,
+"id": 3,
+"lemma": "Alois",
+"upos": "PROPN"
+},
+{
+"deprel": "flat",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Jirásek",
+"head": 3,
+"id": 4,
+"lemma": "Jirásek",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 2,
+"id": 5,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Kdo je Alois Jirásek?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kdo je Alois Jirásek?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Kdo",
+"head": 0,
+"id": 1,
+"lemma": "kdo",
+"upos": "PRON"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 1,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Alois",
+"head": 1,
+"id": 3,
+"lemma": "Alois",
+"upos": "PROPN"
+},
+{
+"deprel": "flat",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Jirásek",
+"head": 3,
+"id": 4,
+"lemma": "Jirásek",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 5,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Kdo je Isaac Newton?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kdo je Isaac Newton?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Kdo",
+"head": 0,
+"id": 1,
+"lemma": "kdo",
+"upos": "PRON"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 1,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Isaac",
+"head": 1,
+"id": 3,
+"lemma": "Isaac",
+"upos": "PROPN"
+},
+{
+"deprel": "flat",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Newton",
+"head": 3,
+"id": 4,
+"lemma": "Newton",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 5,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Kdo napsal Postřižiny?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kdo napsal Postřižiny?",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Kdo",
+"head": 2,
+"id": 1,
+"lemma": "kdo",
+"upos": "PRON"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "napsal",
+"head": 0,
+"id": 2,
+"lemma": "napsat",
+"upos": "VERB"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "Postřižiny",
+"head": 2,
+"id": 3,
+"lemma": "postřižina",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 2,
+"id": 4,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Kdy se narodil Alois Jirásek?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kdy se narodil Alois Jirásek?",
+"tokens": [
+{
+"deprel": "advmod",
+"feats": [
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Kdy",
+"head": 3,
+"id": 1,
+"lemma": "kdy",
+"upos": "ADV"
+},
+{
+"deprel": "expl:pv",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"PronType",
+"Prs"
+],
+[
+"Reflex",
+"Yes"
+],
+[
+"Variant",
+"Short"
+]
+],
+"form": "se",
+"head": 3,
+"id": 2,
+"lemma": "se",
+"upos": "PRON"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "narodil",
+"head": 0,
+"id": 3,
+"lemma": "narodit",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Alois",
+"head": 3,
+"id": 4,
+"lemma": "Alois",
+"upos": "PROPN"
+},
+{
+"deprel": "flat",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Jirásek",
+"head": 4,
+"id": 5,
+"lemma": "Jirásek",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 3,
+"id": 6,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Kdy se narodil Isaac Newton?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kdy se narodil Isaac Newton?",
+"tokens": [
+{
+"deprel": "advmod",
+"feats": [
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Kdy",
+"head": 3,
+"id": 1,
+"lemma": "kdy",
+"upos": "ADV"
+},
+{
+"deprel": "expl:pv",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"PronType",
+"Prs"
+],
+[
+"Reflex",
+"Yes"
+],
+[
+"Variant",
+"Short"
+]
+],
+"form": "se",
+"head": 3,
+"id": 2,
+"lemma": "se",
+"upos": "PRON"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "narodil",
+"head": 0,
+"id": 3,
+"lemma": "narodit",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Isaac",
+"head": 3,
+"id": 4,
+"lemma": "Isaac",
+"upos": "PROPN"
+},
+{
+"deprel": "flat",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Newton",
+"head": 4,
+"id": 5,
+"lemma": "Newton",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 3,
+"id": 6,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Kdy zemřel Alois Jirásek?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kdy zemřel Alois Jirásek?",
+"tokens": [
+{
+"deprel": "advmod",
+"feats": [
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Kdy",
+"head": 2,
+"id": 1,
+"lemma": "kdy",
+"upos": "ADV"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "zemřel",
+"head": 0,
+"id": 2,
+"lemma": "zemřít",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Alois",
+"head": 2,
+"id": 3,
+"lemma": "Alois",
+"upos": "PROPN"
+},
+{
+"deprel": "flat",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Jirásek",
+"head": 3,
+"id": 4,
+"lemma": "Jirásek",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 2,
+"id": 5,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Kolik zubů má dospělý pes?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kolik zubů má dospělý pes?",
+"tokens": [
+{
+"deprel": "det:numgov",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"NumType",
+"Card"
+],
+[
+"PronType",
+"Dem,Ind"
+]
+],
+"form": "Kolik",
+"head": 2,
+"id": 1,
+"lemma": "kolik",
+"upos": "DET"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "zubů",
+"head": 3,
+"id": 2,
+"lemma": "zub",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "má",
+"head": 0,
+"id": 3,
+"lemma": "mít",
+"upos": "VERB"
+},
+{
+"deprel": "amod",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "dospělý",
+"head": 5,
+"id": 4,
+"lemma": "dospělý",
+"upos": "ADJ"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "pes",
+"head": 3,
+"id": 5,
+"lemma": "pes",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 3,
+"id": 6,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Létá tučňák?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Létá tučňák?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Létá",
+"head": 0,
+"id": 1,
+"lemma": "létat",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "tučňák",
+"head": 1,
+"id": 2,
+"lemma": "tučňák",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 3,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Létá vrabec?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Létá vrabec?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Létá",
+"head": 0,
+"id": 1,
+"lemma": "létat",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "vrabec",
+"head": 1,
+"id": 2,
+"lemma": "vrabec",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 3,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Má dospělý pes 42 zubů?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Má dospělý pes 42 zubů?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Má",
+"head": 0,
+"id": 1,
+"lemma": "mít",
+"upos": "VERB"
+},
+{
+"deprel": "amod",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "dospělý",
+"head": 3,
+"id": 2,
+"lemma": "dospělý",
+"upos": "ADJ"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "pes",
+"head": 1,
+"id": 3,
+"lemma": "pes",
+"upos": "NOUN"
+},
+{
+"deprel": "nummod:gov",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "42",
+"head": 5,
+"id": 4,
+"lemma": "42",
+"upos": "NUM"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "zubů",
+"head": 1,
+"id": 5,
+"lemma": "zub",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 6,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Napsal Postřižiny spisovatel?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Napsal Postřižiny spisovatel?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Napsal",
+"head": 0,
+"id": 1,
+"lemma": "napsat",
+"upos": "VERB"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "Postřižiny",
+"head": 1,
+"id": 2,
+"lemma": "postřižina",
+"upos": "NOUN"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "spisovatel",
+"head": 1,
+"id": 3,
+"lemma": "spisovatel",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 4,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Ne každý pták.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Ne každý pták.",
+"tokens": [
+{
+"deprel": "advmod:emph",
+"feats": [],
+"form": "Ne",
+"head": 2,
+"id": 1,
+"lemma": "ne",
+"upos": "PART"
+},
+{
+"deprel": "det",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"PronType",
+"Tot"
+]
+],
+"form": "každý",
+"head": 3,
+"id": 2,
+"lemma": "každý",
+"upos": "DET"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "pták",
+"head": 0,
+"id": 3,
+"lemma": "pták",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 4,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Ne, Petr bydlí v Brně.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Ne, Petr bydlí v Brně.",
+"tokens": [
+{
+"deprel": "advmod:emph",
+"feats": [],
+"form": "Ne",
+"head": 4,
+"id": 1,
+"lemma": "ne",
+"upos": "PART"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ",",
+"head": 1,
+"id": 2,
+"lemma": ",",
+"upos": "PUNCT"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Petr",
+"head": 4,
+"id": 3,
+"lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "bydlí",
+"head": 0,
+"id": 4,
+"lemma": "bydlet",
+"upos": "VERB"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "v",
+"head": 6,
+"id": 5,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Brně",
+"head": 4,
+"id": 6,
+"lemma": "Brno",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 4,
+"id": 7,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Obsahuje citron nějaký vitamín?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Obsahuje citron nějaký vitamín?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Obsahuje",
+"head": 0,
+"id": 1,
+"lemma": "obsahovat",
+"upos": "VERB"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "citron",
+"head": 1,
+"id": 2,
+"lemma": "citron",
+"upos": "NOUN"
+},
+{
+"deprel": "det",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"PronType",
+"Ind"
+]
+],
+"form": "nějaký",
+"head": 4,
+"id": 3,
+"lemma": "nějaký",
+"upos": "DET"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "vitamín",
+"head": 1,
+"id": 4,
+"lemma": "vitamín",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 5,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Obsahuje citron vitamín C?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Obsahuje citron vitamín C?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Obsahuje",
+"head": 0,
+"id": 1,
+"lemma": "obsahovat",
+"upos": "VERB"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "citron",
+"head": 1,
+"id": 2,
+"lemma": "citron",
+"upos": "NOUN"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "vitamín",
+"head": 1,
+"id": 3,
+"lemma": "vitamín",
+"upos": "NOUN"
+},
+{
+"deprel": "nmod",
+"feats": [
+[
+"Abbr",
+"Yes"
+]
+],
+"form": "C",
+"head": 3,
+"id": 4,
+"lemma": "C",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 5,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"On se oženil.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "On se oženil.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"PronType",
+"Prs"
+]
+],
+"form": "On",
+"head": 3,
+"id": 1,
+"lemma": "on",
+"upos": "PRON"
+},
+{
+"deprel": "expl:pv",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"PronType",
+"Prs"
+],
+[
+"Reflex",
+"Yes"
+],
+[
+"Variant",
+"Short"
+]
+],
+"form": "se",
+"head": 3,
+"id": 2,
+"lemma": "se",
+"upos": "PRON"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "oženil",
+"head": 0,
+"id": 3,
+"lemma": "oženit",
+"upos": "VERB"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 4,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Ovoce obsahuje vitamíny.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Ovoce obsahuje vitamíny.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Ovoce",
+"head": 2,
+"id": 1,
+"lemma": "ovoce",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "obsahuje",
+"head": 0,
+"id": 2,
+"lemma": "obsahovat",
+"upos": "VERB"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "vitamíny",
+"head": 2,
+"id": 3,
+"lemma": "vitamín",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 4,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Oženil se v roce 1879.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Oženil se v roce 1879.",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Oženil",
+"head": 0,
+"id": 1,
+"lemma": "oženit",
+"upos": "VERB"
+},
+{
+"deprel": "expl:pv",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"PronType",
+"Prs"
+],
+[
+"Reflex",
+"Yes"
+],
+[
+"Variant",
+"Short"
+]
+],
+"form": "se",
+"head": 1,
+"id": 2,
+"lemma": "se",
+"upos": "PRON"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "v",
+"head": 4,
+"id": 3,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "roce",
+"head": 1,
+"id": 4,
+"lemma": "rok",
+"upos": "NOUN"
+},
+{
+"deprel": "nummod",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "1879",
+"head": 4,
+"id": 5,
+"lemma": "1879",
+"upos": "NUM"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 1,
+"id": 6,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Paralelní vesmír je vesmír.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Paralelní vesmír je vesmír.",
+"tokens": [
+{
+"deprel": "amod",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "Paralelní",
+"head": 2,
+"id": 1,
+"lemma": "paralelní",
+"upos": "ADJ"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "vesmír",
+"head": 4,
+"id": 2,
+"lemma": "vesmír",
+"upos": "NOUN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 4,
+"id": 3,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "vesmír",
+"head": 0,
+"id": 4,
+"lemma": "vesmír",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 4,
+"id": 5,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Pes štěká.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Pes štěká.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Pes",
+"head": 2,
+"id": 1,
+"lemma": "pes",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "štěká",
+"head": 0,
+"id": 2,
+"lemma": "štěkat",
+"upos": "VERB"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 3,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Petr bydlí v Praze.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Petr bydlí v Praze.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Petr",
+"head": 2,
+"id": 1,
+"lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "bydlí",
+"head": 0,
+"id": 2,
+"lemma": "bydlet",
+"upos": "VERB"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "v",
+"head": 4,
+"id": 3,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Praze",
+"head": 2,
+"id": 4,
+"lemma": "Praha",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 5,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Petr jel v pondělí do Prahy.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Petr jel v pondělí do Prahy.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Petr",
+"head": 2,
+"id": 1,
+"lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "jel",
+"head": 0,
+"id": 2,
+"lemma": "jet",
+"upos": "VERB"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Acc"
+]
+],
+"form": "v",
+"head": 4,
+"id": 3,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "pondělí",
+"head": 2,
+"id": 4,
+"lemma": "pondělí",
+"upos": "NOUN"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Gen"
+]
+],
+"form": "do",
+"head": 6,
+"id": 5,
+"lemma": "do",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Prahy",
+"head": 2,
+"id": 6,
+"lemma": "Praha",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 7,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Petr přišel a sedl si.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Petr přišel a sedl si.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Petr",
+"head": 2,
+"id": 1,
+"lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "přišel",
+"head": 0,
+"id": 2,
+"lemma": "přijít",
+"upos": "VERB"
+},
+{
+"deprel": "cc",
+"feats": [],
+"form": "a",
+"head": 4,
+"id": 3,
+"lemma": "a",
+"upos": "CCONJ"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "sedl",
+"head": 2,
+"id": 4,
+"lemma": "sednout",
+"upos": "VERB"
+},
+{
+"deprel": "expl:pv",
+"feats": [
+[
+"Case",
+"Dat"
+],
+[
+"PronType",
+"Prs"
+],
+[
+"Reflex",
+"Yes"
+],
+[
+"Variant",
+"Short"
+]
+],
+"form": "si",
+"head": 4,
+"id": 5,
+"lemma": "se",
+"upos": "PRON"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 6,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Praha je v Česku.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Praha je v Česku.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Praha",
+"head": 4,
+"id": 1,
+"lemma": "Praha",
+"upos": "PROPN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 4,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "v",
+"head": 4,
+"id": 3,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Česku",
+"head": 0,
+"id": 4,
+"lemma": "Česko",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 4,
+"id": 5,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Ptáci létají.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Ptáci létají.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "Ptáci",
+"head": 2,
+"id": 1,
+"lemma": "pták",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Plur"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "létají",
+"head": 0,
+"id": 2,
+"lemma": "létat",
+"upos": "VERB"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 3,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Přešel přes most.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Přešel přes most.",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Přešel",
+"head": 0,
+"id": 1,
+"lemma": "přejít",
+"upos": "VERB"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Acc"
+]
+],
+"form": "přes",
+"head": 3,
+"id": 2,
+"lemma": "přes",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "most",
+"head": 1,
+"id": 3,
+"lemma": "most",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 1,
+"id": 4,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Rozšířil se paralelní vesmír?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Rozšířil se paralelní vesmír?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Rozšířil",
+"head": 0,
+"id": 1,
+"lemma": "rozšířit",
+"upos": "VERB"
+},
+{
+"deprel": "expl:pv",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"PronType",
+"Prs"
+],
+[
+"Reflex",
+"Yes"
+],
+[
+"Variant",
+"Short"
+]
+],
+"form": "se",
+"head": 1,
+"id": 2,
+"lemma": "se",
+"upos": "PRON"
+},
+{
+"deprel": "amod",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "paralelní",
+"head": 4,
+"id": 3,
+"lemma": "paralelní",
+"upos": "ADJ"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "vesmír",
+"head": 1,
+"id": 4,
+"lemma": "vesmír",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 5,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"To není pravda.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "To není pravda.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Sing"
+],
+[
+"PronType",
+"Dem"
+]
+],
+"form": "To",
+"head": 3,
+"id": 1,
+"lemma": "ten",
+"upos": "DET"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Neg"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "není",
+"head": 3,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "pravda",
+"head": 0,
+"id": 3,
+"lemma": "pravda",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 4,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Tučňák je pták.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Tučňák je pták.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Tučňák",
+"head": 3,
+"id": 1,
+"lemma": "tučňák",
+"upos": "NOUN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 3,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "pták",
+"head": 0,
+"id": 3,
+"lemma": "pták",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 4,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Tučňák nelétá.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Tučňák nelétá.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Tučňák",
+"head": 2,
+"id": 1,
+"lemma": "tučňák",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Neg"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "nelétá",
+"head": 0,
+"id": 2,
+"lemma": "létat",
+"upos": "VERB"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 3,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"V úterý jel Petr do Brna.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "V úterý jel Petr do Brna.",
+"tokens": [
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Acc"
+]
+],
+"form": "V",
+"head": 2,
+"id": 1,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "úterý",
+"head": 3,
+"id": 2,
+"lemma": "úterý",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "jel",
+"head": 0,
+"id": 3,
+"lemma": "jet",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Petr",
+"head": 3,
+"id": 4,
+"lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Gen"
+]
+],
+"form": "do",
+"head": 6,
+"id": 5,
+"lemma": "do",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Brna",
+"head": 3,
+"id": 6,
+"lemma": "Brno",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 7,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Vesmír se rozšířil do dnešní podoby.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Vesmír se rozšířil do dnešní podoby.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Vesmír",
+"head": 3,
+"id": 1,
+"lemma": "vesmír",
+"upos": "NOUN"
+},
+{
+"deprel": "expl:pv",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"PronType",
+"Prs"
+],
+[
+"Reflex",
+"Yes"
+],
+[
+"Variant",
+"Short"
+]
+],
+"form": "se",
+"head": 3,
+"id": 2,
+"lemma": "se",
+"upos": "PRON"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "rozšířil",
+"head": 0,
+"id": 3,
+"lemma": "rozšířit",
+"upos": "VERB"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Gen"
+]
+],
+"form": "do",
+"head": 6,
+"id": 4,
+"lemma": "do",
+"upos": "ADP"
+},
+{
+"deprel": "amod",
+"feats": [
+[
+"Case",
+"Gen"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "dnešní",
+"head": 6,
+"id": 5,
+"lemma": "dnešní",
+"upos": "ADJ"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "podoby",
+"head": 3,
+"id": 6,
+"lemma": "podoba",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 7,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Vitamín C je vitamín.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Vitamín C je vitamín.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Vitamín",
+"head": 4,
+"id": 1,
+"lemma": "vitamín",
+"upos": "NOUN"
+},
+{
+"deprel": "nmod",
+"feats": [
+[
+"Abbr",
+"Yes"
+]
+],
+"form": "C",
+"head": 1,
+"id": 2,
+"lemma": "C",
+"upos": "NOUN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 4,
+"id": 3,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "vitamín",
+"head": 0,
+"id": 4,
+"lemma": "vitamín",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 4,
+"id": 5,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Vrabec je pták.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Vrabec je pták.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Vrabec",
+"head": 3,
+"id": 1,
+"lemma": "vrabec",
+"upos": "NOUN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 3,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "pták",
+"head": 0,
+"id": 3,
+"lemma": "pták",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 4,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Úrazy způsobené pády.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Úrazy způsobené pády.",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "Úrazy",
+"head": 0,
+"id": 1,
+"lemma": "úraz",
+"upos": "NOUN"
+},
+{
+"deprel": "amod",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Plur"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Pass"
+]
+],
+"form": "způsobené",
+"head": 1,
+"id": 2,
+"lemma": "způsobený",
+"upos": "ADJ"
+},
+{
+"deprel": "obl:arg",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Ins"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "pády",
+"head": 2,
+"id": 3,
+"lemma": "pád",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 1,
+"id": 4,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Štěká jezevčík?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Štěká jezevčík?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Štěká",
+"head": 0,
+"id": 1,
+"lemma": "štěkat",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "jezevčík",
+"head": 1,
+"id": 2,
+"lemma": "jezevčík",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 3,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Žádný stroj není člověk.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Žádný stroj není člověk.",
+"tokens": [
+{
+"deprel": "det",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"PronType",
+"Neg"
+]
+],
+"form": "Žádný",
+"head": 2,
+"id": 1,
+"lemma": "žádný",
+"upos": "DET"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "stroj",
+"head": 4,
+"id": 2,
+"lemma": "stroj",
+"upos": "NOUN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Neg"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "není",
+"head": 4,
+"id": 3,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "člověk",
+"head": 0,
+"id": 4,
+"lemma": "člověk",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 4,
+"id": 5,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+}
+}

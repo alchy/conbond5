@@ -1,0 +1,74 @@
+# Věty pro nahrané rozbory testů (jedna na řádek). Doplňuj na konec.
+# --- Task 3: predikace
+Petr bydlí v Praze.
+Alois Jirásek se narodil ve východočeském Hronově u Náchoda.
+Tučňák nelétá.
+Chov domácích zvířat může mít negativní dopad na jejich zdraví, pokud nejsou splněny určité požadavky.
+Petr jel v pondělí do Prahy.
+Dospělý pes má 42 zubů.
+Celý život pracoval jako učitel dějepisu na gymnáziu, nejprve v Litomyšli a poté v Praze.
+Kde se narodil Alois Jirásek?
+Kolik zubů má dospělý pes?
+Kdy se narodil Isaac Newton?
+Domácí mazlíčci vyžadují pravidelnou péči majitele.
+Pes štěká.
+Štěká jezevčík?
+Bydlí Petr v Praze?
+Bydlí Petr v Brně?
+Kde bydlí Petr?
+# --- Task 4: kopula, fragment, závorka
+Jezevčík je pes.
+Je jezevčík pes?
+Každý spisovatel je člověk.
+Žádný stroj není člověk.
+Praha je v Česku.
+Je Praha v Česku?
+Hrabal je spisovatel.
+Alois Jirásek (23. srpna 1851 Hronov – 12. března 1930 Praha) byl český prozaik, dramatik, středoškolský učitel, a politik.
+Kdo je Isaac Newton?
+Úrazy způsobené pády.
+Petr přišel a sedl si.
+Isaac Newton (4. ledna 1643 – 31. března 1727) byl anglický fyzik, matematik, astronom, alchymista a teolog.
+Kdo je Alois Jirásek?
+# --- Task 6: zakotvení
+Jirásek zemřel v Praze.
+Oženil se v roce 1879.
+On se oženil.
+Přešel přes most.
+# --- Task 8/9: dialogy
+Ne, Petr bydlí v Brně.
+Auto je dopravní prostředek.
+Dopravní prostředek jezdí po dálnici.
+Jezdí auto po dálnici?
+Citron je ovoce.
+Ovoce obsahuje vitamíny.
+Vitamín C je vitamín.
+Obsahuje citron vitamín C?
+Obsahuje citron nějaký vitamín?
+Hrabal napsal Postřižiny.
+Je Hrabal stroj?
+Je Hrabal člověk?
+Napsal Postřižiny spisovatel?
+V úterý jel Petr do Brna.
+Byl Petr v pondělí v Česku?
+Kam jel Petr v pondělí?
+Ptáci létají.
+Tučňák je pták.
+Létá tučňák?
+Vrabec je pták.
+Létá vrabec?
+Filip má auto.
+Filipovo auto je modré.
+Co má Filip?
+Vesmír se rozšířil do dnešní podoby.
+Paralelní vesmír je vesmír.
+Rozšířil se paralelní vesmír?
+Kdy zemřel Alois Jirásek?
+Kde zemřel Alois Jirásek?
+Kdo napsal Postřižiny?
+Co obsahuje ovoce?
+Kdy se narodil Alois Jirásek?
+Kde pracoval Alois Jirásek?
+Má dospělý pes 42 zubů?
+Ne každý pták.
+To není pravda.
