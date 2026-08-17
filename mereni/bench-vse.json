@@ -803,7 +803,7 @@
     "reading": "napsat(kde:?, kdo:·Arnošt Lustig)"
    }
   ],
-  "t_ingest": 0.1,
+  "t_ingest": 0.2,
   "t_ask": 0.1
  },
  {
@@ -3883,8 +3883,8 @@
     "reading": "zemřít(kdy:?, kdo:·Jaroslav Hašek)"
    }
   ],
-  "t_ingest": 0.4,
-  "t_ask": 0.2
+  "t_ingest": 0.6,
+  "t_ask": 0.3
  },
  {
   "doc": "jaroslav_seifert",
@@ -4319,8 +4319,8 @@
     "reading": "lež(kdy:?, kdo:·Jaroslav Seifert)"
    }
   ],
-  "t_ingest": 0.2,
-  "t_ask": 0.1
+  "t_ingest": 0.6,
+  "t_ask": 0.3
  },
  {
   "doc": "jaroslav_vrchlický",
@@ -4619,7 +4619,7 @@
     "reading": "zemřít(kdy:?, kdo:·Jaroslav Vrchlický)"
    }
   ],
-  "t_ingest": 0.2,
+  "t_ingest": 1.3,
   "t_ask": 0.1
  },
  {
@@ -5328,8 +5328,8 @@
     "reading": "oženit_se(s_kým:?, kdo:·Josef Čapek)"
    }
   ],
-  "t_ingest": 0.8,
-  "t_ask": 0.1
+  "t_ingest": 1.1,
+  "t_ask": 0.2
  },
  {
   "doc": "josef_škvorecký",
@@ -5698,7 +5698,7 @@
     "reading": "oženit_se(s_kým:?, kdo:·Josef Škvorecký)"
    }
   ],
-  "t_ingest": 0.1,
+  "t_ingest": 0.2,
   "t_ask": 0.1
  },
  {
@@ -7271,7 +7271,7 @@
    }
   ],
   "t_ingest": 0.1,
-  "t_ask": 0.0
+  "t_ask": 0.1
  },
  {
   "doc": "karel_poláček",
@@ -7941,7 +7941,7 @@
     "reading": "mít(co:?count:∃zub, kdo:∀chrup⟨kočka⟩[trvalý])"
    }
   ],
-  "t_ingest": 0.2,
+  "t_ingest": 0.3,
   "t_ask": 0.0
  },
  {
@@ -8306,7 +8306,7 @@
     "reading": "mít(kde:?, kdo:·Marie Majerová)"
    }
   ],
-  "t_ingest": 0.8,
+  "t_ingest": 0.7,
   "t_ask": 0.0
  },
  {
@@ -9948,7 +9948,7 @@
     "reading": "ležet(kde:?, kdo:·Ol Doinyo Lengai)"
    }
   ],
-  "t_ingest": 1.4,
+  "t_ingest": 1.3,
   "t_ask": 0.0
  },
  {
@@ -10745,8 +10745,8 @@
     "reading": "obdržet(kdy:?, kdo:·Vladislav Vančura)"
    }
   ],
-  "t_ingest": 0.2,
-  "t_ask": 0.1
+  "t_ingest": 0.6,
+  "t_ask": 0.2
  },
  {
   "doc": "václav_havel",
@@ -11813,8 +11813,8 @@
     "reading": "podepsat(kde:?, kdo:·Václav Havel)"
    }
   ],
-  "t_ingest": 0.9,
-  "t_ask": 0.7
+  "t_ingest": 1.9,
+  "t_ask": 1.1
  },
  {
   "doc": "vítězslav_hálek",
@@ -12429,8 +12429,8 @@
     "reading": "ohlížet_se(kde:?, kdo:·Vítězslav Nezval)"
    }
   ],
-  "t_ingest": 0.2,
-  "t_ask": 0.1
+  "t_ingest": 0.3,
+  "t_ask": 0.2
  },
  {
   "doc": "včela_medonosná",
@@ -12511,7 +12511,7 @@
     "reading": "vyhrát(kdy:?, kdo:·Deep Blue, co:∃zápas)"
    }
   ],
-  "t_ingest": 0.9,
-  "t_ask": 0.0
+  "t_ingest": 1.8,
+  "t_ask": 0.1
  }
 ]

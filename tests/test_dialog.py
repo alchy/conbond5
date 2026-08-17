@@ -488,3 +488,13 @@ def test_purpose_clause_and_prodrop_from_subclause(s: Session) -> None:
     assert b.verdict is not None and b.verdict.value == "ANO" and "z vedlejší věty" in b.text
     c = s.say("Kdy zamkla Jana dveře?")
     assert c.verdict is not None and "odejít" in c.text.splitlines()[1] and "spojka „než“" in c.text
+
+
+def test_relational_title_under_mit_binds_to_subject(s: Session) -> None:
+    """„Petr má bratra Karla.“ → Karel ∈ bratr⟨Petr⟩ (a inverzí Petr ∈ bratr⟨Karel⟩); koordinovaný podmět → obě vazby."""
+    s.say("Petr má bratra Karla.")
+    assert [s.memory.label(t) for t, _ in s.say("Kdo je bratr Petra?").verdict.fillers] == ["Karel"]  # type: ignore[union-attr]
+    assert [s.memory.label(t) for t, _ in s.say("Kdo je bratr Karla?").verdict.fillers] == ["Petr"]  # type: ignore[union-attr]
+    s.say("Pavla a Jindřich mají syna Matěje.")
+    assert [s.memory.label(t) for t, _ in s.say("Kdo je otec Matěje?").verdict.fillers] == ["Jindřich"]  # type: ignore[union-attr]
+    assert [s.memory.label(t) for t, _ in s.say("Kdo je matka Matěje?").verdict.fillers] == ["Pavla"]  # type: ignore[union-attr]

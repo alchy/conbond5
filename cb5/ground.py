@@ -45,6 +45,8 @@ class Grounder:
         self._defaults: list[str] = []
         self._pending_open: list[tuple[str, str, str, list[str]]] = []  # (kind, about, question, options)
         self._vars: dict[int, str] = {}  # token → jméno proměnné (X, Y, …) v rámci jedné věty
+        self._cur_pred: str | None = None  # predikát právě zakotvované predikace (pro titul u „mít“)
+        self._cur_subjs: list[str] = []
 
     # ---- termy ---------------------------------------------------------------
 
@@ -65,13 +67,13 @@ class Grounder:
                 self.out.notes.append(f"{' '.join(t.forms)} → {node.id} ({node.label()}; týž uzel)")
                 if " ".join(t.name_lemmas) != node.lemma:
                     self._defaults.append(f"identita: „{' '.join(t.name_lemmas)}“ = {node.label()} (částečné jméno)")
-            self._title(t, node)
+            self._title(t, node, role)
             return node.id
         if t.kind == "place":
             node = self.m.ensure_place(t.name_lemmas or (t.lemma,), t.forms)
             if node.gender is None:
                 node.gender, node.number = t.gender, t.number
-            self._title(t, node)
+            self._title(t, node, role)
             return node.id
         if t.kind == "time":
             if t.time is None:
@@ -130,18 +132,26 @@ class Grounder:
             return inst.id
         return group.id
 
-    def _title(self, t: TermSpec, node: Node) -> None:
-        """„řeka Vltava“ → Vltava ∈ řeka (titul = třída), jen při zápisu a jen jednou."""
+    def _title(self, t: TermSpec, node: Node, role: str = "") -> None:
+        """„řeka Vltava“ → Vltava ∈ řeka (titul = třída), jen při zápisu a jen jednou.
+        „Petr má bratra Karla“ → Karel ∈ bratr⟨Petr⟩ (vztahové jméno u předmětu „mít“ se váže k podmětu)."""
         if not t.note.startswith("titul:") or not self.write:
             return
-        group = self.m.ensure_group(t.note.split(":", 1)[1], t.attrs)
-        if self.m.member_star(node.id, group.id) is not None:
-            return
-        st = Statement("", "být", "copula", kernel="member", grade=self.grade, prov=self.prov, sentence=self.out.sentence,  # type: ignore[arg-type]
-                       roles=[Role("kdo", [node.id], "·", "structural"), Role("co", [group.id], "∃", "structural")],
-                       defaults=[f"titul „{group.lemma}“ před jménem = třída"])
-        self.m.attach(st)
-        self.out.statements.append(st)
+        title = t.note.split(":", 1)[1]
+        rels: list[str | None] = [None]
+        if self._cur_pred == "mít" and role != "kdo" and self._cur_subjs and (title in D.RELATION_GENDER or title in D.RELATION_CONVERSE):
+            # „Pavla a Jindřich mají syna Matěje“ → Matěj ∈ syn⟨Pavla⟩ i syn⟨Jindřich⟩
+            rels = [f"Gen:{x}" for x in self._cur_subjs]
+            self._defaults.append(f"{title} ⟨{' + '.join(self.m.label(x) for x in self._cur_subjs)}⟩ (vztahové jméno u „mít“ se váže k podmětu)")
+        for rel in rels:
+            group = self.m.ensure_group(title, t.attrs, rel)
+            if self.m.member_star(node.id, group.id) is not None:
+                continue
+            st = Statement("", "být", "copula", kernel="member", grade=self.grade, prov=self.prov, sentence=self.out.sentence,  # type: ignore[arg-type]
+                           roles=[Role("kdo", [node.id], "·", "structural"), Role("co", [group.id], "∃", "structural")],
+                           defaults=[f"titul „{group.lemma}“ před jménem = třída"])
+            self.m.attach(st)
+            self.out.statements.append(st)
 
     def _member(self, elem: str, group: str) -> None:
         st = Statement("", "být", "copula", kernel="member", grade=self.grade, prov=self.prov, sentence=self.out.sentence,  # type: ignore[arg-type]
@@ -234,6 +244,7 @@ class Grounder:
         if p.embedded and parent is not None:
             st.status, st.reason = "embedded", p.embedded  # netvrdí se; hodnotí se jen skrz rodiče
         nested_specs: list[tuple[Role, Predication]] = []
+        self._cur_pred, self._cur_subjs = p.pred, []
         for rf in p.roles:
             role = Role(rf.name, [], None, rf.authority, rf.surface, wh=rf.wh, wh_kind=rf.wh_kind)
             if rf.nested is not None:
@@ -247,6 +258,8 @@ class Grounder:
                 if nid is None:
                     continue
                 role.terms.append(nid)
+                if rf.name == "kdo":
+                    self._cur_subjs.append(nid)
                 if t.count is not None:
                     role.counts[nid] = t.count
                     if t.count_hi is not None:

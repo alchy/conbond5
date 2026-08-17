@@ -300,3 +300,9 @@ Koupil Petr chleba?
 Než Jana odešla, zamkla dveře.
 Zamkla Jana dveře?
 Kdy zamkla Jana dveře?
+Petr má bratra Karla.
+Kdo je bratr Petra?
+Kdo je bratr Karla?
+Pavla a Jindřich mají syna Matěje.
+Kdo je otec Matěje?
+Kdo je matka Matěje?
