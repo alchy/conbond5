@@ -546,7 +546,15 @@ class _Reader:
         return surface, surface, "surface"
 
     def _advmod(self, t: Token, p: Predication) -> None:
-        if t.lemma == "ne":
+        if t.lemma == "ne" or self.place.get(t.index) == "particle":
+            return
+        jak = next((c for c in self.p.children(t.index) if c.base_deprel == "advmod" and c.lemma == "jak" and "Int" in (c.feat("PronType") or "")), None)
+        if jak is not None and self.mood == "question" and t.lemma in D.ADVERB_QUANTITY:
+            # „Jak rychle …?“ → díra na VELIČINU (rychlost) — hodnota s jednotkou
+            qname = D.ADVERB_QUANTITY[t.lemma]
+            p.roles.append(RoleFill(qname, "jak+advmod", wh=True, wh_kind="value"))
+            self.mark(t.index, f"role:{qname}")
+            self.mark(jak.index, "particle")
             return
         wh = self._wh_of(t)
         if wh is not None:
@@ -1034,7 +1042,23 @@ class _Reader:
         wh = self._wh_of(root)
         prep = self.case_of(root.index)
         pred_role: RoleFill
-        if wh is not None:
+        jak = next((c for c in self.p.children(root.index) if c.base_deprel == "advmod" and c.lemma == "jak" and "Int" in (c.feat("PronType") or "")), None)
+        if jak is not None and root.upos == "ADJ" and root.lemma in D.ADVERB_QUANTITY and self.mood == "question":
+            # „Jak vysoká je Sněžka?“ → díra na veličinu výška
+            wh = None
+            qname = D.ADVERB_QUANTITY[root.lemma]
+            pred_role = RoleFill(qname, "cop", wh=True, wh_kind="value")
+            self.mark(root.index, f"role:{qname}")
+            self.mark(jak.index, "particle")
+        elif root.upos == "ADJ" and root.lemma in D.ADVERB_QUANTITY and any(
+                c.base_deprel in ("obl", "nmod", "obj") and any(g.base_deprel == "nummod" for g in self.p.children(c.index)) for c in self.p.children(root.index)):
+            # „Sněžka je vysoká 1603 metrů.“ → role výška: 1603 metr (veličina z přídavného jména)
+            qname = D.ADVERB_QUANTITY[root.lemma]
+            measure = next(c for c in self.p.children(root.index) if c.base_deprel in ("obl", "nmod", "obj") and any(g.base_deprel == "nummod" for g in self.p.children(c.index)))
+            self.mark(root.index, f"role:{qname}")
+            pred_role = RoleFill(qname, "cop+měr", self._term_group(measure), "structural")
+            p.defaults.append(f"veličina {qname} z „{root.lemma}“ + míra")
+        elif wh is not None:
             name, kind = wh
             # „Kdo/Co je X?“ = definice (díra „co“); „Kde/Kdy je X?“ = díra té role
             hole = "jaký" if kind == "attr" else ("co" if name in ("kdo", "co", "čím") else name)  # „Čím je X?“ = definice
@@ -1074,6 +1098,8 @@ class _Reader:
         p.pred_role_name = pred_role.name
         # okolnosti u kopuly (byl v Praze učitelem…)
         for t in self.p.children(root.index):
+            if self.place.get(t.index) == "term":
+                continue  # už pohlceno (míra u veličiny)
             if t.base_deprel in ("obl", "advmod", "advcl", "xcomp", "ccomp", "obj", "iobj", "conj", "parataxis"):
                 if t.base_deprel == "conj" and t.upos not in ("VERB",) and not self.kids(t.index, "cop"):
                     continue  # nominální koordinace už je v _term_group kořene

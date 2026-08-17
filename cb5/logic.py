@@ -20,7 +20,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Literal
 
-from cb5.defaults import COMPARATIVES_SEED, LOCATIVE_SURFACES, PLACE_NOUNS, RELATION_CONVERSE, RELATION_GENDER, synonym_class
+from cb5.defaults import ADVERB_QUANTITY, COMPARATIVES_SEED, LOCATIVE_SURFACES, PLACE_NOUNS, QUANTITY_BOUNDS, RELATION_CONVERSE, RELATION_GENDER, synonym_class
 from cb5.memory import Memory, Role, Statement
 
 Grade = Literal["said", "read", "derived"]
@@ -557,6 +557,11 @@ class Evaluator:
             cv = self.compare(q)
             if cv is not None:
                 return cv
+        # VELIČINA: „Jak rychle může jet automobil po dálnici?“ / „Jak vysoká je Sněžka?“
+        if hole.wh_kind == "value":
+            v = self.quantity(q, hole)
+            if v is not None:
+                return v
         # „Co víš o X?“ / „Jaké druhy X znáš?“ / „Jaké znáš spisovatele?“ → co paměť drží
         if q.pred in ("vědět", "znát", "pamatovat_si", "pamatovat"):
             about = q.role("o_čem") or q.role("co") or q.role("jaký")
@@ -731,6 +736,85 @@ class Evaluator:
             fillers.sort(key=rank)
             return Verdict("ANO", [p for _, p in fillers], fillers=fillers, near=near)
         return Verdict("NEVÍM", missing=self._missing(q, near), near=near)
+
+    def quantity(self, q: Statement, hole: Role) -> Verdict | None:
+        """Díra na veličinu Q (rychlost, výška…). Zdroje v pořadí:
+        1) výrok o podmětu s rolí Q nebo s mírou u přídavného jména (Sněžka je vysoká 1603 m);
+        2) výrok téhož predikátu s číselnou rolí (Sněžka měří 1603 m);
+        3) MŮSTEK (výchozí, přiznaný): veličina ukotvená na místě/věci z otázky —
+           „maximální rychlost na dálnici je 130 km/h“ platí pro „jet po dálnici“ → nejvýše 130 km/h."""
+        m = self.m
+        Q = hole.name
+        fillers: list[tuple[str, Proof]] = []
+        seen: set[str] = set()
+        subj = q.role("kdo")
+        subj_terms = subj.terms if subj else []
+        # 1) + 2): výroky o podmětu
+        for x in subj_terms:
+            for st in m.statements_about(x):
+                if st.status != "active" or st.neg:
+                    continue
+                kdo = st.role("kdo")
+                if not (kdo and any(self.match_term(x, subj.quant if subj else None, t, kdo.quant, role="kdo") is not None for t in kdo.terms)):
+                    continue
+                r = st.role(Q)
+                if r is None and st.pred == "být" and st.role("jaký"):
+                    jaky = st.role("jaký")
+                    if jaky and any(ADVERB_QUANTITY.get(m.nodes[t].lemma) == Q for t in jaky.terms if t in m.nodes):
+                        r = next((rr for rr in st.roles if rr.counts), None)
+                if r is None and st.pred and self.same_pred(st.pred, q.pred) is not None:
+                    r = next((rr for rr in st.roles if rr.counts), None)
+                if r is None and st.pred in ("měřit", "vážit", "dosahovat") and Q in ("výška", "délka", "hmotnost", "vzdálenost", "hloubka"):
+                    r = next((rr for rr in st.roles if rr.counts), None)
+                if r is None:
+                    continue
+                for t in r.terms:
+                    if t in r.counts:
+                        key = f"count:{r.counts[t]} {m.label(t)}"
+                        if key not in seen:
+                            seen.add(key)
+                            fillers.append((key, Proof([st.id], [f"{Q} z výroku o {m.label(x)}"], list(st.defaults), st.grade)))
+        if fillers:
+            return Verdict("ANO", [p for _, p in fillers], fillers=fillers)
+        # 3) můstek přes ukotvenou veličinu: group Q[attrs] ⟶ nmod/rel ⟶ X, kde X je term z otázky
+        anchors = [t for r in q.roles if not r.wh for t in r.terms]
+        for st in m.active():
+            if st.pred != "být" or st.neg:
+                continue
+            kdo, co = st.role("kdo"), st.role("co")
+            if not (kdo and co and kdo.terms):
+                continue
+            g = m.nodes.get(kdo.terms[0])
+            if g is None or g.kind != "group" or g.lemma != Q:
+                continue
+            values = [(t, co.counts[t]) for t in co.terms if t in co.counts]
+            if not values:
+                continue
+            # ukotvení: nmod výrok (kdo=g, co=X) nebo rel g⟨X⟩ pro X z otázky (i přes ⊆)
+            anchor: str | None = None
+            link: str | None = None
+            for x in anchors:
+                if g.rel and g.rel.split(":", 1)[1] == x:
+                    anchor, link = x, "rel"
+                for nm in m.statements_about(g.id):
+                    if nm.kind == "nmod" and nm.status == "active":
+                        k2, c2 = nm.role("kdo"), nm.role("co")
+                        if k2 and g.id in k2.terms and c2 and any(t == x or m.subset_star(x, t) is not None for t in c2.terms):
+                            anchor, link = x, nm.id
+                if anchor:
+                    break
+            if anchor is None:
+                continue
+            bound = next((QUANTITY_BOUNDS[a] for a in g.attrs if a in QUANTITY_BOUNDS), "")
+            for t, c in values:
+                key = f"count:{bound + ' ' if bound else ''}{c} {m.label(t)}"
+                if key not in seen:
+                    seen.add(key)
+                    sids = [st.id] + ([link] if link and link != "rel" else [])
+                    fillers.append((key, Proof(sids, [f"{m.label(g.id)} ukotvená na {m.label(anchor)} platí pro {q.pred}({m.label(anchor)}) — výchozí můstek: omezení místa/věci omezuje děj na ní"], ["můstek: veličina místa → děj"], "derived")))
+        if fillers:
+            return Verdict("ANO", [p for _, p in fillers], fillers=fillers)
+        return None
 
     def describe(self, node_id: str) -> list[Statement]:
         """Okolí uzlu: členství/podmnožiny, `být`, výroky s uzlem v podmětu, ostatní."""

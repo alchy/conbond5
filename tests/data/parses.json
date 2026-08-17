@@ -8616,6 +8616,310 @@
 }
 ]
 },
+"Jak dlouhá je Vltava?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Jak dlouhá je Vltava?",
+"tokens": [
+{
+"deprel": "advmod",
+"feats": [
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Jak",
+"head": 2,
+"id": 1,
+"lemma": "jak",
+"upos": "ADV"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "dlouhá",
+"head": 0,
+"id": 2,
+"lemma": "dlouhý",
+"upos": "ADJ"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 2,
+"id": 3,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Vltava",
+"head": 2,
+"id": 4,
+"lemma": "Vltava",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 2,
+"id": 5,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Jak rychle může jet automobil po dálnici?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Jak rychle může jet automobil po dálnici?",
+"tokens": [
+{
+"deprel": "advmod",
+"feats": [
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Jak",
+"head": 2,
+"id": 1,
+"lemma": "jak",
+"upos": "ADV"
+},
+{
+"deprel": "advmod",
+"feats": [
+[
+"Degree",
+"Pos"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "rychle",
+"head": 4,
+"id": 2,
+"lemma": "rychle",
+"upos": "ADV"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "může",
+"head": 0,
+"id": 3,
+"lemma": "moci",
+"upos": "VERB"
+},
+{
+"deprel": "xcomp",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"VerbForm",
+"Inf"
+]
+],
+"form": "jet",
+"head": 3,
+"id": 4,
+"lemma": "jet",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "automobil",
+"head": 3,
+"id": 5,
+"lemma": "automobil",
+"upos": "NOUN"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "po",
+"head": 7,
+"id": 6,
+"lemma": "po",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "dálnici",
+"head": 4,
+"id": 7,
+"lemma": "dálnice",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 3,
+"id": 8,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
 "Jak rychle může jezdit auto po dálnici?": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Jak rychle může jezdit auto po dálnici?",
@@ -8784,6 +9088,133 @@
 "form": "?",
 "head": 3,
 "id": 8,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Jak vysoká je Sněžka?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Jak vysoká je Sněžka?",
+"tokens": [
+{
+"deprel": "advmod",
+"feats": [
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Jak",
+"head": 2,
+"id": 1,
+"lemma": "jak",
+"upos": "ADV"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "vysoká",
+"head": 0,
+"id": 2,
+"lemma": "vysoký",
+"upos": "ADJ"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 2,
+"id": 3,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Sněžka",
+"head": 2,
+"id": 4,
+"lemma": "Sněžka",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 2,
+"id": 5,
 "lemma": "?",
 "upos": "PUNCT"
 }
@@ -24617,6 +25048,282 @@
 "head": 1,
 "id": 6,
 "lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Sněžka je vysoká 1603 metrů.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Sněžka je vysoká 1603 metrů.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Sněžka",
+"head": 3,
+"id": 1,
+"lemma": "sněžka",
+"upos": "NOUN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 3,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "vysoká",
+"head": 0,
+"id": 3,
+"lemma": "vysoký",
+"upos": "ADJ"
+},
+{
+"deprel": "nummod:gov",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "1603",
+"head": 5,
+"id": 4,
+"lemma": "1603",
+"upos": "NUM"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "metrů",
+"head": 3,
+"id": 5,
+"lemma": "metr",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 6,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Sněžka měří 1603 metrů.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Sněžka měří 1603 metrů.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Sněžka",
+"head": 2,
+"id": 1,
+"lemma": "sněžka",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "měří",
+"head": 0,
+"id": 2,
+"lemma": "měřit",
+"upos": "VERB"
+},
+{
+"deprel": "nummod:gov",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "1603",
+"head": 4,
+"id": 3,
+"lemma": "1603",
+"upos": "NUM"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "metrů",
+"head": 2,
+"id": 4,
+"lemma": "metr",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 5,
+"lemma": ".",
 "upos": "PUNCT"
 }
 ]

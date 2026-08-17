@@ -240,3 +240,17 @@ def test_relational_definitions_from_text(s: Session) -> None:
     assert s.say("Je Věra Nováková teta Tomáše Nováka?").verdict.value == "NEVÍM"  # type: ignore[union-attr]
     # identita: Věra ≠ Jana, i když obě „Nováková“
     assert len(s.memory.find_entity(["Věra", "Nováková"])) == 1 and s.memory.find_entity(["Věra", "Nováková"])[0] is not s.memory.find_entity(["Jana", "Nováková"])[0]
+
+
+def test_quantity_holes_and_bridge(s: Session) -> None:
+    """Dialog A ze zadání conbond4: veličina místa jako mez děje na něm — výchozí můstek, přiznaný."""
+    s.say("Automobil jezdí po silnici i po dálnici.")
+    s.say("Maximální rychlost na dálnici je 130 km/h.")
+    a = s.say("Jak rychle může jet automobil po dálnici?")
+    assert a.verdict is not None and a.verdict.fillers[0][0].startswith("count:nejvýše 130") and "můstek" in a.text
+    s.say("Sněžka je vysoká 1603 metrů.")
+    v = s.say("Jak vysoká je Sněžka?")
+    assert v.verdict is not None and v.verdict.fillers[0][0].startswith("count:1603")
+    s.say("Vltava měří 430 kilometrů.")
+    d = s.say("Jak dlouhá je Vltava?")
+    assert d.verdict is not None and d.verdict.fillers[0][0].startswith("count:430")

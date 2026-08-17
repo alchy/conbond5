@@ -229,3 +229,17 @@ RELATION_GENDER: dict[str, str] = {
     "matka": "Fem", "manželka": "Fem", "sestra": "Fem", "dcera": "Fem", "bába": "Fem", "babička": "Fem",
     "teta": "Fem", "tchyně": "Fem", "snacha": "Fem", "vnučka": "Fem", "neteř": "Fem", "prababička": "Fem",
 }
+
+
+#: „Jak rychle?“ → veličina „rychlost“ (příslovce/přídavné jméno → jméno veličiny). Data, doplnitelná.
+ADVERB_QUANTITY: dict[str, str] = {
+    "rychle": "rychlost", "rychlý": "rychlost", "dlouho": "doba", "dlouhý": "délka", "daleko": "vzdálenost",
+    "vysoko": "výška", "vysoký": "výška", "hluboko": "hloubka", "hluboký": "hloubka", "těžký": "hmotnost",
+    "široký": "šířka", "starý": "věk", "často": "četnost", "teplý": "teplota", "silný": "síla",
+}
+
+#: Přívlastek veličiny → mez v odpovědi („maximální rychlost“ → „nejvýše“).
+QUANTITY_BOUNDS: dict[str, str] = {
+    "maximální": "nejvýše", "nejvyšší": "nejvýše", "nejvýše": "nejvýše", "horní": "nejvýše", "povolený": "nejvýše",
+    "minimální": "nejméně", "nejnižší": "nejméně", "dolní": "nejméně", "průměrný": "průměrně", "obvyklý": "obvykle",
+}
