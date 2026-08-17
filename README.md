@@ -42,7 +42,7 @@ Předpoklad: služba UDPipe `cb-udpipe` na `127.0.0.1:42200`
 ```bash
 python3.11 -m venv .venv && .venv/bin/pip install -e ".[dev]"
 .venv/bin/python -m pytest -q                 # 89 testů, hermeticky (nahrané rozbory)
-.venv/bin/python -m cb5 chat                  # REPL
+.venv/bin/python -m cb5 chat --pamet p.json --zurnal rozhovor.jsonl   # REPL; žurnál = přepis + přehrání (`python -m cb5 replay`)
 .venv/bin/python -m cb5.bench --dok alois_jirásek --vypis   # měření nad korpusem
 ```
 
