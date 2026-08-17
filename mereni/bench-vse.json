@@ -424,7 +424,7 @@
     "reading": "pracovat(jako:?, kdo:·Alois Jirásek)"
    }
   ],
-  "t_ingest": 0.3,
+  "t_ingest": 0.2,
   "t_ask": 0.1
  },
  {
@@ -433,7 +433,7 @@
   "written": 232,
   "with_role": 232,
   "statements": 624,
-  "residue_tokens": 274,
+  "residue_tokens": 272,
   "tokens": 3385,
   "open": 186,
   "questions": 3,
@@ -494,9 +494,9 @@
   "written": 205,
   "with_role": 205,
   "statements": 665,
-  "residue_tokens": 197,
+  "residue_tokens": 194,
   "tokens": 2728,
-  "open": 162,
+  "open": 161,
   "questions": 20,
   "hits": 14,
   "text_hits": 16,
@@ -1205,10 +1205,10 @@
   "sentences": 925,
   "written": 925,
   "with_role": 922,
-  "statements": 2872,
-  "residue_tokens": 1125,
+  "statements": 2881,
+  "residue_tokens": 1101,
   "tokens": 12665,
-  "open": 663,
+  "open": 661,
   "questions": 24,
   "hits": 15,
   "text_hits": 21,
@@ -1592,7 +1592,7 @@
     "reading": "narodit_se(kde:?, kdo:·Božena Němcová)"
    }
   ],
-  "t_ingest": 1.8,
+  "t_ingest": 1.0,
   "t_ask": 0.2
  },
  {
@@ -1600,8 +1600,8 @@
   "sentences": 127,
   "written": 127,
   "with_role": 127,
-  "statements": 261,
-  "residue_tokens": 187,
+  "statements": 263,
+  "residue_tokens": 184,
   "tokens": 1182,
   "open": 81,
   "questions": 9,
@@ -2303,7 +2303,7 @@
     "reading": "zemřít(kdy:?, kdo:·František Halas)"
    }
   ],
-  "t_ingest": 0.1,
+  "t_ingest": 0.0,
   "t_ask": 0.0
  },
  {
@@ -2580,16 +2580,16 @@
   "sentences": 141,
   "written": 141,
   "with_role": 141,
-  "statements": 365,
-  "residue_tokens": 116,
+  "statements": 368,
+  "residue_tokens": 112,
   "tokens": 1598,
   "open": 84,
   "questions": 7,
   "hits": 4,
   "text_hits": 6,
   "misses": {
-   "špatná výplň": 2,
-   "role/logika (blízký výrok je)": 1
+   "role/logika (blízký výrok je)": 2,
+   "špatná výplň": 1
   },
   "results": [
    {
@@ -2615,11 +2615,9 @@
     "sada": "otazky",
     "ok": false,
     "text_ok": true,
-    "verdict": "ANO",
-    "fillers": [
-     "1959"
-    ],
-    "why": "špatná výplň",
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
     "reading": "pracovat(kdy:?, kdo:·Ivan Klíma)"
    },
    {
@@ -3065,17 +3063,17 @@
    }
   ],
   "t_ingest": 0.1,
-  "t_ask": 0.1
+  "t_ask": 0.0
  },
  {
   "doc": "jan_neruda",
   "sentences": 296,
   "written": 296,
   "with_role": 295,
-  "statements": 826,
-  "residue_tokens": 202,
+  "statements": 829,
+  "residue_tokens": 200,
   "tokens": 2842,
-  "open": 173,
+  "open": 174,
   "questions": 16,
   "hits": 8,
   "text_hits": 14,
@@ -3867,7 +3865,7 @@
     "reading": "zemřít(kdy:?, kdo:·Jaroslav Hašek)"
    }
   ],
-  "t_ingest": 0.3,
+  "t_ingest": 0.2,
   "t_ask": 0.1
  },
  {
@@ -3875,8 +3873,8 @@
   "sentences": 338,
   "written": 338,
   "with_role": 336,
-  "statements": 924,
-  "residue_tokens": 372,
+  "statements": 925,
+  "residue_tokens": 369,
   "tokens": 4003,
   "open": 273,
   "questions": 28,
@@ -4302,7 +4300,7 @@
     "reading": "lež(kdy:?, kdo:·Jaroslav Seifert)"
    }
   ],
-  "t_ingest": 0.2,
+  "t_ingest": 0.1,
   "t_ask": 0.1
  },
  {
@@ -4825,10 +4823,10 @@
   "sentences": 333,
   "written": 333,
   "with_role": 333,
-  "statements": 859,
-  "residue_tokens": 463,
+  "statements": 874,
+  "residue_tokens": 445,
   "tokens": 3739,
-  "open": 211,
+  "open": 214,
   "questions": 31,
   "hits": 20,
   "text_hits": 27,
@@ -5002,7 +5000,6 @@
      "12/1942",
      "1933 – 1937",
      "1922",
-     "1923",
      "1918"
     ],
     "why": "",
@@ -5162,7 +5159,6 @@
      "12/1942",
      "1933 – 1937",
      "1922",
-     "1923",
      "1918"
     ],
     "why": "",
@@ -5206,8 +5202,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "4/1921",
-     "11/1921"
+     "4/1921"
     ],
     "why": "",
     "reading": "navrhnout(kdy:?, kdo:·Josef Čapek)"
@@ -5225,7 +5220,6 @@
      "12/1942",
      "1933 – 1937",
      "1922",
-     "1923",
      "1918"
     ],
     "why": "",
@@ -5291,7 +5285,6 @@
      "12/1942",
      "1933 – 1937",
      "1922",
-     "1923",
      "1918"
     ],
     "why": "",
@@ -5313,7 +5306,7 @@
     "reading": "oženit_se(s_kým:?, kdo:·Josef Čapek)"
    }
   ],
-  "t_ingest": 0.1,
+  "t_ingest": 0.5,
   "t_ask": 0.1
  },
  {
@@ -5321,10 +5314,10 @@
   "sentences": 167,
   "written": 167,
   "with_role": 167,
-  "statements": 484,
-  "residue_tokens": 346,
+  "statements": 490,
+  "residue_tokens": 303,
   "tokens": 2144,
-  "open": 150,
+  "open": 151,
   "questions": 23,
   "hits": 12,
   "text_hits": 20,
@@ -5409,8 +5402,7 @@
     "verdict": "ANO",
     "fillers": [
      "1953",
-     "1956",
-     "1957"
+     "1956"
     ],
     "why": "",
     "reading": "nastoupit(kdy:?, kdo:·Josef Škvorecký)"
@@ -5457,8 +5449,7 @@
     "verdict": "ANO",
     "fillers": [
      "1953",
-     "1956",
-     "1957"
+     "1956"
     ],
     "why": "",
     "reading": "nastoupit(kdy:?, kdo:·Josef Škvorecký)"
@@ -5693,16 +5684,16 @@
   "sentences": 302,
   "written": 302,
   "with_role": 301,
-  "statements": 948,
-  "residue_tokens": 297,
+  "statements": 952,
+  "residue_tokens": 285,
   "tokens": 3712,
   "open": 228,
   "questions": 21,
-  "hits": 12,
+  "hits": 10,
   "text_hits": 19,
   "misses": {
    "špatná výplň": 5,
-   "role/logika (blízký výrok je)": 4
+   "role/logika (blízký výrok je)": 6
   },
   "results": [
    {
@@ -5806,13 +5797,11 @@
      "roce 1880"
     ],
     "sada": "otazky",
-    "ok": true,
+    "ok": false,
     "text_ok": true,
-    "verdict": "ANO",
-    "fillers": [
-     "1880"
-    ],
-    "why": "",
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
     "reading": "procestovat_se(kdy:?, kdo:·Julius Zeyer)"
    },
    {
@@ -5834,13 +5823,11 @@
      "roku 1884"
     ],
     "sada": "otazky",
-    "ok": true,
+    "ok": false,
     "text_ok": true,
-    "verdict": "ANO",
-    "fillers": [
-     "1884"
-    ],
-    "why": "",
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
     "reading": "navštívit(kdy:?, kdo:·Julius Zeyer)"
    },
    {
@@ -6040,10 +6027,10 @@
   "sentences": 313,
   "written": 313,
   "with_role": 313,
-  "statements": 872,
-  "residue_tokens": 307,
+  "statements": 875,
+  "residue_tokens": 303,
   "tokens": 3841,
-  "open": 222,
+  "open": 221,
   "questions": 26,
   "hits": 19,
   "text_hits": 25,
@@ -6472,9 +6459,9 @@
   "written": 307,
   "with_role": 307,
   "statements": 857,
-  "residue_tokens": 344,
+  "residue_tokens": 342,
   "tokens": 3349,
-  "open": 194,
+  "open": 193,
   "questions": 32,
   "hits": 24,
   "text_hits": 26,
@@ -6987,8 +6974,8 @@
   "sentences": 207,
   "written": 207,
   "with_role": 207,
-  "statements": 496,
-  "residue_tokens": 258,
+  "statements": 497,
+  "residue_tokens": 257,
   "tokens": 2006,
   "open": 103,
   "questions": 17,
@@ -7260,8 +7247,8 @@
   "sentences": 168,
   "written": 168,
   "with_role": 168,
-  "statements": 457,
-  "residue_tokens": 159,
+  "statements": 458,
+  "residue_tokens": 158,
   "tokens": 1823,
   "open": 121,
   "questions": 13,
@@ -7476,10 +7463,10 @@
   "sentences": 522,
   "written": 522,
   "with_role": 521,
-  "statements": 1317,
-  "residue_tokens": 482,
+  "statements": 1323,
+  "residue_tokens": 476,
   "tokens": 4838,
-  "open": 352,
+  "open": 349,
   "questions": 23,
   "hits": 13,
   "text_hits": 16,
@@ -7851,8 +7838,8 @@
   "sentences": 447,
   "written": 447,
   "with_role": 447,
-  "statements": 1175,
-  "residue_tokens": 339,
+  "statements": 1182,
+  "residue_tokens": 327,
   "tokens": 5857,
   "open": 322,
   "questions": 4,
@@ -7929,13 +7916,13 @@
   "sentences": 315,
   "written": 315,
   "with_role": 315,
-  "statements": 739,
-  "residue_tokens": 464,
+  "statements": 747,
+  "residue_tokens": 438,
   "tokens": 4031,
-  "open": 235,
+  "open": 236,
   "questions": 1,
   "hits": 0,
-  "text_hits": 1,
+  "text_hits": 0,
   "misses": {
    "role/logika (blízký výrok je)": 1
   },
@@ -7947,7 +7934,7 @@
     ],
     "sada": "conbond",
     "ok": false,
-    "text_ok": true,
+    "text_ok": false,
     "verdict": "NEVÍM",
     "fillers": [],
     "why": "role/logika (blízký výrok je)",
@@ -7962,15 +7949,15 @@
   "sentences": 159,
   "written": 159,
   "with_role": 159,
-  "statements": 565,
-  "residue_tokens": 121,
+  "statements": 568,
+  "residue_tokens": 123,
   "tokens": 2356,
   "open": 135,
   "questions": 17,
-  "hits": 12,
-  "text_hits": 14,
+  "hits": 11,
+  "text_hits": 13,
   "misses": {
-   "špatná výplň": 3,
+   "špatná výplň": 4,
    "role/logika (blízký výrok je)": 2
   },
   "results": [
@@ -8041,13 +8028,14 @@
      "letech 1948"
     ],
     "sada": "otazky",
-    "ok": true,
-    "text_ok": true,
+    "ok": false,
+    "text_ok": false,
     "verdict": "ANO",
     "fillers": [
-     "1948"
+     "1946",
+     "1957"
     ],
-    "why": "",
+    "why": "špatná výplň",
     "reading": "pracovat(kdy:?, kdo:·Ludvík Vaculík)"
    },
    {
@@ -8237,8 +8225,8 @@
   "sentences": 370,
   "written": 370,
   "with_role": 370,
-  "statements": 968,
-  "residue_tokens": 388,
+  "statements": 969,
+  "residue_tokens": 387,
   "tokens": 3851,
   "open": 238,
   "questions": 2,
@@ -8854,10 +8842,10 @@
   "sentences": 280,
   "written": 280,
   "with_role": 278,
-  "statements": 557,
-  "residue_tokens": 255,
+  "statements": 560,
+  "residue_tokens": 245,
   "tokens": 2046,
-  "open": 139,
+  "open": 138,
   "questions": 11,
   "hits": 8,
   "text_hits": 10,
@@ -9042,17 +9030,14 @@
   "sentences": 653,
   "written": 653,
   "with_role": 652,
-  "statements": 1781,
-  "residue_tokens": 668,
+  "statements": 1790,
+  "residue_tokens": 645,
   "tokens": 9569,
-  "open": 550,
+  "open": 548,
   "questions": 8,
-  "hits": 5,
+  "hits": 8,
   "text_hits": 8,
-  "misses": {
-   "bez výroku": 2,
-   "špatná výplň": 1
-  },
+  "misses": {},
   "results": [
    {
     "q": "Kolik zubů má dospělý pes?",
@@ -9075,11 +9060,13 @@
      "28"
     ],
     "sada": "etalon",
-    "ok": false,
+    "ok": true,
     "text_ok": true,
-    "verdict": "NEVÍM",
-    "fillers": [],
-    "why": "bez výroku",
+    "verdict": "ANO",
+    "fillers": [
+     "count:28"
+    ],
+    "why": "",
     "reading": "mít(co:?count:∃zub[mléčný], kdo:∀štěně)"
    },
    {
@@ -9142,14 +9129,14 @@
      "savec"
     ],
     "sada": "conbond",
-    "ok": false,
+    "ok": true,
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "součást jídelníček",
-     "termín (obecný)"
+     "šelma (domestikovaný, velký)",
+     "jeden"
     ],
-    "why": "špatná výplň",
+    "why": "",
     "reading": "být(kdo:∀pes[domácí], co:?)"
    },
    {
@@ -9158,11 +9145,11 @@
      "ano"
     ],
     "sada": "conbond",
-    "ok": false,
+    "ok": true,
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [],
-    "why": "bez výroku",
+    "why": "",
     "reading": "být(kdo:∀pes, co:∃šelma) ⟨subset⟩"
    }
   ],
@@ -9886,8 +9873,8 @@
   "sentences": 988,
   "written": 988,
   "with_role": 988,
-  "statements": 2637,
-  "residue_tokens": 1047,
+  "statements": 2638,
+  "residue_tokens": 1045,
   "tokens": 14254,
   "open": 967,
   "questions": 1,
@@ -10267,10 +10254,10 @@
   "sentences": 320,
   "written": 320,
   "with_role": 320,
-  "statements": 845,
-  "residue_tokens": 327,
+  "statements": 852,
+  "residue_tokens": 308,
   "tokens": 3391,
-  "open": 218,
+  "open": 216,
   "questions": 27,
   "hits": 17,
   "text_hits": 23,
@@ -10708,10 +10695,10 @@
   "sentences": 563,
   "written": 563,
   "with_role": 563,
-  "statements": 1829,
-  "residue_tokens": 401,
+  "statements": 1838,
+  "residue_tokens": 386,
   "tokens": 8252,
-  "open": 428,
+  "open": 425,
   "questions": 65,
   "hits": 36,
   "text_hits": 50,
@@ -11989,9 +11976,9 @@
   "written": 320,
   "with_role": 318,
   "statements": 836,
-  "residue_tokens": 360,
+  "residue_tokens": 357,
   "tokens": 3322,
-  "open": 194,
+  "open": 193,
   "questions": 26,
   "hits": 16,
   "text_hits": 23,
@@ -12391,8 +12378,8 @@
   "sentences": 379,
   "written": 379,
   "with_role": 378,
-  "statements": 866,
-  "residue_tokens": 290,
+  "statements": 878,
+  "residue_tokens": 268,
   "tokens": 4231,
   "open": 325,
   "questions": 1,
@@ -12425,10 +12412,10 @@
   "sentences": 411,
   "written": 411,
   "with_role": 410,
-  "statements": 1299,
-  "residue_tokens": 532,
+  "statements": 1303,
+  "residue_tokens": 521,
   "tokens": 6821,
-  "open": 368,
+  "open": 366,
   "questions": 2,
   "hits": 1,
   "text_hits": 2,
