@@ -29,7 +29,7 @@ MONTH_LEMMAS = frozenset(MONTHS)
 from cb5.oracle import Parse, Token
 
 Quant = Literal["∀", "∃", "·"]
-Kind = Literal["entity", "group", "place", "time", "value", "pron", "wh"]
+Kind = Literal["entity", "group", "place", "time", "value", "pron", "wh", "var"]
 
 #: Deprely, které nesou strukturu, ne obsah — pohltí je jejich hlava.
 STRUCTURAL = frozenset(
@@ -137,6 +137,8 @@ class Predication:
     correction: bool = False
     #: U kopuly jméno role predikátového nominálu (`co` / `jaký` / `kde`…).
     pred_role_name: str = ""
+    #: Vnořená věta, která NETVRDÍ svůj obsah („pokud prší“): „podmínka“ / „účel“ / „vedlejší“; "" = tvrdí.
+    embedded: str = ""
     #: Věta má tvar definice vztahového jména („Tchán je otec manžela“) — zapíše se jako fakt
     #: A NAVÍC se z ní vezme definiční řetěz (tvar sám nerozhodne, jestli je to definice).
     definition: bool = False
@@ -195,6 +197,7 @@ class _Reader:
 
     def __init__(self, parse: Parse, mood: str | None, learned_roles: Mapping[str, str] | None = None) -> None:
         self.p = parse
+        self._cond_depth = 0  # >0 = čteme větu pod podmínkovou spojkou („pokud někdo …“ → někdo je proměnná)
         self.learned_roles: Mapping[str, str] = learned_roles or {}
         self.place: dict[int, str] = {}
         self.residue: list[tuple[str, str]] = []
@@ -367,7 +370,7 @@ class _Reader:
             return
         target.name, target.authority = "co", "default"
         st = subj.terms[0]
-        p.kernel = "member" if (st.kind in ("entity", "pron", "place") or st.quant == "·") else "subset"
+        p.kernel = "member" if (st.kind in ("entity", "pron", "place", "var") or st.quant == "·") else "subset"
         p.defaults.append(f"kernel:{p.kernel} (patřit {target.surface})")
 
     def _lemma_with_refl(self, t: Token) -> str:
@@ -628,8 +631,25 @@ class _Reader:
             self._add_role(p, "jako", "advcl:pred", t, authority="structural")
             return
         name = f"advcl:{marker}" if marker else "advcl"
-        nested = self._verb_or_cop(t)
-        p.roles.append(RoleFill(name, name, nested=nested, authority="surface"))
+        tense = t.feat("Tense") or next((a.feat("Tense") for a in self.kids(t.index, "aux", "cop") if a.feat("Tense")), None)
+        conditional = marker in D.CONDITIONAL_MARKERS and (marker != "když" or tense in (None, "Pres", "Fut"))
+        self._cond_depth += 1 if conditional else 0
+        try:
+            nested = self._verb_or_cop(t)
+        finally:
+            self._cond_depth -= 1 if conditional else 0
+        authority = "surface"
+        if conditional:
+            # „X, pokud Y“ / „Když Y, X“: X platí jen za podmínky Y — Y se netvrdí
+            name, authority = "podmínka", "default"
+            nested.embedded = "podmínka"
+            p.defaults.append(f"podmínka: {marker}")
+            for c in self.p.children(p.head):
+                if c.base_deprel == "advmod" and c.lemma in ("pak", "tak", "potom") and c.index not in self.place:
+                    self.mark(c.index, "particle")
+        elif marker in D.NON_ASSERTED_MARKERS:
+            nested.embedded = D.NON_ASSERTED_MARKERS[marker]
+        p.roles.append(RoleFill(name, name, nested=nested, authority=authority))
         self.mark(t.index, "nested")
 
     def _gapping(self, t: Token, p: Predication) -> bool:
@@ -717,11 +737,26 @@ class _Reader:
         finite = h.feat("VerbForm") in ("Fin", "Part") or any(a.feat("VerbForm") == "Fin" for a in self.kids(h.index, "aux"))
         if not finite:
             return
+        for r in p.roles:
+            # „Pokud někdo bydlí v Brně, bydlí na Moravě.“: nevyslovený podmět = proměnná podmínky
+            if r.name == "podmínka" and r.nested is not None:
+                vk = r.nested.role("kdo")
+                if vk is not None and vk.terms and vk.terms[0].kind == "var":
+                    p.roles.insert(0, RoleFill("kdo", "podmínka", [vk.terms[0]], "default"))
+                    p.defaults.append("kdo: proměnná z podmínky")
+                    return
         person = h.feat("Person") or next((a.feat("Person") for a in self.kids(h.index, "aux") if a.feat("Person")), None)
         gender = h.feat("Gender")
         number = h.feat("Number") or next((a.feat("Number") for a in self.kids(h.index, "aux") if a.feat("Number")), None)
         # neosobní: 3. os. sg. neutrum bez podmětu („prší“, „jedná se“) → nedosazovat
         if person == "3" and gender == "Neut" and number == "Sing" and p.pred and p.pred.endswith("_se"):
+            return
+        if person in ("3", None) and number in ("Sing", None) and p.pred in D.IMPERSONAL_VERBS and gender in ("Neut", None):
+            p.defaults.append("neosobní sloveso — bez podmětu")
+            return
+        if p.kind == "copula" and person in ("3", None) and number in ("Sing", None) and not any(r.name in ("co", "jaký", "čí", "kolik") for r in p.roles) \
+                and any(r.name == "jak" for r in p.roles):
+            p.defaults.append("neosobní „je + příslovce“ — bez podmětu")  # „je mokro“, „je hezky“
             return
         term = TermSpec(0, "∅", (), "PRON", "pron", gender=gender, number=number, person=person, quant="·", quant_authority="prodrop")
         p.roles.insert(0, RoleFill("kdo", "prodrop", [term], "prodrop"))
@@ -734,7 +769,7 @@ class _Reader:
             for t in r.terms:
                 if t.quant is not None:
                     continue
-                if t.kind in ("entity", "place", "time", "value", "pron"):
+                if t.kind in ("entity", "place", "time", "value", "pron", "var"):
                     t.quant, t.quant_authority = "·", "structural"
                 elif t.kind == "wh":
                     continue
@@ -822,9 +857,17 @@ class _Reader:
                 self.mark(c.index, "particle")
                 consumed.append(c.index)
             elif d == "nummod":
-                raw = c.form.replace(",", ".").replace(" ", "").replace("\u00a0", "").rstrip(".")
-                if raw.isdigit():
-                    count = int(raw)
+                n = D.number_of(c.form, c.lemma)
+                if n is not None:
+                    count = n
+                    # „8×8 polí“: násobek dvou čísel spojených ×
+                    for g in self.p.children(c.index):
+                        if g.base_deprel in ("conj", "nmod") and g.upos == "NUM" and D.number_of(g.form, g.lemma) is not None and any(
+                                x.form in ("×", "x", "krát") for x in self.p.children(g.index)):
+                            count = n * (D.number_of(g.form, g.lemma) or 1)
+                            for x in self.p.subtree(g.index):
+                                self.mark(x.index, where)
+                                consumed.append(x.index)
                 self.mark(c.index, where)
                 consumed.append(c.index)
             elif d == "amod":
@@ -850,6 +893,8 @@ class _Reader:
             elif d in ("nmod", "appos", "acl", "parataxis", "obl", "advcl"):
                 if c.index in consumed:
                     continue
+                if d == "advcl" and self.kids(t.index, "cop"):
+                    continue  # věta pod jmenným přísudkem („je mokro, když prší“) patří kopule, ne termu
                 if (d == "nmod" and t.upos in ("NOUN", "ADJ") and c.upos in ("PROPN", "NOUN") and c.feat("Case") == "Gen"
                         and not self.case_of(c.index) and rel is None):
                     # „otec Petra Nováka“, „příbuzný psa“, „péče majitele“ — holý genitiv ZUŽUJE
@@ -899,6 +944,16 @@ class _Reader:
             geo = any(self.p.token(i).feat("NameType") == "Geo" for i in name_tokens)
             if geo or t.lemma in D.PLACE_NOUNS:
                 kind = "place"
+        elif t.upos in ("PRON", "DET") and (t.lemma in D.VAR_PRONOUNS or (t.lemma == "ten" and any(
+                c.base_deprel == "acl" for c in self.p.children(t.index)))) and (
+                t.lemma not in D.EXISTENTIAL_PRONOUNS or self._cond_depth > 0):
+            # „Každý, kdo …“ / „ten, kdo …“ / „pokud někdo …“: proměnná pravidla, ne odkaz
+            kind = "var"
+            quant, qauth = "·", "structural"
+        elif t.upos in ("PRON", "DET") and t.lemma in D.EXISTENTIAL_PRONOUNS:
+            # „Někdo zaklepal.“ mimo podmínku: neurčitý činitel — role bez výplně (nic o něm nevíme)
+            kind = "group"
+            quant, qauth = "∃", "structural"
         elif t.upos == "PRON" or (t.upos == "DET" and not self.p.children(t.index)):
             kind = "pron"
             quant, qauth = "·", "structural"
@@ -924,8 +979,7 @@ class _Reader:
             if time and not unit:
                 kind = "time"
             else:
-                raw = t.form.replace(",", ".").replace(" ", "")
-                count = int(raw) if raw.isdigit() else None
+                count = D.number_of(t.form, t.lemma)
                 if unit:
                     time = None
                     for c in unit_tokens:
@@ -950,7 +1004,15 @@ class _Reader:
                 if time is None:
                     # „před 2 miliardami let“, „v dětství“: pojmenovaný čas s celým tvarem jako popiskou
                     body = [x for x in sub if x.upos not in ("ADP", "PUNCT")]
-                    label = " ".join(x.form for x in sorted(body, key=lambda x: x.index)) if len(body) > 1 else t.lemma
+                    # „na počátku hry“, „na konci války“: genitivní doplnění patří k popisce času
+                    for g in self.p.children(t.index):
+                        if g.base_deprel == "nmod" and g.feat("Case") == "Gen" and g.upos in ("NOUN", "PROPN") and g not in body:
+                            body.append(g)
+                            for x in self.p.subtree(g.index):
+                                self.mark(x.index, where)
+                                consumed.append(x.index)
+                    head_lemma = is_time_noun(t.lemma) and not any(x.upos == "NUM" for x in body)  # „konec války“, ale „2 miliardami let“
+                    label = " ".join(x.lemma if head_lemma and x.index == t.index else x.form for x in sorted(body, key=lambda x: x.index)) if len(body) > 1 else t.lemma
                     if len(body) > 1 and self.case_of(t.index) == "před":
                         label = "před " + label  # relativní čas: „před 2 miliardami let“
                     time = TimeSpec("name", label if len(body) > 1 else t.lemma)
@@ -1243,7 +1305,7 @@ class _Reader:
         o = pred_role.terms[0]
         if o.kind in ("time", "value"):
             return None  # „rychlost je 130 km/h“ není členství ani podmnožina
-        if s.kind in ("entity", "pron") or (s.kind == "group" and s.quant == "·"):
+        if s.kind in ("entity", "pron", "var") or (s.kind == "group" and s.quant == "·"):
             if o.kind == "entity":
                 p.defaults.append("kernel:same_as (dvě jména)")
                 return "same_as"
@@ -1341,6 +1403,8 @@ class Reader(_Reader):
             else:
                 main = self._fragment(root)
         main.mood = self.mood  # type: ignore[assignment]
+        self._free_relative(main)
+        var_heads = {t.head for r in main.roles for t in r.terms if t.kind == "var"}
         # druhý průchod: přívlastky jako vztahy vedle věty, závorky, vztažné věty
         seen: set[tuple[int, int]] = set()
         while self._pending_secondary:
@@ -1348,10 +1412,38 @@ class Reader(_Reader):
             if (head.index, dep.index) in seen or self.place.get(dep.index) == "term":
                 continue  # člen už pohltil term (jednotka, zúžení) — není to výrok vedle věty
             seen.add((head.index, dep.index))
+            if head.index in var_heads and dep.base_deprel == "acl":
+                # „Každý, kdo bydlí v Praze, …“: vztažná věta o proměnné = PODMÍNKA pravidla, ne výrok vedle
+                cond = self._acl(head, dep)
+                cond.embedded = "podmínka"
+                main.roles.append(RoleFill("podmínka", "acl", nested=cond, authority="default"))
+                main.defaults.append("pravidlo z věty: každý, kdo … (podmínka)")
+                continue
             for sec in self._secondary_from(head, dep, main):
                 main.secondary.append(sec)
         self._sweep()
         return Reading(parse=self.p, main=main, residue=self.residue, _placement=self.place)
+
+    def _free_relative(self, main: Predication) -> None:
+        """„Kdo jede po dálnici, (ten) jede rychle.“: podmětová věta se vztažným kdo/co →
+        podmět hlavní věty je PROMĚNNÁ a věta je podmínka pravidla."""
+        for r in list(main.roles):
+            if r.nested is None or r.name not in ("kdo", "co") or r.terms:
+                continue
+            for nr in r.nested.roles:
+                for i, t in enumerate(nr.terms):
+                    tok = self.p.token(t.head) if t.head else None
+                    if tok is not None and tok.upos == "PRON" and tok.lemma in ("kdo", "co") and (
+                            "Rel" in (tok.feat("PronType") or "") or "Int" in (tok.feat("PronType") or "")):
+                        var = TermSpec(t.head, tok.lemma, (tok.form,), "PRON", "var", quant="·", quant_authority="structural", tokens=(t.head,))
+                        nr.terms[i] = var
+                        r.terms.append(var)
+                        cond = r.nested
+                        r.nested = None
+                        cond.embedded = "podmínka"
+                        main.roles.append(RoleFill("podmínka", "csubj", nested=cond, authority="default"))
+                        main.defaults.append("pravidlo z věty: kdo …, ten … (podmínka)")
+                        return
 
     def _clause(self, root: Token) -> Predication | None:
         """Je token hlavou věty (klauze)? Vrátí predikaci, jinak `None`."""
@@ -1379,6 +1471,8 @@ class Reader(_Reader):
         kind: Kind = "entity" if head.upos in ("PROPN",) or (head.upos == "X" and head.form[:1].isupper()) else "group"
         if head.upos == "PROPN" and head.feat("NameType") == "Geo":
             kind = "place"
+        if head.upos in ("PRON", "DET") and (head.lemma in D.VAR_PRONOUNS or head.lemma == "ten"):
+            kind = "var"
         # titul + jméno („vulkán Ol Doinyo Lengai“): hlava vedlejšího výroku je ta ENTITA, ne třída
         if head.upos == "NOUN":
             named = [f for f in self.p.children(head.index) if f.base_deprel == "nmod" and f.upos in ("PROPN", "X") and not self.case_of(f.index)

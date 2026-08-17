@@ -16,6 +16,7 @@ from __future__ import annotations
 
 from dataclasses import dataclass, field
 
+from cb5 import defaults as D
 from cb5.memory import Memory, Node, OpenItem, Provenance, Role, Statement
 from cb5.read import Predication, Reading, TermSpec
 
@@ -43,6 +44,7 @@ class Grounder:
         self.out = Grounded()
         self._defaults: list[str] = []
         self._pending_open: list[tuple[str, str, str, list[str]]] = []  # (kind, about, question, options)
+        self._vars: dict[int, str] = {}  # token → jméno proměnné (X, Y, …) v rámci jedné věty
 
     # ---- termy ---------------------------------------------------------------
 
@@ -229,12 +231,18 @@ class Grounder:
         st = Statement("", p.pred, p.kind, neg=p.neg, modality=p.modality, kernel=p.kernel, grade=self.grade,  # type: ignore[arg-type]
                        prov=self.prov, sentence=self.out.sentence, tense=p.tense, mood=p.mood, derived_from=parent,
                        residue=list(residue or []))
+        if p.embedded and parent is not None:
+            st.status, st.reason = "embedded", p.embedded  # netvrdí se; hodnotí se jen skrz rodiče
         nested_specs: list[tuple[Role, Predication]] = []
         for rf in p.roles:
             role = Role(rf.name, [], None, rf.authority, rf.surface, wh=rf.wh, wh_kind=rf.wh_kind)
             if rf.nested is not None:
                 nested_specs.append((role, rf.nested))
             for t in rf.terms:
+                if t.kind == "var":
+                    role.var = self._var_name(t.head)
+                    role.quant = "·"
+                    continue
                 nid = self.resolve_term(t, role=rf.name, subject_specific=subject_specific, pred=p.pred)
                 if nid is None:
                     continue
@@ -274,12 +282,23 @@ class Grounder:
         for role, nested in nested_specs:
             child = self.ground_predication(nested, parent=st.id if self.write else None)
             role.nested = child.id or None
+            if st.pred in D.SPEECH_VERBS and role.name == "co" and child.status == "active":
+                who = st.role("kdo")
+                src = self.m.label(who.terms[0]) if who and who.terms else "?"
+                child.defaults.append(f"podle {src} ({st.pred})")  # doložka: kdo to říká
             if not self.write:
                 role.nested = None
                 self.out.statements.append(child)
         return st
 
+    def _var_name(self, head: int) -> str:
+        """Jméno proměnné pro token věty (týž token = táž proměnná napříč hlavní větou a podmínkou)."""
+        if head not in self._vars:
+            self._vars[head] = "XYZUVW"[len(self._vars) % 6]
+        return self._vars[head]
+
     def ground(self, reading: Reading) -> Grounded:
+        self._vars = {}
         if self.write:
             sent = self.m.new_sentence(self.prov.doc, self.prov.sent_no, self.prov.text)
             self.out.sentence = sent.id

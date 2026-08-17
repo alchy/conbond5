@@ -30,7 +30,7 @@ RELATIVE_DAYS = ("dnes", "včera", "zítra", "předevčírem", "pozítří", "le
 TIME_NOUNS = frozenset(
     {"rok", "léta", "století", "tisíciletí", "den", "měsíc", "týden", "hodina", "minuta",
      "doba", "období", "věk", "éra", "epocha", "dekáda", "desetiletí", "sezóna", "noc",
-     "ráno", "večer", "poledne", "půlnoc", "začátek", "konec", "polovina", "závěr", "průběh",
+     "ráno", "večer", "poledne", "půlnoc", "začátek", "počátek", "úvod", "konec", "polovina", "závěr", "průběh", "přelom",
      "dětství", "mládí", "stáří", "život", "válka", "středověk", "starověk", "novověk"}
     | set(MONTHS) | set(WEEKDAYS) | set(SEASONS)
 )

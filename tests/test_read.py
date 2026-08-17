@@ -72,8 +72,8 @@ def test_modality_advcl_and_negated_aux(oracle: RecordedOracle) -> None:
     assert [t.lemma for t in m.role("kdo").terms] == ["chov"] and m.role("kdo").terms[0].rel is not None  # type: ignore[union-attr]
     co = m.role("co")
     assert co and co.terms[0].lemma == "dopad" and co.terms[0].attrs == ("negativní",)
-    adv = m.role("advcl:pokud")
-    assert adv and adv.nested is not None and adv.nested.pred == "splněný" and adv.nested.neg
+    adv = m.role("podmínka")  # „pokud …“ = podmínka (věta pod ní se netvrdí)
+    assert adv and adv.nested is not None and adv.nested.pred == "splněný" and adv.nested.neg and adv.nested.embedded == "podmínka"
     assert terms(adv.nested, "co") == ["požadavek"]
     assert r.residue == []
     kinds = {s.pred for s in m.secondary}

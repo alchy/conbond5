@@ -87,6 +87,11 @@ class Evaluator:
     def __init__(self, memory: Memory) -> None:
         self.m = memory
         self.syn = memory.learned.get("synonyms", {})
+        #: výroky, které by seděly, ale jejich podmínka není splněna (do odpovědi)
+        self.unmet: list[str] = []
+        #: vazby proměnných pravidla z poslední shody (`match` je plní, `_gate_condition` čte)
+        self._bind: dict[str, str] = {}
+        self._rule_depth = 0
 
     def same_pred(self, a: str | None, b: str | None) -> str | None:
         return _same_pred(a, b, self.syn)
@@ -150,6 +155,12 @@ class Evaluator:
         return None
 
     def match_role(self, qr: Role, fr: Role, *, pred: str | None) -> Proof | None:
+        if fr.var:
+            # proměnná pravidla: váže se na term dotazu (díra zůstane volná — řeší výčet)
+            if qr.wh or not qr.terms:
+                return Proof()
+            self._bind[fr.var] = qr.terms[0]
+            return Proof([], [f"{fr.var} := {self.m.label(qr.terms[0])}"])
         if qr.wh:
             return Proof()
         if not qr.terms:
@@ -187,6 +198,7 @@ class Evaluator:
         if f.mood == "question":
             return None
         proof = Proof([f.id], [step] if step else [], list(f.defaults), f.grade)
+        self._bind = {}
         # modalita
         if q.modality is None and f.modality in ("možnost", "vůle", "fáze"):
             proof.steps.append(f"výrok je jen {f.modality}")
@@ -204,7 +216,47 @@ class Evaluator:
             if p is None:
                 return None
             proof = proof.merged(p)
-        return proof
+        bind = dict(self._bind)
+        out = self._gate_condition(f, proof, depth)
+        self._bind = bind  # vnořené hodnocení podmínky vazby přepsalo — vrátit pro volajícího (výčet)
+        return out
+
+    def _gate_condition(self, f: Statement, proof: Proof, depth: int) -> Proof | None:
+        """Výrok s rolí `podmínka` platí, jen když podmínka (vložený výrok) plyne z paměti.
+        Splněná podmínka → důkaz je odvozený a nese i její důkaz; nesplněná → výrok se
+        nepočítá a odpověď o tom řekne („platí, pokud …“)."""
+        cond = f.role("podmínka")
+        if cond is None or cond.nested is None:
+            return proof
+        cs = self.m.statements.get(cond.nested)
+        if cs is None or depth > 3:
+            return None
+        cq = self.cond_query(cs, dict(self._bind))
+        cv = self.evaluate(cq, depth=depth + 1)
+        if cv.value == "ANO":
+            for cp in cv.proofs:
+                proof = proof.merged(cp)
+            proof.steps.append(f"podmínka splněna: {self.m.render_short(cs)}")
+            proof.grade = weakest(proof.grade, "derived")
+            return proof
+        state = "neplatí" if cv.value == "NE" else "to nevím"
+        self.unmet.append(f"[{f.id}] platí jen pod podmínkou: {self.m.render_short(cq)} — {state}")
+        return None
+
+    def cond_query(self, cs: Statement, bind: dict[str, str], *, hole_var: str = "", hole: Role | None = None) -> Statement:
+        """Podmínka jako dotaz: vázané proměnné dosazeny, `hole_var` jako díra, ostatní volné
+        proměnné = „někdo“ (role bez termu, nic neomezuje)."""
+        roles: list[Role] = []
+        for r in cs.roles:
+            if r.var and r.var in bind:
+                roles.append(Role(r.name, [bind[r.var]], "·", "bound", r.surface, counts=dict(r.counts)))
+            elif r.var and r.var == hole_var and hole is not None:
+                roles.append(Role(r.name, [], None, "hole", r.surface, wh=True, wh_kind=hole.wh_kind or "filler"))
+            elif r.var:
+                roles.append(Role(r.name, [], None, "free", r.surface))
+            else:
+                roles.append(Role(r.name, list(r.terms), r.quant, r.authority, r.surface, nested=r.nested, counts=dict(r.counts), wh=r.wh, wh_kind=r.wh_kind))
+        return Statement("", cs.pred, cs.kind, neg=cs.neg, modality=cs.modality, kernel=cs.kernel, roles=roles, mood="question", tense=cs.tense)
 
     # ---- jádrové dotazy (kopula) ---------------------------------------------
 
@@ -586,7 +638,7 @@ class Evaluator:
             return Verdict("NE", [], neg, near=near)
         if modal:
             return Verdict("MOŽNÁ", modal, near=near)
-        return Verdict("NEVÍM", missing=self._missing(q, near), near=near)
+        return Verdict("NEVÍM", missing=(self.unmet if depth == 0 else []) + self._missing(q, near), near=near)
 
     def _match_narrower(self, q: Statement, f: Statement) -> Proof | None:
         """Shoda, kde term dotazu je ŠIRŠÍ třída než ∀‑term výroku (kočka × kočka[dospělý]).
@@ -737,6 +789,27 @@ class Evaluator:
                 cands_r = [r for r in f.roles if r.counts and (not hole.terms or any(
                     self.match_term(qt, hole.quant, t, r.quant, role=hole.name) is not None for qt in hole.terms for t in r.terms))]
                 fr = cands_r[0] if cands_r else fr
+            if fr is not None and fr.var and f.role("podmínka") is not None and self._rule_depth < 3:
+                # díra na PROMĚNNÉ pravidla („Kdo bydlí v Česku?“ × „Každý, kdo bydlí v Praze, …“):
+                # výčet z podmínky s proměnnou jako dírou
+                cond = f.role("podmínka")
+                cs = m.statements.get(cond.nested or "") if cond else None
+                if cs is not None:
+                    bind = {k: v for k, v in self._bind.items() if k != fr.var}
+                    cq = self.cond_query(cs, bind, hole_var=fr.var, hole=hole)
+                    self._rule_depth += 1
+                    try:
+                        v2 = self.enumerate(cq)
+                    finally:
+                        self._rule_depth -= 1
+                    for t, cp in v2.fillers:
+                        if t not in seen:
+                            seen.add(t)
+                            p2 = Proof([f.id], [], list(f.defaults), f.grade).merged(cp)
+                            p2.steps.append(f"pravidlo z věty [{f.id}]: {fr.var} := {m.label(t) if t in m.nodes else t}")
+                            p2.grade = weakest(p2.grade, "derived")
+                            fillers.append((t, p2))
+                continue
             if fr is None or (not fr.terms and not fr.nested):
                 # díra bez výplně ve výroku: dotaz na roli, kterou výrok nemá
                 if self._near(q, f):

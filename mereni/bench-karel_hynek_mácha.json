@@ -1,0 +1,522 @@
+[
+ {
+  "doc": "karel_hynek_mácha",
+  "sentences": 307,
+  "written": 307,
+  "with_role": 307,
+  "statements": 855,
+  "residue_tokens": 339,
+  "tokens": 3349,
+  "open": 190,
+  "questions": 32,
+  "hits": 28,
+  "text_hits": 26,
+  "misses": {
+   "špatná výplň": 2,
+   "role/logika (blízký výrok je)": 1,
+   "bez výroku": 1
+  },
+  "results": [
+   {
+    "q": "Kdy se narodil Karel Hynek Mácha?",
+    "expect": [
+     "16 . listopadu 1810"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "16. 11. 1810",
+     "1937"
+    ],
+    "why": "",
+    "reading": "narodit_se(kdy:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kde se narodil Karel Hynek Mácha?",
+    "expect": [
+     "Praze"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Praha",
+     "Karel Hynek Mácha Ignác Mácha"
+    ],
+    "why": "",
+    "reading": "narodit_se(kde:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kdy odešel Karel Hynek Mácha?",
+    "expect": [
+     "1836"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "9/1836"
+    ],
+    "why": "",
+    "reading": "odejít(kdy:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kde odešel Karel Hynek Mácha?",
+    "expect": [
+     "Litoměřic"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Litoměřice"
+    ],
+    "why": "",
+    "reading": "odejít(kde:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kde navštěvoval Karel Hynek Mácha?",
+    "expect": [
+     "Poříčí"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "Příkopy",
+     "univerzita (pražský)",
+     "univerzita"
+    ],
+    "why": "špatná výplň",
+    "reading": "navštěvovat(kde:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kdy studoval Karel Hynek Mácha?",
+    "expect": [
+     "letech 1824"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1824 – 1830",
+     "1832 – 1836",
+     "1831 – 1832"
+    ],
+    "why": "",
+    "reading": "studovat(kdy:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kde studoval Karel Hynek Mácha?",
+    "expect": [
+     "Příkopech"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Příkopy",
+     "univerzita (pražský)",
+     "univerzita"
+    ],
+    "why": "",
+    "reading": "studovat(kde:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kdy navštěvoval Karel Hynek Mácha?",
+    "expect": [
+     "1830"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1824 – 1830",
+     "1832 – 1836",
+     "1831 – 1832"
+    ],
+    "why": "",
+    "reading": "navštěvovat(kdy:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kdy navštěvoval Karel Hynek Mácha?",
+    "expect": [
+     "letech 1831"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1824 – 1830",
+     "1832 – 1836",
+     "1831 – 1832"
+    ],
+    "why": "",
+    "reading": "navštěvovat(kdy:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kdy vystoupil Karel Hynek Mácha?",
+    "expect": [
+     "letech 1834"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1834 – 1835"
+    ],
+    "why": "",
+    "reading": "vystoupit(kdy:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kdy vykonal Karel Hynek Mácha?",
+    "expect": [
+     "roce 1832"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1832"
+    ],
+    "why": "",
+    "reading": "vykonat(kdy:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kdy podnikl Karel Hynek Mácha?",
+    "expect": [
+     "1833"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "9/1833"
+    ],
+    "why": "",
+    "reading": "podniknout(kdy:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kde navštívil Karel Hynek Mácha?",
+    "expect": [
+     "Valečov"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "Litoměřice"
+    ],
+    "why": "špatná výplň",
+    "reading": "navštívit(kde:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kdy vyrazil Karel Hynek Mácha?",
+    "expect": [
+     "4 . srpna 1834"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "pondělí",
+     "4. 8. 1834"
+    ],
+    "why": "",
+    "reading": "vyrazit(kdy:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kde vyrazil Karel Hynek Mácha?",
+    "expect": [
+     "Itálie"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Litoměřice",
+     "Itálie",
+     "Čechy",
+     "Mělník",
+     "Bezděz",
+     "cesta"
+    ],
+    "why": "",
+    "reading": "vyrazit(kde:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kde se setkal Karel Hynek Mácha?",
+    "expect": [
+     "Lublani"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Lublaň"
+    ],
+    "why": "",
+    "reading": "setkat_se(kde:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kdy šel Karel Hynek Mácha?",
+    "expect": [
+     "1835"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "jít(kdy:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kdy se vyznal Karel Hynek Mácha?",
+    "expect": [
+     "roce 1833"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1833"
+    ],
+    "why": "",
+    "reading": "vyznat_se(kdy:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kdy zahořel Karel Hynek Mácha?",
+    "expect": [
+     "roku 1832"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1832"
+    ],
+    "why": "",
+    "reading": "zahořet(kdy:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kdy se seznámil Karel Hynek Mácha?",
+    "expect": [
+     "roku 1834"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "15. 8. 1832",
+     "1834"
+    ],
+    "why": "",
+    "reading": "seznámit_se(kdy:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kdy získal Karel Hynek Mácha?",
+    "expect": [
+     "1836"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "8/1836"
+    ],
+    "why": "",
+    "reading": "získat(kdy:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kdy jel Karel Hynek Mácha?",
+    "expect": [
+     "4 . října"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "4. 10. 0"
+    ],
+    "why": "",
+    "reading": "jet(kdy:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kde jel Karel Hynek Mácha?",
+    "expect": [
+     "Prahy"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Praha"
+    ],
+    "why": "",
+    "reading": "jet(kde:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kdy se rozběhl Karel Hynek Mácha?",
+    "expect": [
+     "15 . října"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "15. 10. 0"
+    ],
+    "why": "",
+    "reading": "rozběhnout_se(kdy:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kde se rozběhl Karel Hynek Mácha?",
+    "expect": [
+     "Litoměřic"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Praha",
+     "Litoměřice"
+    ],
+    "why": "",
+    "reading": "rozběhnout_se(kde:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kdy si všiml Karel Hynek Mácha?",
+    "expect": [
+     "23 . října"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "23. 10. 0"
+    ],
+    "why": "",
+    "reading": "všimnout_si(kdy:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kde si všiml Karel Hynek Mácha?",
+    "expect": [
+     "Radobýlu"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Radobýl"
+    ],
+    "why": "",
+    "reading": "všimnout_si(kde:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kdy píše Karel Hynek Mácha?",
+    "expect": [
+     "2 . listopadu"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "2. 11. 0"
+    ],
+    "why": "",
+    "reading": "psát(kdy:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kdy zemřel Karel Hynek Mácha?",
+    "expect": [
+     "6 . listopadu 1836"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "neděle",
+     "6. 11. 1836",
+     "tři hodiny ráno"
+    ],
+    "why": "",
+    "reading": "zemřít(kdy:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kdy se uchýlil Karel Hynek Mácha?",
+    "expect": [
+     "roce 1830"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1830"
+    ],
+    "why": "",
+    "reading": "uchýlit_se(kdy:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kdy pracoval Karel Hynek Mácha?",
+    "expect": [
+     "1835"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1835 – 1836"
+    ],
+    "why": "",
+    "reading": "pracovat(kdy:?, kdo:·Karel Hynek Mácha)"
+   },
+   {
+    "q": "Kdy se pracoval Karel Hynek Mácha?",
+    "expect": [
+     "1835"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "bez výroku",
+    "reading": "pracovat(kdy:?, co:·Karel Hynek Mácha)"
+   }
+  ],
+  "t_ingest": 0.2,
+  "t_ask": 0.1
+ }
+]

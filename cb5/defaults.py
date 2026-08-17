@@ -95,6 +95,36 @@ SEQUENCE_ADVERBS = frozenset(
 )
 
 #: Modální slovesa: lemma → druh modality (příznak výroku, ne operátor).
+#: neosobní slovesa (bez podmětu; pro‑drop se nedosazuje): počasí a stavy
+IMPERSONAL_VERBS: frozenset[str] = frozenset({
+    "pršet", "sněžit", "mrznout", "mrholit", "hřmít", "blýskat_se", "svítat", "stmívat_se", "šeřit_se",
+    "fouknout", "lít", "chumelit", "jednat_se", "stát_se", "dařit_se", "zdát_se", "podařit_se", "hodit_se",
+})
+
+#: spojky vedlejších vět, které NETVRDÍ obsah věty: podmínka („pokud prší“ netvrdí, že prší),
+#: účel, „než/dokud/aniž“. Věta pod nimi se uloží jako vložený výrok (status `embedded`),
+#: který se hodnotí jen skrze rodičovský výrok. „když“ je podmínka jen v přítomném/budoucím čase
+#: (jinak časová věta, která platí).
+#: zájmena, která ve větě NEODKAZUJÍ, ale zastupují proměnnou pravidla: „Každý, kdo …“,
+#: „Kdo …, ten …“, „Pokud někdo …“. Term z nich je proměnná (X); shoda s dotazem ji váže.
+VAR_PRONOUNS: frozenset[str] = frozenset({"každý", "někdo", "něco", "kdokoli", "kdokoliv", "cokoli", "cokoliv", "všechen", "všichni", "nikdo"})
+#: „někdo/něco“ je proměnná jen v podmínce („pokud někdo …“); v holé větě je to neurčitý činitel (∃)
+EXISTENTIAL_PRONOUNS: frozenset[str] = frozenset({"někdo", "něco", "kdosi", "cosi"})
+
+#: slovesa mluvení/myšlení: věta pod nimi („Ježíš kázal, že Bůh je láska“) se zapíše jako výrok
+#: s doložkou „podle Ježíš (kázat)“ — odpověď ji vždy vypíše (stupeň zůstává, zdroj je vidět)
+SPEECH_VERBS: frozenset[str] = frozenset({
+    "říct", "říkat", "tvrdit", "prohlásit", "prohlašovat", "kázat", "hlásat", "myslet", "myslet_si", "věřit",
+    "domnívat_se", "psát", "napsat", "uvádět", "uvést", "dodat", "odpovědět", "vědět", "zjistit", "slyšet",
+    "doufat", "soudit", "předpokládat", "tvrdívat", "vyprávět", "oznámit", "sdělit", "namítat", "namítnout",
+})
+
+CONDITIONAL_MARKERS: frozenset[str] = frozenset({"pokud", "jestliže", "jestli", "li", "kdyby", "když", "-li"})
+NON_ASSERTED_MARKERS: dict[str, str] = {
+    "pokud": "podmínka", "jestliže": "podmínka", "jestli": "podmínka", "li": "podmínka", "-li": "podmínka", "kdyby": "podmínka",
+    "aby": "účel", "než": "vedlejší", "dokud": "vedlejší", "aniž": "vedlejší",
+}
+
 MODAL_VERBS: dict[str, str] = {
     "moci": "možnost", "smět": "možnost", "lze": "možnost", "dokázat": "možnost",
     "umět": "možnost", "muset": "nutnost", "mít": "povinnost", "chtít": "vůle",
@@ -232,6 +262,27 @@ RELATION_GENDER: dict[str, str] = {
 
 
 #: „Jak rychle?“ → veličina „rychlost“ (příslovce/přídavné jméno → jméno veličiny). Data, doplnitelná.
+#: číslovky slovem → číslo (počty „šestnáct kamenů“, „dvě dcery“); víceslovné se sčítají/násobí v čtečce
+NUMERALS: dict[str, int] = {
+    "nula": 0, "jeden": 1, "jedna": 1, "jedno": 1, "dva": 2, "dvě": 2, "oba": 2, "obě": 2, "tři": 3, "čtyři": 4, "pět": 5,
+    "šest": 6, "sedm": 7, "osm": 8, "devět": 9, "deset": 10, "jedenáct": 11, "dvanáct": 12, "třináct": 13,
+    "čtrnáct": 14, "patnáct": 15, "šestnáct": 16, "sedmnáct": 17, "osmnáct": 18, "devatenáct": 19, "dvacet": 20,
+    "třicet": 30, "čtyřicet": 40, "padesát": 50, "šedesát": 60, "sedmdesát": 70, "osmdesát": 80, "devadesát": 90,
+    "sto": 100, "dvěstě": 200, "tisíc": 1000, "milion": 1_000_000, "miliarda": 1_000_000_000,
+}
+
+
+def number_of(form: str, lemma: str) -> int | None:
+    """Číslo z tvaru („16“, „30 000“, „3,5“→3) nebo z číslovky slovem („šestnáct“); jinak None."""
+    raw = form.replace(",", ".").replace(" ", "").replace("\u00a0", "").rstrip(".")
+    if raw.replace(".", "", 1).isdigit():
+        try:
+            return int(float(raw))
+        except ValueError:
+            return None
+    return NUMERALS.get(lemma.lower())
+
+
 ADVERB_QUANTITY: dict[str, str] = {
     "rychle": "rychlost", "rychlý": "rychlost", "dlouho": "doba", "dlouhý": "délka", "daleko": "vzdálenost",
     "vysoko": "výška", "vysoký": "výška", "hluboko": "hloubka", "hluboký": "hloubka", "těžký": "hmotnost",

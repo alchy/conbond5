@@ -361,3 +361,61 @@ def test_relative_time_time_merge_and_synonym_gap(s: Session) -> None:
     assert b.verdict is not None and b.verdict.value == "NEVÍM" and "!uč synonymum učit = působit" in b.text
     c = s.say("ano")
     assert c.verdict is not None and "Litomyšl" in c.text
+
+
+def test_numeral_words_and_time_noun_with_genitive(s: Session) -> None:
+    """„dvě dcery“ = počet 2; „8×8 polí“ = 64; „na konci války“ = kdy s popiskou „konec války“."""
+    s.say("Petr má dvě dcery.")
+    a = s.say("Kolik dcer má Petr?")
+    assert a.verdict is not None and a.text.splitlines()[1].strip() == "→ 2"
+    s.say("Na konci války odešel Petr do Prahy.")
+    b = s.say("Kdy odešel Petr do Prahy?")
+    assert b.verdict is not None and "konec války" in b.text
+    s.say("Šachovnice je deska rozdělená na 8×8 polí.")
+    c = s.say("Na kolik polí je rozdělená šachovnice?")
+    assert c.verdict is not None and "64" in c.text
+
+
+def test_conditionals_and_rules_from_sentences(s: Session) -> None:
+    """„X, pokud Y“ netvrdí X ani Y: odpověď je NEVÍM s „platí jen pod podmínkou“, po splnění ANO (odvozeno).
+    „Každý, kdo …“ / „Kdo …, ten …“ / „Pokud někdo …“ = pravidlo s proměnnou: váže se z dotazu i z výčtu."""
+    s.say("Petr půjde na oslavu, pokud půjde Karel.")
+    a = s.say("Půjde Petr na oslavu?")
+    assert a.verdict is not None and a.verdict.value == "NEVÍM" and "platí jen pod podmínkou" in a.text
+    s.say("Karel půjde na oslavu.")
+    b = s.say("Půjde Petr na oslavu?")
+    assert b.verdict is not None and b.verdict.value == "ANO" and "podmínka splněna" in b.text
+    s.say("Když prší, je mokro.")
+    assert s.say("Je mokro?").verdict.value == "NEVÍM"  # type: ignore[union-attr]
+    s.say("Prší.")
+    assert s.say("Je mokro?").verdict.value == "ANO"  # type: ignore[union-attr]
+    s.say("Včera pršelo.")
+    assert "včera" in s.say("Kdy pršelo?").text
+    # pravidla s proměnnou
+    s.say("Každý, kdo bydlí v Praze, bydlí v Česku.")
+    s.say("Petr bydlí v Praze.")
+    c = s.say("Bydlí Petr v Česku?")
+    assert c.verdict is not None and c.verdict.value == "ANO" and "X := Petr" in c.text
+    d = s.say("Kdo bydlí v Česku?")
+    assert [s.memory.label(t) for t, _ in d.verdict.fillers] == ["Petr"]  # type: ignore[union-attr]
+    s.say("Kdo jede po dálnici, jede rychle.")
+    s.say("Karel jede po dálnici.")
+    assert s.say("Jede Karel rychle?").verdict.value == "ANO"  # type: ignore[union-attr]
+    assert [s.memory.label(t) for t, _ in s.say("Kdo jede rychle?").verdict.fillers] == ["Karel"]  # type: ignore[union-attr]
+    s.say("Pokud někdo bydlí v Brně, bydlí na Moravě.")
+    s.say("Jana bydlí v Brně.")
+    assert s.say("Bydlí Jana na Moravě?").verdict.value == "ANO"  # type: ignore[union-attr]
+    assert [s.memory.label(t) for t, _ in s.say("Kdo bydlí na Moravě?").verdict.fillers] == ["Jana"]  # type: ignore[union-attr]
+    s.say("Nikdo nebydlí na Marsu.")
+    assert s.say("Bydlí Jana na Marsu?").verdict.value == "NE"  # type: ignore[union-attr]
+    s.say("Někdo zaklepal.")  # „někdo“ mimo podmínku je neurčitý činitel, ne proměnná
+    assert s.say("Zaklepal Petr?").verdict.value == "NEVÍM"  # type: ignore[union-attr]
+    # přehrání dá týž program (proměnné i podmínky jsou deterministické)
+    again = Session.replay(s.journal_json(), RecordedOracle(DATA))
+    assert again.memory.program() == s.memory.program()
+
+
+def test_reported_speech_has_attribution(s: Session) -> None:
+    s.say("Ježíš kázal, že Bůh je láska.")
+    a = s.say("Je Bůh láska?")
+    assert a.verdict is not None and a.verdict.value == "ANO" and "podle Ježíš (kázat)" in a.text

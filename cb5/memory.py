@@ -102,6 +102,8 @@ class Role:
     counts: dict[str, int] = field(default_factory=dict)
     wh: bool = False
     wh_kind: str = ""
+    #: proměnná pravidla („Každý, kdo …“ → X): role bez termu, kterou váže dotaz
+    var: str = ""
 
 
 @dataclass
@@ -796,6 +798,8 @@ class Memory:
                 parts.append(f"{r.name}:[{r.nested}]")
             elif r.wh:
                 parts.append(f"{r.name}:?")
+            elif r.var:
+                parts.append(f"{r.name}:{r.var}")
             else:
                 labels = []
                 for t in r.terms:

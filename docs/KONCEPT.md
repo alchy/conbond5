@@ -37,6 +37,10 @@ zdrojové věty) a **vazby mezi pojmy se učí z definic v textu i v dialogu**
    vypsat jako **modul vazeb** (`!ulož-vazby`) — program příkazů bez faktů —
    a přehrát do jiné paměti (`!načti-vazby`); tak lze skládat vrstvy: fakta
    z textu + vazby (příbuzenství, časové překryvy, veličiny) z modulů.
+   Věta sama může být pravidlo: „Každý, kdo bydlí v Praze, bydlí v Česku.“
+   se zapíše jako výrok s proměnnou X a podmínkou (vložený výrok, který se
+   netvrdí); dotaz proměnnou váže a podmínku ověří v paměti — odvozený
+   verdikt nese obě věty.
 
 Guard, který platí doslova (I‑8 conbond4): **pravdivost neteče po měkké
 hraně** — aktivace (sliding window kontextu) jen řadí a navrhuje, nikdy

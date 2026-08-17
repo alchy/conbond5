@@ -74,6 +74,9 @@ def render_statement(m: Memory, st: Statement, *, with_source: bool = False) -> 
         if r.nested and r.nested in m.statements:
             parts.append(f"{role_label(r.name)}: [{render_statement(m, m.statements[r.nested])}]")
             continue
+        if r.var:
+            parts.append(f"{role_label(r.name)}: {r.var}")  # proměnná pravidla („každý, kdo …“)
+            continue
         labels = []
         for t in r.terms:
             lab = describe_node(m, t)
@@ -95,6 +98,12 @@ def _grade_note(m: Memory, proof: Proof) -> str:
     if proof.grade == "derived" and grades:
         label += " z: " + ", ".join(GRADE_LABELS[g] for g in sorted(grades))
     defaults = [d for d in proof.defaults if not d.startswith("__")]
+    # doložka „podle koho“ se ukáže vždy, i když důkaz šel jádrem (∈/⊆) a výchozí volby výroku nenesl
+    for sid in proof.statements:
+        st = m.statements.get(sid)
+        for d in (st.defaults if st else []):
+            if d.startswith("podle ") and d not in defaults:
+                defaults.append(d)
     return TEMPLATES["grade"].format(grade=label, defaults=("; " + "; ".join(defaults)) if defaults else "")
 
 

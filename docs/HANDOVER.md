@@ -34,10 +34,10 @@ Testy síť nepotřebují (`tests/data/parses.json`; nové věty: přidat do
 | `cb5/diakritika.py` | obnova háčků z toho, co už systém četl (slovník `data/cache/diakritika.json`, přestaví se, když je keš novější) |
 | `cb5/chronos.py` | čas: datum/rok/interval/století/pojmenované/relativní („před 2 miliardami let“); `before`, `within`, `overlap` |
 | `cb5/defaults.py` | **výchozí volby jako data**: role z předložky+pádu, determinátory, částice, modální slovesa, tázací slova, místa, synonyma, inverze vztahů, srovnávací osivo, veličiny |
-| `cb5/read.py` | rozbor → predikace (sloveso/kopula/fragment; role; koordinace; vnořené, vztažné, přívlastkové výroky; genitivní zúžení `⟨…⟩`; tituly a cizí jména; závorka; elipsa; věk; srovnání; definice; veličiny; díry); **každý token má místo, jinak zbytek** |
+| `cb5/read.py` | rozbor → predikace (sloveso/kopula/fragment; role; koordinace; vnořené, vztažné, přívlastkové výroky; genitivní zúžení `⟨…⟩`; tituly a cizí jména; závorka; elipsa; věk; srovnání; definice; veličiny; číslovky slovem, `8×8`; díry; **podmínkové věty** „X, pokud/když Y“ → role `podmínka` (Y se netvrdí, `embedded`); **pravidla z věty s proměnnou** „Každý, kdo …“ / „Kdo …, ten …“ / „Pokud někdo …“ / „Nikdo …“ → term `var` (X); neosobní „prší“, „je mokro“ bez podmětu); **každý token má místo, jinak zbytek** |
 | `cb5/memory.py` | graf výroků: uzly, `attach/revoke/inspect` (odvolání definičního výroku **vypne i naučenou vazbu**), uzávěry (`member*/subset*/within*/same_as*`, strukturální ⊆ přes zúžení), disjunktnost, výjimky, pravidla, aktivace (sliding window), měkké hrany, `graph()`, JSON, `learned_program()` = **modul vazeb** |
 | `cb5/ground.py` | čtení → paměť: identita jmen (celé jméno, viděné tvary, třída↔jméno, titul), instance z neurčité zmínky, pro‑drop/zájmena (aktivace, téma dokumentu), přivlastnění, otevřené položky |
-| `cb5/logic.py` | hodnocení: shoda dotazu s výroky přes uzávěry, NE/KONFLIKT/MOŽNÁ, wh‑výčty (rodina rolí, místo uvnitř, užší shoda, **sloučení částečných časů** „v dubnu“+„roku 1975“, tranzitivita umístění), definice/třídy, meta‑otázky, srovnání, veličiny + můstek, vztahová jména (`rel_members`: přímo, inverze, naučené řetězy), pravidla |
+| `cb5/logic.py` | hodnocení: shoda dotazu s výroky přes uzávěry, NE/KONFLIKT/MOŽNÁ, wh‑výčty (rodina rolí, místo uvnitř, užší shoda, **sloučení částečných časů** „v dubnu“+„roku 1975“, tranzitivita umístění), definice/třídy, meta‑otázky, srovnání, veličiny + můstek, vztahová jména (`rel_members`: přímo, inverze, naučené řetězy), pravidla; **podmínka**: výrok s rolí `podmínka` platí, jen když podmínka (s dosazenými proměnnými, `cond_query`) plyne z paměti — jinak „platí jen pod podmínkou: … — to nevím“; proměnná `X` se váže z dotazu (`X := Petr`) a u wh‑otázky se vyčísluje z podmínky |
 | `cb5/recall.py` | propad „vím: …“ (jen řadí) |
 | `cb5/render.py` | verdikt + důvod + zdroj + doložka stupně |
 | `cb5/dialog.py` | `Session`: `ingest`, `say` (otázky, tvrzení, opravy „Ne, …“/„To není pravda.“/„Ne každý X.“, konflikt), **učení z vět** (definice srovnávacích slov, vztahových jmen), příkazy `!…` (i bez `!`), backlog, žurnál, `replay`, **`!ulož-vazby` / `!načti-vazby`** (modul vazeb) |
@@ -60,11 +60,11 @@ s proveniencí a dá se odvolat. Tak lze skládat modulární znalost: fakta z t
 | | conbond4 (16. 8.) | conbond5 |
 |---|---|---|
 | korpus conbond4 (238 vět) zapsáno | 8 | 233 s rolí, zbytek 5,6 % |
-| korpus conBond2 (14 354 vět) zapsáno | — | 14 354 (38 985 výroků, zbytek 8,4 %, 10 213 otevřených) |
+| korpus conBond2 (14 354 vět) zapsáno | — | 14 354 (38 621 výroků, zbytek 8,4 %, 10 051 otevřených) |
 | **ručně psané otázky (70)** | 0 | **60 (86 %)** — etalon 25/32, conbond 35/38 |
-| generované otázky (682, proxy) | 0 | 442 (65 %); 581 má odpověď v textu |
+| generované otázky (682, proxy) | 0 | 440 (65 %); 578 má odpověď v textu |
 | dialogy A–F ze zadání conbond4 | — | zelené; dialog A vč. „nejvýše 130 km/h“ (výchozí můstek) |
-| testy / typy | — | 103 pytest, mypy čistý |
+| testy / typy | — | 106 pytest, mypy čistý |
 
 Zbývající ruční chyby (etalon): „Kolik procent je Antarktida větší než
 Evropa?“ (procenta + komparativ), „Jaká je nejnižší naměřená teplota na
@@ -94,6 +94,10 @@ dělnic je v úlu…“ (rozsah 30 000–50 000), „Na kolika polích…“ (�
   `definice`/`definice_vztahu`/`inverze`/`binární_pravidlo` vypne příslušnou
   naučenou vazbu (`Memory._unlearn`); modul vazeb je proto program, ne výpis
   slovníku (`learned` se nikdy nekopíruje slepě).
+- Vložená věta pod „pokud/jestliže/když(přít.)/aby/než/dokud/aniž“ se **netvrdí**
+  (`status=embedded`, v `!program` ✗(podmínka)); věta pod „protože/přestože/když(min.)/že“
+  se tvrdí; pod slovesem mluvení/myšlení („Ježíš kázal, že Bůh je láska“) se tvrdí
+  **s doložkou „podle Ježíš (kázat)“**, kterou odpověď vždy vypíše (`SPEECH_VERBS`).
 - Sliding window = aktivace v grafu (podmět +0,5, téma dokumentu +0,3 za větu,
   vyhasínání 0,6 za tah); pro‑drop dává přednost tématu, dokud jiný kandidát
   není 3× čerstvější.
@@ -114,9 +118,11 @@ dělnic je v úlu…“ (rozsah 30 000–50 000), „Na kolika polích…“ (�
    inverzi/roli, šablona „mez“ (dnes výchozí můstek u veličin), víc testů (překryv
    i „před/po“, porovnání s tolerancí, víc veličin najednou), další moduly v repu
    (`moduly/pribuzenstvi.txt`); `--vazby soubor` při startu (chat i viewbase_app) už je.
-1. **Můstková pravidla z věty** — dnes `!pravidlo`, šablona a výchozí můstek pro
-   veličiny; cíl: „Kdo jede po dálnici, jede nejvýše maximální rychlostí
-   dálnice.“ → pravidlo s hodnotou a komparátorem; obecně „Kdo …, ten …“.
+1. **Pravidla z věty** — hotovo pro „Kdo …, ten …“, „Každý, kdo …“, „Pokud někdo …“,
+   „X, pokud Y“, „Když Y, X“ (podmínka + proměnná; obojí v paměti jako výroky, podmínka
+   `embedded`). Dál: „Kdo jede po dálnici, jede nejvýše maximální rychlostí dálnice.“
+   (podmínka + hodnota s komparátorem), víc proměnných najednou („Kdo koho …“), „ten“ jako
+   podmět bez vztažné věty, podmínky s časem („dokud“, „než“) — dnes jen `embedded`.
 2. Otázka nemá zakládat uzly: „Kdo je Karel Čapek?“ dnes vytvoří entitu bez výroků
    (v grafu visí prázdný uzel) — zakotvení otázky má být bez zápisu i pro jména (I‑12).
 3. Překlepy ve slovech mimo jména („mezil lety“) — dnes zbytek/role `jak`; kandidát:

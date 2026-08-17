@@ -1,0 +1,50 @@
+[
+ {
+  "doc": "šachy",
+  "sentences": 411,
+  "written": 411,
+  "with_role": 410,
+  "statements": 1298,
+  "residue_tokens": 513,
+  "tokens": 6821,
+  "open": 357,
+  "questions": 2,
+  "hits": 1,
+  "text_hits": 2,
+  "misses": {
+   "role/logika (blízký výrok je)": 1
+  },
+  "results": [
+   {
+    "q": "Na kolika polích se hrají šachy?",
+    "expect": [
+     "8"
+    ],
+    "sada": "etalon",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "hrát(kde:?count:∃pole, co:∀šach)"
+   },
+   {
+    "q": "Kdy vyhrál Deep Blue zápas s mistrem světa?",
+    "expect": [
+     "1997"
+    ],
+    "sada": "etalon",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1997"
+    ],
+    "why": "",
+    "reading": "vyhrát(kdy:?, kdo:·Deep Blue, co:∃zápas)"
+   }
+  ],
+  "t_ingest": 0.2,
+  "t_ask": 0.0
+ }
+]
