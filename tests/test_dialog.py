@@ -517,3 +517,15 @@ def test_who_is_adjective_lists_bearers(s: Session) -> None:
     s.say("Rex je hnědý.")
     a = s.say("Kdo je hnědý?")
     assert a.verdict is not None and [s.memory.label(t) for t, _ in a.verdict.fillers] == ["Rex"]
+
+
+def test_counts_sum_over_coordination_and_negated_possession(s: Session) -> None:
+    s.say("Petr má dvě dcery a syna.")
+    s.say("Dcera je dítě.")
+    s.say("Syn je dítě.")
+    a = s.say("Kolik dětí má Petr?")
+    assert a.verdict is not None and a.verdict.fillers[0][0] == "count:3" and "počet sečten" in a.text
+    assert s.say("Má Petr tři děti?").verdict.value == "ANO"  # type: ignore[union-attr]
+    s.say("Petr nemá žádného bratra.")
+    b = s.say("Kdo je bratr Petra?")
+    assert b.verdict is not None and b.verdict.value == "NE" and "nikdo" in b.text

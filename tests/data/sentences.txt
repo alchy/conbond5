@@ -314,3 +314,9 @@ Kdo venčí Rexe?
 Čí je Rex?
 Rex je hnědý.
 Kdo je hnědý?
+Petr má dvě dcery a syna.
+Dcera je dítě.
+Syn je dítě.
+Kolik dětí má Petr?
+Má Petr tři děti?
+Petr nemá žádného bratra.

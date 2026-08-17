@@ -189,14 +189,13 @@ class Evaluator:
             if best is None:
                 return None
             proof = proof.merged(best)
-            # počty: přesná tvrzení
+            # počty: přesná tvrzení („dvě dcery a syna“ = 3 děti: sčítá se přes koordinované termy pod třídou dotazu)
             if qt in qr.counts:
-                fc = None
-                for ft in fr.terms:
-                    if ft in fr.counts and self.match_term(qt, qr.quant, ft, fr.quant, role=qr.name) is not None:
-                        fc = fr.counts[ft]
+                fc, summed = self._count_toward(qr, qt, fr)
                 if fc is None:
                     return None
+                if summed:
+                    proof.steps.append(f"počet sečten: {summed}")
                 hi = next((fr.hi[ft] for ft in fr.terms if ft in fr.hi and fr.counts.get(ft) == fc), None)
                 if hi is not None:
                     if not (fc <= qr.counts[qt] <= hi):
@@ -208,6 +207,23 @@ class Evaluator:
                     proof.steps.append(f"počet {fc} ≠ {qr.counts[qt]}")
                     proof.defaults.append("__count_mismatch__")
         return proof
+
+    def _count_toward(self, qr: Role, qt: str, fr: Role) -> tuple[int | None, str]:
+        """Počet termu dotazu `qt` ve výplni `fr`: součet počtů všech termů výplně, které pod `qt`
+        spadají (term bez číslovky = 1, je‑li to prvek/instance). Vrací (počet, popis součtu)."""
+        parts: list[tuple[str, int]] = []
+        for ft in fr.terms:
+            if self.match_term(qt, qr.quant, ft, fr.quant, role=qr.name) is None:
+                continue
+            if ft in fr.counts:
+                parts.append((ft, fr.counts[ft]))
+            elif self._kind(ft) in ("entity", "place"):
+                parts.append((ft, 1))
+        if not parts:
+            return None, ""
+        if len(parts) == 1:
+            return parts[0][1], ""
+        return sum(n for _, n in parts), " + ".join(f"{n} {self.m.label(t)}" for t, n in parts)
 
     def match(self, q: Statement, f: Statement, *, depth: int = 0) -> Proof | None:
         """Shoda dotazu `q` s výrokem `f` (bez ohledu na polaritu — tu řeší volající)."""
@@ -904,6 +920,14 @@ class Evaluator:
                     near.append(f.id)
                 continue
             if hole.wh_kind == "count":
+                if hole.terms and len(fr.terms) > 1:
+                    total, summed = self._count_toward(hole, hole.terms[0], fr)
+                    if total is not None and summed:
+                        key = f"count:{total}"
+                        if key not in seen:
+                            seen.add(key)
+                            fillers.append((key, Proof(list(p.statements), list(p.steps) + [f"počet sečten: {summed}"], list(p.defaults), p.grade)))
+                        continue
                 for t in fr.terms:
                     if t in fr.counts and (not hole.terms or any(self.match_term(qt, hole.quant, t, fr.quant, role=hole.name) is not None for qt in hole.terms)):
                         key = f"count:{Memory.count_label(fr, t)}"
@@ -1214,6 +1238,15 @@ class Evaluator:
                     if e not in seen and e in m.nodes and m.nodes[e].kind != "group":
                         seen.add(e)
                         below.append((e, pr))
+            if node.rel and node.rel.startswith("Gen:") and not below:
+                # „Petr nemá žádného bratra.“ → „Kdo je bratr Petra?“ = nikdo (NE)
+                target = node.rel.split(":", 1)[1]
+                base = m.find_group(node.lemma, node.attrs)
+                for st in m.statements_about(target):
+                    kdo, co = st.role("kdo"), st.role("co")
+                    if st.status == "active" and st.neg and st.pred in ("mít", "vlastnit") and kdo and target in kdo.terms and co and base is not None \
+                            and any(t == base.id or m.subset_star(base.id, t) is not None for t in co.terms):
+                        return Verdict("NE", [], [Proof([st.id], [f"{m.label(target)} nemá {node.lemma} → nikdo"], list(st.defaults), st.grade)])
             if node.rel and node.rel.startswith("Gen:") and (not below or all(m.nodes[x].kind == "group" for x, _ in below if x in m.nodes)):
                 # „Kdo je tchán Jany Novákové?“ — nic přímého (nebo jen podtřídy) → inverze, naučené definice, užší vztahová jména
                 for e, pr in self.rel_members(node.lemma, node.rel.split(":", 1)[1]):

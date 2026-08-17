@@ -5868,6 +5868,107 @@
 }
 ]
 },
+"Dcera je dítě.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Dcera je dítě.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Dcera",
+"head": 3,
+"id": 1,
+"lemma": "dcera",
+"upos": "NOUN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 3,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "dítě",
+"head": 0,
+"id": 3,
+"lemma": "dítě",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 4,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
 "Delší je ten, kdo měří víc.": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Delší je ten, kdo měří víc.",
@@ -24508,6 +24609,137 @@
 }
 ]
 },
+"Kolik dětí má Petr?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kolik dětí má Petr?",
+"tokens": [
+{
+"deprel": "det:numgov",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"NumType",
+"Card"
+],
+[
+"PronType",
+"Dem,Ind"
+]
+],
+"form": "Kolik",
+"head": 2,
+"id": 1,
+"lemma": "kolik",
+"upos": "DET"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "dětí",
+"head": 3,
+"id": 2,
+"lemma": "dítě",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "má",
+"head": 0,
+"id": 3,
+"lemma": "mít",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Petr",
+"head": 3,
+"id": 4,
+"lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 3,
+"id": 5,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
 "Kolik je Petrovi let?": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Kolik je Petrovi let?",
@@ -28116,6 +28348,141 @@
 "form": "?",
 "head": 1,
 "id": 4,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Má Petr tři děti?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Má Petr tři děti?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Má",
+"head": 0,
+"id": 1,
+"lemma": "mít",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Petr",
+"head": 1,
+"id": 2,
+"lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "nummod",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"NumForm",
+"Word"
+],
+[
+"NumType",
+"Card"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "tři",
+"head": 4,
+"id": 3,
+"lemma": "tři",
+"upos": "NUM"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "děti",
+"head": 1,
+"id": 4,
+"lemma": "dítě",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 5,
 "lemma": "?",
 "upos": "PUNCT"
 }
@@ -33361,6 +33728,180 @@
 }
 ]
 },
+"Petr má dvě dcery a syna.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Petr má dvě dcery a syna.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Petr",
+"head": 2,
+"id": 1,
+"lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "má",
+"head": 0,
+"id": 2,
+"lemma": "mít",
+"upos": "VERB"
+},
+{
+"deprel": "nummod",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Fem,Neut"
+],
+[
+"NumForm",
+"Word"
+],
+[
+"NumType",
+"Card"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "dvě",
+"head": 4,
+"id": 3,
+"lemma": "dva",
+"upos": "NUM"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "dcery",
+"head": 2,
+"id": 4,
+"lemma": "dcera",
+"upos": "NOUN"
+},
+{
+"deprel": "cc",
+"feats": [],
+"form": "a",
+"head": 6,
+"id": 5,
+"lemma": "a",
+"upos": "CCONJ"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "syna",
+"head": 4,
+"id": 6,
+"lemma": "syn",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 7,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
 "Petr má dvě dcery.": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Petr má dvě dcery.",
@@ -33608,6 +34149,149 @@
 "form": ".",
 "head": 2,
 "id": 4,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Petr nemá žádného bratra.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Petr nemá žádného bratra.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Petr",
+"head": 2,
+"id": 1,
+"lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Neg"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "nemá",
+"head": 0,
+"id": 2,
+"lemma": "mít",
+"upos": "VERB"
+},
+{
+"deprel": "det",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"PronType",
+"Neg"
+]
+],
+"form": "žádného",
+"head": 4,
+"id": 3,
+"lemma": "žádný",
+"upos": "DET"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "bratra",
+"head": 2,
+"id": 4,
+"lemma": "bratr",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 5,
 "lemma": ".",
 "upos": "PUNCT"
 }
@@ -38085,6 +38769,111 @@
 "form": ".",
 "head": 2,
 "id": 8,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Syn je dítě.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Syn je dítě.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Syn",
+"head": 3,
+"id": 1,
+"lemma": "syn",
+"upos": "NOUN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 3,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "dítě",
+"head": 0,
+"id": 3,
+"lemma": "dítě",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 4,
 "lemma": ".",
 "upos": "PUNCT"
 }
