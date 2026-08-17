@@ -344,6 +344,12 @@ class _Reader:
         self._quantify(p)
         self._membership_verb(p)
         self._quantity_roles(p)
+        if p.pred in D.LOCATIVE_VERBS and not p.neg and p.modality is None and p.role("kde") is not None:
+            # „Brno leží na Moravě.“ = Brno uvnitř Moravy (jádro within) — jen místo v místě
+            s0 = p.role("kdo")
+            if s0 and s0.terms and s0.terms[0].kind == "place" and all(t.kind == "place" for t in p.role("kde").terms):  # type: ignore[union-attr]
+                p.kernel = "within"
+                p.defaults.append("kernel:within (místo leží v místě)")
         # souřadné přísudky: druhá predikace se sdíleným podmětem
         for h in heads:
             for c in self.kids(h.index, "conj"):
@@ -1367,6 +1373,12 @@ class _Reader:
         if pred_role.name != "co" or not pred_role.terms:
             return None
         o = pred_role.terms[0]
+        if o.lemma in ("část", "součást") and o.rel is not None and o.rel[1].kind == "place" and s.kind == "place":
+            # „Morava je část Česka.“ → Morava uvnitř Česka: role co se přepíše na kde ⟨cíl⟩
+            pred_role.name, pred_role.authority = "kde", "default"
+            pred_role.terms = [o.rel[1]]
+            p.defaults.append("kernel:within („část X“ = uvnitř X)")
+            return "within"
         if o.kind in ("time", "value"):
             return None  # „rychlost je 130 km/h“ není členství ani podmnožina
         if s.kind in ("entity", "pron", "var") or (s.kind == "group" and s.quant == "·"):

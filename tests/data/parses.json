@@ -1963,6 +1963,133 @@
 }
 ]
 },
+"Brno leží na Moravě.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Brno leží na Moravě.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Brno",
+"head": 2,
+"id": 1,
+"lemma": "Brno",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "leží",
+"head": 0,
+"id": 2,
+"lemma": "ležet",
+"upos": "VERB"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "na",
+"head": 4,
+"id": 3,
+"lemma": "na",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Moravě",
+"head": 2,
+"id": 4,
+"lemma": "Morava",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 5,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
 "Bydlel Petr v Praze v roce 1990?": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Bydlel Petr v Praze v roce 1990?",
@@ -28240,6 +28367,137 @@
 }
 ]
 },
+"Morava je část Česka.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Morava je část Česka.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Morava",
+"head": 3,
+"id": 1,
+"lemma": "Morava",
+"upos": "PROPN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 3,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "část",
+"head": 0,
+"id": 3,
+"lemma": "část",
+"upos": "NOUN"
+},
+{
+"deprel": "nmod",
+"feats": [
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Česka",
+"head": 3,
+"id": 4,
+"lemma": "Česko",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 5,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
 "Má Pavla syna?": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Má Pavla syna?",
@@ -35069,6 +35327,137 @@
 "form": ".",
 "head": 2,
 "id": 10,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Petr žije v Brně.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Petr žije v Brně.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Petr",
+"head": 2,
+"id": 1,
+"lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "žije",
+"head": 0,
+"id": 2,
+"lemma": "žít",
+"upos": "VERB"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "v",
+"head": 4,
+"id": 3,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Brně",
+"head": 2,
+"id": 4,
+"lemma": "Brno",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 5,
 "lemma": ".",
 "upos": "PUNCT"
 }
@@ -42515,6 +42904,137 @@
 "head": 3,
 "id": 7,
 "lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Žije Petr v Česku?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Žije Petr v Česku?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Žije",
+"head": 0,
+"id": 1,
+"lemma": "žít",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Petr",
+"head": 1,
+"id": 2,
+"lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "v",
+"head": 4,
+"id": 3,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Česku",
+"head": 1,
+"id": 4,
+"lemma": "Česko",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 5,
+"lemma": "?",
 "upos": "PUNCT"
 }
 ]

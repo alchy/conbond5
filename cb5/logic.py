@@ -1060,7 +1060,7 @@ class Evaluator:
                 nxt: list[tuple[str, Proof]] = []
                 for t, p in frontier:
                     for st in m.statements_about(t):
-                        if st.status != "active" or st.neg or st.pred != "být":
+                        if st.status != "active" or st.neg or not (st.pred == "být" or st.kernel == "within"):
                             continue
                         kdo, kde = st.role("kdo"), st.role("kde")
                         if not (kdo and t in kdo.terms and kde):

@@ -529,3 +529,13 @@ def test_counts_sum_over_coordination_and_negated_possession(s: Session) -> None
     s.say("Petr nemá žádného bratra.")
     b = s.say("Kdo je bratr Petra?")
     assert b.verdict is not None and b.verdict.value == "NE" and "nikdo" in b.text
+
+
+def test_place_containment_from_locative_verbs_and_part(s: Session) -> None:
+    s.say("Petr žije v Brně.")
+    s.say("Brno leží na Moravě.")
+    s.say("Morava je část Česka.")
+    a = s.say("Žije Petr v Česku?")
+    assert a.verdict is not None and a.verdict.value == "ANO" and "Brno ⊆ Česko" in a.text
+    b = s.say("Kde žije Petr?")
+    assert [s.memory.label(t) for t, _ in b.verdict.fillers] == ["Brno", "Morava", "Česko"]  # type: ignore[union-attr]

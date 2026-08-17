@@ -320,3 +320,7 @@ Syn je dítě.
 Kolik dětí má Petr?
 Má Petr tři děti?
 Petr nemá žádného bratra.
+Petr žije v Brně.
+Brno leží na Moravě.
+Morava je část Česka.
+Žije Petr v Česku?
