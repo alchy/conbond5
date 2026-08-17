@@ -68,9 +68,12 @@ class Restorer:
 
     @classmethod
     def load_or_build(cls, cache: Path, sources: Iterable[Path]) -> "Restorer":
-        if cache.exists():
+        """Načte slovník z keše; když je některý zdroj rozborů novější, postaví znovu
+        (keš rozborů roste s každým dialogem — slovník má růst s ní)."""
+        srcs = [Path(p) for p in sources]
+        if cache.exists() and all(not p.exists() or p.stat().st_mtime <= cache.stat().st_mtime for p in srcs):
             return cls(json.loads(cache.read_text(encoding="utf-8")))
-        return cls.from_parses(sources, save_to=cache)
+        return cls.from_parses(srcs, save_to=cache)
 
     def restore(self, text: str) -> tuple[str, list[tuple[str, str]]]:
         """Doplní diakritiku slovům věty bez háčků. Vrací (text, změny).

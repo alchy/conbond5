@@ -3,11 +3,11 @@
  "counters": {
   "e": 14,
   "t": 8,
-  "z": 29,
-  "s": 37,
+  "z": 33,
+  "s": 43,
   "p": 2,
-  "g": 13,
-  "o": 12
+  "g": 25,
+  "o": 13
  },
  "nodes": [
   {
@@ -1027,6 +1027,238 @@
    "number": null,
    "doc": "dialog",
    "text": "Lednice je v Petrovicích.",
+   "rel": null
+  },
+  {
+   "id": "g0014",
+   "kind": "group",
+   "lemma": "dálnice",
+   "names": [
+    "Dálnice"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "cap",
+   "rel": null
+  },
+  {
+   "id": "g0015",
+   "kind": "group",
+   "lemma": "silnice",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "g0016",
+   "kind": "group",
+   "lemma": "vozidlo",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "g0017",
+   "kind": "group",
+   "lemma": "vozidlo",
+   "names": [],
+   "attrs": [
+    "motorový"
+   ],
+   "base": "g0016",
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "z0030",
+   "kind": "sentence",
+   "lemma": "dialog#1",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Dálnice je silnice pro motorová vozidla.",
+   "rel": null
+  },
+  {
+   "id": "g0018",
+   "kind": "group",
+   "lemma": "automobil",
+   "names": [
+    "Automobil"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "cap",
+   "rel": null
+  },
+  {
+   "id": "g0019",
+   "kind": "group",
+   "lemma": "náklad",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "g0020",
+   "kind": "group",
+   "lemma": "přeprava",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "g0021",
+   "kind": "group",
+   "lemma": "přeprava",
+   "names": [],
+   "attrs": [],
+   "base": "g0020",
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": "Gen:g0019"
+  },
+  {
+   "id": "g0022",
+   "kind": "group",
+   "lemma": "osoba",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "z0031",
+   "kind": "sentence",
+   "lemma": "dialog#2",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Automobil slouží k přepravě nákladu a osob.",
+   "rel": null
+  },
+  {
+   "id": "g0023",
+   "kind": "group",
+   "lemma": "prostředek",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "g0024",
+   "kind": "group",
+   "lemma": "dopravni",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "z0032",
+   "kind": "sentence",
+   "lemma": "dialog#3",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Automobil je dopravni prostředek.",
+   "rel": null
+  },
+  {
+   "id": "g0025",
+   "kind": "group",
+   "lemma": "doprava",
+   "names": [
+    "Doprava"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "cap",
+   "rel": null
+  },
+  {
+   "id": "z0033",
+   "kind": "sentence",
+   "lemma": "dialog#4",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Doprava používá silnici.",
    "rel": null
   }
  ],
@@ -3057,6 +3289,349 @@
    "sentence": "z0029",
    "tense": "Pres",
    "mood": "assert"
+  },
+  {
+   "id": "s0038",
+   "pred": "být",
+   "kind": "copula",
+   "neg": false,
+   "modality": null,
+   "kernel": "subset",
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0014"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "g0015"
+     ],
+     "quant": "∃",
+     "authority": "structural",
+     "surface": "cop",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "kdo:∀ generický prézens",
+    "kernel:subset (obecný podmět)"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 1,
+    "text": "Dálnice je silnice pro motorová vozidla.",
+    "turn": 2,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0030",
+   "tense": "Pres",
+   "mood": "assert"
+  },
+  {
+   "id": "s0039",
+   "pred": "nmod:pro+Acc",
+   "kind": "nmod",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0015"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "head",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "g0017"
+     ],
+     "quant": "∃",
+     "authority": "surface",
+     "surface": "nmod:pro+Acc",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 1,
+    "text": "Dálnice je silnice pro motorová vozidla.",
+    "turn": 2,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0030",
+   "tense": null,
+   "mood": "assert"
+  },
+  {
+   "id": "s0040",
+   "pred": "sloužit",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0018"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "k+Dat",
+     "terms": [
+      "g0021"
+     ],
+     "quant": "∃",
+     "authority": "surface",
+     "surface": "k+Dat",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "kdo:∀ generický prézens"
+   ],
+   "residue": [],
+   "open": [
+    "o0013"
+   ],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 2,
+    "text": "Automobil slouží k přepravě nákladu a osob.",
+    "turn": 4,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0031",
+   "tense": "Pres",
+   "mood": "assert"
+  },
+  {
+   "id": "s0041",
+   "pred": "nmod:Gen",
+   "kind": "nmod",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0021"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "head",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "g0022"
+     ],
+     "quant": "∃",
+     "authority": "surface",
+     "surface": "nmod:Gen",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 2,
+    "text": "Automobil slouží k přepravě nákladu a osob.",
+    "turn": 4,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0031",
+   "tense": null,
+   "mood": "assert"
+  },
+  {
+   "id": "s0042",
+   "pred": "být",
+   "kind": "copula",
+   "neg": false,
+   "modality": null,
+   "kernel": "subset",
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0018"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "g0023"
+     ],
+     "quant": "∃",
+     "authority": "structural",
+     "surface": "cop",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "jak",
+     "terms": [
+      "g0024"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "advmod",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "kdo:∀ generický prézens",
+    "kernel:subset (obecný podmět)"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 3,
+    "text": "Automobil je dopravni prostředek.",
+    "turn": 6,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0032",
+   "tense": "Pres",
+   "mood": "assert"
+  },
+  {
+   "id": "s0043",
+   "pred": "používat",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0025"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "g0015"
+     ],
+     "quant": "∃",
+     "authority": "structural",
+     "surface": "obj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "kdo:∀ generický prézens"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 4,
+    "text": "Doprava používá silnici.",
+    "turn": 7,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0033",
+   "tense": "Pres",
+   "mood": "assert"
   }
  ],
  "open": [
@@ -3248,6 +3823,24 @@
     "komu"
    ],
    "answer": null
+  },
+  {
+   "id": "o0013",
+   "kind": "role_name",
+   "about": "k+Dat",
+   "question": "Co znamená role „k+Dat“ (k+Dat)? (kde, kdy, kudy, čím, …)",
+   "statement": "s0040",
+   "options": [
+    "kde",
+    "kdy",
+    "kam",
+    "odkud",
+    "kudy",
+    "čím",
+    "s_kým",
+    "komu"
+   ],
+   "answer": null
   }
  ],
  "rules": [],
@@ -3408,21 +4001,64 @@
    1.0
   ],
   [
+   "g0014",
+   "g0015",
+   1.0
+  ],
+  [
+   "g0015",
+   "g0017",
+   1.0
+  ],
+  [
+   "g0015",
+   "g0025",
+   1.0
+  ],
+  [
+   "g0018",
+   "g0021",
+   1.0
+  ],
+  [
+   "g0018",
+   "g0023",
+   1.0
+  ],
+  [
+   "g0018",
+   "g0024",
+   1.0
+  ],
+  [
+   "g0021",
+   "g0022",
+   1.0
+  ],
+  [
+   "g0023",
+   "g0024",
+   1.0
+  ],
+  [
    "p0001",
    "t0004",
    1.0
   ]
  ],
  "activation": {
-  "e0001": 0.055536125121921,
-  "e0002": 0.04942176218578943,
-  "e0013": 0.3,
-  "e0014": 0.04199039999999998,
-  "g0010": 0.3170782709907456,
-  "g0011": 0.06998399999999998,
-  "g0012": 0.513216,
-  "g0013": 0.11663999999999997,
-  "p0002": 0.396,
-  "t0008": 0.010077695999999999
+  "e0013": 0.013996799999999998,
+  "g0010": 0.014793603811344223,
+  "g0012": 0.02394460569599999,
+  "g0014": 0.06998399999999998,
+  "g0015": 0.7555199999999999,
+  "g0017": 0.046655999999999996,
+  "g0018": 0.8423999999999999,
+  "g0021": 0.32399999999999995,
+  "g0022": 0.1296,
+  "g0023": 0.36,
+  "g0024": 0.36,
+  "g0025": 0.8999999999999999,
+  "p0002": 0.018475775999999992
  }
 }

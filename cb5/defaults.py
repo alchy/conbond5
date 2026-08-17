@@ -16,9 +16,9 @@ from __future__ import annotations
 #: (předložka, Pád) → jméno role podle druhu výplně: `place` / `time` / `*`.
 #: Chybí-li klíč, role si nechá povrchové jméno a vznikne otevřená položka.
 ROLE_BY_CASE: dict[tuple[str, str], dict[str, str]] = {
-    ("v", "Loc"): {"place": "kde", "time": "kdy", "duration": "kdy", "*": "v+Loc"},
+    ("v", "Loc"): {"place": "kde", "time": "kdy", "duration": "kdy", "*": "kde"},
     ("v", "Acc"): {"time": "kdy", "*": "v+Acc"},
-    ("na", "Loc"): {"place": "kde", "time": "kdy", "*": "na+Loc"},
+    ("na", "Loc"): {"place": "kde", "time": "kdy", "*": "kde"},
     ("na", "Acc"): {"place": "kam", "*": "na+Acc"},
     ("do", "Gen"): {"place": "kam", "time": "do_kdy", "*": "do+Gen"},
     ("z", "Gen"): {"place": "odkud", "time": "od_kdy", "*": "z+Gen"},

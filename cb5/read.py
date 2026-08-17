@@ -444,6 +444,8 @@ class _Reader:
         if wh is not None:
             role.name, role.wh_kind = wh
             role.wh = True
+            if name == "kdo" and t.lemma in ("kdo", "co") and (t.feat("Case") in (None, "Nom")):
+                role.name = "kdo"  # tázací PODMĚT zůstává podmět („Co je v lednici?“ → kdo:?)
             if self.case_of(t.index) or any(c.base_deprel == "mark" for c in self.p.children(t.index)):
                 # „Jako co“, „S kým“, „V čem“ — díra má jméno podle předložky
                 mark = next((c.lemma for c in self.p.children(t.index) if c.base_deprel == "mark"), "")
@@ -1001,7 +1003,9 @@ class _Reader:
         pred_role: RoleFill
         if wh is not None:
             name, kind = wh
-            pred_role = RoleFill("jaký" if kind == "attr" else "co", "cop", wh=True, wh_kind=kind)
+            # „Kdo/Co je X?“ = definice (díra „co“); „Kde/Kdy je X?“ = díra té role
+            hole = "jaký" if kind == "attr" else ("co" if name in ("kdo", "co") else name)
+            pred_role = RoleFill(hole, "cop", wh=True, wh_kind=kind)
             self.mark(root.index, f"role:{pred_role.name}")
             self._mark_structure(root.index, f"role:{pred_role.name}")
         elif root.upos == "ADJ":
@@ -1014,7 +1018,8 @@ class _Reader:
         else:
             pred_role = RoleFill("co", "cop", self._term_group(root), "structural")
         # podmět
-        if subj and self._wh_of(subj[0]) is not None and root.upos in ("NOUN", "PROPN", "ADJ") and wh is None:
+        if subj and self._wh_of(subj[0]) is not None and root.upos in ("NOUN", "PROPN", "ADJ") and wh is None and not prep:
+            # („Co je v lednici?“ má předložkový kořen → NEprohazovat: kdo:? , kde: lednice)
             # „Co je jezevčík?“ — tázací podmět, nominál v kořeni: ptá se na definici kořene
             s = subj[0]
             name, kind = self._wh_of(s) or ("co", "filler")
