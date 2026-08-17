@@ -102,36 +102,32 @@ větě), „Na kolika polích…“ (šachovnice ∈ deska rozdělená na 64 pol
 
 ## 5 · Otevřené směry (v pořadí, jak dávají smysl)
 
-0. **Vysvětlování vztahů = šablony, ne volný dialog** (rozhodnutí J. 17. 8.): systém
-   se ptá sám jen při NEVÍM na otázku člověka, nabídne JEDNU předvyplněnou šablonu
-   (hypotéza s evidencí), člověk potvrdí/odmítne. **Vrstvy znalostní báze**, aby
-   kodifikace vyšších vztahů stála na podložených nižších: (0) jádro — osy (čas,
-   čísla), ⊆/∈, role; (1) primitivní fakta z textu (žít kdy, délka, narodit_se kde);
-   (2) odvozené predikáty jako pravidla NAD (1) — složení vztahů (tchán = otec∘manžel),
-   srovnání, překryv, porovnání, můstky; (3) pravidlo lze zapsat jen tehdy, když jeho
-   vstupy existují v nižší vrstvě — právě to hlídá návrh při NEVÍM (nabízí překryv,
-   jen když má intervaly u obou; porovnání, jen když má touž veličinu u obou), a každý
-   odvozený verdikt nese řetěz až k větám (stupeň `derived`). Hotovo navíc: mezera
-   pro synonymum, modul vazeb (export/import), odvolání vazby. Dál: mezera pro
-   inverzi/roli, šablona „mez“ (dnes výchozí můstek u veličin), víc testů (překryv
-   i „před/po“, porovnání s tolerancí, víc veličin najednou), další moduly v repu
-   (`moduly/pribuzenstvi.txt`); `--vazby soubor` při startu (chat i viewbase_app) už je.
-1. **Pravidla z věty** — hotovo pro „Kdo …, ten …“, „Každý, kdo …“, „Pokud někdo …“,
-   „X, pokud Y“, „Když Y, X“, **„Každý pes, který štěká, je hlídač“** (omezovací vztažná věta
-   u obecného podmětu = dvě podmínky: X ∈ pes ∧ štěká(X); „Štěká každý pes?“ → NEVÍM, ne ANO)
-   (podmínka + proměnná; obojí v paměti jako výroky, podmínka `embedded`; víc podmínek se
-   ověřuje všechny, výčet „Kdo je hlídač?“ jde z první podmínky a ostatní u kandidáta ověří). Dál: „Kdo jede po dálnici, jede nejvýše maximální rychlostí dálnice.“
-   (podmínka + hodnota s komparátorem), víc proměnných najednou („Kdo koho …“), „ten“ jako
-   podmět bez vztažné věty, podmínky s časem („dokud“, „než“) — dnes jen `embedded`.
-2. Otázka nemá zakládat uzly: „Kdo je Karel Čapek?“ dnes vytvoří entitu bez výroků
-   (v grafu visí prázdný uzel) — zakotvení otázky má být bez zápisu i pro jména (I‑12).
-3. Překlepy ve slovech mimo jména („mezil lety“) — dnes zbytek/role `jak`; kandidát:
+Co už je (rozhodnutí J. 17. 8.: **vysvětlování vztahů = šablony, ne volný dialog**;
+systém se ptá sám jen při NEVÍM, JEDNA předvyplněná šablona s evidencí, `ano`/`ne`/`jen tady`):
+vrstvy znalostní báze (jádro → primitivní fakta z textu → odvozené predikáty jako
+pravidla nad nimi; návrh při NEVÍM nabízí jen to, co má vstupy v nižší vrstvě; každý
+odvozený verdikt nese řetěz až k větám), moduly vazeb (`moduly/`, `!ulož-vazby`,
+`--vazby`), odvolání vazby, **pravidla z věty** („Kdo …, ten …“, „Každý, kdo …“,
+„Každý pes, který štěká, …“, „Pokud někdo …“, „X, pokud Y“, „Nikdo …“), podmínkové/
+účelové/časové/příčinné věty jako role, „proč“, rozsahy, veličiny se synonymy,
+vztahová jména (⊆ přenos na cíl, „má bratra Karla“), doložka „podle koho“.
+
+1. **Pravidlo s hodnotou a komparátorem** z věty: „Kdo jede po dálnici, jede nejvýše
+   maximální rychlostí dálnice.“ (dnes výchozí můstek u veličin + `!pravidlo`); víc
+   proměnných najednou („Kdo koho …“); „ten“ jako podmět bez vztažné věty; podmínky
+   s časem („dokud“, „než“) — dnes jen `embedded`/`kdy`.
+2. Mezera pro **inverzi/roli** v návrhu při NEVÍM; šablona „mez“; víc testů (překryv
+   i „před/po“, porovnání s tolerancí, víc veličin najednou); modul `moduly/pribuzenstvi.txt`.
+3. Otázka nemá zakládat uzly: „Kdo je Karel Čapek?“ dnes vytvoří entitu bez výroků
+   (v grafu se nezobrazuje, v paměti je jako referent pro další tah — I‑12 jen zčásti).
+4. Překlepy ve slovech mimo jména („mezil lety“) — dnes zbytek/role `jak`; kandidát:
    oprava z tvarů, které paměť viděla (jako diakritika), přiznaná v odpovědi.
-4. **Disjunktnost tříd** z textu („Šelmy a kopytníci jsou různé řády“) → NE.
-5. Procenta a rozdíly („o 40 % větší“); rozsahy a `8×8` hotovo (počet v rozsahu → ANO/NE
-   „mimo rozsah“; veličiny se ptají i přes synonymum: „Jak silný“ = tloušťka, `QUANTITY_SYNONYMS`).
-6. Kandidátní čtení u homonym na začátku věty („Jí Ronik maso?“ ↔ zájmeno).
-7. viewBase: barvy podle stupně, zvýraznění důkazu odpovědi jako cesty.
+5. **Disjunktnost tříd** z textu („Šelmy a kopytníci jsou různé řády“) → NE.
+6. Procenta a rozdíly („o 40 % větší“); superlativy („nejnižší naměřená teplota“).
+7. Kandidátní čtení u homonym na začátku věty („Jí Ronik maso?“ ↔ zájmeno).
+8. Časově ohraničená pravda („bydlel v Praze do roku 2000“ × „Kde bydlí?“) — dnes
+   se čas jen ukládá jako role, verdikt ho neváží.
+9. viewBase: barvy podle stupně, zvýraznění důkazu odpovědi jako cesty.
 
 ## 6 · Souběh s conbond6
 
