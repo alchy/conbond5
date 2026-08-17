@@ -39,7 +39,12 @@ TYPES = {
 }
 
 
-def build(session: Session, *, title: str = "conbond5") -> object:
+def build(session: Session, *, title: str = "conbond5", autosave: Path | None = None) -> object:
+    """Plátno + konzole nad sezením. `autosave` = po každém tahu uložit paměť
+    (`p.json`) a připsat tah do žurnálu (`p.jsonl`) — aby šel rozhovor
+    sledovat zvenčí a přehrát."""
+    import json
+
     import viewbase as vb  # type: ignore[import-not-found]
 
     canvas = vb.Canvas(title=title, theme="cyber", highlight_neighbors=1)
@@ -98,7 +103,14 @@ def build(session: Session, *, title: str = "conbond5") -> object:
                 canvas.terminal_write("dialog", out)
         except Exception as exc:  # noqa: BLE001 — konzole nesmí spadnout
             canvas.terminal_write("dialog", f"✗ chyba: {exc}")
+            sync()
+            return
         sync()
+        if autosave is not None:
+            session.memory.save(autosave)
+            turn = session.journal[-1]
+            with autosave.with_suffix(".jsonl").open("a", encoding="utf-8") as fh:
+                fh.write(json.dumps({"no": turn.no, "kind": turn.kind, "text": turn.text, "doc": turn.doc, "answer": answer.text}, ensure_ascii=False) + "\n")
 
     canvas.detail_window(rows=[("uzel", "name"), ("druh", "kind"), ("výroky", "vyroky")], width_chars=60)
 
@@ -131,7 +143,7 @@ def main(argv: list[str]) -> int:
         return 2
     memory = Memory.load(Path(args.pamet)) if args.pamet and Path(args.pamet).exists() else Memory()
     session = Session(memory, live_or_recorded(CACHE))
-    canvas = build(session)
+    canvas = build(session, autosave=Path(args.pamet) if args.pamet else None)
     try:
         vb.serve(canvas, port=args.port, open_browser=True)
     finally:
