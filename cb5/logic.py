@@ -81,6 +81,7 @@ def _same_pred(a: str | None, b: str | None, learned: dict[str, str] | None = No
 PLACE_FAMILY = ("kde", "kam", "odkud", "kudy")
 TIME_FAMILY = ("kdy", "od_kdy", "do_kdy", "po_kdy", "před_kdy", "jak_dlouho")
 PERSON_FAMILY = ("s_kým", "co", "komu", "kdo")
+REASON_FAMILY = ("proč", "účel")  # „Proč šel do obchodu?“ — i účel („aby koupil chleba“) je odpověď
 
 
 class Evaluator:
@@ -899,6 +900,8 @@ class Evaluator:
                     fillers.append((t, p))
             if fr.nested and fr.nested not in seen:
                 seen.add(fr.nested)
+                if fr.surface.startswith("advcl:") and ":" in fr.surface:
+                    p = Proof(list(p.statements), list(p.steps) + [f"spojka „{fr.surface.split(':', 1)[1]}“"], list(p.defaults), p.grade)
                 fillers.append((fr.nested, p))
         # pravidla
         for rule in m.rules:
@@ -913,7 +916,7 @@ class Evaluator:
                     p.steps.append(f"pravidlo {rule.id}: {rule.src_pred}→{rule.dst_pred}")
                     fillers.append((t, p))
         # rodina rolí: „kde“ bez `kde` → sourozenci (kam/odkud/kudy) s přiznáním; totéž čas
-        family = PLACE_FAMILY if hole.name in PLACE_FAMILY else TIME_FAMILY if hole.name in TIME_FAMILY else PERSON_FAMILY if hole.name in ("s_kým", "komu") else ()
+        family = PLACE_FAMILY if hole.name in PLACE_FAMILY else TIME_FAMILY if hole.name in TIME_FAMILY else PERSON_FAMILY if hole.name in ("s_kým", "komu") else REASON_FAMILY if hole.name in REASON_FAMILY else ()
         if not fillers and family and hole.wh_kind == "filler":
             for f, p in matched:
                 sibs = list(family) + ([r.name for r in f.roles if r.name in LOCATIVE_SURFACES] if family is PLACE_FAMILY else [])
@@ -923,6 +926,9 @@ class Evaluator:
                     fr = f.role(sib)
                     if fr is None:
                         continue
+                    if fr.nested and fr.nested not in seen and family is REASON_FAMILY:
+                        seen.add(fr.nested)
+                        fillers.append((fr.nested, Proof(list(p.statements), list(p.steps) + [f"role „{sib}“ — ptal ses „{hole.name}“"], list(p.defaults), p.grade)))
                     for t in fr.terms:
                         # jen výplně správného druhu: čas pro čas, místo pro místo
                         k = self._kind(t)
@@ -983,8 +989,8 @@ class Evaluator:
                                     fillers.append((pl, p2))
         # sloučení částečných časů TÉHOŽ děje: „v dubnu“ + „roku 1975“ → duben 1975 (přiznaně)
         if hole.name in TIME_FAMILY and hole.wh_kind == "filler" and len(fillers) >= 2:
-            years = [(t, p) for t, p in fillers if not t.startswith("count:") and m.nodes[t].time and m.nodes[t].time.kind == "year"]  # type: ignore[union-attr]
-            partial = [(t, p) for t, p in fillers if not t.startswith("count:") and m.nodes[t].time and (
+            years = [(t, p) for t, p in fillers if t in m.nodes and m.nodes[t].time and m.nodes[t].time.kind == "year"]  # type: ignore[union-attr]
+            partial = [(t, p) for t, p in fillers if t in m.nodes and m.nodes[t].time and (
                 (m.nodes[t].time.kind == "name" and m.nodes[t].time.label in MONTHS) or (m.nodes[t].time.kind == "point" and (m.nodes[t].time.start or (0,))[0] == 0))]  # type: ignore[union-attr]
             if len(years) == 1 and len(partial) == 1:
                 (ty, py), (tp, pp) = years[0], partial[0]

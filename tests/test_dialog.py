@@ -476,3 +476,15 @@ def test_why_questions_and_failed_presupposition(s: Session) -> None:
     s.say("Kvůli dešti se zápas nehrál.")
     c = s.say("Proč se zápas nehrál?")
     assert c.verdict is not None and [s.memory.label(t) for t, _ in c.verdict.fillers] == ["déšť"]
+
+
+def test_purpose_clause_and_prodrop_from_subclause(s: Session) -> None:
+    s.say("Petr šel do obchodu, aby koupil chleba.")
+    a = s.say("Proč šel Petr do obchodu?")
+    assert a.verdict is not None and "koupit" in a.text.splitlines()[1] and "účel" in a.text
+    assert s.say("Koupil Petr chleba?").verdict.value == "NEVÍM"  # type: ignore[union-attr]
+    s.say("Než Jana odešla, zamkla dveře.")
+    b = s.say("Zamkla Jana dveře?")
+    assert b.verdict is not None and b.verdict.value == "ANO" and "z vedlejší věty" in b.text
+    c = s.say("Kdy zamkla Jana dveře?")
+    assert c.verdict is not None and "odejít" in c.text.splitlines()[1] and "spojka „než“" in c.text

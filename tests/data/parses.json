@@ -22587,6 +22587,121 @@
 }
 ]
 },
+"Kdy zamkla Jana dveře?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kdy zamkla Jana dveře?",
+"tokens": [
+{
+"deprel": "advmod",
+"feats": [
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Kdy",
+"head": 2,
+"id": 1,
+"lemma": "kdy",
+"upos": "ADV"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Fem,Neut"
+],
+[
+"Number",
+"Plur,Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "zamkla",
+"head": 0,
+"id": 2,
+"lemma": "zamknout",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Jana",
+"head": 2,
+"id": 3,
+"lemma": "Jana",
+"upos": "PROPN"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "dveře",
+"head": 2,
+"id": 4,
+"lemma": "dveře",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 2,
+"id": 5,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
 "Kdy zemřel Alois Jirásek?": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Kdy zemřel Alois Jirásek?",
@@ -24456,6 +24571,115 @@
 "form": "?",
 "head": 3,
 "id": 6,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Koupil Petr chleba?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Koupil Petr chleba?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Koupil",
+"head": 0,
+"id": 1,
+"lemma": "koupit",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Petr",
+"head": 1,
+"id": 2,
+"lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "chleba",
+"head": 1,
+"id": 3,
+"lemma": "chléb",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 4,
 "lemma": "?",
 "upos": "PUNCT"
 }
@@ -28910,6 +29134,163 @@
 }
 ]
 },
+"Než Jana odešla, zamkla dveře.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Než Jana odešla, zamkla dveře.",
+"tokens": [
+{
+"deprel": "mark",
+"feats": [],
+"form": "Než",
+"head": 3,
+"id": 1,
+"lemma": "než",
+"upos": "SCONJ"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Jana",
+"head": 3,
+"id": 2,
+"lemma": "Jana",
+"upos": "PROPN"
+},
+{
+"deprel": "advcl",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Fem,Neut"
+],
+[
+"Number",
+"Plur,Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "odešla",
+"head": 5,
+"id": 3,
+"lemma": "odejít",
+"upos": "VERB"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ",",
+"head": 3,
+"id": 4,
+"lemma": ",",
+"upos": "PUNCT"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Fem,Neut"
+],
+[
+"Number",
+"Plur,Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "zamkla",
+"head": 0,
+"id": 5,
+"lemma": "zamknout",
+"upos": "VERB"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "dveře",
+"head": 5,
+"id": 6,
+"lemma": "dveře",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 5,
+"id": 7,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
 "Nikdo nebydlí na Marsu.": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Nikdo nebydlí na Marsu.",
@@ -32313,6 +32694,237 @@
 }
 ]
 },
+"Petr šel do obchodu, aby koupil chleba.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Petr šel do obchodu, aby koupil chleba.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Petr",
+"head": 2,
+"id": 1,
+"lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "šel",
+"head": 0,
+"id": 2,
+"lemma": "jít",
+"upos": "VERB"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Gen"
+]
+],
+"form": "do",
+"head": 4,
+"id": 3,
+"lemma": "do",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "obchodu",
+"head": 2,
+"id": 4,
+"lemma": "obchod",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ",",
+"head": 8,
+"id": 5,
+"lemma": ",",
+"upos": "PUNCT"
+},
+{
+"deprel": "mark",
+"feats": [],
+"form": "aby",
+"head": 8,
+"id": 6,
+"lemma": "aby",
+"upos": "SCONJ"
+},
+{
+"deprel": "aux",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Cnd"
+],
+[
+"VerbForm",
+"Fin"
+]
+],
+"form": "by",
+"head": 8,
+"id": 7,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "advcl",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "koupil",
+"head": 2,
+"id": 8,
+"lemma": "koupit",
+"upos": "VERB"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "chleba",
+"head": 8,
+"id": 9,
+"lemma": "chléb",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 10,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
 "Petr žil mezi lety 1950 až 2020.": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Petr žil mezi lety 1950 až 2020.",
@@ -33427,6 +34039,147 @@
 "form": "?",
 "head": 4,
 "id": 5,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Proč šel Petr do obchodu?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Proč šel Petr do obchodu?",
+"tokens": [
+{
+"deprel": "advmod",
+"feats": [
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Proč",
+"head": 2,
+"id": 1,
+"lemma": "proč",
+"upos": "ADV"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "šel",
+"head": 0,
+"id": 2,
+"lemma": "jít",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Petr",
+"head": 2,
+"id": 3,
+"lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Gen"
+]
+],
+"form": "do",
+"head": 5,
+"id": 4,
+"lemma": "do",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "obchodu",
+"head": 2,
+"id": 5,
+"lemma": "obchod",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 2,
+"id": 6,
 "lemma": "?",
 "upos": "PUNCT"
 }
@@ -38257,6 +39010,107 @@
 "form": "?",
 "head": 1,
 "id": 3,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Zamkla Jana dveře?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Zamkla Jana dveře?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Fem,Neut"
+],
+[
+"Number",
+"Plur,Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Zamkla",
+"head": 0,
+"id": 1,
+"lemma": "zamknout",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Jana",
+"head": 1,
+"id": 2,
+"lemma": "Jana",
+"upos": "PROPN"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "dveře",
+"head": 1,
+"id": 3,
+"lemma": "dveře",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 4,
 "lemma": "?",
 "upos": "PUNCT"
 }

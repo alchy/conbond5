@@ -269,7 +269,8 @@ class UDPipeOracle:
             )
             if not tokens:
                 continue
-            out.append(Parse(text=render_forms(tokens), tokens=tokens, provenance=self.provenance))
+            source = sentence.get("source")
+            out.append(Parse(text=str(source) if isinstance(source, str) and source.strip() else render_forms(tokens), tokens=tokens, provenance=self.provenance))
         return tuple(out)
 
     def _call(

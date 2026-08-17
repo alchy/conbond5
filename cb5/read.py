@@ -648,6 +648,7 @@ class _Reader:
             self._add_role(p, "jako", "advcl:pred", t, authority="structural")
             return
         name = f"advcl:{marker}" if marker else "advcl"
+        surface0 = name
         tense = t.feat("Tense") or next((a.feat("Tense") for a in self.kids(t.index, "aux", "cop") if a.feat("Tense")), None)
         conditional = marker in D.CONDITIONAL_MARKERS and (marker != "když" or tense in (None, "Pres", "Fut"))
         self._cond_depth += 1 if conditional else 0
@@ -666,9 +667,13 @@ class _Reader:
                     self.mark(c.index, "particle")
         elif marker in D.NON_ASSERTED_MARKERS:
             nested.embedded = D.NON_ASSERTED_MARKERS[marker]
+            if nested.embedded == "účel":
+                name, authority = "účel", "default"  # „aby koupil chleba“ — účel (netvrdí se, ale odpovídá na „proč“)
         elif marker in D.CAUSAL_MARKERS:
             name, authority = "proč", "default"  # „protože byl nemocný“ = důvod (odpověď na „proč“)
-        p.roles.append(RoleFill(name, name, nested=nested, authority=authority))
+        if marker in D.TEMPORAL_MARKERS and not conditional and name.startswith("advcl"):
+            name, authority = "kdy", "default"  # „když přišel domů“, „než odešla“ = časové určení větou
+        p.roles.append(RoleFill(name, surface0, nested=nested, authority=authority))
         self.mark(t.index, "nested")
 
     def _gapping(self, t: Token, p: Predication) -> bool:
@@ -763,6 +768,19 @@ class _Reader:
                 if vk is not None and vk.terms and vk.terms[0].kind == "var":
                     p.roles.insert(0, RoleFill("kdo", "podmínka", [vk.terms[0]], "default"))
                     p.defaults.append("kdo: proměnná z podmínky")
+                    return
+        for r in p.roles:
+            # „Než Jana odešla, zamkla dveře.“: nevyslovený podmět = JMÉNO v podmětu PŘEDCHÁZEJÍCÍ vedlejší věty
+            # téže věty (shoda rodu, je‑li znám); vedlejší věta za hlavní („…, jelikož jeho matka onemocněla“) ne
+            if r.nested is not None and r.name not in ("co", "kdo") and r.nested.head < h.index:
+                nk = r.nested.role("kdo")
+                if nk is not None and nk.terms and nk.terms[0].kind == "entity" and nk.authority != "prodrop":
+                    t0 = nk.terms[0]
+                    hg = h.feat("Gender") or ""
+                    if hg and t0.gender and t0.gender not in hg.split(","):  # „zamkla“ = Fem,Neut
+                        continue
+                    p.roles.insert(0, RoleFill("kdo", "advcl", [t0], "default"))
+                    p.defaults.append(f"kdo: „{t0.forms[0] if t0.forms else t0.lemma}“ z vedlejší věty (nevyslovený podmět)")
                     return
         person = h.feat("Person") or next((a.feat("Person") for a in self.kids(h.index, "aux") if a.feat("Person")), None)
         gender = h.feat("Gender")

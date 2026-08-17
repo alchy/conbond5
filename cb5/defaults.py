@@ -101,6 +101,9 @@ IMPERSONAL_VERBS: frozenset[str] = frozenset({
     "fouknout", "lít", "chumelit", "jednat_se", "stát_se", "dařit_se", "zdát_se", "podařit_se", "hodit_se",
 })
 
+#: časové spojky: věta pod nimi = role `kdy` (odpověď na „Kdy …?“ je celá věta)
+TEMPORAL_MARKERS: frozenset[str] = frozenset({"když", "než", "dokud", "zatímco", "jakmile", "až", "poté", "předtím", "potom", "sotva", "kdykoli", "kdykoliv"})
+
 #: příčinné spojky: věta pod nimi platí a je odpovědí na „proč“
 CAUSAL_MARKERS: frozenset[str] = frozenset({"protože", "jelikož", "neboť", "poněvadž", "kvůli", "díky"})
 
