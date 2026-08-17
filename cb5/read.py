@@ -72,6 +72,8 @@ class TermSpec:
     note: str = ""
     #: Zúžení třídy genitivem vlastního jména: „otec Petra Nováka“ → ("Gen", term Petr Novák).
     rel: "tuple[str, TermSpec] | None" = None
+    #: Alternativy zúžení z koordinace: „otec manžela NEBO manželky“ → (term manželka,).
+    rel_alts: "tuple[TermSpec, ...]" = ()
 
     def label(self) -> str:
         if self.kind in ("entity", "place") and self.name_lemmas:
@@ -716,6 +718,7 @@ class _Reader:
         # víceslovné jméno
         titled: list[int] = []  # obecné jméno + vlastní jméno („řeka Vltava“, „prezident Bill Clinton“)
         rel: tuple[str, TermSpec] | None = None
+        rel_alts: list[TermSpec] = []
         for f in self.p.children(t.index):
             if f.base_deprel == "flat" or f.deprel == "compound" or (
                 f.base_deprel == "nmod" and t.upos == "NOUN" and not self.case_of(f.index)
@@ -787,7 +790,13 @@ class _Reader:
                     rel = ("Gen", self._term(c))
                     consumed.append(c.index)
                     for cc in self.kids(c.index, "conj"):
-                        self._pending_secondary.append((t, cc))  # „péče a pozornosti“ — druhý člen jako výrok vedle
+                        if cc.upos == "NOUN" and not self.case_of(cc.index):
+                            rel_alts.append(self._term(cc))  # „otec manžela nebo manželky“ — alternativa zúžení
+                            for x in self.kids(cc.index, "cc"):
+                                self.mark(x.index, "particle")
+                            consumed.append(cc.index)
+                        else:
+                            self._pending_secondary.append((t, cc))  # „péče a pozornosti“ — druhý člen jako výrok vedle
                     continue
                 self._pending_secondary.append((t, c))
             elif d == "advmod" and c.lemma in D.PARTICLES:
@@ -866,6 +875,7 @@ class _Reader:
             gender=t.feat("Gender"), number=t.feat("Number"), person=t.feat("Person"),
             quant=quant, quant_authority=qauth, tokens=tuple(sorted(set(consumed))),
             name_tokens=tuple(name_tokens), name_lemmas=tuple(name_lemmas), possessor=possessor, rel=rel,
+            rel_alts=tuple(rel_alts),
         )
         if kind in ("entity", "place") and t.upos == "NOUN" and titled:
             spec.note = f"titul:{t.lemma}"
@@ -1017,7 +1027,7 @@ class _Reader:
         if wh is not None:
             name, kind = wh
             # „Kdo/Co je X?“ = definice (díra „co“); „Kde/Kdy je X?“ = díra té role
-            hole = "jaký" if kind == "attr" else ("co" if name in ("kdo", "co") else name)
+            hole = "jaký" if kind == "attr" else ("co" if name in ("kdo", "co", "čím") else name)  # „Čím je X?“ = definice
             pred_role = RoleFill(hole, "cop", wh=True, wh_kind=kind)
             self.mark(root.index, f"role:{pred_role.name}")
             self._mark_structure(root.index, f"role:{pred_role.name}")
@@ -1097,6 +1107,12 @@ class _Reader:
         if subj is None or not subj.terms or pred_role.wh:
             return None
         s = subj.terms[0]
+        if (s.kind == "group" and s.rel is None and not s.attrs and pred_role.name == "co" and pred_role.terms
+                and any(t.rel is not None and t.rel[1].kind == "group" for t in pred_role.terms)):
+            # „Tchán je otec manžela nebo manželky.“ — třída definovaná SLOŽENÍM vztahových jmen
+            # (zúžení obecným jménem, ne konkrétním uzlem) = definice, ne fakt o světě
+            p.defaults.append("definice vztahového jména")
+            return "definice_vztahu"
         if (s.kind == "group" and s.quant in ("∀", "∃") and pred_role.name == "co" and pred_role.terms
                 and all(t.kind == "entity" for t in pred_role.terms)):
             # „Druh automobilu je Ford, Škoda, Mazda.“ / „Automobil může být Ford…“ — třída = výčet

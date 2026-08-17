@@ -1,0 +1,141 @@
+[
+ {
+  "doc": "rodina_novákovi",
+  "sentences": 15,
+  "written": 15,
+  "with_role": 15,
+  "statements": 34,
+  "residue_tokens": 0,
+  "tokens": 89,
+  "open": 0,
+  "questions": 8,
+  "hits": 7,
+  "text_hits": 8,
+  "misses": {
+   "role/logika (blízký výrok je)": 1
+  },
+  "results": [
+   {
+    "q": "Kdo je otec Petra Nováka?",
+    "expect": [
+     "karel"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Karel Novák"
+    ],
+    "why": "",
+    "reading": "být(kdo:∀otec⟨Petr Novák⟩, co:?)"
+   },
+   {
+    "q": "Kdo je tchán Jany Novákové?",
+    "expect": [
+     "karel"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Karel Novák"
+    ],
+    "why": "",
+    "reading": "být(kdo:∀tchán⟨Jana Nováková⟩, co:?)"
+   },
+   {
+    "q": "Kdo je tchyně Jany Novákové?",
+    "expect": [
+     "věra"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Věra Nováková"
+    ],
+    "why": "",
+    "reading": "být(kdo:∀tchyně⟨Jana Nováková⟩, co:?)"
+   },
+   {
+    "q": "Kdo je švagrová Jany Novákové?",
+    "expect": [
+     "lucie"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Lucie Nováková"
+    ],
+    "why": "",
+    "reading": "být(kdo:∀švagrová⟨Jana Nováková⟩, co:?)"
+   },
+   {
+    "q": "Kdo je teta Tomáše Nováka?",
+    "expect": [
+     "lucie"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Lucie Nováková"
+    ],
+    "why": "",
+    "reading": "být(kdo:∀teta⟨Tomáš Novák⟩, co:?)"
+   },
+   {
+    "q": "Kdo je děd Tomáše Nováka?",
+    "expect": [
+     "karel"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Karel Novák"
+    ],
+    "why": "",
+    "reading": "být(kdo:∀děd⟨Tomáš Novák⟩, co:?)"
+   },
+   {
+    "q": "Kdo je Karel Novák?",
+    "expect": [
+     "truhlář"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "otec Petr Novák",
+     "truhlář"
+    ],
+    "why": "",
+    "reading": "být(kdo:·Karel Novák, co:?)"
+   },
+   {
+    "q": "Čím je Milan Novák?",
+    "expect": [
+     "řidič"
+    ],
+    "sada": "conbond",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "být(kdo:·Milan Novák, čím:?)"
+   }
+  ],
+  "t_ingest": 0.0,
+  "t_ask": 0.0
+ }
+]

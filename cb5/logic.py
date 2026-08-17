@@ -20,7 +20,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Literal
 
-from cb5.defaults import COMPARATIVES_SEED, LOCATIVE_SURFACES, PLACE_NOUNS, synonym_class
+from cb5.defaults import COMPARATIVES_SEED, LOCATIVE_SURFACES, PLACE_NOUNS, RELATION_CONVERSE, RELATION_GENDER, synonym_class
 from cb5.memory import Memory, Role, Statement
 
 Grade = Literal["said", "read", "derived"]
@@ -207,6 +207,63 @@ class Evaluator:
 
     # ---- jádrové dotazy (kopula) ---------------------------------------------
 
+    # ---- vztahová jména: otec⟨Petr⟩, tchán⟨Jana⟩ = otec⟨manžel⟨Jana⟩⟩ ------------------------
+
+    def rel_members(self, lemma: str, target: str, depth: int = 0) -> list[tuple[str, Proof]]:
+        """Kdo je `lemma` uzlu `target`: přímé členství v group lemma⟨target⟩, inverze
+        (target ∈ manželka⟨Z⟩ ⇒ Z ∈ manžel⟨target⟩) a naučené definice (tchán = otec∘manžel).
+        Každý nález nese důkaz; hloubka řetězu omezena (definice se rozvíjejí rekurzivně)."""
+        m = self.m
+        out: list[tuple[str, Proof]] = []
+        seen: set[str] = set()
+        if depth > 4:
+            return out
+        # 1) přímo
+        g = m.find_group(lemma, (), f"Gen:{target}")
+        if g is not None:
+            for e, path in m.known_members(g.id):
+                if e not in seen:
+                    seen.add(e)
+                    out.append((e, Proof(path, [f"{m.label(e)} ∈ {m.label(g.id)}"], [], self._grade_of(path))))
+        # 2) inverze: target ∈ R'⟨Z⟩, R' inverzní k lemma ⇒ Z ∈ lemma⟨target⟩ (rod Z podle lemma)
+        need = RELATION_GENDER.get(lemma)
+        for conv in RELATION_CONVERSE.get(lemma, ()):
+            for st in m.statements_about(target):
+                if st.kernel != "member" or st.neg or st.status != "active":
+                    continue
+                kdo, co = st.role("kdo"), st.role("co")
+                if not (kdo and target in kdo.terms and co):
+                    continue
+                for gid in co.terms:
+                    gn = m.nodes.get(gid)
+                    if gn is None or gn.kind != "group" or gn.lemma != conv or not gn.rel:
+                        continue
+                    z = gn.rel.split(":", 1)[1]
+                    zn = m.nodes.get(z)
+                    if zn is None or (need and zn.gender and need not in zn.gender.split(",")):
+                        continue
+                    if z not in seen:
+                        seen.add(z)
+                        out.append((z, Proof([st.id], [f"{m.label(target)} ∈ {m.label(gid)} ⇒ {m.label(z)} ∈ {lemma}⟨{m.label(target)}⟩ (inverze {conv}↔{lemma})"], ["inverze vztahu (osivo)"], "derived")))
+        # 3) definice: lemma = R1∘R2∘… → R2⟨target⟩ → R1⟨…⟩
+        for chain in m.learned.get("rel_defs", {}).get(lemma, []):
+            frontier: list[tuple[str, Proof]] = [(target, Proof())]
+            for r in reversed(chain):
+                nxt: list[tuple[str, Proof]] = []
+                for node, pr in frontier:
+                    for e, pe in self.rel_members(r, node, depth + 1):
+                        nxt.append((e, pr.merged(pe)))
+                frontier = nxt
+                if not frontier:
+                    break
+            for e, pr in frontier:
+                if e not in seen:
+                    seen.add(e)
+                    pr.steps.append(f"{lemma} = {'∘'.join(chain)} (naučená definice)")
+                    pr.grade = "derived"
+                    out.append((e, pr))
+        return out
+
     def kernel_verdict(self, q: Statement) -> Verdict | None:
         m = self.m
         subj, obj = q.role("kdo"), (q.role("co") or q.role("kde"))
@@ -227,6 +284,12 @@ class Evaluator:
                     if mem is not None:
                         proofs.append(Proof(mem, [f"{m.label(s)} ∈ {m.label(o)}"], grade=self._grade_of(mem)))
                         continue
+                    on = m.nodes.get(o)
+                    if on is not None and on.kind == "group" and on.rel and on.rel.startswith("Gen:"):
+                        hit = [pr for e, pr in self.rel_members(on.lemma, on.rel.split(":", 1)[1]) if e == s]
+                        if hit:
+                            proofs.append(hit[0])
+                            continue
                     # disjunktnost: s ∈ H, H ∦ o
                     for st in m.active():
                         st_kdo, st_co = st.role("kdo"), st.role("co")
@@ -703,6 +766,12 @@ class Evaluator:
                 if g not in seen and not path[0].startswith("restricts:"):
                     seen.add(g)
                     below.append((g, Proof(path, [f"{m.label(g)} ⊆ {m.label(node_id)} (podřazená třída, ne definice)"], [], self._grade_of(path))))
+            if node.rel and not below and node.rel.startswith("Gen:"):
+                # „Kdo je tchán Jany Novákové?“ — nic přímého → inverze a naučené definice
+                for e, pr in self.rel_members(node.lemma, node.rel.split(":", 1)[1]):
+                    if e not in seen:
+                        seen.add(e)
+                        below.append((e, pr))
             if node.rel and below:
                 return Verdict("ANO", [p for _, p in below], fillers=below)
         for s in self.describe(node_id):

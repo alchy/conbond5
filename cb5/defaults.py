@@ -210,3 +210,22 @@ DIRECTION_ADVERBS: dict[str, str] = {
     "více": "more", "víc": "more", "hodně": "more", "mnoho": "more", "déle": "more", "dlouho": "more",
     "méně": "less", "míň": "less", "málo": "less", "kratší": "less",
 }
+
+
+#: Inverze vztahových jmen — OSIVO: X ∈ R⟨Y⟩ ⇒ Y ∈ R'⟨X⟩ pro některé R' (podle rodu Y).
+#: „Jana ∈ manželka⟨Petr⟩“ ⇒ „Petr ∈ manžel⟨Jana⟩“; „Karel ∈ otec⟨Petr⟩“ ⇒ „Petr ∈ syn/dcera⟨Karel⟩“.
+RELATION_CONVERSE: dict[str, tuple[str, ...]] = {
+    "manžel": ("manželka",), "manželka": ("manžel",),
+    "otec": ("syn", "dcera"), "matka": ("syn", "dcera"),
+    "syn": ("otec", "matka"), "dcera": ("otec", "matka"),
+    "bratr": ("bratr", "sestra"), "sestra": ("bratr", "sestra"),
+    "sourozenec": ("sourozenec",), "rodič": ("dítě",), "dítě": ("rodič",),
+}
+
+#: Rod, který vztahové jméno vyžaduje od SVÉHO nositele (X ∈ otec⟨…⟩ ⇒ X je muž).
+RELATION_GENDER: dict[str, str] = {
+    "otec": "Masc", "manžel": "Masc", "bratr": "Masc", "syn": "Masc", "děd": "Masc", "dědeček": "Masc",
+    "strýc": "Masc", "tchán": "Masc", "zeť": "Masc", "vnuk": "Masc", "synovec": "Masc", "pravnuk": "Masc",
+    "matka": "Fem", "manželka": "Fem", "sestra": "Fem", "dcera": "Fem", "bába": "Fem", "babička": "Fem",
+    "teta": "Fem", "tchyně": "Fem", "snacha": "Fem", "vnučka": "Fem", "neteř": "Fem", "prababička": "Fem",
+}

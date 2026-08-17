@@ -26,7 +26,7 @@ from cb5.ground import Grounded, ground
 from cb5.logic import Verdict, enumerate_, evaluate
 from cb5.memory import Memory, Node, OpenItem, Provenance, Role, Statement
 from cb5.oracle import OracleError, Parse, SegmentationError
-from cb5.read import Reading, read
+from cb5.read import Reading, TermSpec, read
 from cb5.recall import recall
 from cb5.render import describe_node, render_answer, render_statement
 
@@ -135,8 +135,27 @@ class Session:
                 reports.append(self._ingest_sentence(parse, doc))
         return reports
 
+    def _learn_from_reading(self, reading: Reading) -> str | None:
+        """Definiční věty učí paměť místo aby se zapisovaly jako fakta — platí pro dialog
+        i pro vložený dokument (definice v textu je přesně to, co má text učit)."""
+        main = reading.main
+        if main.kernel == "definice_vztahu":
+            return self._learn_relation(reading)
+        if main.pred == "definice":
+            adj, prd, dr = main.role("jaký"), main.role("predikát"), main.role("směr")
+            if adj and prd and dr and adj.terms and prd.terms and dr.terms:
+                lemma, pred, direction = adj.terms[0].lemma, prd.terms[0].lemma, dr.terms[0].lemma
+                role = "kdy" if direction in ("earlier", "later") else "*"
+                return self._learn_comparative(lemma, pred, role, direction, reading.parse.text)
+        return None
+
     def _ingest_sentence(self, parse: Parse, doc: str) -> dict[str, object]:
         reading = self._read(parse, "assert")
+        learned = self._learn_from_reading(reading)
+        if learned is not None:
+            self.memory.tick()
+            return {"text": parse.text, "reading": str(reading.main), "statements": [], "residue": [], "open": [],
+                    "defaults": [], "learned": learned}
         prov = self._prov(doc, parse.text)
         g = ground(reading, self.memory, prov, "read", topic=self.topics.get(doc))
         self._update_topic(doc, g)
@@ -227,13 +246,10 @@ class Session:
             if is_denial:
                 self._last_said = []
                 return Answer("\n".join(lines) or "nemám co odvolat", revoked=revoked)
-        # DEFINICE srovnávacího slova: „Starší je ten, kdo se narodil dřív.“
-        if main.pred == "definice":
-            adj, prd, dr = main.role("jaký"), main.role("predikát"), main.role("směr")
-            if adj and prd and dr and adj.terms and prd.terms and dr.terms:
-                lemma, pred, direction = adj.terms[0].lemma, prd.terms[0].lemma, dr.terms[0].lemma
-                role = "kdy" if direction in ("earlier", "later") else "*"
-                return Answer(self._learn_comparative(lemma, pred, role, direction, reading.parse.text))
+        # DEFINICE (srovnávací slovo / vztahové jméno) — učí, nezapisuje fakt
+        learned = self._learn_from_reading(reading)
+        if learned is not None:
+            return Answer(learned)
         # „Ne každý pták.“ — oprava kvantifikátoru poslední věty
         if main.kind == "fragment" and reading.parse.text.lower().startswith("ne ") and main.role("téma"):
             return self._fix_quantifier(reading, doc)
@@ -280,6 +296,42 @@ class Session:
                         lines.append(f"   ↳ {step}")
             lines.append("   (nechávám obojí; otázky na to budou hlásit KONFLIKT — oprav `!zapomeň s…`, nebo zúž `!výjimka <predikát> <skupina> <výjimka>`)")
         return Answer("\n".join(lines), statements=[s.id for s in g.statements], revoked=revoked, open=g.open, conflict=conflict, reading=str(main))
+
+    def _learn_relation(self, reading: Reading) -> str:
+        """„Tchán je otec manžela nebo manželky.“ → rel_defs[tchán] = [[otec, manžel], [otec, manželka]].
+        Řetěz se čte zprava: tchán(X) = otec(manžel(X)). Hlouběji („syn vnuka“) se rozvine
+        rekurzivně při odpovědi. Zapisuje se i výrok kind=definice kvůli provenienci/replay."""
+        m = self.memory
+        main = reading.main
+        subj, obj = main.role("kdo"), main.role("co")
+        assert subj and obj and subj.terms
+        head = subj.terms[0].lemma
+        chains: list[list[str]] = []
+
+        def chain_of(t: TermSpec) -> list[list[str]]:
+            # t = otec⟨manžel⟩ (rel target may itself have rel: „syn vnuka“ je jednoduchý; „otec otce“ ok)
+            if t.rel is None:
+                return [[t.lemma]]
+            targets = [t.rel[1]] + list(t.rel_alts)
+            out: list[list[str]] = []
+            for tg in targets:
+                for sub in chain_of(tg):
+                    out.append([t.lemma] + sub)
+            return out
+
+        for t in obj.terms:
+            chains.extend(chain_of(t))
+        defs = m.learned.setdefault("rel_defs", {})
+        existing = defs.setdefault(head, [])
+        for ch in chains:
+            if ch not in existing:
+                existing.append(ch)
+        st = Statement("", "definice_vztahu", "definice", grade="said", prov=self._prov("dialog", reading.parse.text),
+                       roles=[Role("jaký", [m.ensure_group(head).id], "·", "structural")]
+                             + [Role("co", [m.ensure_group(c[0]).id], "·", "structural", surface="∘".join(c)) for c in chains],
+                       defaults=["definice vztahového jména: " + " | ".join("∘".join(c) for c in chains)])
+        m.attach(st)
+        return f"naučeno [{st.id}]: {head}(X) = " + " nebo ".join("(".join(c) + "(X" + ")" * len(c) for c in chains)
 
     def _learn_comparative(self, lemma: str, pred: str, role: str, direction: str, source: str) -> str:
         """Zapíše naučené srovnávací slovo do paměti (data, ne kód) a nechá o tom výrok kvůli provenienci."""

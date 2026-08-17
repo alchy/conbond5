@@ -183,3 +183,23 @@ Druh automobilu je Ford, Škoda, Mazda.
 Jaké druhy automobilu znáš?
 Jaké znáš automobily?
 Jaké znáš spisovatele?
+Tchán je otec manžela nebo manželky.
+Tchyně je matka manžela nebo manželky.
+Švagrová je sestra manžela nebo manželky.
+Děd je otec otce nebo matky.
+Teta je sestra otce nebo matky.
+Manželkou Petra Nováka je Jana Nováková.
+Karel Novák je otec Petra.
+Matkou Petra Nováka je Věra Nováková.
+Sestrou Petra Nováka je Lucie Nováková.
+Tomáš Novák je syn Petra.
+Petr Novák je otec Tomáše.
+Kdo je otec Petra Nováka?
+Kdo je tchán Jany Novákové?
+Kdo je tchyně Jany Novákové?
+Kdo je švagrová Jany Novákové?
+Kdo je teta Tomáše Nováka?
+Kdo je děd Tomáše Nováka?
+Je Karel Novák tchán Jany Novákové?
+Je Lucie Nováková teta Tomáše Nováka?
+Je Věra Nováková teta Tomáše Nováka?

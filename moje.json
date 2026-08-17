@@ -3,10 +3,10 @@
  "counters": {
   "e": 18,
   "t": 9,
-  "z": 43,
-  "s": 56,
-  "p": 2,
-  "g": 37,
+  "z": 47,
+  "s": 60,
+  "p": 3,
+  "g": 44,
   "o": 13
  },
  "nodes": [
@@ -1666,6 +1666,183 @@
    "number": null,
    "doc": "dialog",
    "text": "Druh automobilu je Ford, Škoda, Mazda.",
+   "rel": null
+  },
+  {
+   "id": "p0003",
+   "kind": "place",
+   "lemma": "Rakovník",
+   "names": [
+    "Rakovník",
+    "Rakovníku"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": "Masc",
+   "number": "Sing",
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "z0044",
+   "kind": "sentence",
+   "lemma": "dialog#1",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Pavla se narodila v Rakovníku.",
+   "rel": null
+  },
+  {
+   "id": "g0038",
+   "kind": "group",
+   "lemma": "vrtačka",
+   "names": [
+    "Vrtačka"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "cap",
+   "rel": null
+  },
+  {
+   "id": "g0039",
+   "kind": "group",
+   "lemma": "sklep",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "g0040",
+   "kind": "group",
+   "lemma": "polička",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "z0045",
+   "kind": "sentence",
+   "lemma": "dialog#2",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Vrtačka je ve sklepě na poličce.",
+   "rel": null
+  },
+  {
+   "id": "g0041",
+   "kind": "group",
+   "lemma": "prášek",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "g0042",
+   "kind": "group",
+   "lemma": "prášek",
+   "names": [],
+   "attrs": [
+    "prací"
+   ],
+   "base": "g0041",
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "g0043",
+   "kind": "group",
+   "lemma": "krabice",
+   "names": [
+    "Krabice"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "cap",
+   "rel": null
+  },
+  {
+   "id": "z0046",
+   "kind": "sentence",
+   "lemma": "dialog#3",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Prací prášek je v krabici.",
+   "rel": null
+  },
+  {
+   "id": "g0044",
+   "kind": "group",
+   "lemma": "koupelna",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "z0047",
+   "kind": "sentence",
+   "lemma": "dialog#4",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Krabice je v koupelně.",
    "rel": null
   }
  ],
@@ -4732,6 +4909,237 @@
    "sentence": "z0043",
    "tense": "Pres",
    "mood": "assert"
+  },
+  {
+   "id": "s0057",
+   "pred": "narodit_se",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "e0001"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "kde",
+     "terms": [
+      "p0003"
+     ],
+     "quant": "·",
+     "authority": "default",
+     "surface": "v+Loc",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 1,
+    "text": "Pavla se narodila v Rakovníku.",
+    "turn": 1,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0044",
+   "tense": "Past",
+   "mood": "assert"
+  },
+  {
+   "id": "s0058",
+   "pred": "být",
+   "kind": "copula",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0038"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "kde",
+     "terms": [
+      "g0039"
+     ],
+     "quant": "∃",
+     "authority": "default",
+     "surface": "v+Loc",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "kde",
+     "terms": [
+      "g0040"
+     ],
+     "quant": "∃",
+     "authority": "default",
+     "surface": "na+Loc",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "kdo:∀ generický prézens"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 2,
+    "text": "Vrtačka je ve sklepě na poličce.",
+    "turn": 4,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0045",
+   "tense": "Pres",
+   "mood": "assert"
+  },
+  {
+   "id": "s0059",
+   "pred": "být",
+   "kind": "copula",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0042"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "kde",
+     "terms": [
+      "g0043"
+     ],
+     "quant": "∃",
+     "authority": "default",
+     "surface": "v+Loc",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "kdo:∀ generický prézens"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 3,
+    "text": "Prací prášek je v krabici.",
+    "turn": 6,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0046",
+   "tense": "Pres",
+   "mood": "assert"
+  },
+  {
+   "id": "s0060",
+   "pred": "být",
+   "kind": "copula",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0043"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "kde",
+     "terms": [
+      "g0044"
+     ],
+     "quant": "∃",
+     "authority": "default",
+     "surface": "v+Loc",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "kdo:∀ generický prézens"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 4,
+    "text": "Krabice je v koupelně.",
+    "turn": 7,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0047",
+   "tense": "Pres",
+   "mood": "assert"
   }
  ],
  "open": [
@@ -4968,6 +5376,11 @@
   [
    "e0001",
    "p0001",
+   1.0
+  ],
+  [
+   "e0001",
+   "p0003",
    1.0
   ],
   [
@@ -5246,20 +5659,44 @@
    1.0
   ],
   [
+   "g0038",
+   "g0039",
+   1.0
+  ],
+  [
+   "g0038",
+   "g0040",
+   1.0
+  ],
+  [
+   "g0039",
+   "g0040",
+   1.0
+  ],
+  [
+   "g0042",
+   "g0043",
+   1.0
+  ],
+  [
+   "g0043",
+   "g0044",
+   1.0
+  ],
+  [
    "p0001",
    "t0004",
    1.0
   ]
  ],
  "activation": {
-  "e0015": 0.29375999999999997,
-  "e0016": 0.29375999999999997,
-  "e0017": 0.07776,
-  "e0018": 0.2808,
-  "g0018": 0.28993916360187305,
-  "g0026": 0.017718371126640372,
-  "g0035": 0.027993599999999997,
-  "g0037": 0.32399999999999995,
-  "p0002": 0.3
+  "e0001": 0.03751142399999999,
+  "g0038": 0.10886399999999999,
+  "g0039": 0.046655999999999996,
+  "g0040": 0.046655999999999996,
+  "g0042": 0.3744,
+  "g0043": 0.7535999999999999,
+  "g0044": 0.216,
+  "p0003": 0.010077695999999999
  }
 }

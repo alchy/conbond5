@@ -215,3 +215,28 @@ def test_meta_questions_and_enumeration_by_names(s: Session) -> None:
     assert "jestli je to všechno, nevím" in z.text
     s.say("Hrabal je spisovatel.")
     assert s.memory.label(s.say("Jaké znáš spisovatele?").verdict.fillers[0][0]) == "Hrabal"  # type: ignore[union-attr]
+
+
+def test_relational_definitions_from_text(s: Session) -> None:
+    """„Tchán je otec manžela nebo manželky.“ je definice, ne fakt — a odpovídá se z ní."""
+    for t in ("Tchán je otec manžela nebo manželky.", "Tchyně je matka manžela nebo manželky.",
+              "Švagrová je sestra manžela nebo manželky.", "Děd je otec otce nebo matky.", "Teta je sestra otce nebo matky."):
+        assert s.say(t).text.startswith("naučeno")
+    assert s.memory.learned["rel_defs"]["tchán"] == [["otec", "manžel"], ["otec", "manželka"]]
+    for t in ("Manželkou Petra Nováka je Jana Nováková.", "Karel Novák je otec Petra.", "Matkou Petra Nováka je Věra Nováková.",
+              "Sestrou Petra Nováka je Lucie Nováková.", "Tomáš Novák je syn Petra.", "Petr Novák je otec Tomáše."):
+        s.say(t)
+    def who(q: str) -> list[str]:
+        a = s.say(q)
+        return [s.memory.label(t) for t, _ in a.verdict.fillers] if a.verdict else []
+    assert who("Kdo je otec Petra Nováka?") == ["Karel Novák"]
+    assert who("Kdo je tchán Jany Novákové?") == ["Karel Novák"]
+    assert who("Kdo je tchyně Jany Novákové?") == ["Věra Nováková"]
+    assert who("Kdo je švagrová Jany Novákové?") == ["Lucie Nováková"]
+    assert who("Kdo je teta Tomáše Nováka?") == ["Lucie Nováková"]
+    assert who("Kdo je děd Tomáše Nováka?") == ["Karel Novák"]
+    a = s.say("Je Karel Novák tchán Jany Novákové?")
+    assert a.verdict is not None and a.verdict.value == "ANO" and "naučená definice" in a.text and "inverze" in a.text
+    assert s.say("Je Věra Nováková teta Tomáše Nováka?").verdict.value == "NEVÍM"  # type: ignore[union-attr]
+    # identita: Věra ≠ Jana, i když obě „Nováková“
+    assert len(s.memory.find_entity(["Věra", "Nováková"])) == 1 and s.memory.find_entity(["Věra", "Nováková"])[0] is not s.memory.find_entity(["Jana", "Nováková"])[0]

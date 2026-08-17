@@ -173,6 +173,11 @@ def classify_miss(session: Session, q: str, verdict: object) -> str:
     return "bez výroku"
 
 
+#: Sdílená znalost k dokumentu (conBond2 ji měl v jedné bázi): definice pojmů, které
+#: otázky k dokumentu předpokládají. Vypisuje se — není to skrytá nápověda.
+SHARED: dict[str, tuple[str, ...]] = {"rodina_novákovi": ("vztahy_příbuzenské",)}
+
+
 def run_doc(doc: str, corpus: Path, oracle: CachedOracle, strop: int) -> dict[str, Any]:
     text = (corpus / "data" / "raw" / f"{doc}.txt").read_text(encoding="utf-8")
     lines = [l for l in text.splitlines() if l.strip()]
@@ -180,6 +185,11 @@ def run_doc(doc: str, corpus: Path, oracle: CachedOracle, strop: int) -> dict[st
         lines = lines[:strop]
     session = Session(Memory(), oracle)
     t0 = time.time()
+    for shared in SHARED.get(doc, ()):
+        sp = corpus / "data" / "raw" / f"{shared}.txt"
+        if sp.exists():
+            session.ingest(sp.read_text(encoding="utf-8"), shared)
+            print(f"   + sdílená znalost: {shared}", file=sys.stderr)
     reports = session.ingest("\n".join(lines), doc)
     t_ingest = time.time() - t0
     n_sent = len(reports)
