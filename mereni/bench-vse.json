@@ -426,7 +426,7 @@
     "reading": "pracovat(jako:?, kdo:·Alois Jirásek)"
    }
   ],
-  "t_ingest": 0.4,
+  "t_ingest": 0.3,
   "t_ask": 0.1
  },
  {
@@ -434,7 +434,7 @@
   "sentences": 232,
   "written": 232,
   "with_role": 232,
-  "statements": 620,
+  "statements": 616,
   "residue_tokens": 257,
   "tokens": 3385,
   "open": 171,
@@ -495,7 +495,7 @@
   "sentences": 205,
   "written": 205,
   "with_role": 205,
-  "statements": 659,
+  "statements": 657,
   "residue_tokens": 193,
   "tokens": 2728,
   "open": 155,
@@ -1212,7 +1212,7 @@
   "sentences": 925,
   "written": 925,
   "with_role": 922,
-  "statements": 2851,
+  "statements": 2847,
   "residue_tokens": 1092,
   "tokens": 12665,
   "open": 642,
@@ -1600,7 +1600,7 @@
     "reading": "narodit_se(kde:?, kdo:·Božena Němcová)"
    }
   ],
-  "t_ingest": 1.8,
+  "t_ingest": 1.6,
   "t_ask": 0.3
  },
  {
@@ -1767,7 +1767,7 @@
   "sentences": 213,
   "written": 213,
   "with_role": 213,
-  "statements": 859,
+  "statements": 855,
   "residue_tokens": 345,
   "tokens": 4031,
   "open": 214,
@@ -2051,7 +2051,7 @@
   "sentences": 564,
   "written": 564,
   "with_role": 490,
-  "statements": 1094,
+  "statements": 1082,
   "residue_tokens": 385,
   "tokens": 4659,
   "open": 401,
@@ -2594,7 +2594,7 @@
   "sentences": 141,
   "written": 141,
   "with_role": 141,
-  "statements": 359,
+  "statements": 358,
   "residue_tokens": 108,
   "tokens": 1598,
   "open": 81,
@@ -3085,7 +3085,7 @@
   "sentences": 296,
   "written": 296,
   "with_role": 295,
-  "statements": 828,
+  "statements": 827,
   "residue_tokens": 193,
   "tokens": 2842,
   "open": 169,
@@ -3328,7 +3328,7 @@
     "reading": "publikovat(kdy:?, kdo:·Jan Neruda)"
    }
   ],
-  "t_ingest": 0.3,
+  "t_ingest": 0.2,
   "t_ask": 0.1
  },
  {
@@ -3336,7 +3336,7 @@
   "sentences": 366,
   "written": 366,
   "with_role": 363,
-  "statements": 1045,
+  "statements": 1043,
   "residue_tokens": 394,
   "tokens": 4599,
   "open": 280,
@@ -4317,8 +4317,8 @@
     "reading": "lež(kdy:?, kdo:·Jaroslav Seifert)"
    }
   ],
-  "t_ingest": 0.2,
-  "t_ask": 0.1
+  "t_ingest": 0.3,
+  "t_ask": 0.2
  },
  {
   "doc": "jaroslav_vrchlický",
@@ -4617,7 +4617,7 @@
     "reading": "zemřít(kdy:?, kdo:·Jaroslav Vrchlický)"
    }
   ],
-  "t_ingest": 0.3,
+  "t_ingest": 0.5,
   "t_ask": 0.1
  },
  {
@@ -4843,7 +4843,7 @@
   "sentences": 333,
   "written": 333,
   "with_role": 333,
-  "statements": 868,
+  "statements": 867,
   "residue_tokens": 439,
   "tokens": 3739,
   "open": 208,
@@ -5326,7 +5326,7 @@
     "reading": "oženit_se(s_kým:?, kdo:·Josef Čapek)"
    }
   ],
-  "t_ingest": 0.7,
+  "t_ingest": 0.8,
   "t_ask": 0.1
  },
  {
@@ -5696,15 +5696,15 @@
     "reading": "oženit_se(s_kým:?, kdo:·Josef Škvorecký)"
    }
   ],
-  "t_ingest": 0.1,
-  "t_ask": 0.0
+  "t_ingest": 0.2,
+  "t_ask": 0.1
  },
  {
   "doc": "julius_zeyer",
   "sentences": 302,
   "written": 302,
   "with_role": 301,
-  "statements": 945,
+  "statements": 944,
   "residue_tokens": 266,
   "tokens": 3712,
   "open": 217,
@@ -6042,7 +6042,7 @@
     "reading": "procházet(kde:?, kdo:·Julius Zeyer)"
    }
   ],
-  "t_ingest": 0.3,
+  "t_ingest": 0.4,
   "t_ask": 0.1
  },
  {
@@ -6474,7 +6474,7 @@
     "reading": "navrhnout(kdy:?, co:·Karel Havlíček Borovský)"
    }
   ],
-  "t_ingest": 0.2,
+  "t_ingest": 0.3,
   "t_ask": 0.1
  },
  {
@@ -6994,7 +6994,7 @@
     "reading": "pracovat(kdy:?, co:·Karel Hynek Mácha)"
    }
   ],
-  "t_ingest": 0.3,
+  "t_ingest": 0.4,
   "t_ask": 0.1
  },
  {
@@ -7275,7 +7275,7 @@
   "sentences": 168,
   "written": 168,
   "with_role": 168,
-  "statements": 455,
+  "statements": 454,
   "residue_tokens": 153,
   "tokens": 1823,
   "open": 118,
@@ -7491,7 +7491,7 @@
   "sentences": 522,
   "written": 522,
   "with_role": 521,
-  "statements": 1313,
+  "statements": 1309,
   "residue_tokens": 470,
   "tokens": 4838,
   "open": 344,
@@ -7868,7 +7868,7 @@
   "sentences": 447,
   "written": 447,
   "with_role": 447,
-  "statements": 1167,
+  "statements": 1160,
   "residue_tokens": 318,
   "tokens": 5857,
   "open": 306,
@@ -7938,7 +7938,7 @@
     "reading": "mít(co:?count:∃zub, kdo:∀chrup⟨kočka⟩[trvalý])"
    }
   ],
-  "t_ingest": 0.3,
+  "t_ingest": 0.2,
   "t_ask": 0.0
  },
  {
@@ -7946,7 +7946,7 @@
   "sentences": 315,
   "written": 315,
   "with_role": 315,
-  "statements": 738,
+  "statements": 735,
   "residue_tokens": 426,
   "tokens": 4031,
   "open": 227,
@@ -7979,7 +7979,7 @@
   "sentences": 159,
   "written": 159,
   "with_role": 159,
-  "statements": 565,
+  "statements": 564,
   "residue_tokens": 120,
   "tokens": 2356,
   "open": 123,
@@ -8311,7 +8311,7 @@
   "sentences": 359,
   "written": 359,
   "with_role": 357,
-  "statements": 1041,
+  "statements": 1039,
   "residue_tokens": 388,
   "tokens": 4486,
   "open": 293,
@@ -9070,7 +9070,7 @@
   "sentences": 653,
   "written": 653,
   "with_role": 652,
-  "statements": 1768,
+  "statements": 1749,
   "residue_tokens": 621,
   "tokens": 9569,
   "open": 527,
@@ -9135,7 +9135,8 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "vlk (obecný)"
+     "vlk (obecný)",
+     "příbuzný (blízký) pes (domácí)"
     ],
     "why": "",
     "reading": "být(kdo:∀příbuzný⟨pes⟩[blízký], co:?)"
@@ -9194,14 +9195,14 @@
    }
   ],
   "t_ingest": 0.4,
-  "t_ask": 0.1
+  "t_ask": 0.2
  },
  {
   "doc": "petr_bezruč",
   "sentences": 362,
   "written": 362,
   "with_role": 361,
-  "statements": 851,
+  "statements": 850,
   "residue_tokens": 297,
   "tokens": 3487,
   "open": 180,
@@ -9270,7 +9271,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "wikizdroj",
+     "Wikizdroj",
      "Opava"
     ],
     "why": "špatná výplň",
@@ -9286,7 +9287,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "wikizdroj",
+     "Wikizdroj",
      "Opava",
      "fakulta (filozofický) univerzita"
     ],
@@ -9303,7 +9304,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "wikizdroj",
+     "Wikizdroj",
      "Opava",
      "Koloredov",
      "apatie",
@@ -9337,7 +9338,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "wikizdroj",
+     "Wikizdroj",
      "Opava"
     ],
     "why": "špatná výplň",
@@ -9353,7 +9354,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "wikizdroj",
+     "Wikizdroj",
      "Opava",
      "Koloredov",
      "apatie",
@@ -9417,7 +9418,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "wikizdroj",
+     "Wikizdroj",
      "Opava",
      "Šmelcovna",
      "osada"
@@ -9665,7 +9666,7 @@
      "hora (vysoký) Česko"
     ],
     "why": "",
-    "reading": "být(kdo:·sněžka, co:?)"
+    "reading": "být(kdo:·Sněžka, co:?)"
    },
    {
     "q": "Kde leží Sněžka?",
@@ -9914,7 +9915,7 @@
   "sentences": 988,
   "written": 988,
   "with_role": 988,
-  "statements": 2604,
+  "statements": 2583,
   "residue_tokens": 979,
   "tokens": 14254,
   "open": 913,
@@ -9939,7 +9940,7 @@
     "reading": "ležet(kde:?, kdo:·Ol Doinyo Lengai)"
    }
   ],
-  "t_ingest": 1.4,
+  "t_ingest": 1.5,
   "t_ask": 0.0
  },
  {
@@ -9947,7 +9948,7 @@
   "sentences": 268,
   "written": 268,
   "with_role": 268,
-  "statements": 689,
+  "statements": 688,
   "residue_tokens": 267,
   "tokens": 2451,
   "open": 152,
@@ -9985,7 +9986,7 @@
     "fillers": [
      "Benešovsko",
      "Ostředek",
-     "jezero",
+     "Jezero",
      "Střížkov",
      "Postupice",
      "Liteň"
@@ -10081,7 +10082,6 @@
     "verdict": "ANO",
     "fillers": [
      "Obříství",
-     "obec",
      "vila"
     ],
     "why": "",
@@ -10117,7 +10117,7 @@
     "fillers": [
      "Benešovsko",
      "Ostředek",
-     "jezero",
+     "Jezero",
      "Střížkov",
      "Postupice",
      "Liteň"
@@ -10305,7 +10305,7 @@
   "sentences": 320,
   "written": 320,
   "with_role": 320,
-  "statements": 846,
+  "statements": 845,
   "residue_tokens": 295,
   "tokens": 3391,
   "open": 204,
@@ -10746,7 +10746,7 @@
   "sentences": 563,
   "written": 563,
   "with_role": 563,
-  "statements": 1821,
+  "statements": 1819,
   "residue_tokens": 379,
   "tokens": 8252,
   "open": 415,
@@ -11807,7 +11807,7 @@
    }
   ],
   "t_ingest": 0.9,
-  "t_ask": 0.5
+  "t_ask": 0.6
  },
  {
   "doc": "vítězslav_hálek",
@@ -11952,7 +11952,7 @@
     "verdict": "ANO",
     "fillers": [
      "Zbraslav",
-     "závist",
+     "Závist",
      "domek",
      "dům"
     ],
@@ -12430,7 +12430,7 @@
   "sentences": 379,
   "written": 379,
   "with_role": 378,
-  "statements": 859,
+  "statements": 846,
   "residue_tokens": 257,
   "tokens": 4231,
   "open": 311,
@@ -12464,7 +12464,7 @@
   "sentences": 411,
   "written": 411,
   "with_role": 410,
-  "statements": 1268,
+  "statements": 1263,
   "residue_tokens": 508,
   "tokens": 6821,
   "open": 339,
@@ -12504,7 +12504,7 @@
     "reading": "vyhrát(kdy:?, kdo:·Deep Blue, co:∃zápas)"
    }
   ],
-  "t_ingest": 0.3,
+  "t_ingest": 0.7,
   "t_ask": 0.0
  }
 ]

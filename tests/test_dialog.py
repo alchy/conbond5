@@ -451,3 +451,17 @@ def test_subset_carries_over_relational_target(s: Session) -> None:
     assert a.verdict is not None and a.verdict.value == "ANO" and "přenáší se na ⟨Jana⟩" in a.text
     b = s.say("Kdo je rodič Jany?")
     assert b.verdict is not None and s.memory.label(b.verdict.fillers[0][0]) == "Petr"
+
+
+def test_restrictive_relative_on_generic_subject_is_rule(s: Session) -> None:
+    """„Každý pes, který štěká, je hlídač.“ = pravidlo (X ∈ pes ∧ štěká(X) ⇒ hlídač(X)), ne tvrzení „pes štěká“."""
+    s.say("Každý pes, který štěká, je hlídač.")
+    s.say("Rex je pes.")
+    s.say("Rex štěká.")
+    s.say("Alík je pes.")
+    assert s.say("Je Rex hlídač?").verdict.value == "ANO"  # type: ignore[union-attr]
+    assert s.say("Štěká každý pes?").verdict.value == "NEVÍM"  # type: ignore[union-attr]
+    a = s.say("Je Alík hlídač?")
+    assert a.verdict is not None and a.verdict.value == "NEVÍM" and "platí jen pod podmínkou: štěkat(kdo:·Alík)" in a.text and "šablona" not in a.text
+    b = s.say("Kdo je hlídač?")
+    assert [s.memory.label(t) for t, _ in b.verdict.fillers] == ["Rex"]  # type: ignore[union-attr]

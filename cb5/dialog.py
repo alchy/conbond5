@@ -246,7 +246,8 @@ class Session:
         m.tick()
         text = f"čtu: {reading.main}\n" + render_answer(m, verdict, wh=wh, recalled=recalled)
         self._pending = None
-        if verdict.value == "NEVÍM":
+        if verdict.value == "NEVÍM" and not any("platí jen pod podmínkou" in x for x in verdict.missing):
+            # když už víme, co chybí (nesplněná podmínka pravidla), šablonu nenabízet
             navrh = sablony.navrhni(m, q, verdict, reading.parse.text)
             if navrh is not None:
                 self._pending = navrh

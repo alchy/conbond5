@@ -31,6 +31,13 @@ from cb5.oracle import Parse, Token
 Quant = Literal["∀", "∃", "·"]
 Kind = Literal["entity", "group", "place", "time", "value", "pron", "wh", "var"]
 
+
+def _name_lemma(tok: Token) -> str:
+    """Lemma vlastního jména s velkým písmenem podle tvaru („Alík“ má v UDPipe lemma „alík“)."""
+    if tok.upos == "PROPN" and tok.form[:1].isupper() and tok.lemma[:1].islower():
+        return tok.lemma[:1].upper() + tok.lemma[1:]
+    return tok.lemma
+
 #: Deprely, které nesou strukturu, ne obsah — pohltí je jejich hlava.
 STRUCTURAL = frozenset(
     {"aux", "aux:pass", "cop", "cc", "cc:preconj", "mark", "case", "det", "det:numgov",
@@ -813,7 +820,7 @@ class _Reader:
         self._mark_structure(t.index, where)
         forms = [t.form]
         name_tokens = [t.index]
-        name_lemmas = [t.lemma]
+        name_lemmas = [_name_lemma(t)]
         attrs: list[str] = []
         count: int | None = None
         count_hi: int | None = None
@@ -840,13 +847,13 @@ class _Reader:
                     titled.append(f.index)
                 forms.append(f.form)
                 name_tokens.append(f.index)
-                name_lemmas.append(f.lemma)
+                name_lemmas.append(_name_lemma(f))
                 consumed.append(f.index)
                 for g in self.p.children(f.index):
                     if g.base_deprel == "flat":  # „Deep Blue“, „Ol Doinyo Lengai“ — flat pod nmod jménem
                         forms.append(g.form)
                         name_tokens.append(g.index)
-                        name_lemmas.append(g.lemma)
+                        name_lemmas.append(_name_lemma(g))
                         consumed.append(g.index)
                         self.mark(g.index, where)
                 self.mark(f.index, where)
@@ -969,7 +976,7 @@ class _Reader:
             kind = "entity"
             quant, qauth = quant or "·", qauth or "structural"
             name_tokens = [i for i in name_tokens if i != t.index]
-            name_lemmas = [self.p.token(i).lemma for i in name_tokens]
+            name_lemmas = [_name_lemma(self.p.token(i)) for i in name_tokens]
             forms = [self.p.token(i).form for i in name_tokens]
             geo = any(self.p.token(i).feat("NameType") == "Geo" for i in name_tokens)
             if geo or t.lemma in D.PLACE_NOUNS:
@@ -1453,10 +1460,45 @@ class Reader(_Reader):
                 main.roles.append(RoleFill("podmínka", "acl", nested=cond, authority="default"))
                 main.defaults.append("pravidlo z věty: každý, kdo … (podmínka)")
                 continue
+            generic = self._generic_relative(main, head, dep)
+            if generic is not None:
+                # „Každý pes, který štěká, je hlídač.“: omezovací vztažná věta u obecného podmětu =
+                # pravidlo: X ∈ pes ∧ štěkat(X) ⇒ hlídač(X) — ne tvrzení „pes štěká“
+                role, term = generic
+                var = TermSpec(head.index, "X", (head.form,), head.upos, "var", quant="·", quant_authority="structural", tokens=(head.index,))
+                role.terms[role.terms.index(term)] = var
+                cls = Predication(pred="být", kind="copula", kernel="member", head=head.index)
+                cls.roles.append(RoleFill("kdo", "var", [var], "structural"))
+                cls.roles.append(RoleFill("co", "acl", [TermSpec(head.index, term.lemma, term.forms, head.upos, "group", attrs=term.attrs, quant="∃", quant_authority="structural", tokens=(head.index,), name_lemmas=term.name_lemmas, rel=term.rel)], "structural"))
+                cls.embedded = "podmínka"
+                cond = self._acl(head, dep, head_term=var)
+                cond.embedded = "podmínka"
+                main.roles.append(RoleFill("podmínka", "acl", nested=cls, authority="default"))
+                main.roles.append(RoleFill("podmínka", "acl", nested=cond, authority="default"))
+                main.defaults.append(f"pravidlo z věty: každý {term.lemma}, který … (podmínka: třída + vztažná věta)")
+                if main.kernel == "subset":
+                    main.kernel = "member"  # podmět je teď proměnná (prvek), ne třída
+                var_heads.add(head.index)
+                continue
             for sec in self._secondary_from(head, dep, main):
                 main.secondary.append(sec)
         self._sweep()
         return Reading(parse=self.p, main=main, residue=self.residue, _placement=self.place)
+
+    def _generic_relative(self, main: Predication, head: Token, dep: Token) -> tuple[RoleFill, TermSpec] | None:
+        """Omezovací vztažná věta u OBECNÉHO (∀) podmětu hlavní věty: vrací (role, term), jinak None."""
+        if dep.base_deprel != "acl":
+            return None
+        relative = dep.deprel == "acl:relcl" or any("Rel" in (c.feat("PronType") or "") for c in self.p.subtree(dep.index) if c.upos in ("PRON", "DET"))
+        if not relative:
+            return None
+        for r in main.roles:
+            if r.name != "kdo":
+                continue
+            for t in r.terms:
+                if t.head == head.index and t.kind == "group" and t.quant == "∀":
+                    return r, t
+        return None
 
     def _free_relative(self, main: Predication) -> None:
         """„Kdo jede po dálnici, (ten) jede rychle.“: podmětová věta se vztažným kdo/co →
@@ -1501,7 +1543,7 @@ class Reader(_Reader):
         """Term hlavy pro vedlejší predikaci — bez opětovného pohlcení dětí."""
         flats = [f for f in self.p.children(head.index) if f.base_deprel == "flat"]
         forms = [head.form] + [f.form for f in flats]
-        lemmas = tuple([head.lemma] + [f.lemma for f in flats])
+        lemmas = tuple([_name_lemma(head)] + [_name_lemma(f) for f in flats])
         kind: Kind = "entity" if head.upos in ("PROPN",) or (head.upos == "X" and head.form[:1].isupper()) else "group"
         if head.upos == "PROPN" and head.feat("NameType") == "Geo":
             kind = "place"
@@ -1591,7 +1633,7 @@ class Reader(_Reader):
             out.append(p)
         return out
 
-    def _acl(self, head: Token, dep: Token) -> Predication:
+    def _acl(self, head: Token, dep: Token, head_term: TermSpec | None = None) -> Predication:
         """Vztažná / participiální věta o hlavě: hlava vyplní roli, kterou
         drží vztažné zájmeno (`který`), u participia patiens (`co`)."""
         for m in self.p.children(dep.index):
@@ -1601,7 +1643,7 @@ class Reader(_Reader):
             p = self._verb_or_cop(dep)
         else:
             p = self._participle(dep)
-        head_term = self._head_term(head)
+        head_term = head_term or self._head_term(head)
         # najdi vztažné zájmeno mezi rolemi
         placed = False
         for r in p.roles:

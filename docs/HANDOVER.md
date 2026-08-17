@@ -60,11 +60,11 @@ s proveniencí a dá se odvolat. Tak lze skládat modulární znalost: fakta z t
 | | conbond4 (16. 8.) | conbond5 |
 |---|---|---|
 | korpus conbond4 (238 vět) zapsáno | 8 | 233 s rolí, zbytek 5,6 % |
-| korpus conBond2 (14 354 vět) zapsáno | — | 14 354 (38 626 výroků, zbytek 8,3 %, 9 897 otevřených) |
+| korpus conBond2 (14 354 vět) zapsáno | — | 14 354 (38 513 výroků, zbytek 8,3 %, 9 897 otevřených) |
 | **ručně psané otázky (70)** | 0 | **60 (86 %)** — etalon 25/32, conbond 35/38 |
 | generované otázky (682, proxy) | 0 | 440 (65 %); 578 má odpověď v textu |
 | dialogy A–F ze zadání conbond4 | — | zelené; dialog A vč. „nejvýše 130 km/h“ (výchozí můstek) |
-| testy / typy | — | 109 pytest, mypy čistý |
+| testy / typy | — | 110 pytest, mypy čistý |
 
 Zbývající ruční chyby (etalon): „Kolik procent je Antarktida větší než
 Evropa?“ (procenta + komparativ), „Jaká je nejnižší naměřená teplota na
@@ -117,8 +117,10 @@ větě), „Na kolika polích…“ (šachovnice ∈ deska rozdělená na 64 pol
    i „před/po“, porovnání s tolerancí, víc veličin najednou), další moduly v repu
    (`moduly/pribuzenstvi.txt`); `--vazby soubor` při startu (chat i viewbase_app) už je.
 1. **Pravidla z věty** — hotovo pro „Kdo …, ten …“, „Každý, kdo …“, „Pokud někdo …“,
-   „X, pokud Y“, „Když Y, X“ (podmínka + proměnná; obojí v paměti jako výroky, podmínka
-   `embedded`). Dál: „Kdo jede po dálnici, jede nejvýše maximální rychlostí dálnice.“
+   „X, pokud Y“, „Když Y, X“, **„Každý pes, který štěká, je hlídač“** (omezovací vztažná věta
+   u obecného podmětu = dvě podmínky: X ∈ pes ∧ štěká(X); „Štěká každý pes?“ → NEVÍM, ne ANO)
+   (podmínka + proměnná; obojí v paměti jako výroky, podmínka `embedded`; víc podmínek se
+   ověřuje všechny, výčet „Kdo je hlídač?“ jde z první podmínky a ostatní u kandidáta ověří). Dál: „Kdo jede po dálnici, jede nejvýše maximální rychlostí dálnice.“
    (podmínka + hodnota s komparátorem), víc proměnných najednou („Kdo koho …“), „ten“ jako
    podmět bez vztažné věty, podmínky s časem („dokud“, „než“) — dnes jen `embedded`.
 2. Otázka nemá zakládat uzly: „Kdo je Karel Čapek?“ dnes vytvoří entitu bez výroků

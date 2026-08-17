@@ -281,3 +281,11 @@ Otec je rodič.
 Petr je otec Jany.
 Je Petr rodič Jany?
 Kdo je rodič Jany?
+Každý pes, který štěká, je hlídač.
+Rex je pes.
+Rex štěká.
+Je Rex hlídač?
+Štěká každý pes?
+Alík je pes.
+Je Alík hlídač?
+Kdo je hlídač?

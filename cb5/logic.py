@@ -243,23 +243,27 @@ class Evaluator:
         """Výrok s rolí `podmínka` platí, jen když podmínka (vložený výrok) plyne z paměti.
         Splněná podmínka → důkaz je odvozený a nese i její důkaz; nesplněná → výrok se
         nepočítá a odpověď o tom řekne („platí, pokud …“)."""
-        cond = f.role("podmínka")
-        if cond is None or cond.nested is None:
+        conds = [r for r in f.roles if r.name == "podmínka" and r.nested]
+        if not conds:
             return proof
-        cs = self.m.statements.get(cond.nested)
-        if cs is None or depth > 3:
+        if depth > 3:
             return None
-        cq = self.cond_query(cs, dict(self._bind))
-        cv = self.evaluate(cq, depth=depth + 1)
-        if cv.value == "ANO":
+        bind = dict(self._bind)
+        for cond in conds:
+            cs = self.m.statements.get(cond.nested or "")
+            if cs is None:
+                return None
+            cq = self.cond_query(cs, bind)
+            cv = self.evaluate(cq, depth=depth + 1)
+            if cv.value != "ANO":
+                state = "neplatí" if cv.value == "NE" else "to nevím"
+                self.unmet.append(f"[{f.id}] platí jen pod podmínkou: {self.m.render_short(cq)} — {state}")
+                return None
             for cp in cv.proofs:
                 proof = proof.merged(cp)
             proof.steps.append(f"podmínka splněna: {self.m.render_short(cs)}")
-            proof.grade = weakest(proof.grade, "derived")
-            return proof
-        state = "neplatí" if cv.value == "NE" else "to nevím"
-        self.unmet.append(f"[{f.id}] platí jen pod podmínkou: {self.m.render_short(cq)} — {state}")
-        return None
+        proof.grade = weakest(proof.grade, "derived")
+        return proof
 
     def cond_query(self, cs: Statement, bind: dict[str, str], *, hole_var: str = "", hole: Role | None = None) -> Statement:
         """Podmínka jako dotaz: vázané proměnné dosazeny, `hole_var` jako díra, ostatní volné
@@ -846,24 +850,35 @@ class Evaluator:
                 fr = cands_r[0] if cands_r else fr
             if fr is not None and fr.var and f.role("podmínka") is not None and self._rule_depth < 3:
                 # díra na PROMĚNNÉ pravidla („Kdo bydlí v Česku?“ × „Každý, kdo bydlí v Praze, …“):
-                # výčet z podmínky s proměnnou jako dírou
-                cond = f.role("podmínka")
-                cs = m.statements.get(cond.nested or "") if cond else None
-                if cs is not None:
+                # výčet z první podmínky s proměnnou jako dírou, další podmínky se u každého kandidáta ověří
+                conds = [m.statements[r.nested] for r in f.roles if r.name == "podmínka" and r.nested in m.statements]
+                if conds:
                     bind = {k: v for k, v in self._bind.items() if k != fr.var}
-                    cq = self.cond_query(cs, bind, hole_var=fr.var, hole=hole)
+                    cq = self.cond_query(conds[0], bind, hole_var=fr.var, hole=hole)
                     self._rule_depth += 1
                     try:
                         v2 = self.enumerate(cq)
-                    finally:
-                        self._rule_depth -= 1
-                    for t, cp in v2.fillers:
-                        if t not in seen:
-                            seen.add(t)
+                        for t, cp in v2.fillers:
+                            if t in seen or t.startswith("count:"):
+                                continue
                             p2 = Proof([f.id], [], list(f.defaults), f.grade).merged(cp)
+                            ok = True
+                            for cs in conds[1:]:
+                                cv = self.evaluate(self.cond_query(cs, {**bind, fr.var: t}), depth=1)
+                                if cv.value != "ANO":
+                                    ok = False
+                                    break
+                                for cpp in cv.proofs:
+                                    p2 = p2.merged(cpp)
+                                p2.steps.append(f"podmínka splněna: {m.render_short(cs)}")
+                            if not ok:
+                                continue
+                            seen.add(t)
                             p2.steps.append(f"pravidlo z věty [{f.id}]: {fr.var} := {m.label(t) if t in m.nodes else t}")
                             p2.grade = weakest(p2.grade, "derived")
                             fillers.append((t, p2))
+                    finally:
+                        self._rule_depth -= 1
                 continue
             if fr is None or (not fr.terms and not fr.nested):
                 # díra bez výplně ve výroku: dotaz na roli, kterou výrok nemá
@@ -1151,6 +1166,20 @@ class Evaluator:
                 if g not in seen and not path[0].startswith("restricts:"):
                     seen.add(g)
                     below.append((g, Proof(path, [f"{m.label(g)} ⊆ {m.label(node_id)} (podřazená třída, ne definice)"], [], self._grade_of(path))))
+            # prvky přes pravidla s proměnnou: „Každý pes, který štěká, je hlídač.“ → kdo je hlídač = kdo splní podmínky
+            if any(st.role("kdo") is not None and st.role("kdo").var and st.kernel in ("member", "subset")  # type: ignore[union-attr]
+                   and any(node_id in r.terms for r in st.roles if r.name == "co") for st in m.active()) and self._rule_depth < 3:
+                rq = Statement("", "být", "copula", kernel="member", mood="question",
+                               roles=[Role("kdo", [], None, "hole", "", wh=True, wh_kind="filler"), Role("co", [node_id], "∃", "structural")])
+                self._rule_depth += 1
+                try:
+                    rv = self.enumerate(rq)
+                finally:
+                    self._rule_depth -= 1
+                for e, pr in rv.fillers:
+                    if e not in seen and e in m.nodes and m.nodes[e].kind != "group":
+                        seen.add(e)
+                        below.append((e, pr))
             if node.rel and node.rel.startswith("Gen:") and (not below or all(m.nodes[x].kind == "group" for x, _ in below if x in m.nodes)):
                 # „Kdo je tchán Jany Novákové?“ — nic přímého (nebo jen podtřídy) → inverze, naučené definice, užší vztahová jména
                 for e, pr in self.rel_members(node.lemma, node.rel.split(":", 1)[1]):
