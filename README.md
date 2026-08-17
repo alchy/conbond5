@@ -101,10 +101,10 @@ běh trvá vteřiny; bible z ručních sad v korpusu není (vypíše se).
 | | conbond4 (16. 8.) | conbond5 v1 (17. 8.) |
 |---|---|---|
 | korpus conbond4 (238 vět): zapsáno | 8 | **233 s rolí**, zbytek 5,6 % tokenů |
-| korpus conBond2 (73 dok., 14 354 vět): zapsáno | — | **14 354** (40 590 výroků, zbytek 8,6 % tokenů, 12 063 otevřených položek) |
-| **ručně psané otázky (70): správně** | 0 | **46 (66 %)** — etalon 19/32, conbond 27/38; 57 má odpověď aspoň v „vím: …“; u `mode=unsure` je správně NEVÍM (jednou odpověděl navíc: „S kým se oženil Hrabal?“ → Eliška Plevová — pravdivě) |
-| generované otázky (682): správná výplň | 0 | 421 (62 %); 577 v textu odpovědi |
-| rozklad chyb (všech 752) | — | role/logika 117 · špatná výplň 114 · bez výroku 45 · entita neznámá 7 · predikát chybí 1 · odpověděl navíc 1 |
+| korpus conBond2 (73 dok., 14 354 vět): zapsáno | — | **14 354** (38 639 výroků, zbytek 8,6 % tokenů, 10 350 otevřených položek) |
+| **ručně psané otázky (70): správně** | 0 | **54 (77 %)** — etalon 20/32, conbond 34/38; 67 má odpověď aspoň v „vím: …“; u `mode=unsure` je správně NEVÍM (jednou odpověděl navíc: „S kým se oženil Hrabal?“ → Eliška Plevová — pravdivě). Příbuzenské otázky (tchán, tchyně, švagrová, teta, děd) z **definic naučených textem** `vztahy_příbuzenské.txt` |
+| generované otázky (682): správná výplň | 0 | 434 (64 %); 581 v textu odpovědi |
+| rozklad chyb (všech 752) | — | viz `mereni/bench-vse.md` |
 | dialogy A–F ze zadání conbond4 | — | zelené (`tests/test_dialogues_af.py`) |
 | „Bydlí Petr v Brně?“ po „Petr bydlí v Praze.“ | ANO (nepravda) | NEVÍM + „vím: bydlí v Praze“ |
 
@@ -112,6 +112,14 @@ běh trvá vteřiny; bible z ručních sad v korpusu není (vypíše se).
 ~4 s. Poctivost zůstává: každá odpověď cituje větu a přiznává výchozí
 volby (∀ z generického prézentu, podmět z aktivace, „platí o užší třídě“,
 „role kam — ptal ses kde“…).
+
+## Co se učí z textu a dialogu (nad rámec v1)
+
+- **srovnávací slova**: „Delší je ten, kdo měří víc.“ / `!srovnání kratší = měřit co míň` → „Je Vltava delší než Labe?“ porovná hodnoty; osivo jen starší/mladší z narození
+- **vztahová jména**: „Tchán je otec manžela nebo manželky.“ → řetěz `tchán = otec∘manžel | otec∘manželka`; „Kdo je tchán Jany Novákové?“ se rozvine přes inverze (manželka↔manžel, otec/matka↔syn/dcera) s důkazem; věta zůstává i faktem (týž tvar má „Foton je částice světla“)
+- **genitiv zužuje třídu**: `otec⟨Petr Novák⟩ ⊆ otec`, `příbuzný⟨pes[domácí]⟩ ⊆ příbuzný⟨pes⟩`
+- **meta‑otázky**: „Co dělá/umí X?“ (děje s X podmětem), „Co víš o X?“, „Jaké X znáš?“ (výčet s doložkou otevřeného světa), „Kdo je starší, A nebo B?“
+- **hodnoty s jednotkou** („130 km/h“), věk („Kolik je Ronikovi let?“), obnova diakritiky z toho, co už četl (přiznaně), „nerozumím“ místo tichého fragmentu
 
 ## Meze v1 (řečené, ne mlčené)
 

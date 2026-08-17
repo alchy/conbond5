@@ -699,10 +699,9 @@ class Evaluator:
         # místo uvnitř výplně: „gymnázium v Broumově“ → nmod:v+Loc(gymnázium, Broumov);
         # „strana Československa“ → zúžení group místem. Běží i tehdy, když sourozenecká
         # role dala jen povrchové místo (radnice) — obojí se nabídne, s přiznáním.
-        weak_only = bool(fillers) and all(
-            pr.steps and pr.steps[-1].startswith("role „") and pr.steps[-1].split("„")[1].split("“")[0] in LOCATIVE_SURFACES
-            for _, pr in fillers
-        )
+        # dokud mezi výplněmi není skutečné MÍSTO (jen „radnice“, „chalupa“, „bitva“), hledej
+        # místo uvnitř výplně: „na radnici v Praze“, „na chalupě na Hrádečku“, „v bitvě u Zborova“
+        weak_only = bool(fillers) and not any(self._kind(t) == "place" for t, _ in fillers)
         if (not fillers or weak_only) and hole.name in PLACE_FAMILY and hole.wh_kind == "filler":
             for f, p in matched:
                 for r in f.roles:

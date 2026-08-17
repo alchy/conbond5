@@ -811,6 +811,13 @@ class _Reader:
         elif t.upos == "PROPN":
             kind = "place" if (t.feat("NameType") == "Geo" or self._filler_kind(t) == "place?") else "entity"
             quant, qauth = quant or "·", qauth or "structural"
+        elif (t.upos == "NOUN" and t.form[:1].isupper() and t.index > 1 and not is_time_noun(t.lemma) and not titled
+              and self.case_of(t.index) in D.PLACE_PREPS and t.feat("Case") in ("Loc", "Gen", "Acc", "Ins")):
+            # „v Hrádečku“, „u Náchoda“ — velké písmeno po místní předložce uprostřed věty = místo,
+            # i když parser slovo nezná (lemma malými písmeny)
+            kind = "place"
+            quant, qauth = quant or "·", qauth or "structural"
+            name_lemmas = [t.lemma[:1].upper() + t.lemma[1:]]
         elif t.upos == "NOUN" and t.form[:1].isupper() and t.lemma == t.form.lower() and t.index > 1 and not is_time_noun(t.lemma) and not titled:
             # velké písmeno uprostřed věty a lemma = tvar: parser slovo nezná → je to jméno
             kind = "entity"
