@@ -2,11 +2,11 @@
  "format": "conbond5-memory/1",
  "counters": {
   "e": 14,
-  "t": 8,
-  "z": 33,
-  "s": 43,
+  "t": 9,
+  "z": 41,
+  "s": 54,
   "p": 2,
-  "g": 25,
+  "g": 35,
   "o": 13
  },
  "nodes": [
@@ -1049,14 +1049,16 @@
    "id": "g0015",
    "kind": "group",
    "lemma": "silnice",
-   "names": [],
+   "names": [
+    "Silnice"
+   ],
    "attrs": [],
    "base": null,
    "time": null,
    "gender": null,
    "number": null,
    "doc": "",
-   "text": "",
+   "text": "cap",
    "rel": null
   },
   {
@@ -1259,6 +1261,289 @@
    "number": null,
    "doc": "dialog",
    "text": "Doprava používá silnici.",
+   "rel": null
+  },
+  {
+   "id": "z0034",
+   "kind": "sentence",
+   "lemma": "dialog#5",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Automobil jede.",
+   "rel": null
+  },
+  {
+   "id": "g0026",
+   "kind": "group",
+   "lemma": "jízda",
+   "names": [
+    "Jízda"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "cap",
+   "rel": null
+  },
+  {
+   "id": "z0035",
+   "kind": "sentence",
+   "lemma": "dialog#6",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Silnice umožňuje jízdu.",
+   "rel": null
+  },
+  {
+   "id": "z0036",
+   "kind": "sentence",
+   "lemma": "dialog#7",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Automobil jezdí po silnici i po dálnici.",
+   "rel": null
+  },
+  {
+   "id": "g0027",
+   "kind": "group",
+   "lemma": "rychlost",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "g0028",
+   "kind": "group",
+   "lemma": "rychlost",
+   "names": [],
+   "attrs": [
+    "maximální"
+   ],
+   "base": "g0027",
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "t0009",
+   "kind": "time",
+   "lemma": "130",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": {
+    "kind": "year",
+    "label": "130",
+    "start": [
+     130,
+     0,
+     0
+    ],
+    "end": [
+     130,
+     0,
+     0
+    ]
+   },
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "g0029",
+   "kind": "group",
+   "lemma": "130",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "g0030",
+   "kind": "group",
+   "lemma": "kilometr hodina",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "z0037",
+   "kind": "sentence",
+   "lemma": "dialog#8",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Maximální rychlost na dálnici je 130 km/ h.",
+   "rel": null
+  },
+  {
+   "id": "g0031",
+   "kind": "group",
+   "lemma": "rychle",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "z0038",
+   "kind": "sentence",
+   "lemma": "dialog#9",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Dálnice umožňuje jízdu.",
+   "rel": null
+  },
+  {
+   "id": "g0032",
+   "kind": "group",
+   "lemma": "pohyb",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "g0033",
+   "kind": "group",
+   "lemma": "způsob",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "g0034",
+   "kind": "group",
+   "lemma": "způsob",
+   "names": [],
+   "attrs": [],
+   "base": "g0033",
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": "Gen:g0032"
+  },
+  {
+   "id": "z0039",
+   "kind": "sentence",
+   "lemma": "dialog#10",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Jízda je způsob pohybu.",
+   "rel": null
+  },
+  {
+   "id": "z0040",
+   "kind": "sentence",
+   "lemma": "dialog#11",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Automobil umí jet, provádí jízdu.",
+   "rel": null
+  },
+  {
+   "id": "g0035",
+   "kind": "group",
+   "lemma": "motor",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "z0041",
+   "kind": "sentence",
+   "lemma": "dialog#12",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Automobil má motor.",
    "rel": null
   }
  ],
@@ -3632,6 +3917,582 @@
    "sentence": "z0033",
    "tense": "Pres",
    "mood": "assert"
+  },
+  {
+   "id": "s0044",
+   "pred": "jet",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0018"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "kdo:∀ generický prézens"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 5,
+    "text": "Automobil jede.",
+    "turn": 8,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0034",
+   "tense": "Pres",
+   "mood": "assert"
+  },
+  {
+   "id": "s0045",
+   "pred": "umožňovat",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0015"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "g0026"
+     ],
+     "quant": "∃",
+     "authority": "structural",
+     "surface": "obj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "kdo:∀ generický prézens"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 6,
+    "text": "Silnice umožňuje jízdu.",
+    "turn": 9,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0035",
+   "tense": "Pres",
+   "mood": "assert"
+  },
+  {
+   "id": "s0046",
+   "pred": "jezdit",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0018"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "kudy",
+     "terms": [
+      "g0015",
+      "g0014"
+     ],
+     "quant": "∃",
+     "authority": "default",
+     "surface": "po+Loc",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "koordinace:kudy:distribuce",
+    "kdo:∀ generický prézens"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 7,
+    "text": "Automobil jezdí po silnici i po dálnici.",
+    "turn": 14,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0036",
+   "tense": "Pres",
+   "mood": "assert"
+  },
+  {
+   "id": "s0047",
+   "pred": "být",
+   "kind": "copula",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0028"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "t0009"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "cop",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "kdo:∀ generický prézens"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 8,
+    "text": "Maximální rychlost na dálnici je 130 km/ h.",
+    "turn": 16,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0037",
+   "tense": "Pres",
+   "mood": "assert"
+  },
+  {
+   "id": "s0048",
+   "pred": "nmod:",
+   "kind": "nmod",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0029"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "head",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "g0030"
+     ],
+     "quant": "∃",
+     "authority": "surface",
+     "surface": "nmod:",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 8,
+    "text": "Maximální rychlost na dálnici je 130 km/ h.",
+    "turn": 16,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0037",
+   "tense": null,
+   "mood": "assert"
+  },
+  {
+   "id": "s0049",
+   "pred": "nmod:na+Loc",
+   "kind": "nmod",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0028"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "head",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "g0014"
+     ],
+     "quant": "∃",
+     "authority": "surface",
+     "surface": "nmod:na+Loc",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 8,
+    "text": "Maximální rychlost na dálnici je 130 km/ h.",
+    "turn": 16,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0037",
+   "tense": null,
+   "mood": "assert"
+  },
+  {
+   "id": "s0050",
+   "pred": "umožňovat",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0014"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "g0026"
+     ],
+     "quant": "∃",
+     "authority": "structural",
+     "surface": "obj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "kdo:∀ generický prézens"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 9,
+    "text": "Dálnice umožňuje jízdu.",
+    "turn": 18,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0038",
+   "tense": "Pres",
+   "mood": "assert"
+  },
+  {
+   "id": "s0051",
+   "pred": "být",
+   "kind": "copula",
+   "neg": false,
+   "modality": null,
+   "kernel": "subset",
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0026"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "g0034"
+     ],
+     "quant": "∃",
+     "authority": "structural",
+     "surface": "cop",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "kdo:∀ generický prézens",
+    "kernel:subset (obecný podmět)"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 10,
+    "text": "Jízda je způsob pohybu.",
+    "turn": 19,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0039",
+   "tense": "Pres",
+   "mood": "assert"
+  },
+  {
+   "id": "s0052",
+   "pred": "jet",
+   "kind": "verb",
+   "neg": false,
+   "modality": "možnost",
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0018"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "kdo:∀ generický prézens"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 11,
+    "text": "Automobil umí jet, provádí jízdu.",
+    "turn": 21,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0040",
+   "tense": "Pres",
+   "mood": "assert"
+  },
+  {
+   "id": "s0053",
+   "pred": "provádět",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0018"
+     ],
+     "quant": "∀",
+     "authority": "shared",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "g0026"
+     ],
+     "quant": "∃",
+     "authority": "structural",
+     "surface": "obj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 11,
+    "text": "Automobil umí jet, provádí jízdu.",
+    "turn": 21,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0040",
+   "tense": "Pres",
+   "mood": "assert"
+  },
+  {
+   "id": "s0054",
+   "pred": "mít",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0018"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "g0035"
+     ],
+     "quant": "∃",
+     "authority": "structural",
+     "surface": "obj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "kdo:∀ generický prézens"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 12,
+    "text": "Automobil má motor.",
+    "turn": 23,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0041",
+   "tense": "Pres",
+   "mood": "assert"
   }
  ],
  "open": [
@@ -4003,6 +4864,21 @@
   [
    "g0014",
    "g0015",
+   2.0
+  ],
+  [
+   "g0014",
+   "g0018",
+   1.0
+  ],
+  [
+   "g0014",
+   "g0026",
+   1.0
+  ],
+  [
+   "g0014",
+   "g0028",
    1.0
   ],
   [
@@ -4012,7 +4888,17 @@
   ],
   [
    "g0015",
+   "g0018",
+   1.0
+  ],
+  [
+   "g0015",
    "g0025",
+   1.0
+  ],
+  [
+   "g0015",
+   "g0026",
    1.0
   ],
   [
@@ -4028,6 +4914,16 @@
   [
    "g0018",
    "g0024",
+   1.0
+  ],
+  [
+   "g0018",
+   "g0026",
+   1.0
+  ],
+  [
+   "g0018",
+   "g0035",
    1.0
   ],
   [
@@ -4041,24 +4937,35 @@
    1.0
   ],
   [
+   "g0026",
+   "g0034",
+   1.0
+  ],
+  [
+   "g0028",
+   "t0009",
+   1.0
+  ],
+  [
+   "g0029",
+   "g0030",
+   1.0
+  ],
+  [
    "p0001",
    "t0004",
    1.0
   ]
  ],
  "activation": {
-  "e0013": 0.013996799999999998,
-  "g0010": 0.014793603811344223,
-  "g0012": 0.02394460569599999,
-  "g0014": 0.06998399999999998,
-  "g0015": 0.7555199999999999,
-  "g0017": 0.046655999999999996,
-  "g0018": 0.8423999999999999,
-  "g0021": 0.32399999999999995,
-  "g0022": 0.1296,
-  "g0023": 0.36,
-  "g0024": 0.36,
-  "g0025": 0.8999999999999999,
-  "p0002": 0.018475775999999992
+  "g0014": 0.06409414655999998,
+  "g0018": 1.3953081738924011,
+  "g0026": 0.2278597109907456,
+  "g0028": 0.030233087999999984,
+  "g0029": 0.015116543999999992,
+  "g0030": 0.010077695999999999,
+  "g0034": 0.046655999999999996,
+  "g0035": 0.36,
+  "t0009": 0.010077695999999999
  }
 }

@@ -78,7 +78,9 @@ class Grounder:
         if t.kind == "pron":
             return self._resolve_pron(t, role)
         if t.kind == "value":
-            return self.m.ensure_group(t.lemma).id
+            unit = self.m.ensure_group(t.lemma if t.lemma != t.forms[0] else "číslo")
+            unit.text = unit.text or "value"
+            return unit.id
         if t.note == "možná jméno":
             # „Ronik je pes.“ — parser neznámé slovo na začátku věty čte jako obecné jméno;
             # když už takové JMÉNO známe, je to ono; jinak group, ale poznamenaná (paměť ji

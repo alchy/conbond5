@@ -163,3 +163,14 @@ Kdo je delší, Vltava nebo Labe?
 Je Vltava kratší než Labe?
 Mladší je ten, kdo se narodil později.
 kratší
+# --- doprava (dialog A) živě
+Dálnice je silnice pro motorová vozidla.
+Co je silnice?
+Co je dálnice?
+Automobil slouží k přepravě nákladu a osob.
+Automobil jede.
+Automobil jezdí po silnici i po dálnici.
+Co dělá automobil?
+Co umí automobil?
+Maximální rychlost na dálnici je 130 km/h.
+Jaká je maximální rychlost na dálnici?

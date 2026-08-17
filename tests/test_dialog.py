@@ -186,3 +186,18 @@ def test_comparative_defined_in_dialog(s: Session) -> None:
     # přehrání žurnálu zopakuje i definice
     again = Session.replay(s.journal_json(), RecordedOracle(DATA))
     assert again.memory.learned["comparatives"].keys() == s.memory.learned["comparatives"].keys()
+
+
+def test_transport_domain_meta_questions(s: Session) -> None:
+    s.say("Dálnice je silnice pro motorová vozidla.")
+    a = s.say("Co je silnice?")
+    assert a.verdict is not None and "podřazená třída" in a.text  # dálnice ⊆ silnice — přiznaně, ne jako definice
+    assert s.memory.label(s.say("Co je dálnice?").verdict.fillers[0][0]) == "silnice"  # type: ignore[union-attr]
+    s.say("Automobil jede.")
+    s.say("Automobil jezdí po silnici i po dálnici.")
+    d = s.say("Co dělá automobil?")
+    assert d.verdict is not None and len(d.verdict.fillers) == 2 and "jet(kdo: ∀automobil)" in d.text
+    s.say("Maximální rychlost na dálnici je 130 km/h.")
+    v = s.say("Jaká je maximální rychlost na dálnici?")
+    assert v.verdict is not None and v.verdict.fillers[0][0].startswith("count:130")
+    assert "130 km/h" in v.text

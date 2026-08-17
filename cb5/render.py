@@ -124,7 +124,12 @@ def render_answer(m: Memory, verdict: Verdict, *, wh: bool, recalled: Sequence[S
             # výplně se stejným důkazem se sloučí do jednoho řádku
             groups: list[tuple[tuple[str, ...], list[str], Proof]] = []
             for t, proof in verdict.fillers:
-                label = t.split(":", 1)[1] if t.startswith("count:") else describe_node(m, t)
+                if t.startswith("count:"):
+                    label = t.split(":", 1)[1]
+                elif t in m.statements:
+                    label = render_statement(m, m.statements[t])  # „Co dělá X?“ → celý děj
+                else:
+                    label = describe_node(m, t)
                 key = tuple(proof.statements)
                 for k, labels, _ in groups:
                     if k == key:

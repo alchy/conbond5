@@ -820,11 +820,23 @@ class _Reader:
         elif t.upos == "NUM":
             kind = "value"
             time = time_from_tokens([t])
-            if time:
+            # jednotka: „130 km/h“ = NUM s holým nmod řetězem (km → h)
+            unit_tokens = [c for c in self.p.subtree(t.index) if c.index != t.index and c.base_deprel in ("nmod", "punct", "flat", "compound") and not self.case_of(c.index) and c.upos in ("NOUN", "SYM", "PUNCT", "X", "PROPN")]
+            # interpunkce jen UVNITŘ jednotky („km/h“), ne tečka za větou
+            while unit_tokens and unit_tokens[-1].upos == "PUNCT":
+                unit_tokens.pop()
+            unit = "".join(c.form for c in unit_tokens) if unit_tokens else ""
+            if time and not unit:
                 kind = "time"
             else:
-                raw = t.form.replace(",", ".")
+                raw = t.form.replace(",", ".").replace(" ", "")
                 count = int(raw) if raw.isdigit() else None
+                if unit:
+                    time = None
+                    for c in unit_tokens:
+                        self.mark(c.index, where)
+                        consumed.append(c.index)
+                    name_lemmas = [unit]
         else:
             # jen hlava + PŘÍMÉ číslovky/předložky/flat — ne celý podstrom (kořen
             # věty má pod sebou všechno, včetně letopočtů cizích členů)
@@ -848,7 +860,7 @@ class _Reader:
             else:
                 kind = "group"
         spec = TermSpec(
-            head=t.index, lemma=" ".join(name_lemmas) if kind == "group" else t.lemma, forms=tuple(forms), upos=t.upos, kind=kind,
+            head=t.index, lemma=" ".join(name_lemmas) if kind in ("group", "value") else t.lemma, forms=tuple(forms), upos=t.upos, kind=kind,
             attrs=tuple(a for a in attrs if a != "¬"), count=count, time=time,
             gender=t.feat("Gender"), number=t.feat("Number"), person=t.feat("Person"),
             quant=quant, quant_authority=qauth, tokens=tuple(sorted(set(consumed))),
@@ -1090,8 +1102,8 @@ class _Reader:
         if pred_role.name != "co" or not pred_role.terms:
             return None
         o = pred_role.terms[0]
-        if o.kind == "time":
-            return None
+        if o.kind in ("time", "value"):
+            return None  # „rychlost je 130 km/h“ není členství ani podmnožina
         if s.kind in ("entity", "pron") or (s.kind == "group" and s.quant == "·"):
             if o.kind == "entity":
                 p.defaults.append("kernel:same_as (dvě jména)")
@@ -1194,8 +1206,8 @@ class Reader(_Reader):
         seen: set[tuple[int, int]] = set()
         while self._pending_secondary:
             head, dep = self._pending_secondary.pop(0)
-            if (head.index, dep.index) in seen:
-                continue
+            if (head.index, dep.index) in seen or self.place.get(dep.index) == "term":
+                continue  # člen už pohltil term (jednotka, zúžení) — není to výrok vedle věty
             seen.add((head.index, dep.index))
             for sec in self._secondary_from(head, dep, main):
                 main.secondary.append(sec)

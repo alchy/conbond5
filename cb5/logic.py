@@ -494,6 +494,25 @@ class Evaluator:
             cv = self.compare(q)
             if cv is not None:
                 return cv
+        # „Co dělá X?“ / „Co umí X?“ → děje, kde je X podmětem (i přes ∀ nadtřídu)
+        if q.pred in ("dělat", "činit", "umět", "dokázat", "provádět") and hole.name == "co" and q.role("kdo") and q.role("kdo").terms:  # type: ignore[union-attr]
+            subj = q.role("kdo")
+            acts: list[tuple[str, Proof]] = []
+            for f in m.active():
+                if f.kind != "verb" or f.pred in (None, "být", "věk", "srovnání", "definice", "dělat") or f.mood == "question" or f.derived_from:
+                    continue
+                fk = f.role("kdo")
+                if not fk or not fk.terms:
+                    continue
+                pr = self.match_role(subj, fk, pred=f.pred)  # type: ignore[arg-type]
+                if pr is None:
+                    continue
+                proof = pr.merged(Proof([f.id], [], list(f.defaults), f.grade))
+                if q.pred in ("umět", "dokázat") and f.modality is None:
+                    proof.steps.append("děj, ne schopnost — beru jako doklad")
+                acts.append((f.id, proof))
+            if acts:
+                return Verdict("ANO", [p for _, p in acts], fillers=acts)
         # definice: „Kdo/co je X?“
         if q.pred == "být" and hole.name in ("co", "jaký") and q.role("kdo") and q.role("kdo").terms:  # type: ignore[union-attr]
             v = self.describe_verdict(q.role("kdo").terms[0], hole)  # type: ignore[union-attr]
@@ -654,18 +673,20 @@ class Evaluator:
         fillers: list[tuple[str, Proof]] = []
         seen: set[str] = set()
         node = m.nodes.get(node_id)
+        below: list[tuple[str, Proof]] = []
         if node is not None and node.kind == "group" and hole.name == "co":
-            # „Kdo je otec Petra Nováka?“ / „Co je nejbližší příbuzný psa?“ → známé prvky a podtřídy
+            # „Kdo je otec Petra Nováka?“ / „Co je nejbližší příbuzný psa?“ → známé prvky a podtřídy;
+            # ale „Co je silnice?“ chce napřed, čím silnice JE (nadtřídy) — podřazené až jako přiznané
             for e, path in m.known_members(node_id):
                 if e not in seen:
                     seen.add(e)
-                    fillers.append((e, Proof(path, [f"{m.label(e)} ∈ {m.label(node_id)}"], [], self._grade_of(path))))
+                    below.append((e, Proof(path, [f"{m.label(e)} ∈ {m.label(node_id)}"], [], self._grade_of(path))))
             for g, path in m.known_subsets(node_id):
                 if g not in seen and not path[0].startswith("restricts:"):
                     seen.add(g)
-                    fillers.append((g, Proof(path, [f"{m.label(g)} ⊆ {m.label(node_id)}"], [], self._grade_of(path))))
-            if fillers:
-                return Verdict("ANO", [p for _, p in fillers], fillers=fillers)
+                    below.append((g, Proof(path, [f"{m.label(g)} ⊆ {m.label(node_id)} (podřazená třída, ne definice)"], [], self._grade_of(path))))
+            if node.rel and below:
+                return Verdict("ANO", [p for _, p in below], fillers=below)
         for s in self.describe(node_id):
             kdo = s.role("kdo")
             if not (kdo and node_id in kdo.terms) or s.neg:
@@ -681,6 +702,15 @@ class Evaluator:
                     if t not in seen:
                         seen.add(t)
                         fillers.append((t, Proof([s.id], [], list(s.defaults), s.grade)))
+            if hole.name == "jaký" and s.pred == "být" and s.role("co"):
+                # „Jaká je maximální rychlost?“ → hodnota (130 km/h)
+                co = s.role("co")
+                for t in (co.terms if co else []):
+                    if t in co.counts and t not in seen:  # type: ignore[union-attr]
+                        seen.add(t)
+                        fillers.append((f"count:{co.counts[t]} {m.label(t)}", Proof([s.id], [], list(s.defaults), s.grade)))  # type: ignore[union-attr]
+        if not fillers and below:
+            fillers = below
         if fillers:
             return Verdict("ANO", [p for _, p in fillers], fillers=fillers)
         near = [s.id for s in self.describe(node_id)]

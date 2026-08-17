@@ -944,6 +944,441 @@
 }
 ]
 },
+"Automobil jede.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Automobil jede.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Automobil",
+"head": 2,
+"id": 1,
+"lemma": "automobil",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "jede",
+"head": 0,
+"id": 2,
+"lemma": "jet",
+"upos": "VERB"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 3,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Automobil jezdí po silnici i po dálnici.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Automobil jezdí po silnici i po dálnici.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Automobil",
+"head": 2,
+"id": 1,
+"lemma": "automobil",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "jezdí",
+"head": 0,
+"id": 2,
+"lemma": "jezdit",
+"upos": "VERB"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "po",
+"head": 4,
+"id": 3,
+"lemma": "po",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "silnici",
+"head": 2,
+"id": 4,
+"lemma": "silnice",
+"upos": "NOUN"
+},
+{
+"deprel": "cc",
+"feats": [],
+"form": "i",
+"head": 7,
+"id": 5,
+"lemma": "i",
+"upos": "CCONJ"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "po",
+"head": 7,
+"id": 6,
+"lemma": "po",
+"upos": "ADP"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "dálnici",
+"head": 4,
+"id": 7,
+"lemma": "dálnice",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 8,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Automobil slouží k přepravě nákladu a osob.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Automobil slouží k přepravě nákladu a osob.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Automobil",
+"head": 2,
+"id": 1,
+"lemma": "automobil",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "slouží",
+"head": 0,
+"id": 2,
+"lemma": "sloužit",
+"upos": "VERB"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Dat"
+]
+],
+"form": "k",
+"head": 4,
+"id": 3,
+"lemma": "k",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Dat"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "přepravě",
+"head": 2,
+"id": 4,
+"lemma": "přeprava",
+"upos": "NOUN"
+},
+{
+"deprel": "nmod",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "nákladu",
+"head": 4,
+"id": 5,
+"lemma": "náklad",
+"upos": "NOUN"
+},
+{
+"deprel": "cc",
+"feats": [],
+"form": "a",
+"head": 7,
+"id": 6,
+"lemma": "a",
+"upos": "CCONJ"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "osob",
+"head": 5,
+"id": 7,
+"lemma": "osoba",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 8,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
 "Bydlel Petr v Praze v roce 1990?": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Bydlel Petr v Praze v roce 1990?",
@@ -3231,6 +3666,111 @@
 }
 ]
 },
+"Co dělá automobil?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Co dělá automobil?",
+"tokens": [
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Acc"
+],
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Co",
+"head": 2,
+"id": 1,
+"lemma": "co",
+"upos": "PRON"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "dělá",
+"head": 0,
+"id": 2,
+"lemma": "dělat",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "automobil",
+"head": 2,
+"id": 3,
+"lemma": "automobil",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 2,
+"id": 4,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
 "Co je Ford?": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Co je Ford?",
@@ -3334,6 +3874,107 @@
 "feats": [],
 "form": "?",
 "head": 1,
+"id": 4,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Co je dálnice?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Co je dálnice?",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Co",
+"head": 3,
+"id": 1,
+"lemma": "co",
+"upos": "PRON"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 3,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "dálnice",
+"head": 0,
+"id": 3,
+"lemma": "dálnice",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 3,
 "id": 4,
 "lemma": "?",
 "upos": "PUNCT"
@@ -3605,6 +4246,107 @@
 "form": "?",
 "head": 4,
 "id": 6,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Co je silnice?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Co je silnice?",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Co",
+"head": 3,
+"id": 1,
+"lemma": "co",
+"upos": "PRON"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 3,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "silnice",
+"head": 0,
+"id": 3,
+"lemma": "silnice",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 3,
+"id": 4,
 "lemma": "?",
 "upos": "PUNCT"
 }
@@ -3912,6 +4654,111 @@
 "head": 2,
 "id": 3,
 "lemma": "ovoce",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 2,
+"id": 4,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Co umí automobil?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Co umí automobil?",
+"tokens": [
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Acc"
+],
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Co",
+"head": 2,
+"id": 1,
+"lemma": "co",
+"upos": "PRON"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "umí",
+"head": 0,
+"id": 2,
+"lemma": "umět",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "automobil",
+"head": 2,
+"id": 3,
+"lemma": "automobil",
 "upos": "NOUN"
 },
 {
@@ -5388,6 +6235,177 @@
 "form": ".",
 "head": 3,
 "id": 6,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Dálnice je silnice pro motorová vozidla.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Dálnice je silnice pro motorová vozidla.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Dálnice",
+"head": 3,
+"id": 1,
+"lemma": "dálnice",
+"upos": "NOUN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 3,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "silnice",
+"head": 0,
+"id": 3,
+"lemma": "silnice",
+"upos": "NOUN"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Acc"
+]
+],
+"form": "pro",
+"head": 6,
+"id": 4,
+"lemma": "pro",
+"upos": "ADP"
+},
+{
+"deprel": "amod",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Plur"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "motorová",
+"head": 6,
+"id": 5,
+"lemma": "motorový",
+"upos": "ADJ"
+},
+{
+"deprel": "nmod",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "vozidla",
+"head": 3,
+"id": 6,
+"lemma": "vozidlo",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 7,
 "lemma": ".",
 "upos": "PUNCT"
 }
@@ -6954,6 +7972,181 @@
 "form": "?",
 "head": 3,
 "id": 8,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Jaká je maximální rychlost na dálnici?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Jaká je maximální rychlost na dálnici?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+],
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Jaká",
+"head": 0,
+"id": 1,
+"lemma": "jaký",
+"upos": "DET"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 1,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "amod",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "maximální",
+"head": 4,
+"id": 3,
+"lemma": "maximální",
+"upos": "ADJ"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "rychlost",
+"head": 1,
+"id": 4,
+"lemma": "rychlost",
+"upos": "NOUN"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "na",
+"head": 6,
+"id": 5,
+"lemma": "na",
+"upos": "ADP"
+},
+{
+"deprel": "nmod",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "dálnici",
+"head": 4,
+"id": 6,
+"lemma": "dálnice",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 7,
 "lemma": "?",
 "upos": "PUNCT"
 }
@@ -14477,6 +15670,222 @@
 "form": ".",
 "head": 1,
 "id": 7,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Maximální rychlost na dálnici je 130 km/h.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Maximální rychlost na dálnici je 130 km/h.",
+"tokens": [
+{
+"deprel": "amod",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "Maximální",
+"head": 2,
+"id": 1,
+"lemma": "maximální",
+"upos": "ADJ"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "rychlost",
+"head": 6,
+"id": 2,
+"lemma": "rychlost",
+"upos": "NOUN"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "na",
+"head": 4,
+"id": 3,
+"lemma": "na",
+"upos": "ADP"
+},
+{
+"deprel": "nmod",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "dálnici",
+"head": 2,
+"id": 4,
+"lemma": "dálnice",
+"upos": "NOUN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 6,
+"id": 5,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "130",
+"head": 0,
+"id": 6,
+"lemma": "130",
+"upos": "NUM"
+},
+{
+"deprel": "nmod",
+"feats": [
+[
+"Abbr",
+"Yes"
+],
+[
+"Animacy",
+"Inan"
+],
+[
+"Gender",
+"Masc"
+]
+],
+"form": "km",
+"head": 6,
+"id": 7,
+"lemma": "kilometr",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "/",
+"head": 9,
+"id": 8,
+"lemma": "/",
+"upos": "PUNCT"
+},
+{
+"deprel": "nmod",
+"feats": [
+[
+"Abbr",
+"Yes"
+],
+[
+"Gender",
+"Fem"
+]
+],
+"form": "h",
+"head": 7,
+"id": 9,
+"lemma": "hodina",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 6,
+"id": 10,
 "lemma": ".",
 "upos": "PUNCT"
 }
