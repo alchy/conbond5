@@ -21,6 +21,7 @@ from typing import Sequence
 
 import networkx as nx
 
+from cb5.diakritika import Restorer, has_diacritics
 from cb5.ground import Grounded, ground
 from cb5.logic import Verdict, enumerate_, evaluate
 from cb5.memory import Memory, Node, OpenItem, Provenance, Statement
@@ -52,14 +53,16 @@ class Answer:
 class Session:
     """Jedno sezení nad jednou pamětí a jedním orákulem."""
 
-    def __init__(self, memory: Memory | None = None, oracle: object = None) -> None:
+    def __init__(self, memory: Memory | None = None, oracle: object = None, *, restorer: Restorer | None = None) -> None:
         self.memory = memory or Memory()
         self.oracle = oracle
+        self.restorer = restorer
         self.journal: list[Turn] = []
         self.turn_no = 0
         self.topics: dict[str, str] = {}
         self._sent_no: dict[str, int] = {}
         self._last_said: list[str] = []
+        self._last_restored: list[tuple[str, str]] = []
         self._restore_learned()
 
     # ---- pomocníci -------------------------------------------------------------
@@ -84,10 +87,21 @@ class Session:
 
     def _parses(self, text: str) -> list[Parse]:
         assert self.oracle is not None, "sezení bez orákula neumí číst text"
+        self._last_restored = []
+        if self.restorer is not None and not has_diacritics(text) and any(ch.isalpha() for ch in text):
+            restored, changes = self.restorer.restore(text)
+            if changes:
+                text = restored
+                self._last_restored = changes
         try:
             return list(self.oracle.segment(text))  # type: ignore[attr-defined]
         except AttributeError:
             return [self.oracle.parse(text)]  # type: ignore[attr-defined]
+
+    def _restored_note(self) -> str:
+        if not self._last_restored:
+            return ""
+        return "(doplnil jsem diakritiku: " + ", ".join(f"{a} → {b}" for a, b in self._last_restored) + ")"
 
     def _update_topic(self, doc: str, g: Grounded) -> None:
         if doc in self.topics or g.main is None:
@@ -160,8 +174,15 @@ class Session:
         except (OracleError, SegmentationError) as exc:
             return Answer(f"✗ nepřečteno: {exc}")
         answers: list[Answer] = []
+        note = self._restored_note()
         for parse in parses:
-            answers.append(self._say_one(parse, doc))
+            a = self._say_one(parse, doc)
+            if note:
+                a = Answer(note + "\n" + a.text, a.verdict, a.statements, a.revoked, a.open, a.conflict, a.reading)
+                for sid in a.statements:
+                    if sid in self.memory.statements:
+                        self.memory.statements[sid].defaults.append("diakritika doplněna: " + ", ".join(f"{x}→{y}" for x, y in self._last_restored))
+            answers.append(a)
         if len(answers) == 1:
             return answers[0]
         return Answer("\n".join(a.text for a in answers), statements=[s for a in answers for s in a.statements],
@@ -209,6 +230,13 @@ class Session:
         # „Ne každý pták.“ — oprava kvantifikátoru poslední věty
         if main.kind == "fragment" and reading.parse.text.lower().startswith("ne ") and main.role("téma"):
             return self._fix_quantifier(reading, doc)
+        # NEROZUMÍM: bez predikátu a většina slov ve zbytku — to není čtení, to je šum
+        content = [t for t in reading.parse.tokens if t.upos not in ("PUNCT", "SYM")]
+        if main.pred is None and reading.residue and len(reading.residue) * 2 >= max(len(content), 1):
+            hint = "" if has_diacritics(reading.parse.text) else " (věta je bez diakritiky — zkus ji s háčky)"
+            return Answer("✗ nerozumím: nenašel jsem přísudek a do čtení se nedostalo: "
+                          + ", ".join(f"„{f}“" for f, _ in reading.residue) + hint + "\n   (nic jsem nezapsal)",
+                          reading=str(main))
         # konflikt: ptej se paměti PŘED zápisem
         prov = self._prov(doc, reading.parse.text)
         conflict: Verdict | None = None

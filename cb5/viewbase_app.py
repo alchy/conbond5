@@ -22,6 +22,7 @@ from pathlib import Path
 
 from cb5.dialog import Session
 from cb5.memory import Memory
+from cb5.diakritika import Restorer
 from cb5.oracle import live_or_recorded
 from cb5.render import describe_node, render_statement
 
@@ -142,7 +143,8 @@ def main(argv: list[str]) -> int:
         print("viewbase není nainstalované: pip install -e /Users/j/Projects/viewBase/python", file=sys.stderr)
         return 2
     memory = Memory.load(Path(args.pamet)) if args.pamet and Path(args.pamet).exists() else Memory()
-    session = Session(memory, live_or_recorded(CACHE))
+    restorer = Restorer.load_or_build(HERE / "data" / "cache" / "diakritika.json", [CACHE, HERE / "tests" / "data" / "parses.json"])
+    session = Session(memory, live_or_recorded(CACHE), restorer=restorer)
     canvas = build(session, autosave=Path(args.pamet) if args.pamet else None)
     try:
         vb.serve(canvas, port=args.port, open_browser=True)

@@ -22,15 +22,20 @@ from pathlib import Path
 
 from cb5.dialog import Session
 from cb5.memory import Memory
+from cb5.diakritika import Restorer
 from cb5.oracle import live_or_recorded
 
 HERE = Path(__file__).resolve().parent.parent
 CACHE = HERE / "data" / "cache" / "parses.json"
 
 
+def _restorer() -> Restorer:
+    return Restorer.load_or_build(HERE / "data" / "cache" / "diakritika.json", [CACHE, HERE / "tests" / "data" / "parses.json"])
+
+
 def _session(pamet: str | None) -> Session:
     memory = Memory.load(Path(pamet)) if pamet and Path(pamet).exists() else Memory()
-    return Session(memory, live_or_recorded(CACHE))
+    return Session(memory, live_or_recorded(CACHE), restorer=_restorer())
 
 
 def main(argv: list[str]) -> int:
@@ -65,7 +70,7 @@ def main(argv: list[str]) -> int:
         return 0
     if args.cmd == "replay":
         turns = [json.loads(l) for l in Path(args.zurnal).read_text(encoding="utf-8").splitlines() if l.strip()]
-        s = Session.replay(turns, live_or_recorded(CACHE))
+        s = Session.replay(turns, live_or_recorded(CACHE))  # replay bez obnovy: žurnál už nese opravené věty
         print(f"přehráno {len(turns)} tahů: {len(list(s.memory.active()))} výroků")
         for line in s.memory.program()[-10:]:
             print("  " + line)

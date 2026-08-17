@@ -15479,6 +15479,103 @@
 }
 ]
 },
+"Pes ji maso.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Pes ji maso.",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Pes",
+"head": 0,
+"id": 1,
+"lemma": "pes",
+"upos": "NOUN"
+},
+{
+"deprel": "dep",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"PrepCase",
+"Npr"
+],
+[
+"PronType",
+"Prs"
+]
+],
+"form": "ji",
+"head": 1,
+"id": 2,
+"lemma": "on",
+"upos": "PRON"
+},
+{
+"deprel": "dep",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "maso",
+"head": 1,
+"id": 3,
+"lemma": "maso",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 1,
+"id": 4,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
 "Pes jí maso.": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Pes jí maso.",

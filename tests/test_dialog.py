@@ -138,3 +138,18 @@ def test_age_pattern(s: Session) -> None:
     s.say("Ronikovi je 17 let.")
     a = s.say("Kolik je Ronikovi let?")
     assert a.verdict is not None and a.verdict.fillers and a.verdict.fillers[0][0] == "count:17"
+
+
+def test_diacritics_restored_and_noise_refused() -> None:
+    from cb5.diakritika import Restorer, fold
+    assert fold("bydlí") == "bydli"
+    r = Restorer({"ji": "jí", "bydli": "bydlí", "pes": "pes"})
+    s = Session(Memory(), RecordedOracle(DATA), restorer=r)
+    a = s.say("Pes ji maso.")
+    assert "doplnil jsem diakritiku: ji → jí" in a.text and a.statements
+    assert s.memory.statements[a.statements[0]].pred == "jíst"
+    assert any("diakritika doplněna" in d for d in s.memory.statements[a.statements[0]].defaults)
+    # šum bez predikátu se nezapíše a řekne to
+    b = Session(Memory(), RecordedOracle(DATA))
+    n = b.say("Pes ji maso.")
+    assert n.text.startswith("✗ nerozumím") and not n.statements and not list(b.memory.active())

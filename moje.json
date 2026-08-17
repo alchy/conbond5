@@ -1,12 +1,12 @@
 {
  "format": "conbond5-memory/1",
  "counters": {
-  "e": 11,
+  "e": 12,
   "t": 6,
-  "z": 20,
-  "s": 26,
+  "z": 23,
+  "s": 30,
   "p": 1,
-  "g": 9,
+  "g": 10,
   "o": 10
  },
  "nodes": [
@@ -729,6 +729,79 @@
    "id": "g0009",
    "kind": "group",
    "lemma": "zapomen",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "z0021",
+   "kind": "sentence",
+   "lemma": "dialog#1",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Pavla se narodila v roce 1978.",
+   "rel": null
+  },
+  {
+   "id": "z0022",
+   "kind": "sentence",
+   "lemma": "dialog#2",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Jindrich se narodil v roce 1975.",
+   "rel": null
+  },
+  {
+   "id": "e0012",
+   "kind": "entity",
+   "lemma": "Matej",
+   "names": [
+    "Matej",
+    "Mateje"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": "Masc",
+   "number": "Sing",
+   "doc": "dialog",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "z0023",
+   "kind": "sentence",
+   "lemma": "dialog#3",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Pavla a Jindrich maji syna Mateje.",
+   "rel": null
+  },
+  {
+   "id": "g0010",
+   "kind": "group",
+   "lemma": "syn",
    "names": [],
    "attrs": [],
    "base": null,
@@ -1666,8 +1739,8 @@
     "turn": 25,
     "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
    },
-   "status": "active",
-   "reason": "",
+   "status": "revoked",
+   "reason": "zapomenuto dialogem: Ji Ronik (tah 1)",
    "derived_from": null,
    "sentence": "z0013",
    "tense": null,
@@ -1721,8 +1794,8 @@
     "turn": 28,
     "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
    },
-   "status": "active",
-   "reason": "",
+   "status": "revoked",
+   "reason": "zapomenuto dialogem: Ji Ronik (tah 1)",
    "derived_from": null,
    "sentence": "z0014",
    "tense": "Pres",
@@ -1883,8 +1956,8 @@
     "turn": 5,
     "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
    },
-   "status": "active",
-   "reason": "",
+   "status": "revoked",
+   "reason": "zapomenuto dialogem: Ji Ronik (tah 1)",
    "derived_from": null,
    "sentence": "z0017",
    "tense": "Past",
@@ -2005,8 +2078,8 @@
     "turn": 6,
     "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
    },
-   "status": "active",
-   "reason": "",
+   "status": "revoked",
+   "reason": "zapomenuto dialogem: Ji Ronik (tah 1)",
    "derived_from": null,
    "sentence": "z0018",
    "tense": "Past",
@@ -2116,8 +2189,8 @@
     "turn": 12,
     "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
    },
-   "status": "active",
-   "reason": "",
+   "status": "revoked",
+   "reason": "zapomenuto dialogem: Ji Ronik (tah 1)",
    "derived_from": null,
    "sentence": "z0020",
    "tense": null,
@@ -2158,11 +2231,228 @@
     "turn": 12,
     "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
    },
-   "status": "active",
-   "reason": "",
+   "status": "revoked",
+   "reason": "zapomenuto dialogem: Ji Ronik (tah 1)",
    "derived_from": null,
    "sentence": "z0020",
    "tense": null,
+   "mood": "assert"
+  },
+  {
+   "id": "s0027",
+   "pred": "narodit_se",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "e0001"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "kdy",
+     "terms": [
+      "t0001"
+     ],
+     "quant": "·",
+     "authority": "default",
+     "surface": "v+Loc",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 1,
+    "text": "Pavla se narodila v roce 1978.",
+    "turn": 2,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0021",
+   "tense": "Past",
+   "mood": "assert"
+  },
+  {
+   "id": "s0028",
+   "pred": "narodit_se",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "e0002"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "kdy",
+     "terms": [
+      "t0002"
+     ],
+     "quant": "·",
+     "authority": "default",
+     "surface": "v+Loc",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 2,
+    "text": "Jindrich se narodil v roce 1975.",
+    "turn": 3,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0022",
+   "tense": "Past",
+   "mood": "assert"
+  },
+  {
+   "id": "s0029",
+   "pred": "být",
+   "kind": "copula",
+   "neg": false,
+   "modality": null,
+   "kernel": "member",
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "e0012"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "g0010"
+     ],
+     "quant": "∃",
+     "authority": "structural",
+     "surface": "",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "titul „syn“ před jménem = třída"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 3,
+    "text": "Pavla a Jindrich maji syna Mateje.",
+    "turn": 4,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0023",
+   "tense": null,
+   "mood": "assert"
+  },
+  {
+   "id": "s0030",
+   "pred": "mít",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "e0001",
+      "e0002"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "e0012"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "obj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "koordinace:kdo:distribuce"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 3,
+    "text": "Pavla a Jindrich maji syna Mateje.",
+    "turn": 4,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0023",
+   "tense": "Past",
    "mood": "assert"
   }
  ],
@@ -2330,13 +2620,23 @@
  "soft": [
   [
    "e0001",
+   "e0002",
+   1.0
+  ],
+  [
+   "e0001",
+   "e0012",
+   1.0
+  ],
+  [
+   "e0001",
    "p0001",
    1.0
   ],
   [
    "e0001",
    "t0001",
-   1.0
+   2.0
   ],
   [
    "e0001",
@@ -2345,8 +2645,13 @@
   ],
   [
    "e0002",
-   "t0002",
+   "e0012",
    1.0
+  ],
+  [
+   "e0002",
+   "t0002",
+   2.0
   ],
   [
    "e0003",
@@ -2409,6 +2714,11 @@
    1.0
   ],
   [
+   "e0012",
+   "g0010",
+   1.0
+  ],
+  [
    "g0001",
    "g0007",
    3.0
@@ -2425,12 +2735,16 @@
   ]
  ],
  "activation": {
-  "e0010": 1.1304879673240975,
-  "e0011": 0.04199039999999998,
-  "g0001": 0.28002135027264097,
-  "g0007": 0.19639200952836053,
-  "g0008": 0.016796159999999997,
-  "g0009": 0.36,
-  "p0001": 0.31007769599999996
+  "e0001": 0.7343999999999999,
+  "e0002": 0.864,
+  "e0010": 0.146511240565203,
+  "e0012": 0.8999999999999999,
+  "g0001": 0.03629076699533426,
+  "g0007": 0.02545240443487552,
+  "g0009": 0.046655999999999996,
+  "g0010": 0.36,
+  "p0001": 0.04018606940159999,
+  "t0001": 0.1296,
+  "t0002": 0.216
  }
 }
