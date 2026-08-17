@@ -94,6 +94,8 @@ class Grounder:
             if rel_id is not None:
                 rel = f"{t.rel[0]}:{rel_id}"
         group = self.m.ensure_group(t.lemma, t.attrs, rel)
+        if t.upos == "ADJ" and t.forms and t.forms[0] not in group.names:
+            group.names.append(t.forms[0])  # tvar přídavného jména („delší“) pro zprávy člověku
         if t.note == "možná jméno" and not group.text:
             group.text = "cap"
             group.names = [t.forms[0]]

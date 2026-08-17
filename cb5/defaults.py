@@ -193,3 +193,20 @@ def synonym_class(pred: str, learned: dict[str, str] | None = None) -> str:
         if ra != rb:
             parent[max(ra, rb)] = min(ra, rb)
     return find(rep)
+
+
+#: Srovnávací slova — OSIVO (výchozí, přepisuje dialog `!srovnání` nebo definiční
+#: věta „Starší je ten, kdo se narodil dřív.“): lemma → (predikát, role, směr).
+#: Směr: `earlier`/`later` na časové ose, `more`/`less` na číslech (počty).
+COMPARATIVES_SEED: dict[str, tuple[str, str, str]] = {
+    "starý": ("narodit_se", "kdy", "earlier"),
+    "mladý": ("narodit_se", "kdy", "later"),
+}
+
+#: Příslovce směru v definiční větě: „dřív“, „později“, „víc“, „míň“.
+DIRECTION_ADVERBS: dict[str, str] = {
+    "dříve": "earlier", "dřív": "earlier", "brzy": "earlier", "brzo": "earlier",
+    "pozdě": "later", "později": "later",
+    "více": "more", "víc": "more", "hodně": "more", "mnoho": "more", "déle": "more", "dlouho": "more",
+    "méně": "less", "míň": "less", "málo": "less", "kratší": "less",
+}

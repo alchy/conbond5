@@ -914,7 +914,8 @@ class _Reader:
             return None
         than = [c for c in self.p.children(root.index) if c.base_deprel in ("advcl", "obl", "nmod")
                 and any(m.lemma == "než" for m in self.p.children(c.index) if m.base_deprel in ("mark", "case"))]
-        cands = [c for c in self.p.children(root.index) if c.base_deprel == "appos"]
+        # kandidáti „Pavla nebo Jindřich“ visí jako appos, nebo jako conj pod přídavným jménem
+        cands = [c for c in self.p.children(root.index) if c.base_deprel == "appos" or (c.base_deprel == "conj" and c.upos in ("PROPN", "NOUN"))]
         subj = [c for c in self.p.children(root.index) if c.base_deprel == "nsubj"]
         if not than and not cands:
             return None
@@ -937,11 +938,47 @@ class _Reader:
         self._quantify(p)
         return p
 
+    def _definition(self, root: Token, cop: Token) -> Predication | None:
+        """„Starší je ten, kdo se narodil dřív.“ / „Kdo se narodil dřív, je starší.“ →
+        definice(jaký: starý, predikát: narodit_se, směr: earlier). Dialog z toho
+        udělá naučené srovnávací slovo; jádro nic nového neumí — jen se dozví,
+        KTERÉ slovo spouští KTERÉ porovnání."""
+        if root.upos != "ADJ" or root.feat("Degree") != "Cmp":
+            return None
+        clause: Token | None = None
+        for c in self.p.children(root.index):
+            if c.base_deprel == "csubj" and c.upos == "VERB":
+                clause = c
+            elif c.base_deprel == "nsubj" and c.lemma == "ten":
+                clause = next((r for r in self.p.children(c.index) if r.base_deprel == "acl" and r.upos == "VERB"), None)
+                if clause is not None:
+                    self.mark(c.index, "particle")
+        if clause is None:
+            return None
+        adv = next((a for a in self.p.children(clause.index) if a.upos == "ADV" and a.lemma in D.DIRECTION_ADVERBS), None)
+        if adv is None:
+            return None
+        p = Predication(pred="definice", kind="verb", head=root.index)
+        for i in (cop.index, root.index, clause.index, adv.index):
+            self.mark(i, "pred")
+        for c in self.p.children(clause.index):
+            if c.base_deprel in ("nsubj", "expl", "mark") or c.deprel in STRUCTURAL:
+                self.mark(c.index, "particle")
+        pred = self._lemma_with_refl(clause)
+        p.roles.append(RoleFill("jaký", "cop", [TermSpec(root.index, root.lemma, (root.form,), "ADJ", "group", quant="·", quant_authority="structural", tokens=(root.index,))], "structural"))
+        p.roles.append(RoleFill("predikát", "acl", [TermSpec(clause.index, pred, (clause.form,), "VERB", "group", quant="·", quant_authority="structural", tokens=(clause.index,))], "structural"))
+        p.roles.append(RoleFill("směr", "advmod", [TermSpec(adv.index, D.DIRECTION_ADVERBS[adv.lemma], (adv.form,), "ADV", "group", quant="·", quant_authority="structural", tokens=(adv.index,))], "structural"))
+        p.defaults.append("definice srovnávacího slova")
+        return p
+
     def _copula(self, root: Token, cop: Token | None, *, shared_subject: RoleFill | None = None) -> Predication:
         if cop is not None:
             age = self._age(root, cop)
             if age is not None:
                 return age
+            dfn = self._definition(root, cop)
+            if dfn is not None:
+                return dfn
             cmp_ = self._comparison(root, cop)
             if cmp_ is not None:
                 return cmp_

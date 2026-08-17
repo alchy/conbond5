@@ -207,7 +207,7 @@ class Memory:
         self.counters: dict[str, int] = defaultdict(int)
         self.activation_: dict[str, float] = defaultdict(float)
         self.soft: dict[tuple[str, str], float] = defaultdict(float)
-        self.learned: dict[str, dict[str, str]] = {"roles": {}, "synonyms": {}}
+        self.learned: dict[str, dict[str, Any]] = {"roles": {}, "synonyms": {}, "comparatives": {}}
         self.exceptions: list[tuple[str, str, str]] = []  # (pred, group_id, excluded_id)
         #: verze báze — mění se každým zápisem/odvoláním; klíč keše uzávěrů
         self.version = 0

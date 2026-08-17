@@ -168,3 +168,21 @@ def test_coordinated_subject_case_ambiguity_and_comparison(s: Session) -> None:
     w = s.say("Kdo je starší, Pavla nebo Jindřich?")
     assert w.verdict is not None and s.memory.label(w.verdict.fillers[0][0]) == "Jindřich"
     assert s.say("Je Pavla mladší než Matěj?").verdict.value == "NEVÍM"  # type: ignore[union-attr]
+
+
+def test_comparative_defined_in_dialog(s: Session) -> None:
+    """Srovnávací slovo se definuje větou nebo příkazem — jádro jen porovnává hodnotu role."""
+    s.say("Vltava měří 430 kilometrů.")
+    s.say("Labe měří 1094 kilometrů.")
+    a = s.say("Je Vltava delší než Labe?")
+    assert a.verdict is not None and a.verdict.value == "NEVÍM" and "nauč mě" in a.text
+    d = s.say("Delší je ten, kdo měří víc.")
+    assert d.text.startswith("naučeno") and s.memory.learned["comparatives"]["dlouhý"]["dir"] == "more"
+    assert s.say("Je Vltava delší než Labe?").verdict.value == "NE"  # type: ignore[union-attr]
+    w = s.say("Kdo je delší, Vltava nebo Labe?")
+    assert w.verdict is not None and s.memory.label(w.verdict.fillers[0][0]) == "Labe"
+    assert "naučeno" in s.say("!srovnání kratší = měřit co míň").text
+    assert s.say("Je Vltava kratší než Labe?").verdict.value == "ANO"  # type: ignore[union-attr]
+    # přehrání žurnálu zopakuje i definice
+    again = Session.replay(s.journal_json(), RecordedOracle(DATA))
+    assert again.memory.learned["comparatives"].keys() == s.memory.learned["comparatives"].keys()

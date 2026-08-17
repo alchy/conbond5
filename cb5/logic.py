@@ -20,7 +20,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Literal
 
-from cb5.defaults import LOCATIVE_SURFACES, PLACE_NOUNS, synonym_class
+from cb5.defaults import COMPARATIVES_SEED, LOCATIVE_SURFACES, PLACE_NOUNS, synonym_class
 from cb5.memory import Memory, Role, Statement
 
 Grade = Literal["said", "read", "derived"]
@@ -261,17 +261,37 @@ class Evaluator:
 
     # ---- ano/ne --------------------------------------------------------------
 
-    #: Komparativ → (predikát, časová role, „dřív = pravda“). starší = narodil se dřív.
-    COMPARATIVES = {"starý": ("narodit_se", "kdy", True), "mladý": ("narodit_se", "kdy", False)}
+    def comparative(self, lemma: str) -> tuple[str, str, str] | None:
+        """Srovnávací slovo → (predikát, role, směr): naučené z dialogu má přednost před osivem."""
+        learned = self.m.learned.get("comparatives", {})
+        if lemma in learned:
+            d = learned[lemma]
+            return (str(d["pred"]), str(d["role"]), str(d["dir"]))
+        return COMPARATIVES_SEED.get(lemma)
+
+    def _value(self, node_id: str, pred: str, role: str) -> tuple[object, str] | None:
+        """Hodnota role `role` výroku `pred` o uzlu: (id času | číslo, id výroku)."""
+        for st in self.m.statements_about(node_id):
+            if not st.pred or self.same_pred(st.pred, pred) is None or st.neg:
+                continue
+            kdo = st.role("kdo")
+            if not (kdo and node_id in kdo.terms):
+                continue
+            named = st.role(role) if role != "*" else None
+            roles = [named] if named is not None else list(st.roles)  # role nesedí na jméno → kterákoli s hodnotou
+            for r in roles:
+                if r is None:
+                    continue
+                for t in r.terms:
+                    if self._kind(t) == "time":
+                        return t, st.id
+                    if t in r.counts:
+                        return r.counts[t], st.id
+        return None
 
     def _birth(self, node_id: str) -> tuple[str, str] | None:
-        """(id času, id výroku) narození entity, je-li známo."""
-        for st in self.m.statements_about(node_id):
-            if st.pred and self.same_pred(st.pred, "narodit_se") is not None and not st.neg:
-                kdo, kdy = st.role("kdo"), st.role("kdy")
-                if kdo and node_id in kdo.terms and kdy and kdy.terms and self._kind(kdy.terms[0]) == "time":
-                    return kdy.terms[0], st.id
-        return None
+        v = self._value(node_id, "narodit_se", "kdy")
+        return (str(v[0]), v[1]) if v and isinstance(v[0], str) else None
 
     def compare(self, q: Statement) -> Verdict | None:
         """Srovnání věku z narození: „Je Pavla starší než Jindřich?“, „Kdo je starší, A nebo B?“."""
@@ -280,32 +300,53 @@ class Evaluator:
         if q.pred != "srovnání" or not adj or not adj.terms:
             return None
         lemma = m.nodes[adj.terms[0]].lemma
-        if lemma not in self.COMPARATIVES:
-            return Verdict("NEVÍM", missing=[f"srovnání „{lemma}“ neumím (znám: starší/mladší z narození)"])
-        _, _, earlier_wins = self.COMPARATIVES[lemma]
+        spec = self.comparative(lemma)
+        if spec is None:
+            known_words = sorted(set(COMPARATIVES_SEED) | set(m.learned.get("comparatives", {})))
+            word = (m.nodes[adj.terms[0]].names or [lemma])[0]
+            return Verdict("NEVÍM", missing=[f"srovnání „{word}“ neumím — nauč mě větou „{word.capitalize()} je ten, kdo …“ nebo `!srovnání {word} = <predikát> <role> <dřív|později|víc|míň>` (znám: {', '.join(known_words)})"])
+        pred, role, direction = spec
+        DIR = {"earlier": "dřívější", "later": "pozdější", "more": "větší", "less": "menší"}
+        note = f"{lemma}: {DIR[direction]} {pred}({role})"
+        src = "naučeno dialogem" if lemma in m.learned.get("comparatives", {}) else "osivo"
+
+        def key(v: object) -> tuple[int, int, int] | float:
+            if isinstance(v, str):
+                n = m.nodes.get(v)
+                return (n.time.start or (0, 0, 0)) if n and n.time else (0, 0, 0)
+            return float(v)  # type: ignore[arg-type]
+
+        def show(v: object) -> str:
+            return m.label(v) if isinstance(v, str) else str(v)
+
         kdo, than, cands = q.role("kdo"), q.role("než"), q.role("z")
         if kdo and kdo.wh and cands and cands.terms:
-            births = [(c, self._birth(c)) for c in cands.terms]
-            known = [(c, b) for c, b in births if b]
-            missing = [f"chybí narození: {m.label(c)}" for c, b in births if not b]
+            vals = [(c, self._value(c, pred, role)) for c in cands.terms]
+            known = [(c, v) for c, v in vals if v]
+            missing = [f"chybí {pred}({role}): {m.label(c)}" for c, v in vals if not v]
             if len(known) < 2:
-                return Verdict("NEVÍM", missing=missing or ["málo kandidátů se známým narozením"])
-            known.sort(key=lambda cb: m.nodes[cb[1][0]].time.start or (0, 0, 0))  # type: ignore[union-attr]
-            pick = known[0] if earlier_wins else known[-1]
-            steps = [f"{m.label(c)}: {m.label(b[0])}" for c, b in known]
-            proof = Proof([b[1] for _, b in known], steps + [f"{lemma}: {'dřívější' if earlier_wins else 'pozdější'} narození"], ["srovnání z narození"], "derived")
+                return Verdict("NEVÍM", missing=missing or ["málo kandidátů se známou hodnotou"])
+            known.sort(key=lambda cv: key(cv[1][0]))
+            pick = known[0] if direction in ("earlier", "less") else known[-1]
+            steps = [f"{m.label(c)}: {show(v[0])}" for c, v in known] + [note]
+            proof = Proof([v[1] for _, v in known], steps, [f"srovnání ({src})"], "derived")
             return Verdict("ANO", [proof], fillers=[(pick[0], proof)], missing=missing)
         if kdo and kdo.terms and than and than.terms:
             a, b = kdo.terms[0], than.terms[0]
-            ba, bb = self._birth(a), self._birth(b)
-            missing = [f"chybí narození: {m.label(x)}" for x, bx in ((a, ba), (b, bb)) if not bx]
-            if not ba or not bb:
+            va, vb = self._value(a, pred, role), self._value(b, pred, role)
+            missing = [f"chybí {pred}({role}): {m.label(x)}" for x, vx in ((a, va), (b, vb)) if not vx]
+            if not va or not vb:
                 return Verdict("NEVÍM", missing=missing)
-            before = m.before(ba[0], bb[0])
-            if before is None:
-                return Verdict("NEVÍM", missing=["narození nejdou srovnat (bez roku)"])
-            truth = before if earlier_wins else (m.before(bb[0], ba[0]) is True)
-            proof = Proof([ba[1], bb[1]], [f"{m.label(a)}: {m.label(ba[0])}", f"{m.label(b)}: {m.label(bb[0])}", f"{lemma}: {'dřívější' if earlier_wins else 'pozdější'} narození"], ["srovnání z narození"], "derived")
+            ka, kb = key(va[0]), key(vb[0])
+            if isinstance(va[0], str) and isinstance(vb[0], str):
+                before = m.before(va[0], vb[0])
+                after = m.before(vb[0], va[0])
+                if before is None and after is None:
+                    return Verdict("NEVÍM", missing=["hodnoty nejdou srovnat (bez roku)"])
+                truth = bool(before) if direction == "earlier" else bool(after)
+            else:
+                truth = (ka < kb) if direction in ("earlier", "less") else (ka > kb)  # type: ignore[operator]
+            proof = Proof([va[1], vb[1]], [f"{m.label(a)}: {show(va[0])}", f"{m.label(b)}: {show(vb[0])}", note], [f"srovnání ({src})"], "derived")
             return Verdict("ANO" if truth else "NE", [proof] if truth else [], [] if truth else [proof])
         return None
 

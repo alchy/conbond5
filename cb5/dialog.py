@@ -24,7 +24,7 @@ import networkx as nx
 from cb5.diakritika import Restorer, has_diacritics
 from cb5.ground import Grounded, ground
 from cb5.logic import Verdict, enumerate_, evaluate
-from cb5.memory import Memory, Node, OpenItem, Provenance, Statement
+from cb5.memory import Memory, Node, OpenItem, Provenance, Role, Statement
 from cb5.oracle import OracleError, Parse, SegmentationError
 from cb5.read import Reading, read
 from cb5.recall import recall
@@ -227,6 +227,13 @@ class Session:
             if is_denial:
                 self._last_said = []
                 return Answer("\n".join(lines) or "nemám co odvolat", revoked=revoked)
+        # DEFINICE srovnávacího slova: „Starší je ten, kdo se narodil dřív.“
+        if main.pred == "definice":
+            adj, prd, dr = main.role("jaký"), main.role("predikát"), main.role("směr")
+            if adj and prd and dr and adj.terms and prd.terms and dr.terms:
+                lemma, pred, direction = adj.terms[0].lemma, prd.terms[0].lemma, dr.terms[0].lemma
+                role = "kdy" if direction in ("earlier", "later") else "*"
+                return Answer(self._learn_comparative(lemma, pred, role, direction, reading.parse.text))
         # „Ne každý pták.“ — oprava kvantifikátoru poslední věty
         if main.kind == "fragment" and reading.parse.text.lower().startswith("ne ") and main.role("téma"):
             return self._fix_quantifier(reading, doc)
@@ -273,6 +280,19 @@ class Session:
                         lines.append(f"   ↳ {step}")
             lines.append("   (nechávám obojí; otázky na to budou hlásit KONFLIKT — oprav `!zapomeň s…`, nebo zúž `!výjimka <predikát> <skupina> <výjimka>`)")
         return Answer("\n".join(lines), statements=[s.id for s in g.statements], revoked=revoked, open=g.open, conflict=conflict, reading=str(main))
+
+    def _learn_comparative(self, lemma: str, pred: str, role: str, direction: str, source: str) -> str:
+        """Zapíše naučené srovnávací slovo do paměti (data, ne kód) a nechá o tom výrok kvůli provenienci."""
+        m = self.memory
+        m.learned.setdefault("comparatives", {})[lemma] = {"pred": pred, "role": role, "dir": direction, "source": source, "turn": self.turn_no}
+        st = Statement("", "definice", "definice", grade="said", prov=self._prov("dialog", source),
+                       roles=[Role("jaký", [m.ensure_group(lemma).id], "·", "structural"),
+                              Role("predikát", [m.ensure_group(pred).id], "·", "structural"),
+                              Role("směr", [m.ensure_group(direction).id], "·", "structural")],
+                       defaults=["definice srovnávacího slova"])
+        m.attach(st)
+        DIR = {"earlier": "dřívější", "later": "pozdější", "more": "větší", "less": "menší"}
+        return f"naučeno [{st.id}]: „{lemma}“ = {DIR.get(direction, direction)} {pred}({role}) — u otázky „Je A … než B?“ porovnám {pred}({role}) obou"
 
     def _fix_quantifier(self, reading: Reading, doc: str) -> Answer:
         m = self.memory
@@ -405,6 +425,17 @@ class Session:
             role_map = {sv[v]: dv[v] for v in sv if v in dv}
             rule = m.add_rule(src, dst, role_map, f"dialog tah {self.turn_no}")
             return f"pravidlo {rule.id}: {src}({', '.join(f'{k}' for k in role_map)}) ⇒ {dst}({', '.join(role_map.values())})"
+        if cmd in ("srovnání", "srovnani"):
+            mt = re.match(r"^(\S+)\s*=\s*(\S+)\s+(\S+)\s+(\S+)$", arg)
+            if not mt:
+                return "užití: !srovnání starší = narodit_se kdy dřív   (směr: dřív | později | víc | míň)"
+            lemma, pred, role, dword = mt.groups()
+            from cb5.defaults import DIRECTION_ADVERBS
+            direction = DIRECTION_ADVERBS.get(dword) or {"earlier": "earlier", "later": "later", "more": "more", "less": "less"}.get(dword)
+            if direction is None:
+                return f"neznám směr „{dword}“ (dřív | později | víc | míň)"
+            # komparativ → základní tvar („starší“ → „starý“) přes rozbor, když ho máme
+            return self._learn_comparative(self._adj_lemma(lemma), pred, role, direction, line)
         if cmd in ("výjimka", "vyjimka"):
             ws = arg.split()
             if len(ws) != 3:
@@ -456,11 +487,22 @@ class Session:
             return self._help()
         return f"neznámý příkaz {cmd}\n" + self._help()
 
+    def _adj_lemma(self, word: str) -> str:
+        """Lemma přídavného jména („starší“ → „starý“) — přes orákulum, jinak slovo samo."""
+        try:
+            parse = self.oracle.parse(word)  # type: ignore[attr-defined]
+            for t in parse.tokens:
+                if t.upos == "ADJ":
+                    return t.lemma
+        except Exception:  # noqa: BLE001 — bez rozboru zůstane slovo
+            pass
+        return word
+
     @staticmethod
     def _help() -> str:
         return (
             "příkazy: !zapomeň s0001 · !role v+Loc = kde · !synonymum kázat = hlásat · "
-            "!pravidlo jet(kam:X) => být(kde:X) · !výjimka létat pták tučňák · !otevřené · "
+            "!pravidlo jet(kam:X) => být(kde:X) · !výjimka létat pták tučňák · !srovnání vyšší = měřit co víc · !otevřené · "
             "!odpověz o0001 kde · !program · !popiš Jirásek · !ulož p.json · !načti p.json · !graf g.json"
         )
 

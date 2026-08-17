@@ -154,3 +154,12 @@ Kdo má syna?
 Je Pavla starší než Jindřich?
 Kdo je starší, Pavla nebo Jindřich?
 Je Pavla mladší než Matěj?
+# --- definice srovnávacích slov
+Vltava měří 430 kilometrů.
+Labe měří 1094 kilometrů.
+Je Vltava delší než Labe?
+Delší je ten, kdo měří víc.
+Kdo je delší, Vltava nebo Labe?
+Je Vltava kratší než Labe?
+Mladší je ten, kdo se narodil později.
+kratší
