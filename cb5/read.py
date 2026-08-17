@@ -454,8 +454,8 @@ class _Reader:
                     role.name, role.surface = rname, rsurface
             self.mark(t.index, f"role:{role.name}")
             self._mark_structure(t.index, f"role:{role.name}")
-            if role.wh_kind == "count":
-                # „kolik zubů“: díra je počet, term zůstává
+            if role.wh_kind == "count" and t.lemma not in D.WH:
+                # „kolik zubů“: díra je počet, term zůstává („kolik“ samo term není)
                 role.terms = [self._term(t)]
                 role.name = name
             p.roles.append(role)
