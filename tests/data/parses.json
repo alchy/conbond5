@@ -7352,6 +7352,119 @@
 }
 ]
 },
+"Je Ronik pes?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Je Ronik pes?",
+"tokens": [
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Je",
+"head": 3,
+"id": 1,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Ronik",
+"head": 3,
+"id": 2,
+"lemma": "Ronik",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "pes",
+"head": 0,
+"id": 3,
+"lemma": "pes",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 3,
+"id": 4,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
 "Je citron ovoce?": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Je citron ovoce?",
@@ -8157,6 +8270,107 @@
 }
 ]
 },
+"Jí Ronik maso?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Jí Ronik maso?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Case",
+"Dat"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"PrepCase",
+"Npr"
+],
+[
+"PronType",
+"Prs"
+]
+],
+"form": "Jí",
+"head": 0,
+"id": 1,
+"lemma": "on",
+"upos": "PRON"
+},
+{
+"deprel": "dep",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Ronik",
+"head": 1,
+"id": 2,
+"lemma": "Ronik",
+"upos": "PROPN"
+},
+{
+"deprel": "dep",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "maso",
+"head": 1,
+"id": 3,
+"lemma": "maso",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 4,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
 "Kam jel Petr dřív?": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Kam jel Petr dřív?",
@@ -8809,6 +9023,107 @@
 "head": 2,
 "id": 3,
 "lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 2,
+"id": 4,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Kde bydlí Ronik?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kde bydlí Ronik?",
+"tokens": [
+{
+"deprel": "advmod",
+"feats": [
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Kde",
+"head": 2,
+"id": 1,
+"lemma": "kde",
+"upos": "ADV"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "bydlí",
+"head": 0,
+"id": 2,
+"lemma": "bydlet",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Ronik",
+"head": 2,
+"id": 3,
+"lemma": "Ronik",
 "upos": "PROPN"
 },
 {
@@ -11092,6 +11407,268 @@
 "feats": [],
 "form": "?",
 "head": 4,
+"id": 5,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Kolik je Petrovi let?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kolik je Petrovi let?",
+"tokens": [
+{
+"deprel": "det:numgov",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"NumType",
+"Card"
+],
+[
+"PronType",
+"Dem,Ind"
+]
+],
+"form": "Kolik",
+"head": 4,
+"id": 1,
+"lemma": "kolik",
+"upos": "DET"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 3,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Dat"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Petrovi",
+"head": 0,
+"id": 3,
+"lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "let",
+"head": 3,
+"id": 4,
+"lemma": "léta",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 3,
+"id": 5,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Kolik je Ronikovi let?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kolik je Ronikovi let?",
+"tokens": [
+{
+"deprel": "det:numgov",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"NumType",
+"Card"
+],
+[
+"PronType",
+"Dem,Ind"
+]
+],
+"form": "Kolik",
+"head": 4,
+"id": 1,
+"lemma": "kolik",
+"upos": "DET"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 3,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Dat"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Ronikovi",
+"head": 0,
+"id": 3,
+"lemma": "Ronik",
+"upos": "PROPN"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "let",
+"head": 3,
+"id": 4,
+"lemma": "léta",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 3,
 "id": 5,
 "lemma": "?",
 "upos": "PUNCT"
@@ -14902,6 +15479,111 @@
 }
 ]
 },
+"Pes jí maso.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Pes jí maso.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Pes",
+"head": 2,
+"id": 1,
+"lemma": "pes",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "jí",
+"head": 0,
+"id": 2,
+"lemma": "jíst",
+"upos": "VERB"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "maso",
+"head": 2,
+"id": 3,
+"lemma": "maso",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 4,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
 "Pes patří mezi psovité šelmy.": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Pes patří mezi psovité šelmy.",
@@ -15894,6 +16576,373 @@
 "form": ".",
 "head": 1,
 "id": 4,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Ronik bydlí v Petrovicích.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Ronik bydlí v Petrovicích.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Ronik",
+"head": 2,
+"id": 1,
+"lemma": "Ronik",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "bydlí",
+"head": 0,
+"id": 2,
+"lemma": "bydlet",
+"upos": "VERB"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "v",
+"head": 4,
+"id": 3,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "Petrovicích",
+"head": 2,
+"id": 4,
+"lemma": "Petrovice",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 5,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Ronik je pes.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Ronik je pes.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Ronik",
+"head": 3,
+"id": 1,
+"lemma": "ronik",
+"upos": "NOUN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 3,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "pes",
+"head": 0,
+"id": 3,
+"lemma": "pes",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 4,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Ronikovi je 17 let.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Ronikovi je 17 let.",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Dat"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Ronikovi",
+"head": 0,
+"id": 1,
+"lemma": "Ronik",
+"upos": "PROPN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 1,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "nummod:gov",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "17",
+"head": 4,
+"id": 3,
+"lemma": "17",
+"upos": "NUM"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "let",
+"head": 1,
+"id": 4,
+"lemma": "léta",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 1,
+"id": 5,
 "lemma": ".",
 "upos": "PUNCT"
 }
@@ -17432,6 +18481,51 @@
 "id": 4,
 "lemma": ".",
 "upos": "PUNCT"
+}
+]
+},
+"zapomeň Ronik": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "zapomeň Ronik",
+"tokens": [
+{
+"deprel": "root",
+"feats": [],
+"form": "zapomeň",
+"head": 0,
+"id": 1,
+"lemma": "zapomeň",
+"upos": "ADV"
+},
+{
+"deprel": "dep",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Ronik",
+"head": 1,
+"id": 2,
+"lemma": "Ronik",
+"upos": "PROPN"
 }
 ]
 },

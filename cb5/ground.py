@@ -79,6 +79,14 @@ class Grounder:
             return self._resolve_pron(t, role)
         if t.kind == "value":
             return self.m.ensure_group(t.lemma).id
+        if t.note == "možná jméno":
+            # „Ronik je pes.“ — parser neznámé slovo na začátku věty čte jako obecné jméno;
+            # když už takové JMÉNO známe, je to ono; jinak group, ale poznamenaná (paměť ji
+            # při pozdějším vlastním jménu převede na entitu)
+            found = self.m.find_entity([t.forms[0]])
+            if found:
+                self._defaults.append(f"{role}: „{t.forms[0]}“ = {found[0].label()} (známé jméno, ne třída)")
+                return found[0].id
         # group (případně zúžená vztahem: „otec Petra Nováka“)
         rel: str | None = None
         if t.rel is not None:
@@ -86,6 +94,9 @@ class Grounder:
             if rel_id is not None:
                 rel = f"{t.rel[0]}:{rel_id}"
         group = self.m.ensure_group(t.lemma, t.attrs, rel)
+        if t.note == "možná jméno" and not group.text:
+            group.text = "cap"
+            group.names = [t.forms[0]]
         if t.possessor is not None:
             owned = self._resolve_possessed(t, group, role)
             if owned is not None:
@@ -97,7 +108,7 @@ class Grounder:
                     self._defaults.append(f"{role}: „{t.lemma}“ = {cand.label()} (určitý popis z aktivace)")
                     return cand.id
         if (t.quant == "∃" and role == "co" and subject_specific and self.write
-                and pred not in ("být",) and t.count is None):
+                and pred not in ("být", "věk") and t.count is None):
             # neurčitá zmínka u konkrétního podmětu → nová instance („Filip má auto“ → a1 ∈ auto)
             inst = self.m.new_node("entity", t.lemma, names=[], attrs=t.attrs, doc=self.prov.doc, gender=t.gender, number=t.number)
             inst.base = group.id

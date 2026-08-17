@@ -120,3 +120,21 @@ def test_replay_gives_same_program(s: Session) -> None:
     again = Session.replay(s.journal_json(), RecordedOracle(DATA))
     assert again.memory.program() == s.memory.program()
     assert again.memory.to_json()["statements"] == s.memory.to_json()["statements"]
+
+
+def test_unknown_name_read_as_class_then_as_name(s: Session) -> None:
+    """„Ronik je pes.“ čte parser jako třídu (ronik), „Je Ronik pes?“ jako jméno — musí se potkat."""
+    s.say("Ronik je pes.")
+    a = s.say("Je Ronik pes?")
+    assert a.verdict is not None and a.verdict.value == "ANO"
+    s.say("Ronik bydlí v Petrovicích.")
+    assert "Petrovice" in s.say("Kde bydlí Ronik?").text
+    r = s.say("zapomeň Ronik")  # příkaz i bez „!“
+    assert "odvoláno" in r.text
+    assert s.say("Kde bydlí Ronik?").verdict.value == "NEVÍM"  # type: ignore[union-attr]
+
+
+def test_age_pattern(s: Session) -> None:
+    s.say("Ronikovi je 17 let.")
+    a = s.say("Kolik je Ronikovi let?")
+    assert a.verdict is not None and a.verdict.fillers and a.verdict.fillers[0][0] == "count:17"

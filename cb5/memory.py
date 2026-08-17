@@ -276,6 +276,15 @@ class Memory:
                 if f not in n.names:
                     n.names.append(f)
             return n, False
+        if not found:
+            # dřív přečteno jako TŘÍDA z neznámého slova s velkým písmenem („Ronik je pes.“) →
+            # teď je to vlastní jméno: uzel se převede na entitu, výroky zůstávají
+            for n in self.nodes.values():
+                if n.kind == "group" and n.text == "cap" and not n.attrs and not n.rel and n.lemma == " ".join(name_lemmas).lower():
+                    n.kind, n.text = kind, "cap→entity"
+                    n.names = list(dict.fromkeys([" ".join(name_lemmas)] + [f for f in forms if f]))
+                    n.gender, n.number = n.gender or gender, n.number or number
+                    return n, False
         if len(found) > 1:
             # víc kandidátů: téma dokumentu, jinak nejaktivnější
             preferred = [n for n in found if n.id == prefer]
@@ -512,9 +521,15 @@ class Memory:
         return None
 
     def member_star(self, e: str, g: str) -> list[str] | None:
-        """`e ∈ g`: `member` do nějaké group, která je ⊆ g."""
+        """`e ∈ g`: `member` do nějaké group, která je ⊆ g. Entita, o níž byl
+        omylem zapsán `subset` (než se poznalo, že je to jméno), projde přes něj."""
         edges = self._kernel_edges("member")
         best: list[str] | None = None
+        ne = self.nodes.get(e)
+        if ne is not None and ne.kind == "entity":
+            via_subset = self.subset_star(e, g)
+            if via_subset:
+                best = via_subset
         for x in self._class(e):
             for h, sid in edges.get(x, []):
                 sub = self.subset_star(h, g)

@@ -23,7 +23,7 @@ import networkx as nx
 
 from cb5.ground import Grounded, ground
 from cb5.logic import Verdict, enumerate_, evaluate
-from cb5.memory import Memory, OpenItem, Provenance, Statement
+from cb5.memory import Memory, Node, OpenItem, Provenance, Statement
 from cb5.oracle import OracleError, Parse, SegmentationError
 from cb5.read import Reading, read
 from cb5.recall import recall
@@ -141,8 +141,16 @@ class Session:
 
     # ---- tah dialogu -----------------------------------------------------------
 
+    #: Příkazy jdou i bez „!“, když věta začíná příkazovým slovem.
+    COMMAND_WORDS = frozenset({"zapomeň", "zapomen", "odvolej", "popiš", "popis", "otevřené", "otevrene", "backlog",
+                               "nápověda", "napoveda", "program", "ulož", "uloz", "načti", "nacti", "graf", "pravidlo",
+                               "synonymum", "výjimka", "vyjimka", "odpověz", "odpovez", "role"})
+
     def say(self, text: str, doc: str = "dialog") -> Answer:
         text = text.strip()
+        first = text.split(None, 1)[0].lower().rstrip(".!:") if text else ""
+        if first in self.COMMAND_WORDS and not text.startswith("!"):
+            text = "!" + text
         if text.startswith("!"):
             self._turn("command", text)
             return Answer(self.command(text))
@@ -312,9 +320,23 @@ class Session:
         if not parts:
             return self._help()
         cmd, arg = parts[0].lower(), (parts[1].strip() if len(parts) > 1 else "")
-        if cmd in ("zapomeň", "zapomen", "revoke"):
-            revoked = m.revoke(arg, f"zapomenuto dialogem (tah {self.turn_no})")
-            return "odvoláno: " + (", ".join(revoked) or "nic")
+        if cmd in ("zapomeň", "zapomen", "revoke", "odvolej"):
+            arg = arg.rstrip(".!")
+            if arg in m.statements:
+                revoked = m.revoke(arg, f"zapomenuto dialogem (tah {self.turn_no})")
+                return "odvoláno: " + (", ".join(revoked) or "nic")
+            targets: list[Node] = list(m.find_entity(arg.split()))
+            grp = m.find_group(arg.lower())
+            if not targets and grp is not None:
+                targets = [grp]
+            if not targets:
+                return f"neznám výrok ani jméno „{arg}“ (užití: !zapomeň s0003 nebo !zapomeň Ronik)"
+            revoked = []
+            for node in targets:
+                for st in m.statements_about(node.id):
+                    if st.derived_from is None:
+                        revoked.extend(m.revoke(st.id, f"zapomenuto dialogem: {arg} (tah {self.turn_no})"))
+            return f"odvoláno o „{arg}“: " + (", ".join(revoked) or "nic")
         if cmd == "role":
             mt = re.match(r"^(\S+)\s*=\s*(\S+)$", arg)
             if not mt:
@@ -395,11 +417,11 @@ class Session:
         if cmd in ("kdo", "co", "popiš", "popis"):
             found = m.find_entity(arg.split())
             grp = m.find_group(arg)
-            node = found[0] if found else grp
-            if node is None:
+            target: Node | None = found[0] if found else grp
+            if target is None:
                 return f"neznám {arg}"
-            lines = [f"{node.id} {describe_node(m, node.id)}:"]
-            for st in m.statements_about(node.id):
+            lines = [f"{target.id} {describe_node(m, target.id)}:"]
+            for st in m.statements_about(target.id):
                 lines.append("  " + render_statement(m, st, with_source=True))
             return "\n".join(lines)
         if cmd in ("nápověda", "napoveda", "help", "?"):

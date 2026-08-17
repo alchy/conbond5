@@ -132,3 +132,14 @@ Chata stojí u rybníka Hejtman.
 Kde stojí chata?
 Nejbližším příbuzným psa je vlk.
 Co je nejbližší příbuzný psa?
+# --- z živého dialogu 17. 8.
+Ronik je pes.
+Je Ronik pes?
+Ronikovi je 17 let.
+Kolik je Ronikovi let?
+Pes jí maso.
+Jí Ronik maso?
+Kde bydlí Ronik?
+Ronik bydlí v Petrovicích.
+zapomeň Ronik
+Kolik je Petrovi let?

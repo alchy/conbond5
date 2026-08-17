@@ -437,6 +437,8 @@ class _Reader:
     def _add_role(
         self, p: Predication, name: str, surface: str, t: Token, *, authority: str = "structural"
     ) -> None:
+        if not any(ch.isalnum() for ch in t.form):
+            return  # „>“, „–“ apod. nejsou termy — skončí ve zbytku (sweep)
         wh = self._wh_of(t)
         role = RoleFill(name, surface, authority=authority)
         if wh is not None:
@@ -788,6 +790,11 @@ class _Reader:
         elif t.upos == "PROPN":
             kind = "place" if (t.feat("NameType") == "Geo" or self._filler_kind(t) == "place?") else "entity"
             quant, qauth = quant or "·", qauth or "structural"
+        elif t.upos == "NOUN" and t.form[:1].isupper() and t.lemma == t.form.lower() and t.index > 1 and not is_time_noun(t.lemma) and not titled:
+            # velké písmeno uprostřed věty a lemma = tvar: parser slovo nezná → je to jméno
+            kind = "entity"
+            quant, qauth = quant or "·", qauth or "structural"
+            name_lemmas = [t.form]
         elif t.upos == "NOUN" and titled:
             # „řeka Vltava“, „sopka Ol Doinyo Lengai“: entita pojmenovaná vlastním jménem,
             # obecné jméno je její třída (paměť přidá member) — jméno bez titulu
@@ -841,6 +848,8 @@ class _Reader:
         )
         if kind in ("entity", "place") and t.upos == "NOUN" and titled:
             spec.note = f"titul:{t.lemma}"
+        elif kind == "group" and t.form[:1].isupper() and t.lemma == t.form.lower() and t.index == 1 and not attrs:
+            spec.note = "možná jméno"  # věta začíná neznámým slovem s velkým písmenem
         if possessor is not None and spec.quant is None:
             spec.quant, spec.quant_authority = "·", "default:přivlastnění"
         if "¬" in attrs:
@@ -851,7 +860,51 @@ class _Reader:
 
     # ---- kopula ------------------------------------------------------------
 
+    def _age(self, root: Token, cop: Token) -> Predication | None:
+        """„Ronikovi je 17 let.“ / „Kolik je Petrovi let?“ → věk(kdo: X, co: N rok).
+        Tvar: kořen v dativu (komu), `nsubj` = léta/rok s číslovkou nebo s „kolik“."""
+        if root.feat("Case") != "Dat":
+            return None
+        years = [c for c in self.p.children(root.index) if c.base_deprel == "nsubj" and c.lemma in ("léta", "rok")]
+        if not years:
+            return None
+        y = years[0]
+        p = Predication(pred="věk", kind="verb", head=root.index)
+        p.tense = cop.feat("Tense")
+        self.mark(cop.index, "pred")
+        self.mark(root.index, "role:kdo")
+        p.defaults.append("věk: dativ + být + N let")
+        who = self._term(root)
+        p.roles.append(RoleFill("kdo", "Dat", [who], "default"))
+        wh = self._wh_of(y)
+        if wh is not None:
+            role = RoleFill("co", "nsubj", wh=True, wh_kind="count")
+            role.terms = [self._term(y)]
+            for t in role.terms:
+                t.count, t.kind, t.time = None, "group", None  # tentýž uzel jako u tvrzení (léta = group)
+            self.mark(y.index, "role:co")
+            self._mark_structure(y.index, "role:co")
+            p.roles.append(role)
+        else:
+            term = self._term(y)
+            term.kind = "group"
+            term.time = None
+            term.quant, term.quant_authority = "∃", "structural"
+            for c in self.p.children(y.index):
+                raw = c.form.replace(" ", "").rstrip(".")
+                if c.base_deprel == "nummod" and raw.isdigit():
+                    term.count = int(raw)  # u času se počet maže — tady je to VĚK
+            p.roles.append(RoleFill("co", "nsubj", [term], "structural"))
+        for child in self.p.children(root.index):
+            if child.base_deprel in ("obl", "advmod", "advcl"):
+                self._roles_of_single(child, p)
+        return p
+
     def _copula(self, root: Token, cop: Token | None, *, shared_subject: RoleFill | None = None) -> Predication:
+        if cop is not None:
+            age = self._age(root, cop)
+            if age is not None:
+                return age
         p = Predication(pred="být", kind="copula", head=root.index)
         p.tense = cop.feat("Tense") if cop else None
         if cop is not None:
