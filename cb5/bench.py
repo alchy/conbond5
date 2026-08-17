@@ -214,10 +214,16 @@ def run_doc(doc: str, corpus: Path, oracle: CachedOracle, strop: int) -> dict[st
             continue
         v = a.verdict
         fillers = [t for t, _ in v.fillers] if v is not None else []
-        ok, text_ok = answer_matches(m, list(item["expect"]), fillers, a.text)
+        if not item["expect"]:
+            # mode=unsure: zlatá sada čeká, že systém NIC netvrdí. Správně = NEVÍM.
+            # (Když přesto odpoví, může mít pravdu — etalon je starý; hlásí se to zvlášť.)
+            ok = bool(v is None or v.value == "NEVÍM")
+            text_ok = ok
+        else:
+            ok, text_ok = answer_matches(m, list(item["expect"]), fillers, a.text)
         hits += ok
         text_hits += text_ok
-        why = "" if ok else classify_miss(session, q, v)
+        why = "" if ok else ("odpověděl navíc (etalon čekal NEVÍM)" if not item["expect"] else classify_miss(session, q, v))
         if not ok:
             misses[why] += 1
         results.append({"q": q, "expect": item["expect"], "sada": item["sada"], "ok": ok, "text_ok": text_ok,

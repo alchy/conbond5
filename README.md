@@ -102,9 +102,9 @@ běh trvá vteřiny; bible z ručních sad v korpusu není (vypíše se).
 |---|---|---|
 | korpus conbond4 (238 vět): zapsáno | 8 | **233 s rolí**, zbytek 5,6 % tokenů |
 | korpus conBond2 (73 dok., 14 354 vět): zapsáno | — | **14 354** (40 590 výroků, zbytek 8,6 % tokenů, 12 063 otevřených položek) |
-| **ručně psané otázky (70): správná výplň** | 0 | **44 (63 %)** — etalon 17/32, conbond 27/38; 55 má odpověď aspoň v „vím: …“ |
+| **ručně psané otázky (70): správně** | 0 | **46 (66 %)** — etalon 19/32, conbond 27/38; 57 má odpověď aspoň v „vím: …“; u `mode=unsure` je správně NEVÍM (jednou odpověděl navíc: „S kým se oženil Hrabal?“ → Eliška Plevová — pravdivě) |
 | generované otázky (682): správná výplň | 0 | 421 (62 %); 577 v textu odpovědi |
-| rozklad chyb (všech 752) | — | role/logika 117 · špatná výplň 115 · bez výroku 46 · entita neznámá 7 · predikát chybí 2 |
+| rozklad chyb (všech 752) | — | role/logika 117 · špatná výplň 114 · bez výroku 45 · entita neznámá 7 · predikát chybí 1 · odpověděl navíc 1 |
 | dialogy A–F ze zadání conbond4 | — | zelené (`tests/test_dialogues_af.py`) |
 | „Bydlí Petr v Brně?“ po „Petr bydlí v Praze.“ | ANO (nepravda) | NEVÍM + „vím: bydlí v Praze“ |
 

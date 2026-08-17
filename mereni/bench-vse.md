@@ -32,7 +32,7 @@
 | marie_majerová | 370 | 370 | 1005 | 427/3851 | 282 | 2 | 0 (0 %) | 1 |
 | milan_kundera | 359 | 359 | 1078 | 412/4486 | 346 | 35 | 25 (71 %) | 29 |
 | ota_pavel | 280 | 280 | 583 | 256/2046 | 149 | 11 | 8 (73 %) | 10 |
-| pes_domácí | 653 | 653 | 1968 | 640/9569 | 650 | 8 | 3 (38 %) | 5 |
+| pes_domácí | 653 | 653 | 1968 | 640/9569 | 650 | 8 | 5 (62 %) | 7 |
 | petr_bezruč | 362 | 362 | 891 | 312/3487 | 220 | 16 | 9 (56 %) | 14 |
 | poznámky_domácnost | 20 | 20 | 32 | 0/97 | 3 | 6 | 6 (100 %) | 6 |
 | příroda_česká | 20 | 20 | 27 | 0/110 | 0 | 8 | 7 (88 %) | 7 |
@@ -47,12 +47,12 @@
 | vítězslav_nezval | 320 | 320 | 856 | 364/3322 | 224 | 26 | 16 (62 %) | 23 |
 | včela_medonosná | 379 | 379 | 931 | 281/4231 | 446 | 1 | 0 (0 %) | 0 |
 | šachy | 411 | 411 | 1346 | 538/6821 | 452 | 2 | 0 (0 %) | 2 |
-| **celkem** | 14354 | 14354 | 40590 | 14670/169743 | 12063 | 752 | 465 (61.8 %) | 632 |
+| **celkem** | 14354 | 14354 | 40590 | 14670/169743 | 12063 | 752 | 467 (62.1 %) | 634 |
 
 | sada | druh | otázek | správně | v textu |
 |---|---|---|---|---|
-| etalon | ručně psané | 32 | 17 (53 %) | 26 |
+| etalon | ručně psané | 32 | 19 (59 %) | 28 |
 | conbond | ručně psané (starý conBond) | 38 | 27 (71 %) | 29 |
 | otazky | generované šablonou (kde/kdy) | 682 | 421 (62 %) | 577 |
 
-Rozklad chyb: role/logika (blízký výrok je): 117; špatná výplň: 115; bez výroku: 46; entita neznámá: 7; predikát chybí: 2
+Rozklad chyb: role/logika (blízký výrok je): 117; špatná výplň: 114; bez výroku: 45; entita neznámá: 7; predikát chybí: 1; odpověděl navíc (etalon čekal NEVÍM): 1

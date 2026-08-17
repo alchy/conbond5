@@ -1,0 +1,511 @@
+[
+ {
+  "doc": "bohumil_hrabal",
+  "sentences": 448,
+  "written": 448,
+  "with_role": 446,
+  "statements": 1014,
+  "residue_tokens": 310,
+  "tokens": 3563,
+  "open": 220,
+  "questions": 24,
+  "hits": 17,
+  "text_hits": 18,
+  "misses": {
+   "role/logika (blízký výrok je)": 2,
+   "predikát chybí": 1,
+   "bez výroku": 3,
+   "odpověděl navíc (etalon čekal NEVÍM)": 1
+  },
+  "results": [
+   {
+    "q": "Kde se narodil Bohumil Hrabal?",
+    "expect": [
+     "Židenice"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Židenice"
+    ],
+    "why": "",
+    "reading": "narodit_se(kde:?, kdo:·Bohumil Hrabal)"
+   },
+   {
+    "q": "Kdy zahájil Bohumil Hrabal?",
+    "expect": [
+     "roku 1925"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1925"
+    ],
+    "why": "",
+    "reading": "zahájit(kdy:?, kdo:·Bohumil Hrabal)"
+   },
+   {
+    "q": "Kde přešel Bohumil Hrabal?",
+    "expect": [
+     "Nymburce"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Nymburk"
+    ],
+    "why": "",
+    "reading": "přejít(kde:?, kdo:·Bohumil Hrabal)"
+   },
+   {
+    "q": "Kdy odmaturoval Bohumil Hrabal?",
+    "expect": [
+     "Roku 1934"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1934"
+    ],
+    "why": "",
+    "reading": "odmaturovat(kdy:?, kdo:·Bohumil Hrabal)"
+   },
+   {
+    "q": "Kde pracoval Bohumil Hrabal?",
+    "expect": [
+     "Kostomlatech"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Kostomlaty"
+    ],
+    "why": "",
+    "reading": "pracovat(kde:?, kdo:·Bohumil Hrabal)"
+   },
+   {
+    "q": "Kdy vystřídal Bohumil Hrabal?",
+    "expect": [
+     "roku 1949"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "vystřídat(kdy:?, kdo:·Bohumil Hrabal)"
+   },
+   {
+    "q": "Kde prožil Bohumil Hrabal?",
+    "expect": [
+     "Libni"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Libeň"
+    ],
+    "why": "",
+    "reading": "prožít(kde:?, kdo:·Bohumil Hrabal)"
+   },
+   {
+    "q": "Kdy si vzal Bohumil Hrabal?",
+    "expect": [
+     "8 . prosince 1956"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "8. 12. 1956"
+    ],
+    "why": "",
+    "reading": "vzít_si(kdy:?, kdo:·Bohumil Hrabal)"
+   },
+   {
+    "q": "Kdy nesměl Bohumil Hrabal?",
+    "expect": [
+     "roce 1970"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "predikát chybí",
+    "reading": "¬smět(kdy:?, kdo:·Bohumil Hrabal)"
+   },
+   {
+    "q": "Kdy se setkal Bohumil Hrabal?",
+    "expect": [
+     "roce 1994"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1994"
+    ],
+    "why": "",
+    "reading": "setkat_se(kdy:?, kdo:·Bohumil Hrabal)"
+   },
+   {
+    "q": "Kdy se zemřel Bohumil Hrabal?",
+    "expect": [
+     "roce 1997"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1997",
+     "3. 2. 1997"
+    ],
+    "why": "",
+    "reading": "zemřít(kdy:?, kdo:·Bohumil Hrabal)"
+   },
+   {
+    "q": "Kde se zemřel Bohumil Hrabal?",
+    "expect": [
+     "Praze"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "Praha"
+    ],
+    "why": "",
+    "reading": "zemřít(kde:?, kdo:·Bohumil Hrabal)"
+   },
+   {
+    "q": "Kde spočívá Bohumil Hrabal?",
+    "expect": [
+     "Hradištku"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "hrob (rodinný)"
+    ],
+    "why": "",
+    "reading": "spočívat(kde:?, kdo:·Bohumil Hrabal)"
+   },
+   {
+    "q": "Kdy obdržel Bohumil Hrabal?",
+    "expect": [
+     "30 . dubna 1968"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "30. 4. 1968"
+    ],
+    "why": "",
+    "reading": "obdržet(kdy:?, kdo:·Bohumil Hrabal)"
+   },
+   {
+    "q": "Kdy obsluhoval Bohumil Hrabal?",
+    "expect": [
+     "1982"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "bez výroku",
+    "reading": "obsluhovat(kdy:?, kdo:·Bohumil Hrabal)"
+   },
+   {
+    "q": "Kdy obsluhoval Bohumil Hrabal?",
+    "expect": [
+     "1982"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "bez výroku",
+    "reading": "obsluhovat(kdy:?, kdo:·Bohumil Hrabal)"
+   },
+   {
+    "q": "Kde obsluhoval Bohumil Hrabal?",
+    "expect": [
+     "Torontu"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "bez výroku",
+    "reading": "obsluhovat(kde:?, kdo:·Bohumil Hrabal)"
+   },
+   {
+    "q": "Kde se narodil Bohumil Hrabal?",
+    "expect": [
+     "Židenic"
+    ],
+    "sada": "etalon",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Židenice"
+    ],
+    "why": "",
+    "reading": "narodit_se(kde:?, kdo:·Bohumil Hrabal)"
+   },
+   {
+    "q": "Kde studoval Bohumil Hrabal práva?",
+    "expect": [
+     "Praze"
+    ],
+    "sada": "etalon",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "studovat(kde:?, kdo:·Bohumil Hrabal, co:∃právo)"
+   },
+   {
+    "q": "Kdo je Bohumil Hrabal?",
+    "expect": [
+     "prozaik",
+     "spisovatel"
+    ],
+    "sada": "etalon",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "prozaik (český)",
+     "host (stálý) hospoda",
+     "člen (kmenový) sorbonna (tzv.)",
+     "postřižina",
+     "planetka",
+     "dojetí (vynucený)"
+    ],
+    "why": "",
+    "reading": "být(kdo:·Bohumil Hrabal, co:?)"
+   },
+   {
+    "q": "Kde se narodil?",
+    "expect": [
+     "Židenic"
+    ],
+    "sada": "etalon",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Židenice"
+    ],
+    "why": "",
+    "reading": "narodit_se(kdo:·∅, kde:?)"
+   },
+   {
+    "q": "Kdy zemřel?",
+    "expect": [
+     "1997"
+    ],
+    "sada": "etalon",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1997",
+     "3. 2. 1997"
+    ],
+    "why": "",
+    "reading": "zemřít(kdo:·∅, kdy:?)"
+   },
+   {
+    "q": "S kým se oženil Bohumil Hrabal?",
+    "expect": [],
+    "sada": "etalon",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "Eliška Plevová"
+    ],
+    "why": "odpověděl navíc (etalon čekal NEVÍM)",
+    "reading": "oženit_se(s_kým:?, kdo:·Bohumil Hrabal)"
+   },
+   {
+    "q": "S kým se přátelil Bohumil Hrabal?",
+    "expect": [
+     "Kolářem",
+     "Bondym"
+    ],
+    "sada": "etalon",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Egon Bondy"
+    ],
+    "why": "",
+    "reading": "přátelit_se(s_kým:?, kdo:·Bohumil Hrabal)"
+   }
+  ],
+  "t_ingest": 0.1,
+  "t_ask": 0.1
+ },
+ {
+  "doc": "pes_domácí",
+  "sentences": 653,
+  "written": 653,
+  "with_role": 652,
+  "statements": 1968,
+  "residue_tokens": 640,
+  "tokens": 9569,
+  "open": 650,
+  "questions": 8,
+  "hits": 5,
+  "text_hits": 7,
+  "misses": {
+   "bez výroku": 2,
+   "entita neznámá": 1
+  },
+  "results": [
+   {
+    "q": "Kolik zubů má dospělý pes?",
+    "expect": [
+     "42"
+    ],
+    "sada": "etalon",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "count:42"
+    ],
+    "why": "",
+    "reading": "mít(co:?count:∃zub, kdo:∀pes[dospělý])"
+   },
+   {
+    "q": "Kolik mléčných zubů má štěně?",
+    "expect": [
+     "28"
+    ],
+    "sada": "etalon",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "bez výroku",
+    "reading": "mít(co:?count:∃zub[mléčný], kdo:∀štěně)"
+   },
+   {
+    "q": "Z kolika vlků pochází pes?",
+    "expect": [
+     "13",
+     "24"
+    ],
+    "sada": "etalon",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "count:13"
+    ],
+    "why": "",
+    "reading": "pocházet(z+Gen:?count:∃vlk, kdo:∀pes)"
+   },
+   {
+    "q": "Co je nejbližší příbuzný psa?",
+    "expect": [
+     "vlk"
+    ],
+    "sada": "etalon",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "entita neznámá",
+    "reading": "být(kdo:∀příbuzný⟨pes⟩[blízký], co:?)"
+   },
+   {
+    "q": "Kdy se narodil pes domácí?",
+    "expect": [],
+    "sada": "etalon",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "",
+    "reading": "narodit_se(kdy:?, kdo:·pes[domácí])"
+   },
+   {
+    "q": "S kým se oženil pes domácí?",
+    "expect": [],
+    "sada": "etalon",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "",
+    "reading": "oženit_se(s_kým:?, kdo:·pes[domácí])"
+   },
+   {
+    "q": "Co je pes domácí?",
+    "expect": [
+     "šelma",
+     "savec"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "šelma (domestikovaný, velký)",
+     "jeden",
+     "Canis familiaris"
+    ],
+    "why": "",
+    "reading": "být(kdo:∀pes[domácí], co:?)"
+   },
+   {
+    "q": "Je pes šelma?",
+    "expect": [
+     "ano"
+    ],
+    "sada": "conbond",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [],
+    "why": "bez výroku",
+    "reading": "být(kdo:∀pes, co:∃šelma) ⟨subset⟩"
+   }
+  ],
+  "t_ingest": 0.1,
+  "t_ask": 0.1
+ }
+]

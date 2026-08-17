@@ -484,7 +484,7 @@
     "reading": "být(kdo:∀příkrov[antarktický][ledový], jaký:∃silný, jak:?)"
    }
   ],
-  "t_ingest": 0.1,
+  "t_ingest": 0.0,
   "t_ask": 0.0
  },
  {
@@ -816,7 +816,7 @@
    "role/logika (blízký výrok je)": 2,
    "predikát chybí": 1,
    "bez výroku": 3,
-   "špatná výplň": 1
+   "odpověděl navíc (etalon čekal NEVÍM)": 1
   },
   "results": [
    {
@@ -1155,7 +1155,7 @@
     "fillers": [
      "Eliška Plevová"
     ],
-    "why": "špatná výplň",
+    "why": "odpověděl navíc (etalon čekal NEVÍM)",
     "reading": "oženit_se(s_kým:?, kdo:·Bohumil Hrabal)"
    },
    {
@@ -5968,7 +5968,7 @@
     "reading": "procházet(kde:?, kdo:·Julius Zeyer)"
    }
   ],
-  "t_ingest": 0.6,
+  "t_ingest": 0.5,
   "t_ask": 0.1
  },
  {
@@ -8129,7 +8129,7 @@
     "reading": "hlasovat(kde:?, kdo:·Ludvík Vaculík)"
    }
   ],
-  "t_ingest": 0.1,
+  "t_ingest": 0.0,
   "t_ask": 0.0
  },
  {
@@ -8943,12 +8943,11 @@
   "tokens": 9569,
   "open": 650,
   "questions": 8,
-  "hits": 3,
-  "text_hits": 5,
+  "hits": 5,
+  "text_hits": 7,
   "misses": {
-   "bez výroku": 3,
-   "entita neznámá": 1,
-   "predikát chybí": 1
+   "bez výroku": 2,
+   "entita neznámá": 1
   },
   "results": [
    {
@@ -9012,22 +9011,22 @@
     "q": "Kdy se narodil pes domácí?",
     "expect": [],
     "sada": "etalon",
-    "ok": false,
-    "text_ok": false,
+    "ok": true,
+    "text_ok": true,
     "verdict": "NEVÍM",
     "fillers": [],
-    "why": "bez výroku",
+    "why": "",
     "reading": "narodit_se(kdy:?, kdo:·pes[domácí])"
    },
    {
     "q": "S kým se oženil pes domácí?",
     "expect": [],
     "sada": "etalon",
-    "ok": false,
-    "text_ok": false,
+    "ok": true,
+    "text_ok": true,
     "verdict": "NEVÍM",
     "fillers": [],
-    "why": "predikát chybí",
+    "why": "",
     "reading": "oženit_se(s_kým:?, kdo:·pes[domácí])"
    },
    {
@@ -9062,7 +9061,7 @@
     "reading": "být(kdo:∀pes, co:∃šelma) ⟨subset⟩"
    }
   ],
-  "t_ingest": 0.6,
+  "t_ingest": 0.5,
   "t_ask": 0.1
  },
  {
