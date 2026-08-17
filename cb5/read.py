@@ -137,6 +137,9 @@ class Predication:
     correction: bool = False
     #: U kopuly jméno role predikátového nominálu (`co` / `jaký` / `kde`…).
     pred_role_name: str = ""
+    #: Věta má tvar definice vztahového jména („Tchán je otec manžela“) — zapíše se jako fakt
+    #: A NAVÍC se z ní vezme definiční řetěz (tvar sám nerozhodne, jestli je to definice).
+    definition: bool = False
 
     def role(self, name: str) -> RoleFill | None:
         for r in self.roles:
@@ -1109,10 +1112,10 @@ class _Reader:
         s = subj.terms[0]
         if (s.kind == "group" and s.rel is None and not s.attrs and pred_role.name == "co" and pred_role.terms
                 and any(t.rel is not None and t.rel[1].kind == "group" for t in pred_role.terms)):
-            # „Tchán je otec manžela nebo manželky.“ — třída definovaná SLOŽENÍM vztahových jmen
-            # (zúžení obecným jménem, ne konkrétním uzlem) = definice, ne fakt o světě
-            p.defaults.append("definice vztahového jména")
-            return "definice_vztahu"
+            # „Tchán je otec manžela nebo manželky.“ — třída složená z vztahových jmen. Týž tvar
+            # má i „Foton je částice světla“, proto: fakt (subset) A definiční řetěz navíc.
+            p.definition = True
+            p.defaults.append("tvar definice vztahového jména (řetěz uložen navíc)")
         if (s.kind == "group" and s.quant in ("∀", "∃") and pred_role.name == "co" and pred_role.terms
                 and all(t.kind == "entity" for t in pred_role.terms)):
             # „Druh automobilu je Ford, Škoda, Mazda.“ / „Automobil může být Ford…“ — třída = výčet

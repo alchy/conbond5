@@ -101,6 +101,12 @@ class Grounder:
         if t.note == "možná jméno" and not group.text:
             group.text = "cap"
             group.names = [t.forms[0]]
+        elif t.upos == "NOUN" and t.forms and t.forms[0][:1].islower():
+            # obecné jméno viděné s malým písmenem = OPRAVDU třída; nikdy z ní nedělat entitu
+            base = self.m.nodes.get(group.base) if group.base else None
+            for g in (group, base):
+                if g is not None and g.text in ("", "cap"):
+                    g.text = "common"
         if t.possessor is not None:
             owned = self._resolve_possessed(t, group, role)
             if owned is not None:

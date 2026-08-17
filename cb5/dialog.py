@@ -139,8 +139,6 @@ class Session:
         """Definiční věty učí paměť místo aby se zapisovaly jako fakta — platí pro dialog
         i pro vložený dokument (definice v textu je přesně to, co má text učit)."""
         main = reading.main
-        if main.kernel == "definice_vztahu":
-            return self._learn_relation(reading)
         if main.pred == "definice":
             adj, prd, dr = main.role("jaký"), main.role("predikát"), main.role("směr")
             if adj and prd and dr and adj.terms and prd.terms and dr.terms:
@@ -156,6 +154,8 @@ class Session:
             self.memory.tick()
             return {"text": parse.text, "reading": str(reading.main), "statements": [], "residue": [], "open": [],
                     "defaults": [], "learned": learned}
+        if reading.main.definition:
+            learned = self._learn_relation(reading)  # navíc k zápisu faktu
         prov = self._prov(doc, parse.text)
         g = ground(reading, self.memory, prov, "read", topic=self.topics.get(doc))
         self._update_topic(doc, g)
@@ -170,6 +170,7 @@ class Session:
             "residue": list(reading.residue),
             "open": [o.id for o in g.open],
             "defaults": list(g.main.defaults) if g.main else [],
+            "learned": learned or "",
         }
 
     # ---- tah dialogu -----------------------------------------------------------
@@ -246,10 +247,12 @@ class Session:
             if is_denial:
                 self._last_said = []
                 return Answer("\n".join(lines) or "nemám co odvolat", revoked=revoked)
-        # DEFINICE (srovnávací slovo / vztahové jméno) — učí, nezapisuje fakt
+        # DEFINICE srovnávacího slova — učí, nezapisuje fakt
         learned = self._learn_from_reading(reading)
         if learned is not None:
             return Answer(learned)
+        if main.definition:
+            lines.append(self._learn_relation(reading))  # a věta se navíc zapíše jako fakt
         # „Ne každý pták.“ — oprava kvantifikátoru poslední věty
         if main.kind == "fragment" and reading.parse.text.lower().startswith("ne ") and main.role("téma"):
             return self._fix_quantifier(reading, doc)

@@ -475,9 +475,23 @@ class Memory:
                     for y in b:
                         edges[x].append((y, st.id))
         if kernel == "subset":
+            rel_groups: dict[tuple[str, tuple[str, ...]], list[Node]] = defaultdict(list)
             for n in self.nodes.values():
                 if n.kind == "group" and n.base:
                     edges[n.id].append((n.base, f"restricts:{n.id}"))
+                if n.kind == "group" and n.rel:
+                    rel_groups[(n.lemma, tuple(n.attrs))].append(n)
+            # zúžení vztahem s UŽŠÍM cílem: příbuzný⟨pes[domácí]⟩ ⊆ příbuzný⟨pes⟩ (cíl přes `restricts`)
+            for group_nodes in rel_groups.values():
+                by_target = {n.rel.split(":", 1)[1]: n for n in group_nodes if n.rel}
+                for n in group_nodes:
+                    t = self.nodes.get(n.rel.split(":", 1)[1]) if n.rel else None
+                    while t is not None and t.base:
+                        wider = by_target.get(t.base)
+                        if wider is not None:
+                            edges[n.id].append((wider.id, f"rel:{n.id}⊆{wider.id}"))
+                            break
+                        t = self.nodes.get(t.base)
         if len(self._edge_cache) > 64:
             self._edge_cache.clear()
         self._edge_cache[key] = edges
@@ -517,10 +531,21 @@ class Memory:
         return self._closure("same_as", a, b, symmetric=True)
 
     def subset_star(self, a: str, b: str) -> list[str] | None:
-        """`a ⊆ b` přes řetěz `subset` (i zúžení `restricts`) a `same_as`."""
+        """`a ⊆ b` přes řetěz `subset` (i zúžení `restricts`) a `same_as`.
+        Strukturálně také přes zúžení vztahem: `příbuzný⟨pes[domácí]⟩ ⊆ příbuzný⟨pes⟩`,
+        `otec⟨Petr⟩ ⊆ otec⟨člověk⟩` (cíl zúžení je užší / prvek)."""
         direct = self._closure("subset", a, b)
         if direct is not None:
             return direct
+        na, nb = self.nodes.get(a), self.nodes.get(b)
+        if (na and nb and na.kind == "group" and nb.kind == "group" and na.rel and nb.rel
+                and na.lemma == nb.lemma and na.attrs == nb.attrs and na.id != nb.id):
+            ta, tb = na.rel.split(":", 1)[1], nb.rel.split(":", 1)[1]
+            inner = self.subset_star(ta, tb)
+            if inner is None and self.nodes.get(ta, Node("", "")).kind in ("entity", "place"):
+                inner = self.member_star(ta, tb)
+            if inner is not None:
+                return [f"rel:{ta}⊆{tb}"] + inner
         # přes ekvivalenci jmen na obou koncích
         for x in self._class(a):
             for y in self._class(b):

@@ -600,7 +600,7 @@ class Evaluator:
             if hole.name == "co" and v.fillers:
                 # „Co je X?“ → třídy mají přednost; vlastnosti jen když třídy nejsou
                 classes = [(t, p) for t, p in v.fillers if self._kind(t) == "group" and any(
-                    self.m.statements[s].kernel in ("member", "subset") for s in p.statements)]
+                    s in self.m.statements and self.m.statements[s].kernel in ("member", "subset") for s in p.statements)]
                 if classes:
                     v.fillers = classes
                     v.proofs = [p for _, p in classes]
@@ -772,8 +772,26 @@ class Evaluator:
                     if e not in seen:
                         seen.add(e)
                         below.append((e, pr))
-            if node.rel and below:
-                return Verdict("ANO", [p for _, p in below], fillers=below)
+            # nic o X samém: co platí o UŽŠÍCH třídách X („příbuzný domácího psa je vlk“ pro „příbuzný psa“)
+            narrow: list[tuple[str, Proof]] = []
+            for g, path in m.known_subsets(node_id):
+                for st in m.statements_about(g):
+                    kdo, co = st.role("kdo"), st.role("co")
+                    if st.status != "active" or st.neg or not (kdo and g in kdo.terms and co) or st.pred != "být":
+                        continue
+                    if not (st.kernel in ("member", "subset") or st.role("jaký")):
+                        continue
+                    for t in co.terms:
+                        if t not in seen and t != node_id and st.id not in path:
+                            seen.add(t)
+                            narrow.append((t, Proof([st.id] + [x for x in path if not x.startswith(("restricts:", "rel:"))],
+                                                    [f"platí o užší třídě {m.label(g)} ⊆ {m.label(node_id)}"], list(st.defaults), "derived")))
+            if node.rel and (narrow or below):
+                chosen = narrow or below
+                return Verdict("ANO", [p for _, p in chosen], fillers=chosen)
+            fillers.extend(narrow)
+            if fillers:
+                return Verdict("ANO", [p for _, p in fillers], fillers=fillers)
         for s in self.describe(node_id):
             kdo = s.role("kdo")
             if not (kdo and node_id in kdo.terms) or s.neg:

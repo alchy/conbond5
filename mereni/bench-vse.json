@@ -4,10 +4,10 @@
   "sentences": 429,
   "written": 429,
   "with_role": 429,
-  "statements": 1119,
-  "residue_tokens": 447,
+  "statements": 1088,
+  "residue_tokens": 439,
   "tokens": 4057,
-  "open": 250,
+  "open": 226,
   "questions": 27,
   "hits": 19,
   "text_hits": 25,
@@ -431,16 +431,16 @@
   "sentences": 232,
   "written": 232,
   "with_role": 232,
-  "statements": 693,
-  "residue_tokens": 245,
+  "statements": 617,
+  "residue_tokens": 272,
   "tokens": 3385,
-  "open": 225,
+  "open": 186,
   "questions": 3,
   "hits": 0,
   "text_hits": 3,
   "misses": {
-   "role/logika (blízký výrok je)": 2,
-   "bez výroku": 1
+   "bez výroku": 2,
+   "role/logika (blízký výrok je)": 1
   },
   "results": [
    {
@@ -453,8 +453,8 @@
     "text_ok": true,
     "verdict": "NEVÍM",
     "fillers": [],
-    "why": "role/logika (blízký výrok je)",
-    "reading": "být(kdo:·Antarktida, jaký:∃velký, čeho:?count:∃procento, advcl:než:[Evropa()])"
+    "why": "bez výroku",
+    "reading": "srovnání(kdo:·Antarktida, jaký:·velký, než:·Evropa)"
    },
    {
     "q": "Jaká je nejnižší naměřená teplota na Zemi?",
@@ -484,7 +484,7 @@
     "reading": "být(kdo:∀příkrov[antarktický][ledový], jaký:∃silný, jak:?)"
    }
   ],
-  "t_ingest": 0.0,
+  "t_ingest": 0.1,
   "t_ask": 0.0
  },
  {
@@ -492,10 +492,10 @@
   "sentences": 205,
   "written": 205,
   "with_role": 205,
-  "statements": 691,
-  "residue_tokens": 196,
+  "statements": 659,
+  "residue_tokens": 197,
   "tokens": 2728,
-  "open": 180,
+  "open": 163,
   "questions": 20,
   "hits": 14,
   "text_hits": 17,
@@ -805,10 +805,10 @@
   "sentences": 448,
   "written": 448,
   "with_role": 446,
-  "statements": 1014,
-  "residue_tokens": 310,
+  "statements": 990,
+  "residue_tokens": 311,
   "tokens": 3563,
-  "open": 220,
+  "open": 188,
   "questions": 24,
   "hits": 17,
   "text_hits": 18,
@@ -829,7 +829,8 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Židenice"
+     "Židenice",
+     "předměstí (brněnský)"
     ],
     "why": "",
     "reading": "narodit_se(kde:?, kdo:·Bohumil Hrabal)"
@@ -889,7 +890,8 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Kostomlaty"
+     "Kostomlaty",
+     "řada profese (dělnický, obskurní)"
     ],
     "why": "",
     "reading": "pracovat(kde:?, kdo:·Bohumil Hrabal)"
@@ -917,7 +919,8 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Libeň"
+     "Libeň",
+     "pivovar (místní)"
     ],
     "why": "",
     "reading": "prožít(kde:?, kdo:·Bohumil Hrabal)"
@@ -1075,7 +1078,8 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Židenice"
+     "Židenice",
+     "předměstí (brněnský)"
     ],
     "why": "",
     "reading": "narodit_se(kde:?, kdo:·Bohumil Hrabal)"
@@ -1124,7 +1128,8 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Židenice"
+     "Židenice",
+     "předměstí (brněnský)"
     ],
     "why": "",
     "reading": "narodit_se(kdo:·∅, kde:?)"
@@ -1175,21 +1180,21 @@
     "reading": "přátelit_se(s_kým:?, kdo:·Bohumil Hrabal)"
    }
   ],
-  "t_ingest": 0.1,
+  "t_ingest": 0.2,
   "t_ask": 0.1
  },
  {
   "doc": "božena_němcová",
   "sentences": 925,
   "written": 925,
-  "with_role": 923,
-  "statements": 2980,
-  "residue_tokens": 1108,
+  "with_role": 922,
+  "statements": 2846,
+  "residue_tokens": 1125,
   "tokens": 12665,
-  "open": 777,
+  "open": 663,
   "questions": 24,
   "hits": 15,
-  "text_hits": 20,
+  "text_hits": 22,
   "misses": {
    "role/logika (blízký výrok je)": 4,
    "špatná výplň": 4,
@@ -1295,13 +1300,15 @@
     ],
     "sada": "otazky",
     "ok": false,
-    "text_ok": false,
+    "text_ok": true,
     "verdict": "ANO",
     "fillers": [
      "Kostelec",
      "Vídeň",
+     "Moravec",
+     "lázně",
      "ulice (ječný)",
-     "dům"
+     "domek"
     ],
     "why": "špatná výplň",
     "reading": "pobývat(kde:?, kdo:·Božena Němcová)"
@@ -1550,16 +1557,17 @@
     ],
     "sada": "conbond",
     "ok": false,
-    "text_ok": false,
+    "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Slezsko"
+     "Slezsko",
+     "skutečnost"
     ],
     "why": "špatná výplň",
     "reading": "narodit_se(kde:?, kdo:·Božena Němcová)"
    }
   ],
-  "t_ingest": 0.7,
+  "t_ingest": 1.0,
   "t_ask": 0.2
  },
  {
@@ -1567,10 +1575,10 @@
   "sentences": 127,
   "written": 127,
   "with_role": 127,
-  "statements": 271,
-  "residue_tokens": 189,
+  "statements": 260,
+  "residue_tokens": 187,
   "tokens": 1182,
-  "open": 87,
+  "open": 81,
   "questions": 9,
   "hits": 4,
   "text_hits": 9,
@@ -1722,15 +1730,15 @@
   "sentences": 213,
   "written": 213,
   "with_role": 213,
-  "statements": 906,
+  "statements": 867,
   "residue_tokens": 352,
   "tokens": 4031,
-  "open": 293,
+  "open": 222,
   "questions": 17,
-  "hits": 13,
-  "text_hits": 14,
+  "hits": 14,
+  "text_hits": 15,
   "misses": {
-   "špatná výplň": 2,
+   "špatná výplň": 1,
    "role/logika (blízký výrok je)": 1,
    "bez výroku": 1
   },
@@ -1848,13 +1856,16 @@
      "Yorku"
     ],
     "sada": "otazky",
-    "ok": false,
-    "text_ok": false,
+    "ok": true,
+    "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Dánsko"
+     "Dánsko",
+     "York",
+     "emigrace (americký, druhý)",
+     "maloměsto"
     ],
-    "why": "špatná výplň",
+    "why": "",
     "reading": "usadit_se(kde:?, kdo:·Egon Hostovský)"
    },
    {
@@ -1992,18 +2003,18 @@
     "reading": "zemřít(kde:?, kdo:·Egon Hostovský)"
    }
   ],
-  "t_ingest": 0.5,
+  "t_ingest": 0.1,
   "t_ask": 0.0
  },
  {
   "doc": "fotosyntéza",
   "sentences": 564,
   "written": 564,
-  "with_role": 538,
-  "statements": 1219,
-  "residue_tokens": 345,
+  "with_role": 490,
+  "statements": 1094,
+  "residue_tokens": 398,
   "tokens": 4659,
-  "open": 418,
+  "open": 409,
   "questions": 1,
   "hits": 0,
   "text_hits": 1,
@@ -2034,10 +2045,10 @@
   "sentences": 162,
   "written": 162,
   "with_role": 161,
-  "statements": 461,
-  "residue_tokens": 162,
+  "statements": 449,
+  "residue_tokens": 159,
   "tokens": 1772,
-  "open": 137,
+  "open": 112,
   "questions": 15,
   "hits": 8,
   "text_hits": 12,
@@ -2272,10 +2283,10 @@
   "sentences": 162,
   "written": 162,
   "with_role": 162,
-  "statements": 389,
-  "residue_tokens": 202,
+  "statements": 376,
+  "residue_tokens": 185,
   "tokens": 1468,
-  "open": 120,
+  "open": 106,
   "questions": 7,
   "hits": 6,
   "text_hits": 6,
@@ -2399,7 +2410,7 @@
   "sentences": 19,
   "written": 19,
   "with_role": 19,
-  "statements": 31,
+  "statements": 32,
   "residue_tokens": 5,
   "tokens": 136,
   "open": 4,
@@ -2541,10 +2552,10 @@
   "sentences": 141,
   "written": 141,
   "with_role": 141,
-  "statements": 377,
-  "residue_tokens": 121,
+  "statements": 362,
+  "residue_tokens": 116,
   "tokens": 1598,
-  "open": 94,
+  "open": 84,
   "questions": 7,
   "hits": 4,
   "text_hits": 6,
@@ -2665,15 +2676,16 @@
   "sentences": 238,
   "written": 238,
   "with_role": 238,
-  "statements": 684,
-  "residue_tokens": 211,
+  "statements": 657,
+  "residue_tokens": 203,
   "tokens": 2600,
-  "open": 170,
+  "open": 152,
   "questions": 23,
-  "hits": 12,
-  "text_hits": 21,
+  "hits": 11,
+  "text_hits": 22,
   "misses": {
    "role/logika (blízký výrok je)": 9,
+   "špatná výplň": 1,
    "bez výroku": 2
   },
   "results": [
@@ -2862,10 +2874,11 @@
     ],
     "sada": "otazky",
     "ok": true,
-    "text_ok": false,
+    "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Praha"
+     "Praha",
+     "sanatorium (státní)"
     ],
     "why": "",
     "reading": "zemřít(kde:?, kdo:·Ivan Olbracht)"
@@ -2889,14 +2902,13 @@
      "Rakouska"
     ],
     "sada": "otazky",
-    "ok": true,
+    "ok": false,
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Rakousko",
      "povídka"
     ],
-    "why": "",
+    "why": "špatná výplň",
     "reading": "zaměřit_se(kde:?, kdo:·Ivan Olbracht)"
    },
    {
@@ -3015,11 +3027,11 @@
   "doc": "jan_neruda",
   "sentences": 296,
   "written": 296,
-  "with_role": 296,
-  "statements": 835,
-  "residue_tokens": 201,
+  "with_role": 295,
+  "statements": 822,
+  "residue_tokens": 202,
   "tokens": 2842,
-  "open": 205,
+  "open": 173,
   "questions": 16,
   "hits": 8,
   "text_hits": 14,
@@ -3266,16 +3278,16 @@
   "sentences": 366,
   "written": 366,
   "with_role": 363,
-  "statements": 1075,
+  "statements": 1036,
   "residue_tokens": 398,
   "tokens": 4599,
-  "open": 322,
+  "open": 283,
   "questions": 34,
-  "hits": 24,
+  "hits": 22,
   "text_hits": 30,
   "misses": {
    "role/logika (blízký výrok je)": 5,
-   "špatná výplň": 4,
+   "špatná výplň": 6,
    "bez výroku": 1
   },
   "results": [
@@ -3328,16 +3340,13 @@
      "Praze"
     ],
     "sada": "otazky",
-    "ok": true,
-    "text_ok": true,
+    "ok": false,
+    "text_ok": false,
     "verdict": "ANO",
     "fillers": [
-     "Praha",
-     "Chorupany",
-     "Zborov",
      "oddíl (kulometný)"
     ],
-    "why": "",
+    "why": "špatná výplň",
     "reading": "zúčastnit_se(kde:?, kdo:·Jaroslav Hašek)"
    },
    {
@@ -3347,10 +3356,11 @@
     ],
     "sada": "otazky",
     "ok": false,
-    "text_ok": false,
+    "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "chýš (jedový, proslulý)"
+     "chýš (jedový, proslulý)",
+     "drogerie"
     ],
     "why": "špatná výplň",
     "reading": "učit_se(kde:?, kdo:·Jaroslav Hašek)"
@@ -3527,15 +3537,13 @@
      "Chorupan"
     ],
     "sada": "otazky",
-    "ok": true,
+    "ok": false,
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Chorupany",
-     "Zborov",
      "bitva"
     ],
-    "why": "",
+    "why": "špatná výplň",
     "reading": "padnout(kde:?, kdo:·Jaroslav Hašek)"
    },
    {
@@ -3689,6 +3697,8 @@
     "fillers": [
      "Sibiř",
      "Lipnice",
+     "časopis",
+     "hostinec",
      "hospoda (pražský)",
      "hostinec (oblíbený)"
     ],
@@ -3815,17 +3825,17 @@
   "doc": "jaroslav_seifert",
   "sentences": 338,
   "written": 338,
-  "with_role": 337,
-  "statements": 964,
-  "residue_tokens": 375,
+  "with_role": 336,
+  "statements": 923,
+  "residue_tokens": 372,
   "tokens": 4003,
-  "open": 309,
+  "open": 273,
   "questions": 28,
-  "hits": 15,
+  "hits": 14,
   "text_hits": 23,
   "misses": {
    "role/logika (blízký výrok je)": 4,
-   "špatná výplň": 6,
+   "špatná výplň": 7,
    "bez výroku": 3
   },
   "results": [
@@ -3852,7 +3862,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "ulice (dnešní)"
+     "rodina Antonín Seifert"
     ],
     "why": "špatná výplň",
     "reading": "narodit_se(kde:?, kdo:·Jaroslav Seifert)"
@@ -3983,14 +3993,13 @@
      "Praha"
     ],
     "sada": "otazky",
-    "ok": true,
+    "ok": false,
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Praha",
      "úřadovna (magistrátní)"
     ],
-    "why": "",
+    "why": "špatná výplň",
     "reading": "oženit_se(kde:?, kdo:·Jaroslav Seifert)"
    },
    {
@@ -4249,15 +4258,15 @@
   "sentences": 337,
   "written": 337,
   "with_role": 337,
-  "statements": 988,
-  "residue_tokens": 394,
+  "statements": 947,
+  "residue_tokens": 388,
   "tokens": 3916,
-  "open": 280,
+  "open": 243,
   "questions": 18,
-  "hits": 11,
+  "hits": 10,
   "text_hits": 17,
   "misses": {
-   "špatná výplň": 6,
+   "špatná výplň": 7,
    "role/logika (blízký výrok je)": 1
   },
   "results": [
@@ -4380,7 +4389,6 @@
     "verdict": "ANO",
     "fillers": [
      "Merano",
-     "Meran",
      "ústav (učitelský)"
     ],
     "why": "",
@@ -4397,7 +4405,6 @@
     "verdict": "ANO",
     "fillers": [
      "Merano",
-     "Meran",
      "ústav (učitelský)"
     ],
     "why": "špatná výplň",
@@ -4443,7 +4450,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Meran"
+     "Merano"
     ],
     "why": "",
     "reading": "cítit_se(kde:?, kdo:·Jaroslav Vrchlický)"
@@ -4512,16 +4519,13 @@
      "Stupčicích"
     ],
     "sada": "otazky",
-    "ok": true,
+    "ok": false,
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Stupčice",
-     "Opatija",
-     "Domažlice",
      "sanatorium"
     ],
-    "why": "",
+    "why": "špatná výplň",
     "reading": "léčit_se(kde:?, kdo:·Jaroslav Vrchlický)"
    },
    {
@@ -4548,10 +4552,10 @@
   "sentences": 147,
   "written": 147,
   "with_role": 147,
-  "statements": 392,
-  "residue_tokens": 152,
+  "statements": 383,
+  "residue_tokens": 150,
   "tokens": 1451,
-  "open": 100,
+  "open": 83,
   "questions": 13,
   "hits": 10,
   "text_hits": 12,
@@ -4614,7 +4618,6 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "prarodič",
      "sídlo (letní) rodina"
     ],
     "why": "špatná výplň",
@@ -4705,7 +4708,8 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Praha"
+     "Praha",
+     "práce"
     ],
     "why": "",
     "reading": "pobývat(kde:?, kdo:·Jiří Wolker)"
@@ -4766,13 +4770,13 @@
   "sentences": 333,
   "written": 333,
   "with_role": 333,
-  "statements": 882,
-  "residue_tokens": 472,
+  "statements": 852,
+  "residue_tokens": 463,
   "tokens": 3739,
-  "open": 242,
+  "open": 212,
   "questions": 31,
   "hits": 20,
-  "text_hits": 26,
+  "text_hits": 27,
   "misses": {
    "bez výroku": 2,
    "špatná výplň": 4,
@@ -4786,10 +4790,11 @@
     ],
     "sada": "otazky",
     "ok": true,
-    "text_ok": false,
+    "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Hronov"
+     "Hronov",
+     "rodina Antonín Čapek"
     ],
     "why": "",
     "reading": "narodit_se(kde:?, kdo:·Josef Čapek)"
@@ -5253,7 +5258,7 @@
     "reading": "oženit_se(s_kým:?, kdo:·Josef Čapek)"
    }
   ],
-  "t_ingest": 0.1,
+  "t_ingest": 0.6,
   "t_ask": 0.1
  },
  {
@@ -5261,10 +5266,10 @@
   "sentences": 167,
   "written": 167,
   "with_role": 167,
-  "statements": 492,
-  "residue_tokens": 349,
+  "statements": 478,
+  "residue_tokens": 346,
   "tokens": 2144,
-  "open": 158,
+  "open": 150,
   "questions": 23,
   "hits": 11,
   "text_hits": 20,
@@ -5622,7 +5627,7 @@
     "reading": "oženit_se(s_kým:?, kdo:·Josef Škvorecký)"
    }
   ],
-  "t_ingest": 0.0,
+  "t_ingest": 0.1,
   "t_ask": 0.0
  },
  {
@@ -5630,10 +5635,10 @@
   "sentences": 302,
   "written": 302,
   "with_role": 301,
-  "statements": 983,
-  "residue_tokens": 299,
+  "statements": 942,
+  "residue_tokens": 296,
   "tokens": 3712,
-  "open": 255,
+  "open": 228,
   "questions": 21,
   "hits": 12,
   "text_hits": 19,
@@ -5968,7 +5973,7 @@
     "reading": "procházet(kde:?, kdo:·Julius Zeyer)"
    }
   ],
-  "t_ingest": 0.5,
+  "t_ingest": 0.2,
   "t_ask": 0.1
  },
  {
@@ -5976,10 +5981,10 @@
   "sentences": 313,
   "written": 313,
   "with_role": 313,
-  "statements": 899,
-  "residue_tokens": 311,
+  "statements": 871,
+  "residue_tokens": 307,
   "tokens": 3841,
-  "open": 260,
+  "open": 222,
   "questions": 26,
   "hits": 19,
   "text_hits": 24,
@@ -6015,7 +6020,9 @@
      "Brod",
      "Kutná",
      "Rusko",
-     "vesnice"
+     "vesnice",
+     "ústraní",
+     "seminář (katolický, kněžský)"
     ],
     "why": "špatná výplň",
     "reading": "žít(kde:?, kdo:·Karel Havlíček Borovský)"
@@ -6215,7 +6222,9 @@
      "Brod",
      "Kutná",
      "Rusko",
-     "vesnice"
+     "vesnice",
+     "ústraní",
+     "seminář (katolický, kněžský)"
     ],
     "why": "",
     "reading": "usadit_se(kde:?, kdo:·Karel Havlíček Borovský)"
@@ -6241,14 +6250,13 @@
      "Prahy"
     ],
     "sada": "otazky",
-    "ok": true,
-    "text_ok": true,
+    "ok": false,
+    "text_ok": false,
     "verdict": "ANO",
     "fillers": [
-     "Praha",
      "plán"
     ],
-    "why": "",
+    "why": "špatná výplň",
     "reading": "přijet(kde:?, kdo:·Karel Havlíček Borovský)"
    },
    {
@@ -6264,7 +6272,9 @@
      "Brod",
      "Kutná",
      "Rusko",
-     "vesnice"
+     "vesnice",
+     "ústraní",
+     "seminář (katolický, kněžský)"
     ],
     "why": "",
     "reading": "žít(kde:?, kdo:·Karel Havlíček Borovský)"
@@ -6333,13 +6343,17 @@
      "Slovan"
     ],
     "sada": "otazky",
-    "ok": false,
-    "text_ok": false,
+    "ok": true,
+    "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Vídeň"
+     "Vídeň",
+     "noviny (pražský)",
+     "příloha",
+     "noviny (národní)",
+     "Slovan"
     ],
-    "why": "špatná výplň",
+    "why": "",
     "reading": "působit(kde:?, kdo:·Karel Havlíček Borovský)"
    },
    {
@@ -6392,15 +6406,15 @@
   "sentences": 307,
   "written": 307,
   "with_role": 307,
-  "statements": 869,
-  "residue_tokens": 348,
+  "statements": 852,
+  "residue_tokens": 344,
   "tokens": 3349,
-  "open": 227,
+  "open": 195,
   "questions": 32,
-  "hits": 23,
+  "hits": 24,
   "text_hits": 26,
   "misses": {
-   "špatná výplň": 5,
+   "špatná výplň": 4,
    "role/logika (blízký výrok je)": 3,
    "bez výroku": 1
   },
@@ -6629,13 +6643,16 @@
      "Itálie"
     ],
     "sada": "otazky",
-    "ok": false,
+    "ok": true,
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "cesta"
+     "Itálie",
+     "Čechy",
+     "Mělník",
+     "Bezděz"
     ],
-    "why": "špatná výplň",
+    "why": "",
     "reading": "vyrazit(kde:?, kdo:·Karel Hynek Mácha)"
    },
    {
@@ -6893,7 +6910,7 @@
     "reading": "pracovat(kdy:?, co:·Karel Hynek Mácha)"
    }
   ],
-  "t_ingest": 0.1,
+  "t_ingest": 0.2,
   "t_ask": 0.1
  },
  {
@@ -6901,16 +6918,16 @@
   "sentences": 207,
   "written": 207,
   "with_role": 207,
-  "statements": 520,
-  "residue_tokens": 247,
+  "statements": 494,
+  "residue_tokens": 258,
   "tokens": 2006,
-  "open": 113,
+  "open": 103,
   "questions": 17,
-  "hits": 9,
+  "hits": 8,
   "text_hits": 14,
   "misses": {
    "role/logika (blízký výrok je)": 6,
-   "špatná výplň": 1,
+   "špatná výplň": 2,
    "bez výroku": 1
   },
   "results": [
@@ -7057,14 +7074,13 @@
      "Žebráku"
     ],
     "sada": "otazky",
-    "ok": true,
+    "ok": false,
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Žebrák",
      "pobyt (prázdninový)"
     ],
-    "why": "",
+    "why": "špatná výplň",
     "reading": "seznámit_se(kde:?, kdo:·Karel Jaromír Erben)"
    },
    {
@@ -7165,7 +7181,7 @@
     "reading": "obsahovat(kde:?, kdo:·Karel Jaromír Erben)"
    }
   ],
-  "t_ingest": 0.0,
+  "t_ingest": 0.1,
   "t_ask": 0.0
  },
  {
@@ -7173,15 +7189,15 @@
   "sentences": 168,
   "written": 168,
   "with_role": 168,
-  "statements": 464,
-  "residue_tokens": 158,
+  "statements": 453,
+  "residue_tokens": 159,
   "tokens": 1823,
-  "open": 147,
+  "open": 121,
   "questions": 13,
-  "hits": 9,
+  "hits": 8,
   "text_hits": 9,
   "misses": {
-   "špatná výplň": 3,
+   "špatná výplň": 4,
    "bez výroku": 1
   },
   "results": [
@@ -7281,14 +7297,13 @@
      "ČSR"
     ],
     "sada": "otazky",
-    "ok": true,
+    "ok": false,
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "ČSR",
      "komise (dovozní, vývozní)"
     ],
-    "why": "",
+    "why": "špatná výplň",
     "reading": "nastoupit(kde:?, kdo:·Karel Poláček)"
    },
    {
@@ -7380,7 +7395,7 @@
     "reading": "ztvárnit(kde:?, kdo:·Karel Poláček)"
    }
   ],
-  "t_ingest": 0.0,
+  "t_ingest": 0.1,
   "t_ask": 0.0
  },
  {
@@ -7388,17 +7403,16 @@
   "sentences": 522,
   "written": 522,
   "with_role": 521,
-  "statements": 1354,
-  "residue_tokens": 494,
+  "statements": 1312,
+  "residue_tokens": 482,
   "tokens": 4838,
-  "open": 393,
+  "open": 352,
   "questions": 23,
-  "hits": 10,
-  "text_hits": 15,
+  "hits": 11,
+  "text_hits": 16,
   "misses": {
    "role/logika (blízký výrok je)": 5,
-   "špatná výplň": 7,
-   "entita neznámá": 1
+   "špatná výplň": 7
   },
   "results": [
    {
@@ -7736,11 +7750,13 @@
      "josef"
     ],
     "sada": "conbond",
-    "ok": false,
-    "text_ok": false,
-    "verdict": "NEVÍM",
-    "fillers": [],
-    "why": "entita neznámá",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Josef Čapek"
+    ],
+    "why": "",
     "reading": "být(kdo:·bratr⟨Karel Čapek⟩, co:?)"
    }
   ],
@@ -7752,15 +7768,15 @@
   "sentences": 447,
   "written": 447,
   "with_role": 447,
-  "statements": 1283,
-  "residue_tokens": 337,
+  "statements": 1174,
+  "residue_tokens": 339,
   "tokens": 5857,
-  "open": 389,
+  "open": 323,
   "questions": 4,
-  "hits": 3,
+  "hits": 2,
   "text_hits": 4,
   "misses": {
-   "bez výroku": 1
+   "bez výroku": 2
   },
   "results": [
    {
@@ -7784,13 +7800,11 @@
      "512"
     ],
     "sada": "etalon",
-    "ok": true,
+    "ok": false,
     "text_ok": true,
-    "verdict": "ANO",
-    "fillers": [
-     "count:512"
-    ],
-    "why": "",
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "bez výroku",
     "reading": "mít(co:?count:∃sval, kdo:∀kočka)"
    },
    {
@@ -7830,10 +7844,10 @@
   "sentences": 315,
   "written": 315,
   "with_role": 315,
-  "statements": 800,
-  "residue_tokens": 461,
+  "statements": 738,
+  "residue_tokens": 464,
   "tokens": 4031,
-  "open": 295,
+  "open": 238,
   "questions": 1,
   "hits": 0,
   "text_hits": 1,
@@ -7863,10 +7877,10 @@
   "sentences": 159,
   "written": 159,
   "with_role": 159,
-  "statements": 569,
+  "statements": 557,
   "residue_tokens": 121,
   "tokens": 2356,
-  "open": 165,
+  "open": 135,
   "questions": 17,
   "hits": 12,
   "text_hits": 14,
@@ -8129,7 +8143,7 @@
     "reading": "hlasovat(kde:?, kdo:·Ludvík Vaculík)"
    }
   ],
-  "t_ingest": 0.0,
+  "t_ingest": 0.1,
   "t_ask": 0.0
  },
  {
@@ -8137,10 +8151,10 @@
   "sentences": 370,
   "written": 370,
   "with_role": 370,
-  "statements": 1005,
-  "residue_tokens": 427,
+  "statements": 966,
+  "residue_tokens": 388,
   "tokens": 3851,
-  "open": 282,
+  "open": 238,
   "questions": 2,
   "hits": 0,
   "text_hits": 1,
@@ -8183,7 +8197,7 @@
     "reading": "mít(kde:?, kdo:·Marie Majerová)"
    }
   ],
-  "t_ingest": 0.1,
+  "t_ingest": 0.6,
   "t_ask": 0.0
  },
  {
@@ -8191,10 +8205,10 @@
   "sentences": 359,
   "written": 359,
   "with_role": 357,
-  "statements": 1078,
-  "residue_tokens": 412,
+  "statements": 1042,
+  "residue_tokens": 390,
   "tokens": 4486,
-  "open": 346,
+  "open": 296,
   "questions": 35,
   "hits": 25,
   "text_hits": 29,
@@ -8490,7 +8504,8 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Francie"
+     "Francie",
+     "nakladatelství Sixty (exilový, torontský) Škvorecký"
     ],
     "why": "",
     "reading": "publikovat(kde:?, kdo:·Milan Kundera)"
@@ -8744,18 +8759,18 @@
     "reading": "vydat(kdy:?, kdo:·Milan Kundera)"
    }
   ],
-  "t_ingest": 0.1,
+  "t_ingest": 0.2,
   "t_ask": 0.1
  },
  {
   "doc": "ota_pavel",
   "sentences": 280,
   "written": 280,
-  "with_role": 279,
-  "statements": 583,
-  "residue_tokens": 256,
+  "with_role": 278,
+  "statements": 554,
+  "residue_tokens": 255,
   "tokens": 2046,
-  "open": 149,
+  "open": 139,
   "questions": 11,
   "hits": 8,
   "text_hits": 10,
@@ -8792,7 +8807,8 @@
     "verdict": "ANO",
     "fillers": [
      "Praha",
-     "Buštěhrad"
+     "Buštěhrad",
+     "léčebna (psychiatrický)"
     ],
     "why": "",
     "reading": "bydlet(kde:?, kdo:·Ota Pavel)"
@@ -8823,7 +8839,8 @@
     "verdict": "ANO",
     "fillers": [
      "Praha",
-     "Buštěhrad"
+     "Buštěhrad",
+     "léčebna (psychiatrický)"
     ],
     "why": "špatná výplň",
     "reading": "žít(kde:?, kdo:·Ota Pavel)"
@@ -8938,10 +8955,10 @@
   "sentences": 653,
   "written": 653,
   "with_role": 652,
-  "statements": 1968,
-  "residue_tokens": 640,
+  "statements": 1778,
+  "residue_tokens": 665,
   "tokens": 9569,
-  "open": 650,
+  "open": 560,
   "questions": 8,
   "hits": 5,
   "text_hits": 7,
@@ -9061,7 +9078,7 @@
     "reading": "být(kdo:∀pes, co:∃šelma) ⟨subset⟩"
    }
   ],
-  "t_ingest": 0.5,
+  "t_ingest": 0.2,
   "t_ask": 0.1
  },
  {
@@ -9069,15 +9086,15 @@
   "sentences": 362,
   "written": 362,
   "with_role": 361,
-  "statements": 891,
-  "residue_tokens": 312,
+  "statements": 853,
+  "residue_tokens": 304,
   "tokens": 3487,
-  "open": 220,
+  "open": 187,
   "questions": 16,
-  "hits": 9,
-  "text_hits": 14,
+  "hits": 8,
+  "text_hits": 15,
   "misses": {
-   "špatná výplň": 4,
+   "špatná výplň": 5,
    "role/logika (blízký výrok je)": 2,
    "bez výroku": 1
   },
@@ -9164,9 +9181,10 @@
     ],
     "sada": "otazky",
     "ok": false,
-    "text_ok": false,
+    "text_ok": true,
     "verdict": "ANO",
     "fillers": [
+     "apatie",
      "obec"
     ],
     "why": "špatná výplň",
@@ -9210,6 +9228,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
+     "apatie",
      "obec"
     ],
     "why": "špatná výplň",
@@ -9266,14 +9285,13 @@
      "Šmelcovna"
     ],
     "sada": "otazky",
-    "ok": true,
+    "ok": false,
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Šmelcovna",
      "osada"
     ],
-    "why": "",
+    "why": "špatná výplň",
     "reading": "zúčastňovat_se(kde:?, kdo:·Petr Bezruč)"
    },
    {
@@ -9323,7 +9341,7 @@
     "reading": "obdržet(kdy:?, kdo:·Petr Bezruč)"
    }
   ],
-  "t_ingest": 0.1,
+  "t_ingest": 0.2,
   "t_ask": 0.0
  },
  {
@@ -9334,7 +9352,7 @@
   "statements": 32,
   "residue_tokens": 0,
   "tokens": 97,
-  "open": 3,
+  "open": 1,
   "questions": 6,
   "hits": 6,
   "text_hits": 6,
@@ -9382,6 +9400,7 @@
     "verdict": "ANO",
     "fillers": [
      "pan",
+     "soused",
      "truhlář"
     ],
     "why": "",
@@ -9449,11 +9468,9 @@
   "tokens": 110,
   "open": 0,
   "questions": 8,
-  "hits": 7,
-  "text_hits": 7,
-  "misses": {
-   "bez výroku": 1
-  },
+  "hits": 8,
+  "text_hits": 8,
+  "misses": {},
   "results": [
    {
     "q": "Co je Šumava?",
@@ -9525,11 +9542,13 @@
      "krkonoších"
     ],
     "sada": "conbond",
-    "ok": false,
-    "text_ok": false,
-    "verdict": "NEVÍM",
-    "fillers": [],
-    "why": "bez výroku",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Krkonoše"
+    ],
+    "why": "",
     "reading": "ležet(kde:?, kdo:·Sněžka)"
    },
    {
@@ -9590,16 +9609,14 @@
   "sentences": 15,
   "written": 15,
   "with_role": 15,
-  "statements": 16,
+  "statements": 49,
   "residue_tokens": 0,
-  "tokens": 74,
+  "tokens": 175,
   "open": 0,
   "questions": 8,
-  "hits": 3,
-  "text_hits": 3,
-  "misses": {
-   "entita neznámá": 5
-  },
+  "hits": 8,
+  "text_hits": 8,
+  "misses": {},
   "results": [
    {
     "q": "Kdo je otec Petra Nováka?",
@@ -9622,11 +9639,13 @@
      "karel"
     ],
     "sada": "conbond",
-    "ok": false,
-    "text_ok": false,
-    "verdict": "NEVÍM",
-    "fillers": [],
-    "why": "entita neznámá",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Karel Novák"
+    ],
+    "why": "",
     "reading": "být(kdo:∀tchán⟨Jana Nováková⟩, co:?)"
    },
    {
@@ -9635,11 +9654,13 @@
      "věra"
     ],
     "sada": "conbond",
-    "ok": false,
-    "text_ok": false,
-    "verdict": "NEVÍM",
-    "fillers": [],
-    "why": "entita neznámá",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Věra Nováková"
+    ],
+    "why": "",
     "reading": "být(kdo:∀tchyně⟨Jana Nováková⟩, co:?)"
    },
    {
@@ -9648,11 +9669,13 @@
      "lucie"
     ],
     "sada": "conbond",
-    "ok": false,
-    "text_ok": false,
-    "verdict": "NEVÍM",
-    "fillers": [],
-    "why": "entita neznámá",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Lucie Nováková"
+    ],
+    "why": "",
     "reading": "být(kdo:∀švagrová⟨Jana Nováková⟩, co:?)"
    },
    {
@@ -9661,11 +9684,13 @@
      "lucie"
     ],
     "sada": "conbond",
-    "ok": false,
-    "text_ok": false,
-    "verdict": "NEVÍM",
-    "fillers": [],
-    "why": "entita neznámá",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Lucie Nováková"
+    ],
+    "why": "",
     "reading": "být(kdo:∀teta⟨Tomáš Novák⟩, co:?)"
    },
    {
@@ -9674,11 +9699,13 @@
      "karel"
     ],
     "sada": "conbond",
-    "ok": false,
-    "text_ok": false,
-    "verdict": "NEVÍM",
-    "fillers": [],
-    "why": "entita neznámá",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Karel Novák"
+    ],
+    "why": "",
     "reading": "být(kdo:∀děd⟨Tomáš Novák⟩, co:?)"
    },
    {
@@ -9722,10 +9749,10 @@
   "sentences": 85,
   "written": 85,
   "with_role": 85,
-  "statements": 262,
+  "statements": 253,
   "residue_tokens": 91,
   "tokens": 977,
-  "open": 68,
+  "open": 61,
   "questions": 1,
   "hits": 0,
   "text_hits": 0,
@@ -9755,10 +9782,10 @@
   "sentences": 988,
   "written": 988,
   "with_role": 988,
-  "statements": 2885,
-  "residue_tokens": 1013,
+  "statements": 2611,
+  "residue_tokens": 1047,
   "tokens": 14254,
-  "open": 1138,
+  "open": 970,
   "questions": 1,
   "hits": 0,
   "text_hits": 0,
@@ -9780,7 +9807,7 @@
     "reading": "ležet(kde:?, kdo:∀sopka Ol)"
    }
   ],
-  "t_ingest": 0.3,
+  "t_ingest": 0.8,
   "t_ask": 0.0
  },
  {
@@ -9788,10 +9815,10 @@
   "sentences": 268,
   "written": 268,
   "with_role": 268,
-  "statements": 707,
-  "residue_tokens": 286,
+  "statements": 683,
+  "residue_tokens": 272,
   "tokens": 2451,
-  "open": 184,
+  "open": 157,
   "questions": 10,
   "hits": 8,
   "text_hits": 9,
@@ -9825,7 +9852,8 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Benešovsko"
+     "Benešovsko",
+     "městys"
     ],
     "why": "",
     "reading": "prožít(kde:?, kdo:·Svatopluk Čech)"
@@ -9946,7 +9974,8 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Benešovsko"
+     "Benešovsko",
+     "městys"
     ],
     "why": "špatná výplň",
     "reading": "prožít(kde:?, kdo:·Svatopluk Čech)"
@@ -9960,10 +9989,10 @@
   "sentences": 179,
   "written": 179,
   "with_role": 177,
-  "statements": 539,
-  "residue_tokens": 162,
+  "statements": 520,
+  "residue_tokens": 165,
   "tokens": 2089,
-  "open": 154,
+  "open": 133,
   "questions": 10,
   "hits": 5,
   "text_hits": 9,
@@ -10123,7 +10152,7 @@
     "reading": "oslavit(kde:?, kdo:·Vladimír Holan)"
    }
   ],
-  "t_ingest": 0.0,
+  "t_ingest": 0.1,
   "t_ask": 0.0
  },
  {
@@ -10131,10 +10160,10 @@
   "sentences": 320,
   "written": 320,
   "with_role": 320,
-  "statements": 864,
-  "residue_tokens": 319,
+  "statements": 841,
+  "residue_tokens": 327,
   "tokens": 3391,
-  "open": 252,
+  "open": 218,
   "questions": 27,
   "hits": 16,
   "text_hits": 23,
@@ -10183,6 +10212,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
+     "gymnasium (malostranský)",
      "škola (průmyslový)",
      "fakulta (právnický) univerzita"
     ],
@@ -10570,15 +10600,15 @@
   "sentences": 563,
   "written": 563,
   "with_role": 563,
-  "statements": 1878,
-  "residue_tokens": 404,
+  "statements": 1815,
+  "residue_tokens": 401,
   "tokens": 8252,
-  "open": 530,
+  "open": 428,
   "questions": 65,
-  "hits": 35,
-  "text_hits": 51,
+  "hits": 32,
+  "text_hits": 52,
   "misses": {
-   "špatná výplň": 18,
+   "špatná výplň": 21,
    "role/logika (blízký výrok je)": 9,
    "bez výroku": 3
   },
@@ -10652,7 +10682,7 @@
     "text_ok": false,
     "verdict": "ANO",
     "fillers": [
-     "fakulta (divadelní) akademie umění (múzický)"
+     "fakulta (divadelní) Akademie"
     ],
     "why": "špatná výplň",
     "reading": "navštěvovat(kde:?, kdo:·Václav Havel)"
@@ -10758,7 +10788,6 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "USA",
      "konference svaz spisovatel",
      "manifestace (první) seskupení (opoziční)",
      "zasedání (společný, zvláštní) komora kongres"
@@ -10838,14 +10867,13 @@
      "Praze"
     ],
     "sada": "otazky",
-    "ok": true,
+    "ok": false,
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Praha",
      "radnice (žižkovský)"
     ],
-    "why": "",
+    "why": "špatná výplň",
     "reading": "oženit_se(kde:?, kdo:·Václav Havel)"
    },
    {
@@ -10991,7 +11019,8 @@
      "Pankrác",
      "divadlo",
      "divadlo ABC",
-     "divadlo (městský, pražský)"
+     "divadlo (městský, pražský)",
+     "pivovar (trutnovský)"
     ],
     "why": "",
     "reading": "vykonávat(kde:?, kdo:·Václav Havel)"
@@ -11046,16 +11075,15 @@
      "USA"
     ],
     "sada": "otazky",
-    "ok": true,
+    "ok": false,
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "USA",
      "konference svaz spisovatel",
      "manifestace (první) seskupení (opoziční)",
      "zasedání (společný, zvláštní) komora kongres"
     ],
-    "why": "",
+    "why": "špatná výplň",
     "reading": "vystoupit(kde:?, kdo:·Václav Havel)"
    },
    {
@@ -11263,13 +11291,13 @@
      "Hrádečku"
     ],
     "sada": "otazky",
-    "ok": true,
+    "ok": false,
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Hrádeček"
+     "chalupa"
     ],
-    "why": "",
+    "why": "špatná výplň",
     "reading": "odpočívat(kde:?, kdo:·Václav Havel)"
    },
    {
@@ -11282,7 +11310,6 @@
     "text_ok": false,
     "verdict": "ANO",
     "fillers": [
-     "USA",
      "konference svaz spisovatel",
      "manifestace (první) seskupení (opoziční)",
      "zasedání (společný, zvláštní) komora kongres"
@@ -11352,6 +11379,7 @@
     "verdict": "ANO",
     "fillers": [
      "hrad (pražský)",
+     "počátek léta",
      "nemocnice (pražský)"
     ],
     "why": "špatná výplň",
@@ -11393,10 +11421,11 @@
     ],
     "sada": "otazky",
     "ok": false,
-    "text_ok": false,
+    "text_ok": true,
     "verdict": "ANO",
     "fillers": [
      "hrad (pražský)",
+     "počátek léta",
      "nemocnice (pražský)"
     ],
     "why": "špatná výplň",
@@ -11521,6 +11550,7 @@
     "verdict": "ANO",
     "fillers": [
      "hrad (pražský)",
+     "počátek léta",
      "nemocnice (pražský)"
     ],
     "why": "špatná výplň",
@@ -11583,18 +11613,18 @@
     "reading": "podepsat(kde:?, kdo:·Václav Havel)"
    }
   ],
-  "t_ingest": 0.7,
-  "t_ask": 0.3
+  "t_ingest": 0.5,
+  "t_ask": 0.4
  },
  {
   "doc": "vítězslav_hálek",
   "sentences": 173,
   "written": 173,
   "with_role": 173,
-  "statements": 518,
-  "residue_tokens": 155,
+  "statements": 507,
+  "residue_tokens": 154,
   "tokens": 1884,
-  "open": 130,
+  "open": 112,
   "questions": 13,
   "hits": 8,
   "text_hits": 12,
@@ -11759,8 +11789,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "prázdniny",
-     "procházka"
+     "prázdniny"
     ],
     "why": "špatná výplň",
     "reading": "nachladit_se(kde:?, kdo:·Vítězslav Hálek)"
@@ -11802,15 +11831,15 @@
   "sentences": 320,
   "written": 320,
   "with_role": 318,
-  "statements": 856,
-  "residue_tokens": 364,
+  "statements": 829,
+  "residue_tokens": 360,
   "tokens": 3322,
-  "open": 224,
+  "open": 194,
   "questions": 26,
-  "hits": 16,
+  "hits": 15,
   "text_hits": 23,
   "misses": {
-   "špatná výplň": 2,
+   "špatná výplň": 3,
    "role/logika (blízký výrok je)": 6,
    "bez výroku": 2
   },
@@ -12186,14 +12215,13 @@
      "Paříži"
     ],
     "sada": "otazky",
-    "ok": true,
+    "ok": false,
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Paříž",
-     "iniciace"
+     "Kultura"
     ],
-    "why": "",
+    "why": "špatná výplň",
     "reading": "ohlížet_se(kde:?, kdo:·Vítězslav Nezval)"
    }
   ],
@@ -12205,15 +12233,15 @@
   "sentences": 379,
   "written": 379,
   "with_role": 378,
-  "statements": 931,
-  "residue_tokens": 281,
+  "statements": 861,
+  "residue_tokens": 290,
   "tokens": 4231,
-  "open": 446,
+  "open": 363,
   "questions": 1,
   "hits": 0,
-  "text_hits": 0,
+  "text_hits": 1,
   "misses": {
-   "role/logika (blízký výrok je)": 1
+   "bez výroku": 1
   },
   "results": [
    {
@@ -12224,11 +12252,11 @@
     ],
     "sada": "etalon",
     "ok": false,
-    "text_ok": false,
+    "text_ok": true,
     "verdict": "NEVÍM",
     "fillers": [],
-    "why": "role/logika (blízký výrok je)",
-    "reading": "být(kdo:∀úl, co:?, při+Loc:∃snůška[hlavní])"
+    "why": "bez výroku",
+    "reading": "být(kdo:?count:∀dělnice, kde:∃úl, při+Loc:∃snůška[hlavní])"
    }
   ],
   "t_ingest": 0.1,
@@ -12239,10 +12267,10 @@
   "sentences": 411,
   "written": 411,
   "with_role": 410,
-  "statements": 1346,
-  "residue_tokens": 538,
+  "statements": 1291,
+  "residue_tokens": 532,
   "tokens": 6821,
-  "open": 452,
+  "open": 368,
   "questions": 2,
   "hits": 0,
   "text_hits": 2,
@@ -12277,7 +12305,7 @@
     "reading": "vyhrát(kdy:?, kdo:·Deep Blue, co:∃zápas)"
    }
   ],
-  "t_ingest": 0.1,
+  "t_ingest": 0.2,
   "t_ask": 0.0
  }
 ]
