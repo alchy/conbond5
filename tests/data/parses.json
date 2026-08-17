@@ -10208,6 +10208,167 @@
 }
 ]
 },
+"Jak se jmenuje Petrův pes?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Jak se jmenuje Petrův pes?",
+"tokens": [
+{
+"deprel": "advmod",
+"feats": [
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Jak",
+"head": 3,
+"id": 1,
+"lemma": "jak",
+"upos": "ADV"
+},
+{
+"deprel": "expl:pv",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"PronType",
+"Prs"
+],
+[
+"Reflex",
+"Yes"
+],
+[
+"Variant",
+"Short"
+]
+],
+"form": "se",
+"head": 3,
+"id": 2,
+"lemma": "se",
+"upos": "PRON"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp,Perf"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "jmenuje",
+"head": 0,
+"id": 3,
+"lemma": "jmenovat",
+"upos": "VERB"
+},
+{
+"deprel": "amod",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Gender[psor]",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Poss",
+"Yes"
+]
+],
+"form": "Petrův",
+"head": 5,
+"id": 4,
+"lemma": "Petrův",
+"upos": "ADJ"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "pes",
+"head": 3,
+"id": 5,
+"lemma": "pes",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 3,
+"id": 6,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
 "Jak silný je ledový příkrov?": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Jak silný je ledový příkrov?",
@@ -15678,6 +15839,119 @@
 "form": ".",
 "head": 2,
 "id": 5,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Jmenuje se Rex.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Jmenuje se Rex.",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp,Perf"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Jmenuje",
+"head": 0,
+"id": 1,
+"lemma": "jmenovat",
+"upos": "VERB"
+},
+{
+"deprel": "expl:pv",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"PronType",
+"Prs"
+],
+[
+"Reflex",
+"Yes"
+],
+[
+"Variant",
+"Short"
+]
+],
+"form": "se",
+"head": 1,
+"id": 2,
+"lemma": "se",
+"upos": "PRON"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Rex",
+"head": 1,
+"id": 3,
+"lemma": "Rex",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 1,
+"id": 4,
 "lemma": ".",
 "upos": "PUNCT"
 }
@@ -22188,6 +22462,115 @@
 "id": 3,
 "lemma": "postřižina",
 "upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 2,
+"id": 4,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Kdo venčí Rexe?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kdo venčí Rexe?",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Kdo",
+"head": 2,
+"id": 1,
+"lemma": "kdo",
+"upos": "PRON"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "venčí",
+"head": 0,
+"id": 2,
+"lemma": "venčit",
+"upos": "VERB"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Rexe",
+"head": 2,
+"id": 3,
+"lemma": "Rex",
+"upos": "PROPN"
 },
 {
 "deprel": "punct",
@@ -32239,6 +32622,183 @@
 }
 ]
 },
+"Petr ho venčí každý den.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Petr ho venčí každý den.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Petr",
+"head": 3,
+"id": 1,
+"lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc,Neut"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"PronType",
+"Prs"
+],
+[
+"Variant",
+"Short"
+]
+],
+"form": "ho",
+"head": 3,
+"id": 2,
+"lemma": "on",
+"upos": "PRON"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "venčí",
+"head": 0,
+"id": 3,
+"lemma": "venčit",
+"upos": "VERB"
+},
+{
+"deprel": "det",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"PronType",
+"Tot"
+]
+],
+"form": "každý",
+"head": 5,
+"id": 4,
+"lemma": "každý",
+"upos": "DET"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "den",
+"head": 3,
+"id": 5,
+"lemma": "den",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 6,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
 "Petr je otec Jany.": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Petr je otec Jany.",
@@ -32822,6 +33382,119 @@
 "form": ".",
 "head": 2,
 "id": 5,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Petr má psa.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Petr má psa.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Petr",
+"head": 2,
+"id": 1,
+"lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "má",
+"head": 0,
+"id": 2,
+"lemma": "mít",
+"upos": "VERB"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "psa",
+"head": 2,
+"id": 3,
+"lemma": "pes",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 4,
 "lemma": ".",
 "upos": "PUNCT"
 }
@@ -40040,6 +40713,119 @@
 "head": 1,
 "id": 4,
 "lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Čí je Rex?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Čí je Rex?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Čí",
+"head": 0,
+"id": 1,
+"lemma": "čí",
+"upos": "DET"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 1,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Oth"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Rex",
+"head": 1,
+"id": 3,
+"lemma": "Rex",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 4,
+"lemma": "?",
 "upos": "PUNCT"
 }
 ]

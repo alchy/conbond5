@@ -498,3 +498,16 @@ def test_relational_title_under_mit_binds_to_subject(s: Session) -> None:
     s.say("Pavla a Jindřich mají syna Matěje.")
     assert [s.memory.label(t) for t, _ in s.say("Kdo je otec Matěje?").verdict.fillers] == ["Jindřich"]  # type: ignore[union-attr]
     assert [s.memory.label(t) for t, _ in s.say("Kdo je matka Matěje?").verdict.fillers] == ["Pavla"]  # type: ignore[union-attr]
+
+
+def test_naming_and_object_pronoun(s: Session) -> None:
+    """„Petr má psa. Jmenuje se Rex.“ → jméno patří psovi (bezejmenný referent); „Petr ho venčí“ → ho ≠ Petr; „Čí je Rex?“ → Petr."""
+    s.say("Petr má psa.")
+    s.say("Jmenuje se Rex.")
+    a = s.say("Jak se jmenuje Petrův pes?")
+    assert a.verdict is not None and s.memory.label(a.verdict.fillers[0][0]) == "Rex"
+    s.say("Petr ho venčí každý den.")
+    b = s.say("Kdo venčí Rexe?")
+    assert b.verdict is not None and [s.memory.label(t) for t, _ in b.verdict.fillers] == ["Petr"]
+    c = s.say("Čí je Rex?")
+    assert c.verdict is not None and [s.memory.label(t) for t, _ in c.verdict.fillers] == ["Petr"]

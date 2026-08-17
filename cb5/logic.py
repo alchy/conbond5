@@ -768,6 +768,23 @@ class Evaluator:
             v = self.quantity(q, hole)
             if v is not None:
                 return v
+        # „Čí je Rex?“ → kdo Rexe má (mít) nebo k čemu je Rex vztažen (Rex ∈ pes⟨Petr⟩)
+        if q.pred == "být" and hole.name == "čí" and q.role("kdo") and q.role("kdo").terms:  # type: ignore[union-attr]
+            x = q.role("kdo").terms[0]  # type: ignore[union-attr]
+            q2 = Statement("", "mít", "verb", mood="question", roles=[Role("kdo", [], None, "hole", "", wh=True, wh_kind="filler"), Role("co", [x], "·", "structural")])
+            v2 = self.enumerate(q2)
+            owners: list[tuple[str, Proof]] = [(t, Proof(list(p.statements), list(p.steps) + ["čí = kdo má"], list(p.defaults), p.grade)) for t, p in v2.fillers]
+            for st in m.statements_about(x):
+                co = st.role("co")
+                if st.kernel == "member" and st.status == "active" and co:
+                    for g in co.terms:
+                        gn = m.nodes.get(g)
+                        if gn is not None and gn.rel and gn.rel.startswith("Gen:"):
+                            owner = gn.rel.split(":", 1)[1]
+                            if owner not in {t for t, _ in owners}:
+                                owners.append((owner, Proof([st.id], [f"{m.label(x)} ∈ {m.label(g)} — vztaženo k {m.label(owner)}"], list(st.defaults), st.grade)))
+            if owners:
+                return Verdict("ANO", [p for _, p in owners], fillers=owners)
         # „Jakou velikost mají dělnice?“ / „Jaká je tloušťka příkrovu?“: díra s termem‑veličinou → dotaz na veličinu
         if hole.wh_kind == "attr" and hole.terms and q.pred in ("mít", "být", "dosahovat", "měřit"):
             qn = m.nodes.get(hole.terms[0])
@@ -917,7 +934,8 @@ class Evaluator:
                     fillers.append((t, p))
         # rodina rolí: „kde“ bez `kde` → sourozenci (kam/odkud/kudy) s přiznáním; totéž čas
         family = PLACE_FAMILY if hole.name in PLACE_FAMILY else TIME_FAMILY if hole.name in TIME_FAMILY else PERSON_FAMILY if hole.name in ("s_kým", "komu") else REASON_FAMILY if hole.name in REASON_FAMILY else ()
-        if not fillers and family and hole.wh_kind == "filler":
+        if not [t for t, _ in fillers if t in m.nodes or t.startswith("count:")] and family and hole.wh_kind == "filler":
+            # (vnořená věta jako výplň — „když …“ — rodinu rolí neblokuje)
             for f, p in matched:
                 sibs = list(family) + ([r.name for r in f.roles if r.name in LOCATIVE_SURFACES] if family is PLACE_FAMILY else [])
                 for sib in sibs:

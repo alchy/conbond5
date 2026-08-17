@@ -117,6 +117,9 @@ VAR_PRONOUNS: frozenset[str] = frozenset({"každý", "někdo", "něco", "kdokoli
 #: „někdo/něco“ je proměnná jen v podmínce („pokud někdo …“); v holé větě je to neurčitý činitel (∃)
 EXISTENTIAL_PRONOUNS: frozenset[str] = frozenset({"někdo", "něco", "kdosi", "cosi"})
 
+#: slovesa pojmenování: „Jmenuje se Rex.“ — jméno se připíše k podmětu (nevzniká nový uzel)
+NAMING_VERBS: frozenset[str] = frozenset({"jmenovat_se", "nazývat_se", "říkat_si", "zvát_se"})
+
 #: slovesa mluvení/myšlení: věta pod nimi („Ježíš kázal, že Bůh je láska“) se zapíše jako výrok
 #: s doložkou „podle Ježíš (kázat)“ — odpověď ji vždy vypíše (stupeň zůstává, zdroj je vidět)
 SPEECH_VERBS: frozenset[str] = frozenset({

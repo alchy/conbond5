@@ -1,0 +1,400 @@
+[
+ {
+  "doc": "božena_němcová",
+  "sentences": 925,
+  "written": 925,
+  "with_role": 922,
+  "statements": 2847,
+  "residue_tokens": 1092,
+  "tokens": 12665,
+  "open": 612,
+  "questions": 24,
+  "hits": 16,
+  "text_hits": 21,
+  "misses": {
+   "špatná výplň": 6,
+   "bez výroku": 1,
+   "role/logika (blízký výrok je)": 1
+  },
+  "results": [
+   {
+    "q": "Kdy udržela Božena Němcová?",
+    "expect": [
+     "roce 1989"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1989"
+    ],
+    "why": "",
+    "reading": "udržet(kdy:?, kdo:·Božena Němcová)"
+   },
+   {
+    "q": "Kde udržela Božena Němcová?",
+    "expect": [
+     "Česku"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Skalice"
+    ],
+    "why": "špatná výplň",
+    "reading": "udržet(kde:?, kdo:·Božena Němcová)"
+   },
+   {
+    "q": "Kdy se léčila Božena Němcová?",
+    "expect": [
+     "roku 1840"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1840"
+    ],
+    "why": "",
+    "reading": "léčit_se(kdy:?, kdo:·Božena Němcová)"
+   },
+   {
+    "q": "Kde začala psát Božena Němcová?",
+    "expect": [
+     "Praze"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Praha",
+     "dům"
+    ],
+    "why": "",
+    "reading": "fáze:psát(kde:?, kdo:·Božena Němcová)"
+   },
+   {
+    "q": "Kde se přestěhovala Božena Němcová?",
+    "expect": [
+     "Prahy"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Ratibořice",
+     "Praha",
+     "svatba"
+    ],
+    "why": "",
+    "reading": "přestěhovat_se(kde:?, kdo:·Božena Němcová)"
+   },
+   {
+    "q": "Kdy pobývala Božena Němcová?",
+    "expect": [
+     "1851"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "9/1851",
+     "1839 – 1840",
+     "1846 – 1847",
+     "1837 – 1838"
+    ],
+    "why": "",
+    "reading": "pobývat(kdy:?, kdo:·Božena Němcová)"
+   },
+   {
+    "q": "Kde pobývala Božena Němcová?",
+    "expect": [
+     "Třebové"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Vídeň",
+     "Kostelec",
+     "lázně",
+     "ulice (ječný)",
+     "domek",
+     "dům"
+    ],
+    "why": "špatná výplň",
+    "reading": "pobývat(kde:?, kdo:·Božena Němcová)"
+   },
+   {
+    "q": "Kdy se zamilovala Božena Němcová?",
+    "expect": [
+     "Roku 1851"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1851",
+     "1854"
+    ],
+    "why": "",
+    "reading": "zamilovat_se(kdy:?, kdo:·Božena Němcová)"
+   },
+   {
+    "q": "Kdy odjela Božena Němcová?",
+    "expect": [
+     "1852"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "1861"
+    ],
+    "why": "špatná výplň",
+    "reading": "odjet(kdy:?, kdo:·Božena Němcová)"
+   },
+   {
+    "q": "Kde odjela Božena Němcová?",
+    "expect": [
+     "Ďarmot"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Ďarmoty",
+     "Litomyšl",
+     "manžel"
+    ],
+    "why": "",
+    "reading": "odjet(kde:?, kdo:·Božena Němcová)"
+   },
+   {
+    "q": "Kdy se zamilovala Božena Němcová?",
+    "expect": [
+     "Roku 1854"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1851",
+     "1854"
+    ],
+    "why": "",
+    "reading": "zamilovat_se(kdy:?, kdo:·Božena Němcová)"
+   },
+   {
+    "q": "Kdy strávila Božena Němcová?",
+    "expect": [
+     "roku 1850"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "s0167",
+     "tři roky",
+     "1850"
+    ],
+    "why": "",
+    "reading": "strávit(kdy:?, kdo:·Božena Němcová)"
+   },
+   {
+    "q": "Kde strávila Božena Němcová?",
+    "expect": [
+     "Praze"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Praha"
+    ],
+    "why": "",
+    "reading": "strávit(kde:?, kdo:·Božena Němcová)"
+   },
+   {
+    "q": "Kdy trávila Božena Němcová?",
+    "expect": [
+     "1851"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "9/1851"
+    ],
+    "why": "",
+    "reading": "trávit(kdy:?, kdo:·Božena Němcová)"
+   },
+   {
+    "q": "Kde si přijela Božena Němcová?",
+    "expect": [
+     "Litomyšle"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Litomyšl"
+    ],
+    "why": "",
+    "reading": "přijet(kde:?, komu:·se, kdo:·Božena Němcová)"
+   },
+   {
+    "q": "Kdy se zúčastnila Božena Němcová?",
+    "expect": [
+     "roce 1843"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1843"
+    ],
+    "why": "",
+    "reading": "zúčastnit_se(kdy:?, kdo:·Božena Němcová)"
+   },
+   {
+    "q": "Kde se zúčastnila Božena Němcová?",
+    "expect": [
+     "Žofíně"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Žofín"
+    ],
+    "why": "",
+    "reading": "zúčastnit_se(kde:?, kdo:·Božena Němcová)"
+   },
+   {
+    "q": "Kde zvolí Božena Němcová?",
+    "expect": [
+     "Žernově"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "Skalice"
+    ],
+    "why": "špatná výplň",
+    "reading": "zvolit(kde:?, kdo:·Božena Němcová)"
+   },
+   {
+    "q": "Kde se žije Božena Němcová?",
+    "expect": [
+     "Vídni"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "bez výroku",
+    "reading": "žít(kde:?, co:·Božena Němcová)"
+   },
+   {
+    "q": "Kde si všimla Božena Němcová?",
+    "expect": [
+     "Miskolci"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Miskolec"
+    ],
+    "why": "",
+    "reading": "všimnout_si(kde:?, kdo:·Božena Němcová)"
+   },
+   {
+    "q": "Kde popsala Božena Němcová?",
+    "expect": [
+     "Brezna"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "Skalice"
+    ],
+    "why": "špatná výplň",
+    "reading": "popsat(kde:?, kdo:·Božena Němcová)"
+   },
+   {
+    "q": "Kdy neopustila Božena Němcová?",
+    "expect": [
+     "roce 1989"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1989"
+    ],
+    "why": "",
+    "reading": "¬opustit(kdy:?, kdo:·Božena Němcová)"
+   },
+   {
+    "q": "Kdy se umístila Božena Němcová?",
+    "expect": [
+     "roce 2005"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "umístit_se(kdy:?, kdo:·Božena Němcová)"
+   },
+   {
+    "q": "Kde se narodila Božena Němcová?",
+    "expect": [
+     "vídeň",
+     "vídni"
+    ],
+    "sada": "conbond",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Slezsko",
+     "skutečnost",
+     "místo (neznámý)"
+    ],
+    "why": "špatná výplň",
+    "reading": "narodit_se(kde:?, kdo:·Božena Němcová)"
+   }
+  ],
+  "t_ingest": 1.6,
+  "t_ask": 0.3
+ }
+]

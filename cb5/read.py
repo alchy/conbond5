@@ -602,6 +602,8 @@ class _Reader:
         wh = self._wh_of(t)
         if wh is not None:
             name, kind = wh
+            if name == "jak" and p.pred in D.NAMING_VERBS:
+                name = "co"  # „Jak se jmenuje pes?“ = díra na jméno
             p.roles.append(RoleFill(name, "advmod", wh=True, wh_kind=kind))
             self.mark(t.index, f"role:{name}")
             return

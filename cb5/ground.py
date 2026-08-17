@@ -170,6 +170,12 @@ class Grounder:
         cands = self.m.most_active(kinds=("entity",), gender=t.gender, number=t.number) or self.m.most_active(kinds=("place",), gender=t.gender, number=t.number)
         if t.person in ("1", "2"):
             cands = []
+        if role != "kdo" and t.lemma != "∅":
+            # „Petr ho venčí“: předmětové zájmeno není podmět téže věty (to by bylo „se“)
+            cands = [c for c in cands if c.id not in self._cur_subjs]
+        if role == "kdo" and self._cur_pred in D.NAMING_VERBS and any(not c.names for c in cands):
+            # „Petr má psa. Jmenuje se Rex.“ — pojmenovává se ten, kdo jméno ještě nemá
+            cands = [c for c in cands if not c.names]
         if cands:
             node = cands[0]
             # téma dokumentu má přednost, dokud není jiný kandidát VÝRAZNĚ čerstvější
@@ -180,7 +186,7 @@ class Grounder:
                     node = topic
             self._defaults.append(f"{role}: „{t.lemma if t.lemma != '∅' else 'nevyslovený podmět'}“ = {node.label()} (z aktivace)")
             return node.id
-        if self.topic and self.topic in self.m.nodes and t.person not in ("1", "2"):
+        if self.topic and self.topic in self.m.nodes and t.person not in ("1", "2") and not (role != "kdo" and t.lemma != "∅" and self.topic in self._cur_subjs):
             node = self.m.nodes[self.topic]
             self._defaults.append(f"{role}: „{t.lemma if t.lemma != '∅' else 'nevyslovený podmět'}“ = {node.label()} (téma dokumentu)")
             return node.id
@@ -253,6 +259,17 @@ class Grounder:
                 if t.kind == "var":
                     role.var = self._var_name(t.head)
                     role.quant = "·"
+                    continue
+                if p.pred in D.NAMING_VERBS and rf.name == "co" and t.kind == "entity" and self._cur_subjs and self.write:
+                    # „Jmenuje se Rex.“: jméno patří podmětu — žádný nový uzel
+                    owner = self.m.nodes[self._cur_subjs[0]]
+                    name = " ".join(t.name_lemmas or (t.lemma,))
+                    for nm in [name] + [f for f in t.forms if f]:
+                        if nm not in owner.names:
+                            owner.names.insert(0, nm) if nm == name else owner.names.append(nm)
+                    role.terms.append(owner.id)
+                    role.quant = "·"
+                    self._defaults.append(f"jméno „{name}“ připsáno k {owner.id} ({owner.label()})")
                     continue
                 nid = self.resolve_term(t, role=rf.name, subject_specific=subject_specific, pred=p.pred)
                 if nid is None:

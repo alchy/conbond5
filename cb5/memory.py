@@ -752,8 +752,8 @@ class Memory:
                 continue
             if kinds and n.kind not in kinds:
                 continue
-            if gender and n.gender and gender not in n.gender.split(","):
-                continue
+            if gender and n.gender and not (set(gender.split(",")) & set(n.gender.split(","))):
+                continue  # „ho“ = Masc,Neut sedí na Masc i Neut
             if number and n.number and number != n.number:
                 continue
             out.append((a, n))
