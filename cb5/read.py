@@ -739,12 +739,19 @@ class _Reader:
                 and (f.upos in ("PROPN", "X", "SYM", "NUM") or f.feat("Abbr") == "Yes" or (len(f.form) <= 2 and not f.feat("Case")))
             ):
                 # víceslovné jméno; i „vitamín C“, „skupina B“ (holé nmod bez pádu a bez dětí)
-                if t.upos == "NOUN" and f.upos == "PROPN" and f.feat("Abbr") != "Yes":
+                if t.upos == "NOUN" and f.upos in ("PROPN", "X") and f.feat("Abbr") != "Yes":
                     titled.append(f.index)
                 forms.append(f.form)
                 name_tokens.append(f.index)
                 name_lemmas.append(f.lemma)
                 consumed.append(f.index)
+                for g in self.p.children(f.index):
+                    if g.base_deprel == "flat":  # „Deep Blue“, „Ol Doinyo Lengai“ — flat pod nmod jménem
+                        forms.append(g.form)
+                        name_tokens.append(g.index)
+                        name_lemmas.append(g.lemma)
+                        consumed.append(g.index)
+                        self.mark(g.index, where)
                 self.mark(f.index, where)
                 for g in self.p.subtree(f.index):
                     self.mark(g.index, where)
@@ -816,7 +823,8 @@ class _Reader:
         time = None
         if "Int" in (t.feat("PronType") or ""):
             kind = "wh"
-        elif t.upos == "PROPN":
+        elif t.upos == "PROPN" or (t.upos == "X" and t.form[:1].isupper()):
+            # cizí jména („Deep Blue“, „Ol Doinyo Lengai“) chodí z parseru jako X — jsou to jména
             kind = "place" if (t.feat("NameType") == "Geo" or self._filler_kind(t) == "place?") else "entity"
             quant, qauth = quant or "·", qauth or "structural"
         elif (t.upos == "NOUN" and t.form[:1].isupper() and t.index > 1 and not is_time_noun(t.lemma) and not titled
@@ -1302,9 +1310,20 @@ class Reader(_Reader):
         flats = [f for f in self.p.children(head.index) if f.base_deprel == "flat"]
         forms = [head.form] + [f.form for f in flats]
         lemmas = tuple([head.lemma] + [f.lemma for f in flats])
-        kind: Kind = "entity" if head.upos == "PROPN" else "group"
+        kind: Kind = "entity" if head.upos in ("PROPN",) or (head.upos == "X" and head.form[:1].isupper()) else "group"
         if head.upos == "PROPN" and head.feat("NameType") == "Geo":
             kind = "place"
+        # titul + jméno („vulkán Ol Doinyo Lengai“): hlava vedlejšího výroku je ta ENTITA, ne třída
+        if head.upos == "NOUN":
+            named = [f for f in self.p.children(head.index) if f.base_deprel == "nmod" and f.upos in ("PROPN", "X") and not self.case_of(f.index)
+                     and not [c for c in self.p.children(f.index) if c.base_deprel not in ("flat", "punct")] and f.feat("Abbr") != "Yes"
+                     and (f.feat("NameType") != "Geo" or head.lemma in D.PLACE_NOUNS)]
+            if named:
+                nm = named[0]
+                name_toks = [nm] + [g for g in self.p.children(nm.index) if g.base_deprel == "flat"]
+                forms = [x.form for x in name_toks]
+                lemmas = tuple(x.lemma for x in name_toks)
+                kind = "place" if (nm.feat("NameType") == "Geo" or head.lemma in D.PLACE_NOUNS) else "entity"
         if is_time_noun(head.lemma):
             kind = "time"
         attrs = tuple(c.lemma for c in self.p.children(head.index) if c.base_deprel == "amod" and c.feat("Poss") != "Yes" and not (c.feat("VerbForm") == "Part" and self.kids(c.index, "obl", "obj", "nsubj", "advmod", "nmod")))

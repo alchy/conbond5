@@ -432,8 +432,8 @@
   "sentences": 232,
   "written": 232,
   "with_role": 232,
-  "statements": 617,
-  "residue_tokens": 272,
+  "statements": 616,
+  "residue_tokens": 274,
   "tokens": 3385,
   "open": 186,
   "questions": 3,
@@ -482,7 +482,7 @@
     "verdict": "NEVÍM",
     "fillers": [],
     "why": "bez výroku",
-    "reading": "být(kdo:∀příkrov[antarktický][ledový], jaký:∃silný, jak:?)"
+    "reading": "být(kdo:∀příkrov[antarktický][ledový], síla:?)"
    }
   ],
   "t_ingest": 0.1,
@@ -1570,7 +1570,7 @@
     "reading": "narodit_se(kde:?, kdo:·Božena Němcová)"
    }
   ],
-  "t_ingest": 0.9,
+  "t_ingest": 1.0,
   "t_ask": 0.2
  },
  {
@@ -4275,7 +4275,7 @@
   "statements": 946,
   "residue_tokens": 388,
   "tokens": 3916,
-  "open": 242,
+  "open": 240,
   "questions": 18,
   "hits": 11,
   "text_hits": 17,
@@ -5275,7 +5275,7 @@
     "reading": "oženit_se(s_kým:?, kdo:·Josef Čapek)"
    }
   ],
-  "t_ingest": 0.5,
+  "t_ingest": 0.6,
   "t_ask": 0.1
  },
  {
@@ -5995,7 +5995,7 @@
    }
   ],
   "t_ingest": 0.2,
-  "t_ask": 0.0
+  "t_ask": 0.1
  },
  {
   "doc": "karel_havlíček_borovský",
@@ -7421,7 +7421,7 @@
     "reading": "ztvárnit(kde:?, kdo:·Karel Poláček)"
    }
   ],
-  "t_ingest": 0.0,
+  "t_ingest": 0.1,
   "t_ask": 0.0
  },
  {
@@ -7787,7 +7787,7 @@
     "reading": "být(kdo:·bratr⟨Karel Čapek⟩, co:?)"
    }
   ],
-  "t_ingest": 0.2,
+  "t_ingest": 0.3,
   "t_ask": 0.1
  },
  {
@@ -8790,7 +8790,7 @@
     "reading": "vydat(kdy:?, kdo:·Milan Kundera)"
    }
   ],
-  "t_ingest": 0.5,
+  "t_ingest": 0.2,
   "t_ask": 0.1
  },
  {
@@ -8986,10 +8986,10 @@
   "sentences": 653,
   "written": 653,
   "with_role": 652,
-  "statements": 1778,
-  "residue_tokens": 665,
+  "statements": 1777,
+  "residue_tokens": 668,
   "tokens": 9569,
-  "open": 560,
+  "open": 559,
   "questions": 8,
   "hits": 6,
   "text_hits": 8,
@@ -9820,7 +9820,7 @@
   "statements": 2611,
   "residue_tokens": 1047,
   "tokens": 14254,
-  "open": 970,
+  "open": 969,
   "questions": 1,
   "hits": 0,
   "text_hits": 0,
@@ -9842,7 +9842,7 @@
     "reading": "ležet(kde:?, kdo:∀sopka Ol)"
    }
   ],
-  "t_ingest": 0.4,
+  "t_ingest": 1.1,
   "t_ask": 0.0
  },
  {
@@ -11679,8 +11679,8 @@
     "reading": "podepsat(kde:?, kdo:·Václav Havel)"
    }
   ],
-  "t_ingest": 0.5,
-  "t_ask": 0.3
+  "t_ingest": 0.6,
+  "t_ask": 0.4
  },
  {
   "doc": "vítězslav_hálek",
@@ -11890,7 +11890,7 @@
     "reading": "zemřít(kde:?, kdo:·Vítězslav Hálek)"
    }
   ],
-  "t_ingest": 0.0,
+  "t_ingest": 0.1,
   "t_ask": 0.0
  },
  {
@@ -12373,7 +12373,7 @@
     "reading": "vyhrát(kdy:?, kdo:·Deep Blue, co:∃zápas)"
    }
   ],
-  "t_ingest": 0.5,
+  "t_ingest": 0.2,
   "t_ask": 0.0
  }
 ]

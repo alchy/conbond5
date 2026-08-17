@@ -624,9 +624,12 @@ class Evaluator:
                 continue
             matched.append((f, p))
             fr = f.role(hole.name)
-            if hole.wh_kind == "count" and not hole.terms and (fr is None or not fr.counts):
-                # „Kolik měří Vltava?“ — počet bez pojmenované role: kterákoli role s číslem
-                fr = next((r for r in f.roles if r.counts), fr)
+            if hole.wh_kind == "count" and (fr is None or not fr.counts):
+                # „Kolik měří Vltava?“ — počet bez pojmenované role: kterákoli role s číslem;
+                # „Kolik zubů má chrup?“ × „chrup se skládá z 30 zubů“ — role s TÝMŽ termem a číslem
+                cands_r = [r for r in f.roles if r.counts and (not hole.terms or any(
+                    self.match_term(qt, hole.quant, t, r.quant, role=hole.name) is not None for qt in hole.terms for t in r.terms))]
+                fr = cands_r[0] if cands_r else fr
             if fr is None or (not fr.terms and not fr.nested):
                 # díra bez výplně ve výroku: dotaz na roli, kterou výrok nemá
                 if self._near(q, f):
@@ -728,6 +731,22 @@ class Evaluator:
                                     seen.add(pl)
                                     p2 = Proof(list(p.statements) + [st.id], list(p.steps) + [f"místo uvnitř: {m.label(t)} — {st.pred}"], list(p.defaults), weakest(p.grade, "derived"))
                                     fillers.append((pl, p2))
+        # místo u jména podmětu: „Vulkán Ol Doinyo Lengai v Tanzanii je…“ → nmod:v+Loc(entita, Tanzanie)
+        if not fillers and hole.name in PLACE_FAMILY and hole.wh_kind == "filler" and q.role("kdo"):
+            for x in q.role("kdo").terms:  # type: ignore[union-attr]
+                if self._kind(x) not in ("entity", "place"):
+                    continue
+                for st in m.statements_about(x):
+                    surface = (st.pred or "").split(":", 1)[1] if (st.pred or "").startswith("nmod:") else ""
+                    if st.kind != "nmod" or st.status != "active" or surface not in LOCATIVE_SURFACES:
+                        continue
+                    kdo, co = st.role("kdo"), st.role("co")
+                    if not (kdo and x in kdo.terms and co):
+                        continue
+                    for pl in co.terms:
+                        if self._kind(pl) == "place" and pl not in seen:
+                            seen.add(pl)
+                            fillers.append((pl, Proof([st.id], [f"místo u jména: {m.label(x)} {surface} {m.label(pl)} — ptal ses „{hole.name}“"], list(st.defaults), weakest(st.grade, "derived"))))
         if fillers:
             # u místa napřed skutečná místa, pak povrchové role; jinak podle stupně a délky důkazu
             def rank(x: tuple[str, Proof]) -> tuple[int, int, int]:

@@ -1,0 +1,113 @@
+[
+ {
+  "doc": "kočka_domácí",
+  "sentences": 447,
+  "written": 447,
+  "with_role": 447,
+  "statements": 1174,
+  "residue_tokens": 339,
+  "tokens": 5857,
+  "open": 323,
+  "questions": 4,
+  "hits": 4,
+  "text_hits": 4,
+  "misses": {},
+  "results": [
+   {
+    "q": "Kolik kostí má dospělá kočka?",
+    "expect": [
+     "244"
+    ],
+    "sada": "etalon",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "count:244"
+    ],
+    "why": "",
+    "reading": "mít(co:?count:∃kost, kdo:∀kočka[dospělý])"
+   },
+   {
+    "q": "Kolik svalů má kočka?",
+    "expect": [
+     "512"
+    ],
+    "sada": "etalon",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "count:512"
+    ],
+    "why": "",
+    "reading": "mít(co:?count:∃sval, kdo:∀kočka)"
+   },
+   {
+    "q": "Kolik zubů má mléčný chrup kočky?",
+    "expect": [
+     "26"
+    ],
+    "sada": "etalon",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "count:26"
+    ],
+    "why": "",
+    "reading": "mít(co:?count:∃zub, kdo:∀chrup⟨kočka⟩[mléčný])"
+   },
+   {
+    "q": "Kolik zubů má trvalý chrup kočky?",
+    "expect": [
+     "30"
+    ],
+    "sada": "etalon",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "count:30"
+    ],
+    "why": "",
+    "reading": "mít(co:?count:∃zub, kdo:∀chrup⟨kočka⟩[trvalý])"
+   }
+  ],
+  "t_ingest": 0.1,
+  "t_ask": 0.0
+ },
+ {
+  "doc": "sopka",
+  "sentences": 988,
+  "written": 988,
+  "with_role": 988,
+  "statements": 2611,
+  "residue_tokens": 1047,
+  "tokens": 14254,
+  "open": 969,
+  "questions": 1,
+  "hits": 0,
+  "text_hits": 0,
+  "misses": {
+   "bez výroku": 1
+  },
+  "results": [
+   {
+    "q": "Kde leží sopka Ol Doinyo Lengai?",
+    "expect": [
+     "Tanzanii"
+    ],
+    "sada": "etalon",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "bez výroku",
+    "reading": "ležet(kde:?, kdo:∀sopka Ol)"
+   }
+  ],
+  "t_ingest": 0.4,
+  "t_ask": 0.0
+ }
+]

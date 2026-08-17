@@ -1,0 +1,35 @@
+[
+ {
+  "doc": "sopka",
+  "sentences": 988,
+  "written": 988,
+  "with_role": 988,
+  "statements": 2637,
+  "residue_tokens": 1047,
+  "tokens": 14254,
+  "open": 967,
+  "questions": 1,
+  "hits": 1,
+  "text_hits": 1,
+  "misses": {},
+  "results": [
+   {
+    "q": "Kde leží sopka Ol Doinyo Lengai?",
+    "expect": [
+     "Tanzanii"
+    ],
+    "sada": "etalon",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Tanzanie"
+    ],
+    "why": "",
+    "reading": "ležet(kde:?, kdo:·Ol Doinyo Lengai)"
+   }
+  ],
+  "t_ingest": 0.6,
+  "t_ask": 0.0
+ }
+]

@@ -266,14 +266,15 @@ class Memory:
                       prefer: str | None = None) -> tuple[Node, bool]:
         """Najdi entitu podle jména, nebo ji založ. Vrací (uzel, nová?).
         Při víc kandidátech vyhrává `prefer` (téma dokumentu), jinak aktivace."""
-        found = self.find_entity(name_lemmas, kinds=(kind,) if kind == "place" else ("entity", "place"))
+        # místa i entity se hledají v jednom prostoru jmen: „vulkán Ol Doinyo Lengai“ (entita)
+        # a „sopka Ol Doinyo Lengai“ (místo) je totéž jméno → týž uzel
+        found = self.find_entity(name_lemmas, kinds=("entity", "place"))
         if not found and forms:
             # lemma je z parseru dvojznačné („Pavla“ = Nom Pavla i Acc Pavel) — zkus přesný CELÝ
             # tvar jména, který už paměť viděla („Pavla“, „Petra Nováka“) — ne jednotlivá slova
             # (přes „Nováková“ by se scelila celá rodina)
             full = " ".join(f for f in forms if f)
-            by_form = [n for n in self.nodes.values() if n.kind in (("entity", "place") if kind != "place" else ("place",))
-                       and full in n.names]
+            by_form = [n for n in self.nodes.values() if n.kind in ("entity", "place") and full in n.names]
             if len(by_form) >= 1:
                 found = by_form
         if len(found) == 1:
@@ -295,9 +296,10 @@ class Memory:
                     n.gender, n.number = n.gender or gender, n.number or number
                     return n, False
         if len(found) > 1:
-            # víc kandidátů: téma dokumentu, jinak nejaktivnější
+            # víc kandidátů: téma dokumentu; jinak uzel, o kterém už něco víme; jinak nejaktivnější
             preferred = [n for n in found if n.id == prefer]
-            best = preferred[0] if preferred else max(found, key=lambda n: (self.activation_.get(n.id, 0.0), -int(n.id[1:])))
+            best = preferred[0] if preferred else max(
+                found, key=lambda n: (len(self._by_term.get(n.id, [])) > 0, self.activation_.get(n.id, 0.0), -int(n.id[1:])))
             full = " ".join(name_lemmas)
             if full not in best.names:
                 best.names.append(full)
