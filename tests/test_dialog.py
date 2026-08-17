@@ -441,3 +441,13 @@ def test_locative_verbs_match_byt_kde(s: Session) -> None:
     s.say("Praha leží na Vltavě.")
     a = s.say("Kde je Praha?")
     assert a.verdict is not None and [s.memory.label(t) for t, _ in a.verdict.fillers] == ["Vltava"] and "být (kde) ~ ležet" in a.text
+
+
+def test_subset_carries_over_relational_target(s: Session) -> None:
+    """otec ⊆ rodič ⇒ otec⟨Jana⟩ ⊆ rodič⟨Jana⟩ (vztahové jméno je funkce svého cíle)."""
+    s.say("Otec je rodič.")
+    s.say("Petr je otec Jany.")
+    a = s.say("Je Petr rodič Jany?")
+    assert a.verdict is not None and a.verdict.value == "ANO" and "přenáší se na ⟨Jana⟩" in a.text
+    b = s.say("Kdo je rodič Jany?")
+    assert b.verdict is not None and s.memory.label(b.verdict.fillers[0][0]) == "Petr"

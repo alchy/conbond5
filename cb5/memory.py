@@ -623,6 +623,14 @@ class Memory:
                 inner = self.member_star(ta, tb)
             if inner is not None:
                 return [f"rel:{ta}⊆{tb}"] + inner
+        # týž vztažený cíl, jiné vztahové jméno: otec ⊆ rodič ⇒ otec⟨Jana⟩ ⊆ rodič⟨Jana⟩
+        if (na and nb and na.kind == "group" and nb.kind == "group" and na.rel and nb.rel and na.rel == nb.rel
+                and na.lemma != nb.lemma):
+            ba, bb = self.find_group(na.lemma, na.attrs), self.find_group(nb.lemma, nb.attrs)
+            if ba is not None and bb is not None:
+                base = self._closure("subset", ba.id, bb.id)
+                if base is not None:
+                    return [f"rel:{na.lemma}⊆{nb.lemma} přenáší se na ⟨{self.label(na.rel.split(':', 1)[1])}⟩"] + base
         # přes ekvivalenci jmen na obou koncích
         for x in self._class(a):
             for y in self._class(b):

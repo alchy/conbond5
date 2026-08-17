@@ -277,3 +277,7 @@ Dělnice vyrůstají do velikosti 12–14 mm.
 Jakou velikost mají dělnice?
 Praha leží na Vltavě.
 Kde je Praha?
+Otec je rodič.
+Petr je otec Jany.
+Je Petr rodič Jany?
+Kdo je rodič Jany?

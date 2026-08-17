@@ -296,6 +296,21 @@ class Evaluator:
                 if e not in seen:
                     seen.add(e)
                     out.append((e, Proof(path, [f"{m.label(e)} ∈ {m.label(g.id)}"], [], self._grade_of(path))))
+        # 1b) užší vztahové jméno k témuž cíli: otec ⊆ rodič ⇒ členové otec⟨target⟩ jsou rodič⟨target⟩
+        base_g = m.find_group(lemma)
+        if base_g is not None:
+            for h in list(m.nodes.values()):
+                if h.kind != "group" or h.rel != f"Gen:{target}" or h.lemma == lemma:
+                    continue
+                base_h = m.find_group(h.lemma, h.attrs)
+                sub = m.subset_star(base_h.id, base_g.id) if base_h is not None else None
+                if sub is None:
+                    continue
+                for e, path in m.known_members(h.id):
+                    if e not in seen:
+                        seen.add(e)
+                        full = path + sub
+                        out.append((e, Proof(full, [f"{m.label(e)} ∈ {m.label(h.id)}", f"{h.lemma} ⊆ {lemma} — přenáší se na ⟨{m.label(target)}⟩"], [], weakest(self._grade_of(full), "derived"))))
         # 2) inverze: target ∈ R'⟨Z⟩, R' inverzní k lemma ⇒ Z ∈ lemma⟨target⟩ (rod Z podle lemma)
         need = RELATION_GENDER.get(lemma)
         converses = list(RELATION_CONVERSE.get(lemma, ())) + [c for c in m.learned.get("inverse", {}).get(lemma, []) if c not in RELATION_CONVERSE.get(lemma, ())]
@@ -794,8 +809,9 @@ class Evaluator:
                 return Verdict("ANO", [p for _, p in acts], fillers=acts)
         # definice: „Kdo/co je X?“
         if q.pred == "být" and hole.name in ("co", "jaký") and q.role("kdo") and q.role("kdo").terms:  # type: ignore[union-attr]
+            subj_node = m.nodes.get(q.role("kdo").terms[0])  # type: ignore[union-attr]
             v = self.describe_verdict(q.role("kdo").terms[0], hole)  # type: ignore[union-attr]
-            if hole.name == "co" and v.fillers:
+            if hole.name == "co" and v.fillers and not (subj_node is not None and subj_node.kind == "group" and subj_node.rel):
                 # „Co je X?“ → třídy mají přednost; vlastnosti jen když třídy nejsou
                 classes = [(t, p) for t, p in v.fillers if self._kind(t) == "group" and any(
                     s in self.m.statements and self.m.statements[s].kernel in ("member", "subset") for s in p.statements)]
@@ -1135,8 +1151,8 @@ class Evaluator:
                 if g not in seen and not path[0].startswith("restricts:"):
                     seen.add(g)
                     below.append((g, Proof(path, [f"{m.label(g)} ⊆ {m.label(node_id)} (podřazená třída, ne definice)"], [], self._grade_of(path))))
-            if node.rel and not below and node.rel.startswith("Gen:"):
-                # „Kdo je tchán Jany Novákové?“ — nic přímého → inverze a naučené definice
+            if node.rel and node.rel.startswith("Gen:") and (not below or all(m.nodes[x].kind == "group" for x, _ in below if x in m.nodes)):
+                # „Kdo je tchán Jany Novákové?“ — nic přímého (nebo jen podtřídy) → inverze, naučené definice, užší vztahová jména
                 for e, pr in self.rel_members(node.lemma, node.rel.split(":", 1)[1]):
                     if e not in seen:
                         seen.add(e)

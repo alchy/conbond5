@@ -426,7 +426,7 @@
     "reading": "pracovat(jako:?, kdo:·Alois Jirásek)"
    }
   ],
-  "t_ingest": 0.2,
+  "t_ingest": 0.4,
   "t_ask": 0.1
  },
  {
@@ -803,8 +803,8 @@
     "reading": "napsat(kde:?, kdo:·Arnošt Lustig)"
    }
   ],
-  "t_ingest": 0.1,
-  "t_ask": 0.0
+  "t_ingest": 0.2,
+  "t_ask": 0.1
  },
  {
   "doc": "bohumil_hrabal",
@@ -1204,7 +1204,7 @@
     "reading": "přátelit_se(s_kým:?, kdo:·Bohumil Hrabal)"
    }
   ],
-  "t_ingest": 0.2,
+  "t_ingest": 0.3,
   "t_ask": 0.1
  },
  {
@@ -1600,8 +1600,8 @@
     "reading": "narodit_se(kde:?, kdo:·Božena Němcová)"
    }
   ],
-  "t_ingest": 1.3,
-  "t_ask": 0.2
+  "t_ingest": 1.8,
+  "t_ask": 0.3
  },
  {
   "doc": "eduard_bass",
@@ -1759,7 +1759,7 @@
     "reading": "bydlet(kde:?, kdo:·Eduard Bass)"
    }
   ],
-  "t_ingest": 0.0,
+  "t_ingest": 0.1,
   "t_ask": 0.0
  },
  {
@@ -2044,7 +2044,7 @@
    }
   ],
   "t_ingest": 0.2,
-  "t_ask": 0.0
+  "t_ask": 0.1
  },
  {
   "doc": "fotosyntéza",
@@ -2444,7 +2444,7 @@
     "reading": "pobývat(kde:?, kdo:·František Hrubín)"
    }
   ],
-  "t_ingest": 0.0,
+  "t_ingest": 0.1,
   "t_ask": 0.0
  },
  {
@@ -2709,7 +2709,7 @@
     "reading": "podpořit(kdy:?, kdo:·Ivan Klíma)"
    }
   ],
-  "t_ingest": 0.0,
+  "t_ingest": 0.1,
   "t_ask": 0.0
  },
  {
@@ -3077,7 +3077,7 @@
     "reading": "odsoudit(kdy:?, kdo:·Ivan Olbracht)"
    }
   ],
-  "t_ingest": 0.1,
+  "t_ingest": 0.2,
   "t_ask": 0.1
  },
  {
@@ -3328,8 +3328,8 @@
     "reading": "publikovat(kdy:?, kdo:·Jan Neruda)"
    }
   ],
-  "t_ingest": 0.1,
-  "t_ask": 0.0
+  "t_ingest": 0.3,
+  "t_ask": 0.1
  },
  {
   "doc": "jaroslav_hašek",
@@ -3881,8 +3881,8 @@
     "reading": "zemřít(kdy:?, kdo:·Jaroslav Hašek)"
    }
   ],
-  "t_ingest": 0.3,
-  "t_ask": 0.1
+  "t_ingest": 0.4,
+  "t_ask": 0.2
  },
  {
   "doc": "jaroslav_seifert",
@@ -4617,8 +4617,8 @@
     "reading": "zemřít(kdy:?, kdo:·Jaroslav Vrchlický)"
    }
   ],
-  "t_ingest": 0.2,
-  "t_ask": 0.0
+  "t_ingest": 0.3,
+  "t_ask": 0.1
  },
  {
   "doc": "jiří_wolker",
@@ -4835,7 +4835,7 @@
     "reading": "zabývat_se(kdy:?, kdo:·Jiří Wolker)"
    }
   ],
-  "t_ingest": 0.0,
+  "t_ingest": 0.1,
   "t_ask": 0.0
  },
  {
@@ -5326,7 +5326,7 @@
     "reading": "oženit_se(s_kým:?, kdo:·Josef Čapek)"
    }
   ],
-  "t_ingest": 0.6,
+  "t_ingest": 0.7,
   "t_ask": 0.1
  },
  {
@@ -6042,7 +6042,7 @@
     "reading": "procházet(kde:?, kdo:·Julius Zeyer)"
    }
   ],
-  "t_ingest": 0.2,
+  "t_ingest": 0.3,
   "t_ask": 0.1
  },
  {
@@ -6994,7 +6994,7 @@
     "reading": "pracovat(kdy:?, co:·Karel Hynek Mácha)"
    }
   ],
-  "t_ingest": 0.2,
+  "t_ingest": 0.3,
   "t_ask": 0.1
  },
  {
@@ -7860,7 +7860,7 @@
     "reading": "být(kdo:·bratr⟨Karel Čapek⟩, co:?)"
    }
   ],
-  "t_ingest": 0.3,
+  "t_ingest": 0.4,
   "t_ask": 0.1
  },
  {
@@ -7938,7 +7938,7 @@
     "reading": "mít(co:?count:∃zub, kdo:∀chrup⟨kočka⟩[trvalý])"
    }
   ],
-  "t_ingest": 0.2,
+  "t_ingest": 0.3,
   "t_ask": 0.0
  },
  {
@@ -8303,7 +8303,7 @@
     "reading": "mít(kde:?, kdo:·Marie Majerová)"
    }
   ],
-  "t_ingest": 0.2,
+  "t_ingest": 0.3,
   "t_ask": 0.0
  },
  {
@@ -8870,7 +8870,7 @@
     "reading": "vydat(kdy:?, kdo:·Milan Kundera)"
    }
   ],
-  "t_ingest": 0.2,
+  "t_ingest": 0.3,
   "t_ask": 0.1
  },
  {
@@ -9193,7 +9193,7 @@
     "reading": "být(kdo:∀pes, co:∃šelma) ⟨subset⟩"
    }
   ],
-  "t_ingest": 0.3,
+  "t_ingest": 0.4,
   "t_ask": 0.1
  },
  {
@@ -9473,8 +9473,8 @@
     "reading": "obdržet(kdy:?, kdo:·Petr Bezruč)"
    }
   ],
-  "t_ingest": 0.2,
-  "t_ask": 0.0
+  "t_ingest": 0.3,
+  "t_ask": 0.1
  },
  {
   "doc": "poznámky_domácnost",
@@ -9939,7 +9939,7 @@
     "reading": "ležet(kde:?, kdo:·Ol Doinyo Lengai)"
    }
   ],
-  "t_ingest": 1.0,
+  "t_ingest": 1.4,
   "t_ask": 0.0
  },
  {
@@ -10126,7 +10126,7 @@
     "reading": "prožít(kde:?, kdo:·Svatopluk Čech)"
    }
   ],
-  "t_ingest": 0.1,
+  "t_ingest": 0.2,
   "t_ask": 0.0
  },
  {
@@ -10738,7 +10738,7 @@
     "reading": "obdržet(kdy:?, kdo:·Vladislav Vančura)"
    }
   ],
-  "t_ingest": 0.1,
+  "t_ingest": 0.2,
   "t_ask": 0.1
  },
  {
@@ -11806,8 +11806,8 @@
     "reading": "podepsat(kde:?, kdo:·Václav Havel)"
    }
   ],
-  "t_ingest": 0.6,
-  "t_ask": 0.4
+  "t_ingest": 0.9,
+  "t_ask": 0.5
  },
  {
   "doc": "vítězslav_hálek",
@@ -12438,7 +12438,7 @@
   "hits": 0,
   "text_hits": 1,
   "misses": {
-   "bez výroku": 1
+   "role/logika (blízký výrok je)": 1
   },
   "results": [
    {
@@ -12452,7 +12452,7 @@
     "text_ok": true,
     "verdict": "NEVÍM",
     "fillers": [],
-    "why": "bez výroku",
+    "why": "role/logika (blízký výrok je)",
     "reading": "být(kdo:?count:∀dělnice, kde:∃úl, při+Loc:∃snůška[hlavní])"
    }
   ],
@@ -12504,7 +12504,7 @@
     "reading": "vyhrát(kdy:?, kdo:·Deep Blue, co:∃zápas)"
    }
   ],
-  "t_ingest": 0.2,
+  "t_ingest": 0.3,
   "t_ask": 0.0
  }
 ]

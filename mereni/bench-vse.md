@@ -1,3 +1,52 @@
+ruční otázky bez textu v korpusu: bible_exodus, bible_galaťanům, bible_genesis, bible_jan, bible_lukas, bible_markus, bible_matous, bible_skutky_apoštolské, wikisofia_pribuzenstvi
+… alois_jirásek
+… antarktida
+… arnošt_lustig
+… bohumil_hrabal
+… božena_němcová
+… eduard_bass
+… egon_hostovský
+… fotosyntéza
+… františek_halas
+… františek_hrubín
+… fyzika_gravitace
+… ivan_klíma
+… ivan_olbracht
+… jan_neruda
+… jaroslav_hašek
+… jaroslav_seifert
+… jaroslav_vrchlický
+… jiří_wolker
+… josef_čapek
+… josef_škvorecký
+… julius_zeyer
+… karel_havlíček_borovský
+… karel_hynek_mácha
+… karel_jaromír_erben
+… karel_poláček
+… karel_čapek
+… kočka_domácí
+… kůň_domácí
+… ludvík_vaculík
+… marie_majerová
+… milan_kundera
+… ota_pavel
+… pes_domácí
+… petr_bezruč
+… poznámky_domácnost
+… příroda_česká
+… rodina_novákovi
+   + sdílená znalost: vztahy_příbuzenské
+… rur
+… sopka
+… svatopluk_čech
+… vladimír_holan
+… vladislav_vančura
+… václav_havel
+… vítězslav_hálek
+… vítězslav_nezval
+… včela_medonosná
+… šachy
 | dokument | vět | zapsáno | výroků | zbytek tok. | otevř. | otázek | správně | v textu |
 |---|---|---|---|---|---|---|---|---|
 | alois_jirásek | 429 | 429 | 1086 | 432/4057 | 220 | 27 | 20 (74 %) | 25 |
@@ -55,4 +104,4 @@
 | conbond | ručně psané (starý conBond) | 38 | 35 (92 %) | 36 |
 | otazky | generované šablonou (kde/kdy) | 682 | 440 (65 %) | 578 |
 
-Rozklad chyb: špatná výplň: 118; role/logika (blízký výrok je): 91; bez výroku: 41; predikát chybí: 1; odpověděl navíc (etalon čekal NEVÍM): 1
+Rozklad chyb: špatná výplň: 118; role/logika (blízký výrok je): 92; bez výroku: 40; predikát chybí: 1; odpověděl navíc (etalon čekal NEVÍM): 1
