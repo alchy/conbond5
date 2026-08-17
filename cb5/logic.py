@@ -20,6 +20,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Literal
 
+from cb5.chronos import overlap as time_overlap
 from cb5.defaults import ADVERB_QUANTITY, COMPARATIVES_SEED, LOCATIVE_SURFACES, PLACE_NOUNS, QUANTITY_BOUNDS, RELATION_CONVERSE, RELATION_GENDER, synonym_class
 from cb5.memory import Memory, Role, Statement
 
@@ -414,8 +415,108 @@ class Evaluator:
             return Verdict("ANO" if truth else "NE", [proof] if truth else [], [] if truth else [proof])
         return None
 
+    # ---- binární pravidla: Q(A,B) ⇐ TEST(hodnota u A, hodnota u B) ------------------------
+
+    def _participants(self, q: Statement) -> list[str]:
+        """Účastníci binárního dotazu: dva termy v `kdo` („Magdalena a Superman“), nebo
+        první z kdo/co a druhý z do+Gen/kam/s_kým/než/komu („telefon do kapsy“)."""
+        kdo = q.role("kdo")
+        if kdo and len(kdo.terms) >= 2:
+            return kdo.terms[:2]
+        first = next((r.terms[0] for r in q.roles if r.name in ("kdo", "co") and r.terms), None)
+        second = next((r.terms[0] for r in q.roles if r.name in ("do+Gen", "kam", "s_kým", "než", "komu", "do", "k+Dat", "na+Acc") and r.terms), None)
+        return [x for x in (first, second) if x]
+
+    def _quantity_of(self, node_id: str, qname: str) -> tuple[int, str, str] | None:
+        """(hodnota, jednotka‑label, id výroku) veličiny `qname` u uzlu — z role téhož jména,
+        nebo z `být(jaký: adj)` + míry; přes ∀‑třídu uzlu, když sám hodnotu nemá."""
+        m = self.m
+        cands = [node_id]
+        n = m.nodes.get(node_id)
+        if n is not None and n.kind == "entity":
+            for st in m.statements_about(node_id):
+                if st.kernel == "member" and not st.neg:
+                    co = st.role("co")
+                    if co:
+                        cands.extend(co.terms)
+        for x in cands:
+            for st in m.statements_about(x):
+                if st.status != "active" or st.neg:
+                    continue
+                kdo = st.role("kdo")
+                if not (kdo and x in kdo.terms):
+                    continue
+                r = st.role(qname)
+                if r is None and st.pred == "být" and st.role("jaký"):
+                    jaky = st.role("jaký")
+                    if jaky and any(ADVERB_QUANTITY.get(m.nodes[t].lemma) == qname for t in jaky.terms if t in m.nodes):
+                        r = next((rr for rr in st.roles if rr.counts), None)
+                if r is None:
+                    continue
+                for t in r.terms:
+                    if t in r.counts:
+                        return r.counts[t], m.label(t), st.id
+        return None
+
+    def _interval_of(self, node_id: str, pred: str) -> tuple[str, str] | None:
+        """(id času, id výroku) role `kdy` děje `pred` o uzlu."""
+        v = self._value(node_id, pred, "kdy")
+        return (str(v[0]), v[1]) if v and isinstance(v[0], str) else None
+
+    def binary_rule(self, q: Statement) -> Verdict | None:
+        """Naučené binární pravidlo pro predikát dotazu (šablony `překryv`, `porovnání`)."""
+        m = self.m
+        rules = m.learned.get("binary", {})
+        spec = None
+        for pred, r in rules.items():
+            if self.same_pred(q.pred, pred) is not None:
+                spec = r
+                break
+        if spec is None:
+            return None
+        parts = self._participants(q)
+        if len(parts) < 2:
+            return None
+        a, b = parts[0], parts[1]
+        if spec["test"] == "překryv":
+            ia, ib = self._interval_of(a, spec["source"]), self._interval_of(b, spec["source"])
+            missing = [f"chybí {spec['source']}(kdy): {m.label(x)}" for x, i in ((a, ia), (b, ib)) if not i]
+            if not ia or not ib:
+                return Verdict("NEVÍM", missing=missing)
+            na, nb = m.nodes[ia[0]].time, m.nodes[ib[0]].time
+            ov = time_overlap(na, nb) if na and nb else None
+            if ov is None:
+                return Verdict("NEVÍM", missing=["časy nejdou srovnat"])
+            proof = Proof([ia[1], ib[1]], [f"{m.label(a)}: {m.label(ia[0])}", f"{m.label(b)}: {m.label(ib[0])}",
+                                          f"{q.pred} ⇐ překryv intervalů {spec['source']}(kdy) (naučené pravidlo)"], ["binární pravidlo (šablona překryv)"], "derived")
+            return Verdict("ANO" if ov else "NE", [proof] if ov else [], [] if ov else [proof])
+        if spec["test"] in ("<=", ">=", "<", ">", "="):
+            qnames = [x for x in str(spec["source"]).split(",") if x]
+            proofs: list[Proof] = []
+            truth = True
+            missing = []
+            for qn in qnames:
+                va, vb = self._quantity_of(a, qn), self._quantity_of(b, qn)
+                if not va or not vb:
+                    missing.extend(f"chybí {qn}: {m.label(x)}" for x, v in ((a, va), (b, vb)) if not v)
+                    continue
+                op = spec["test"]
+                res = {"<=": va[0] <= vb[0], ">=": va[0] >= vb[0], "<": va[0] < vb[0], ">": va[0] > vb[0], "=": va[0] == vb[0]}[op]
+                truth = truth and res
+                proofs.append(Proof([va[2], vb[2]], [f"{qn}: {m.label(a)} = {va[0]} {va[1]}, {m.label(b)} = {vb[0]} {vb[1]} → {va[0]} {op} {vb[0]}: {'platí' if res else 'neplatí'}"], ["binární pravidlo (šablona porovnání)"], "derived"))
+            if not proofs:
+                return Verdict("NEVÍM", missing=missing)
+            for pr in proofs:
+                pr.steps.append(f"{q.pred} ⇐ {spec['source']} {spec['test']} (naučené pravidlo)")
+            return Verdict("ANO" if truth else "NE", proofs if truth else [], [] if truth else proofs, missing=missing)
+        return None
+
     def evaluate(self, q: Statement, *, depth: int = 0) -> Verdict:
         m = self.m
+        if depth == 0:
+            br = self.binary_rule(q)
+            if br is not None:
+                return br
         if q.pred == "srovnání":
             direct = self._direct(q)
             if direct is not None:
@@ -625,6 +726,11 @@ class Evaluator:
                 continue
             matched.append((f, p))
             fr = f.role(hole.name)
+            same_named = [r for r in f.roles if r.name == hole.name]
+            if len(same_named) > 1 and hole.wh_kind == "filler":
+                # „Vrtačka je ve sklepě na poličce.“ — dvě role kde: obě jsou odpověď
+                merged = Role(hole.name, [t for r in same_named for t in r.terms], same_named[0].quant, same_named[0].authority, same_named[0].surface)
+                fr = merged
             if hole.wh_kind == "count" and (fr is None or not fr.counts):
                 # „Kolik měří Vltava?“ — počet bez pojmenované role: kterákoli role s číslem;
                 # „Kolik zubů má chrup?“ × „chrup se skládá z 30 zubů“ — role s TÝMŽ termem a číslem
@@ -732,6 +838,27 @@ class Evaluator:
                                     seen.add(pl)
                                     p2 = Proof(list(p.statements) + [st.id], list(p.steps) + [f"místo uvnitř: {m.label(t)} — {st.pred}"], list(p.defaults), weakest(p.grade, "derived"))
                                     fillers.append((pl, p2))
+        # tranzitivita umístění: prášek v krabici, krabice v koupelně → i koupelna (přiznaně, přes krabici)
+        if hole.name == "kde" and hole.wh_kind == "filler" and fillers:
+            frontier = [(t, p) for t, p in fillers if not t.startswith("count:")]
+            hops = 0
+            while frontier and hops < 3:
+                nxt: list[tuple[str, Proof]] = []
+                for t, p in frontier:
+                    for st in m.statements_about(t):
+                        if st.status != "active" or st.neg or st.pred != "být":
+                            continue
+                        kdo, kde = st.role("kdo"), st.role("kde")
+                        if not (kdo and t in kdo.terms and kde):
+                            continue
+                        for z in kde.terms:
+                            if z not in seen:
+                                seen.add(z)
+                                p2 = Proof(list(p.statements) + [st.id], list(p.steps) + [f"přes {m.label(t)}: {m.label(t)} je v {m.label(z)}"], list(p.defaults), "derived")
+                                fillers.append((z, p2))
+                                nxt.append((z, p2))
+                frontier = nxt
+                hops += 1
         # místo u jména podmětu: „Vulkán Ol Doinyo Lengai v Tanzanii je…“ → nmod:v+Loc(entita, Tanzanie)
         if not fillers and hole.name in PLACE_FAMILY and hole.wh_kind == "filler" and q.role("kdo"):
             for x in q.role("kdo").terms:  # type: ignore[union-attr]

@@ -66,7 +66,7 @@ def _year(token: Token) -> int | None:
     if token.upos != "NUM" or not form.isdigit():
         return None
     value = int(form)
-    return value if 100 <= value <= 2999 else None
+    return value if 100 <= value <= 9999 else None
 
 
 def _day(token: Token) -> int | None:
@@ -188,3 +188,12 @@ def within(a: TimeSpec, b: TimeSpec) -> bool | None:
 
 def same(a: TimeSpec, b: TimeSpec) -> bool:
     return a.kind == b.kind and a.start == b.start and a.end == b.end and (a.kind != "name" or a.label == b.label)
+
+
+def overlap(a: TimeSpec, b: TimeSpec) -> bool | None:
+    """Překrývají se intervaly / body? `None` = nesrovnatelné (jména, bez roku)."""
+    if a.kind == "name" or b.kind == "name" or not (a.start and a.end and b.start and b.end):
+        return None
+    if a.start[0] == 0 or b.start[0] == 0:
+        return None
+    return _key(a.start) <= _key_end(b.end) and _key(b.start) <= _key_end(a.end)

@@ -42,7 +42,7 @@ Testy síť nepotřebují (`tests/data/parses.json`; nové věty: přidat do
 | `cb5/render.py` | verdikt + důvod + zdroj + doložka stupně |
 | `cb5/dialog.py` | `Session`: `ingest`, `say` (otázky, tvrzení, opravy „Ne, …“/„To není pravda.“/„Ne každý X.“, konflikt), **učení z vět** (definice srovnávacích slov, vztahových jmen), příkazy `!…` (i bez `!`), backlog, žurnál, `replay` |
 | `cb5/bench.py` | měření: míra zápisu + QA přesnost po sadách (ruční × generované), sdílená znalost (`vztahy_příbuzenské` k rodině Novákových), rozklad chyb → `mereni/` |
-| `cb5/sablony.py` | **šablony pro vysvětlení vztahu** (`!šablony`, `!uč druh jezevčík pes`, okno „Vysvětlit vztah“ ve viewBase) + **návrh šablony při NEVÍM** (můstek, srovnání, složený vztah, vyloučení) s odpovědí `ano` / `ne` (pamatuje se) / `jen tady` |
+| `cb5/sablony.py` | **šablony pro vysvětlení vztahu** (`!šablony`, `!uč druh jezevčík pes`, okno „Vysvětlit vztah“ ve viewBase) + **návrh šablony při NEVÍM** (můstek, srovnání, složený vztah, vyloučení, **překryv**, **porovnání**) s odpovědí `ano` / `ne` (pamatuje se) / `jen tady`. Binární pravidla `Q(A,B) ⇐ TEST(hodnota u A, hodnota u B)`: překryv intervalů (`potkat_se ⇐ žít`), porovnání veličin (`vejít ⇐ délka <=`) — vrstva nad primitivními fakty (§ 5/0) |
 | `cb5/cli.py`, `cb5/viewbase_app.py` | REPL a živý graf |
 
 Naučené věci drží **paměť** (`Memory.learned`: `roles`, `synonyms`,
@@ -55,9 +55,9 @@ Naučené věci drží **paměť** (`Memory.learned`: `roles`, `synonyms`,
 | korpus conbond4 (238 vět) zapsáno | 8 | 233 s rolí, zbytek 5,6 % |
 | korpus conBond2 (14 354 vět) zapsáno | — | 14 354 (38 987 výroků, zbytek 8,5 %, 10 277 otevřených) |
 | **ručně psané otázky (70)** | 0 | **59 (84 %)** — etalon 24/32, conbond 35/38 |
-| generované otázky (682, proxy) | 0 | 433 (63 %); 577 má odpověď v textu |
+| generované otázky (682, proxy) | 0 | 439 (64 %); 581 má odpověď v textu |
 | dialogy A–F ze zadání conbond4 | — | zelené; dialog A vč. „nejvýše 130 km/h“ (výchozí můstek) |
-| testy / typy | — | 100 pytest, mypy čistý |
+| testy / typy | — | 101 pytest, mypy čistý |
 
 Zbývající ruční chyby (etalon): „Kolik procent je Antarktida větší než
 Evropa?“ (procenta + komparativ), „Jaká je nejnižší naměřená teplota na
@@ -91,8 +91,16 @@ dělnic je v úlu…“ (rozsah 30 000–50 000), „Na kolika polích…“ (�
 
 0. **Vysvětlování vztahů = šablony, ne volný dialog** (rozhodnutí J. 17. 8.): systém
    se ptá sám jen při NEVÍM na otázku člověka, nabídne JEDNU předvyplněnou šablonu
-   (hypotéza s evidencí), člověk potvrdí/odmítne. Dál rozšiřovat detekci mezer
-   (synonymum predikátu, inverze, role) a šablonu „mez“ (dnes výchozí můstek u veličin).
+   (hypotéza s evidencí), člověk potvrdí/odmítne. **Vrstvy znalostní báze**, aby
+   kodifikace vyšších vztahů stála na podložených nižších: (0) jádro — osy (čas,
+   čísla), ⊆/∈, role; (1) primitivní fakta z textu (žít kdy, délka, narodit_se kde);
+   (2) odvozené predikáty jako pravidla NAD (1) — složení vztahů (tchán = otec∘manžel),
+   srovnání, překryv, porovnání, můstky; (3) pravidlo lze zapsat jen tehdy, když jeho
+   vstupy existují v nižší vrstvě — právě to hlídá návrh při NEVÍM (nabízí překryv,
+   jen když má intervaly u obou; porovnání, jen když má touž veličinu u obou), a každý
+   odvozený verdikt nese řetěz až k větám (stupeň `derived`). Dál: detekce mezer pro
+   synonymum/inverzi/roli, šablona „mez“ (dnes výchozí můstek u veličin), víc testů
+   (překryv i „před/po“, porovnání s tolerancí, víc veličin najednou).
 1. **Můstková pravidla z věty** — dnes `!pravidlo`, šablona a výchozí můstek pro
    veličiny; cíl: „Kdo jede po dálnici, jede nejvýše maximální rychlostí
    dálnice.“ → pravidlo s hodnotou a komparátorem; obecně „Kdo …, ten …“.

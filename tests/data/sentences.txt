@@ -215,3 +215,16 @@ ano
 ne
 jen tady
 Je kůň šelma?
+Magdalena žila mezi lety 1900 až 2000.
+Superman žil mezi lety 2001 až 3001.
+Mohli se Magdalena a Superman potkat?
+Telefon má na délku 10 cm.
+Kapsa je na délku 8 cm.
+Vejde se telefon do kapsy?
+Vrtačka je ve sklepě na poličce.
+Kde je vrtačka?
+Prací prášek je v krabici.
+Krabice je v koupelně.
+Kde je prací prášek?
+Petr žil mezi lety 1950 až 2020.
+Mohli se Magdalena a Petr potkat?

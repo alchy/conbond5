@@ -189,7 +189,7 @@ class Session:
             navrh, self._pending = self._pending, None
             self._turn("say", text, doc)
             if low == "ano":
-                if any(a.startswith("<") for a in navrh.args):
+                if any(re.fullmatch(r"<[^<>=]+>", a) for a in navrh.args):  # „<R1>“ = nevyplněný slot; „<=“ je test
                     return Answer(f"šablona má nevyplněné sloty — pošli ji vyplněnou: {navrh.prikaz()}")
                 out = sablony.apply(self, navrh.sablona, navrh.args)
                 again = self.say(navrh.otazka, doc)

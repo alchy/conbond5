@@ -292,3 +292,28 @@ def test_templates_and_suggestions(s: Session) -> None:
     assert s.memory.learned["rel_defs"]["tchán"] == [["otec", "manžel"], ["otec", "manželka"]]
     again = Session.replay(s.journal_json(), RecordedOracle(DATA))
     assert again.memory.learned["rel_defs"] == s.memory.learned["rel_defs"]
+
+
+def test_binary_rules_overlap_and_comparison(s: Session) -> None:
+    """Magdalena/Superman: potkat_se ⇐ překryv žít; telefon/kapsa: vejít ⇐ délka <= — obojí systém sám nabídne."""
+    s.say("Magdalena žila mezi lety 1900 až 2000.")
+    s.say("Superman žil mezi lety 2001 až 3001.")
+    s.say("Petr žil mezi lety 1950 až 2020.")
+    a = s.say("Mohli se Magdalena a Superman potkat?")
+    assert a.verdict is not None and a.verdict.value == "NEVÍM" and "!uč překryv potkat_se žít" in a.text
+    b = s.say("ano")
+    assert b.verdict is not None and b.verdict.value == "NE"
+    assert s.say("Mohli se Magdalena a Petr potkat?").verdict.value == "ANO"  # type: ignore[union-attr]
+    s.say("Telefon má na délku 10 cm.")
+    s.say("Kapsa je na délku 8 cm.")
+    c = s.say("Vejde se telefon do kapsy?")
+    assert "!uč porovnání vejít délka <=" in c.text
+    d = s.say("ano")
+    assert d.verdict is not None and d.verdict.value == "NE" and "10 <= 8: neplatí" in d.text
+    # více míst v jedné větě a tranzitivita umístění
+    s.say("Vrtačka je ve sklepě na poličce.")
+    assert {s.memory.label(t) for t, _ in s.say("Kde je vrtačka?").verdict.fillers} == {"sklep", "polička"}  # type: ignore[union-attr]
+    s.say("Prací prášek je v krabici.")
+    s.say("Krabice je v koupelně.")
+    k = s.say("Kde je prací prášek?")
+    assert [s.memory.label(t) for t, _ in k.verdict.fillers] == ["krabice", "koupelna"] and "přes krabice" in k.text  # type: ignore[union-attr]

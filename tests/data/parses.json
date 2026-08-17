@@ -13343,6 +13343,165 @@
 }
 ]
 },
+"Kapsa je na délku 8 cm.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kapsa je na délku 8 cm.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Kapsa",
+"head": 4,
+"id": 1,
+"lemma": "kapsa",
+"upos": "NOUN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 4,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "na",
+"head": 4,
+"id": 3,
+"lemma": "na",
+"upos": "ADP"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "délku",
+"head": 0,
+"id": 4,
+"lemma": "délka",
+"upos": "NOUN"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "8",
+"head": 4,
+"id": 5,
+"lemma": "8",
+"upos": "NUM"
+},
+{
+"deprel": "nmod",
+"feats": [
+[
+"Abbr",
+"Yes"
+],
+[
+"Animacy",
+"Inan"
+],
+[
+"Gender",
+"Masc"
+]
+],
+"form": "cm",
+"head": 5,
+"id": 6,
+"lemma": "centimetr",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 4,
+"id": 7,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
 "Karel Novák je otec Petra.": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Karel Novák je otec Petra.",
@@ -13851,6 +14010,230 @@
 "feats": [],
 "form": "?",
 "head": 2,
+"id": 4,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Kde je prací prášek?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kde je prací prášek?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Kde",
+"head": 0,
+"id": 1,
+"lemma": "kde",
+"upos": "ADV"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 1,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "amod",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "prací",
+"head": 4,
+"id": 3,
+"lemma": "prací",
+"upos": "ADJ"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "prášek",
+"head": 1,
+"id": 4,
+"lemma": "prášek",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 5,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Kde je vrtačka?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kde je vrtačka?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Kde",
+"head": 0,
+"id": 1,
+"lemma": "kde",
+"upos": "ADV"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 1,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "vrtačka",
+"head": 1,
+"id": 3,
+"lemma": "vrtačka",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
 "id": 4,
 "lemma": "?",
 "upos": "PUNCT"
@@ -18771,6 +19154,125 @@
 }
 ]
 },
+"Krabice je v koupelně.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Krabice je v koupelně.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Krabice",
+"head": 4,
+"id": 1,
+"lemma": "krabice",
+"upos": "NOUN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 4,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "v",
+"head": 4,
+"id": 3,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "koupelně",
+"head": 0,
+"id": 4,
+"lemma": "koupelna",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 4,
+"id": 5,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
 "Kůň je kopytník.": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Kůň je kopytník.",
@@ -19252,6 +19754,170 @@
 "head": 1,
 "id": 3,
 "lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Magdalena žila mezi lety 1900 až 2000.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Magdalena žila mezi lety 1900 až 2000.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Magdalena",
+"head": 2,
+"id": 1,
+"lemma": "Magdalena",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Gender",
+"Fem,Neut"
+],
+[
+"Number",
+"Plur,Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "žila",
+"head": 0,
+"id": 2,
+"lemma": "žít",
+"upos": "VERB"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Ins"
+]
+],
+"form": "mezi",
+"head": 4,
+"id": 3,
+"lemma": "mezi",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Ins"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "lety",
+"head": 2,
+"id": 4,
+"lemma": "léta",
+"upos": "NOUN"
+},
+{
+"deprel": "nummod",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "1900",
+"head": 4,
+"id": 5,
+"lemma": "1900",
+"upos": "NUM"
+},
+{
+"deprel": "cc",
+"feats": [],
+"form": "až",
+"head": 7,
+"id": 6,
+"lemma": "až",
+"upos": "CCONJ"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "2000",
+"head": 5,
+"id": 7,
+"lemma": "2000",
+"upos": "NUM"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 8,
+"lemma": ".",
 "upos": "PUNCT"
 }
 ]
@@ -20080,6 +20746,346 @@
 "head": 1,
 "id": 9,
 "lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Mohli se Magdalena a Petr potkat?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Mohli se Magdalena a Petr potkat?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Aspect",
+"Imp"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Plur"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Mohli",
+"head": 0,
+"id": 1,
+"lemma": "moci",
+"upos": "VERB"
+},
+{
+"deprel": "expl:pv",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"PronType",
+"Prs"
+],
+[
+"Reflex",
+"Yes"
+],
+[
+"Variant",
+"Short"
+]
+],
+"form": "se",
+"head": 6,
+"id": 2,
+"lemma": "se",
+"upos": "PRON"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Magdalena",
+"head": 1,
+"id": 3,
+"lemma": "Magdalena",
+"upos": "PROPN"
+},
+{
+"deprel": "cc",
+"feats": [],
+"form": "a",
+"head": 5,
+"id": 4,
+"lemma": "a",
+"upos": "CCONJ"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Petr",
+"head": 3,
+"id": 5,
+"lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "xcomp",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"VerbForm",
+"Inf"
+]
+],
+"form": "potkat",
+"head": 1,
+"id": 6,
+"lemma": "potkat",
+"upos": "VERB"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 7,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Mohli se Magdalena a Superman potkat?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Mohli se Magdalena a Superman potkat?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Aspect",
+"Imp"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Plur"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Mohli",
+"head": 0,
+"id": 1,
+"lemma": "moci",
+"upos": "VERB"
+},
+{
+"deprel": "expl:pv",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"PronType",
+"Prs"
+],
+[
+"Reflex",
+"Yes"
+],
+[
+"Variant",
+"Short"
+]
+],
+"form": "se",
+"head": 6,
+"id": 2,
+"lemma": "se",
+"upos": "PRON"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Magdalena",
+"head": 1,
+"id": 3,
+"lemma": "Magdalena",
+"upos": "PROPN"
+},
+{
+"deprel": "cc",
+"feats": [],
+"form": "a",
+"head": 5,
+"id": 4,
+"lemma": "a",
+"upos": "CCONJ"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Superman",
+"head": 3,
+"id": 5,
+"lemma": "Superman",
+"upos": "PROPN"
+},
+{
+"deprel": "xcomp",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"VerbForm",
+"Inf"
+]
+],
+"form": "potkat",
+"head": 1,
+"id": 6,
+"lemma": "potkat",
+"upos": "VERB"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 7,
+"lemma": "?",
 "upos": "PUNCT"
 }
 ]
@@ -24294,6 +25300,331 @@
 }
 ]
 },
+"Petr žil mezi lety 1950 až 2020.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Petr žil mezi lety 1950 až 2020.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Petr",
+"head": 2,
+"id": 1,
+"lemma": "Petr",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "žil",
+"head": 0,
+"id": 2,
+"lemma": "žít",
+"upos": "VERB"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Ins"
+]
+],
+"form": "mezi",
+"head": 4,
+"id": 3,
+"lemma": "mezi",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Ins"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "lety",
+"head": 2,
+"id": 4,
+"lemma": "léta",
+"upos": "NOUN"
+},
+{
+"deprel": "nummod",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "1950",
+"head": 4,
+"id": 5,
+"lemma": "1950",
+"upos": "NUM"
+},
+{
+"deprel": "cc",
+"feats": [],
+"form": "až",
+"head": 7,
+"id": 6,
+"lemma": "až",
+"upos": "CCONJ"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "2020",
+"head": 5,
+"id": 7,
+"lemma": "2020",
+"upos": "NUM"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 8,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Prací prášek je v krabici.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Prací prášek je v krabici.",
+"tokens": [
+{
+"deprel": "amod",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "Prací",
+"head": 2,
+"id": 1,
+"lemma": "prací",
+"upos": "ADJ"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "prášek",
+"head": 5,
+"id": 2,
+"lemma": "prášek",
+"upos": "NOUN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 5,
+"id": 3,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "v",
+"head": 5,
+"id": 4,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "krabici",
+"head": 0,
+"id": 5,
+"lemma": "krabice",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 5,
+"id": 6,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
 "Praha je v Česku.": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Praha je v Česku.",
@@ -25973,6 +27304,174 @@
 }
 ]
 },
+"Superman žil mezi lety 2001 až 3001.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Superman žil mezi lety 2001 až 3001.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Superman",
+"head": 2,
+"id": 1,
+"lemma": "Superman",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "žil",
+"head": 0,
+"id": 2,
+"lemma": "žít",
+"upos": "VERB"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Ins"
+]
+],
+"form": "mezi",
+"head": 4,
+"id": 3,
+"lemma": "mezi",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Ins"
+],
+[
+"Gender",
+"Neut"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "lety",
+"head": 2,
+"id": 4,
+"lemma": "léta",
+"upos": "NOUN"
+},
+{
+"deprel": "nummod",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "2001",
+"head": 4,
+"id": 5,
+"lemma": "2001",
+"upos": "NUM"
+},
+{
+"deprel": "cc",
+"feats": [],
+"form": "až",
+"head": 7,
+"id": 6,
+"lemma": "až",
+"upos": "CCONJ"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "3001",
+"head": 5,
+"id": 7,
+"lemma": "3001",
+"upos": "NUM"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 8,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
 "Tchyně je matka manžela nebo manželky.": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Tchyně je matka manžela nebo manželky.",
@@ -26291,6 +27790,169 @@
 "feats": [],
 "form": ".",
 "head": 3,
+"id": 7,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Telefon má na délku 10 cm.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Telefon má na délku 10 cm.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Telefon",
+"head": 2,
+"id": 1,
+"lemma": "telefon",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "má",
+"head": 0,
+"id": 2,
+"lemma": "mít",
+"upos": "VERB"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Acc"
+]
+],
+"form": "na",
+"head": 4,
+"id": 3,
+"lemma": "na",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "délku",
+"head": 2,
+"id": 4,
+"lemma": "délka",
+"upos": "NOUN"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "10",
+"head": 2,
+"id": 5,
+"lemma": "10",
+"upos": "NUM"
+},
+{
+"deprel": "nmod",
+"feats": [
+[
+"Abbr",
+"Yes"
+],
+[
+"Animacy",
+"Inan"
+],
+[
+"Gender",
+"Masc"
+]
+],
+"form": "cm",
+"head": 5,
+"id": 6,
+"lemma": "centimetr",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
 "id": 7,
 "lemma": ".",
 "upos": "PUNCT"
@@ -27092,6 +28754,155 @@
 }
 ]
 },
+"Vejde se telefon do kapsy?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Vejde se telefon do kapsy?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Vejde",
+"head": 0,
+"id": 1,
+"lemma": "vejít",
+"upos": "VERB"
+},
+{
+"deprel": "expl:pass",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"PronType",
+"Prs"
+],
+[
+"Reflex",
+"Yes"
+],
+[
+"Variant",
+"Short"
+]
+],
+"form": "se",
+"head": 1,
+"id": 2,
+"lemma": "se",
+"upos": "PRON"
+},
+{
+"deprel": "nsubj:pass",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "telefon",
+"head": 1,
+"id": 3,
+"lemma": "telefon",
+"upos": "NOUN"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Gen"
+]
+],
+"form": "do",
+"head": 5,
+"id": 4,
+"lemma": "do",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "kapsy",
+"head": 1,
+"id": 5,
+"lemma": "kapsa",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 6,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
 "Vesmír se rozšířil do dnešní podoby.": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Vesmír se rozšířil do dnešní podoby.",
@@ -27621,6 +29432,169 @@
 "form": ".",
 "head": 3,
 "id": 4,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Vrtačka je ve sklepě na poličce.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Vrtačka je ve sklepě na poličce.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Vrtačka",
+"head": 4,
+"id": 1,
+"lemma": "vrtačka",
+"upos": "NOUN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 4,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Voc"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "ve",
+"head": 4,
+"id": 3,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "sklepě",
+"head": 0,
+"id": 4,
+"lemma": "sklep",
+"upos": "NOUN"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "na",
+"head": 6,
+"id": 5,
+"lemma": "na",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "poličce",
+"head": 4,
+"id": 6,
+"lemma": "polička",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 4,
+"id": 7,
 "lemma": ".",
 "upos": "PUNCT"
 }

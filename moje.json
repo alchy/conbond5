@@ -1,12 +1,12 @@
 {
  "format": "conbond5-memory/1",
  "counters": {
-  "e": 20,
-  "t": 9,
-  "z": 55,
-  "s": 79,
+  "e": 25,
+  "t": 11,
+  "z": 57,
+  "s": 81,
   "p": 3,
-  "g": 56,
+  "g": 60,
   "o": 20
  },
  "nodes": [
@@ -953,7 +953,7 @@
    "gender": null,
    "number": null,
    "doc": "",
-   "text": "cap",
+   "text": "common",
    "rel": null
   },
   {
@@ -2161,6 +2161,230 @@
    "number": null,
    "doc": "dialog",
    "text": "To už je velká abstrakce...",
+   "rel": null
+  },
+  {
+   "id": "e0021",
+   "kind": "entity",
+   "lemma": "Karel Čapek",
+   "names": [
+    "Karel Čapek",
+    "Karel",
+    "Čapek"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": "Masc",
+   "number": "Sing",
+   "doc": "dialog",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "e0022",
+   "kind": "entity",
+   "lemma": "Magdalena",
+   "names": [
+    "Magdalena"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": "Fem",
+   "number": "Sing",
+   "doc": "dialog",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "g0057",
+   "kind": "group",
+   "lemma": "mezil",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "t0010",
+   "kind": "time",
+   "lemma": "1900",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": {
+    "kind": "year",
+    "label": "1900",
+    "start": [
+     1900,
+     0,
+     0
+    ],
+    "end": [
+     1900,
+     0,
+     0
+    ]
+   },
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "z0056",
+   "kind": "sentence",
+   "lemma": "dialog#1",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Magdalena žila mezil lety 1900 až 2000.",
+   "rel": null
+  },
+  {
+   "id": "e0023",
+   "kind": "entity",
+   "lemma": "Superman",
+   "names": [
+    "Superman"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": "Masc",
+   "number": "Sing",
+   "doc": "dialog",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "t0011",
+   "kind": "time",
+   "lemma": "2001",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": {
+    "kind": "year",
+    "label": "2001",
+    "start": [
+     2001,
+     0,
+     0
+    ],
+    "end": [
+     2001,
+     0,
+     0
+    ]
+   },
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "z0057",
+   "kind": "sentence",
+   "lemma": "dialog#2",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Superman žil mezi lety 2001 až 3001",
+   "rel": null
+  },
+  {
+   "id": "e0024",
+   "kind": "entity",
+   "lemma": "Olga Scheinpflugová",
+   "names": [
+    "Olga Scheinpflugová",
+    "Olgou",
+    "Scheinpflugovou"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": "Fem",
+   "number": "Sing",
+   "doc": "dialog",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "g0058",
+   "kind": "group",
+   "lemma": "sopka",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "common",
+   "rel": null
+  },
+  {
+   "id": "e0025",
+   "kind": "entity",
+   "lemma": "Jirásek",
+   "names": [
+    "Jirásek"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": "Masc",
+   "number": "Sing",
+   "doc": "dialog",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "g0059",
+   "kind": "group",
+   "lemma": "republika",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "common",
+   "rel": null
+  },
+  {
+   "id": "g0060",
+   "kind": "group",
+   "lemma": "republika",
+   "names": [],
+   "attrs": [
+    "československý"
+   ],
+   "base": "g0059",
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "common",
    "rel": null
   }
  ],
@@ -6537,6 +6761,125 @@
    "sentence": "z0055",
    "tense": "Pres",
    "mood": "assert"
+  },
+  {
+   "id": "s0080",
+   "pred": "žít",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "e0022"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "jak",
+     "terms": [
+      "g0057"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "advmod",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "čím",
+     "terms": [
+      "t0010"
+     ],
+     "quant": "·",
+     "authority": "default",
+     "surface": "Ins",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 1,
+    "text": "Magdalena žila mezil lety 1900 až 2000.",
+    "turn": 1,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0056",
+   "tense": "Past",
+   "mood": "assert"
+  },
+  {
+   "id": "s0081",
+   "pred": "žít",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "e0023"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "kdy",
+     "terms": [
+      "t0011"
+     ],
+     "quant": "·",
+     "authority": "default",
+     "surface": "mezi+Ins",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 2,
+    "text": "Superman žil mezi lety 2001 až 3001",
+    "turn": 2,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0057",
+   "tense": "Past",
+   "mood": "assert"
   }
  ],
  "open": [
@@ -7084,6 +7427,21 @@
    1.0
   ],
   [
+   "e0022",
+   "g0057",
+   1.0
+  ],
+  [
+   "e0022",
+   "t0010",
+   1.0
+  ],
+  [
+   "e0023",
+   "t0011",
+   1.0
+  ],
+  [
    "g0001",
    "g0007",
    3.0
@@ -7279,25 +7637,28 @@
    1.0
   ],
   [
+   "g0057",
+   "t0010",
+   1.0
+  ],
+  [
    "p0001",
    "t0004",
    1.0
   ]
  ],
  "activation": {
-  "e0004": 1.3091005439999999,
-  "e0019": 0.02519423999999999,
-  "e0020": 0.11663999999999997,
-  "g0045": 0.18871833599999993,
-  "g0046": 0.016796159999999997,
-  "g0047": 0.10575359999999998,
-  "g0048": 0.10575359999999998,
-  "g0049": 0.228096,
-  "g0050": 0.864,
-  "g0051": 0.5399999999999999,
-  "g0052": 1.3679999999999999,
-  "g0053": 1.9799999999999998,
-  "g0054": 0.36,
-  "g0056": 0.6
+  "e0021": 0.0652313088,
+  "e0022": 0.029113343999999996,
+  "e0023": 0.03919103999999999,
+  "e0024": 0.062207999999999986,
+  "e0025": 0.108,
+  "g0012": 0.3,
+  "g0057": 0.010077695999999999,
+  "g0058": 0.0648,
+  "g0060": 0.108,
+  "p0002": 0.18,
+  "t0010": 0.010077695999999999,
+  "t0011": 0.016796159999999997
  }
 }

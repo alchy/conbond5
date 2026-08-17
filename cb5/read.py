@@ -327,6 +327,7 @@ class _Reader:
         self._prodrop(p, heads)
         self._quantify(p)
         self._membership_verb(p)
+        self._quantity_roles(p)
         # souřadné přísudky: druhá predikace se sdíleným podmětem
         for h in heads:
             for c in self.kids(h.index, "conj"):
@@ -340,6 +341,20 @@ class _Reader:
                     p.secondary.append(sec)
                     self.mark(c.index, "secondary")
         return p
+
+    def _quantity_roles(self, p: Predication) -> None:
+        """„Telefon má na délku 10 cm.“ / „Kapsa je na délku 8 cm.“: role s jménem veličiny
+        (na+Acc: délka) + role s hodnotou (co: 10 cm) → jedna role `délka: 10 cm`."""
+        qnames = set(D.ADVERB_QUANTITY.values())
+        qrole = next((r for r in p.roles if r.name not in ("kdo", "co", "jaký", "kde", "kdy", "kam") and r.terms and len(r.terms) == 1
+                      and r.terms[0].kind == "group" and r.terms[0].lemma in qnames and r.terms[0].count is None and not r.wh), None)
+        vrole = next((r for r in p.roles if r is not qrole and r.terms and any(t.count is not None for t in r.terms) and not r.wh), None)
+        if qrole is None or vrole is None:
+            return
+        qname = qrole.terms[0].lemma
+        p.roles.remove(qrole)
+        vrole.name, vrole.authority = qname, "default"
+        p.defaults.append(f"veličina {qname}: „{qrole.surface}“ + hodnota → role {qname}")
 
     def _membership_verb(self, p: Predication) -> None:
         """„Pes patří mezi šelmy“ / „patří do skupiny“ / „náleží k“ → jádrová
@@ -904,9 +919,10 @@ class _Reader:
             # věty má pod sebou všechno, včetně letopočtů cizích členů)
             sub = [x for x in self.p.subtree(t.index) if x.index == t.index or (x.head == t.index and x.base_deprel in ("nummod", "case", "flat"))]
             if is_time_noun(t.lemma):
-                # „dne 12. srpna 1879“, „v sobotu 21. prosince“: datum visí pod časovým
-                # substantivem hlouběji (nmod) — u časového slova je celý podstrom jeho
-                sub = [x for x in self.p.subtree(t.index) if x.upos in ("NUM", "NOUN", "ADP", "PUNCT", "ADJ") and (x.index == t.index or x.lemma in MONTH_LEMMAS or x.upos in ("NUM", "PUNCT") or is_time_noun(x.lemma))]
+                # „dne 12. srpna 1879“, „v sobotu 21. prosince“, „mezi lety 1900 až 2000“: datum
+                # visí pod časovým substantivem hlouběji — u časového slova je celý podstrom jeho
+                sub = [x for x in self.p.subtree(t.index) if (x.index == t.index or x.lemma in MONTH_LEMMAS or x.upos in ("NUM", "PUNCT") or is_time_noun(x.lemma)
+                                                             or x.lemma in ("až", "a", "nebo", "–", "-", "—"))]
             # čas jen u ČASOVÉHO substantiva („roku 1851“, „v letech …“); „244 kostí“
             # a „430 kilometrů“ nejsou letopočty
             time = time_from_tokens(sub) if is_time_noun(t.lemma) else None
@@ -1148,6 +1164,7 @@ class _Reader:
             self._prodrop(p, [cop or root])
         self._quantify(p)
         p.kernel = self._copula_kernel(p, pred_role)
+        self._quantity_roles(p)
         return p
 
     def _roles_of_single(self, t: Token, p: Predication) -> None:

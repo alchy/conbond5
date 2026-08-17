@@ -69,6 +69,8 @@ SABLONY: dict[str, Sablona] = {
     "synonymum": Sablona("synonymum", "slovo A znamená totéž co B (predikáty)", [("A", "sloveso"), ("=", ""), ("B", "sloveso")], "!uč synonymum kázat = hlásat", 3),
     "výjimka": Sablona("výjimka", "pravidlo P o třídě X neplatí pro Y", [("P", "predikát"), ("X", "třída"), ("Y", "výjimka")], "!uč výjimka létat pták tučňák", 3),
     "hodnota": Sablona("hodnota", "X má Q rovno N jednotek", [("X", "věc"), ("Q", "veličina"), ("N", "číslo"), ("j", "jednotka (volitelně)")], "!uč hodnota Vltava délka 430 km", 3),
+    "překryv": Sablona("překryv", "Q(A a B) platí, když se překrývají intervaly kdy děje P u obou (potkat_se ⇐ žít)", [("Q", "dotazovaný děj"), ("P", "děj s rolí kdy u obou")], "!uč překryv potkat_se žít", 2),
+    "porovnání": Sablona("porovnání", "Q(X, Y) platí, když veličina V u X TEST veličina V u Y (vejít_se ⇐ délka <=)", [("Q", "dotazovaný děj"), ("V", "veličina (víc: délka,šířka)"), ("TEST", "<= | >= | < | > | =")], "!uč porovnání vejít_se délka <=", 3),
 }
 
 
@@ -168,6 +170,18 @@ def apply(session: "Session", name: str, args: list[str]) -> str:
         u.text = u.text or "value"
         st = stmt("být", "copula", [Role("kdo", [subj], "·" if x[:1].isupper() else "∀", "said"), Role(q, [u.id], "∃", "said", counts={u.id: value})])
         return f"zapsáno [{st.id}]: {x} má {q} {value} {unit}"
+    if name == "překryv":
+        q_, p_ = args[0], args[1]
+        m.learned.setdefault("binary", {})[q_] = {"test": "překryv", "source": p_}
+        st = stmt("binární_pravidlo", "definice", [Role("jaký", [group(q_)], "·", "said"), Role("co", [group(p_)], "·", "said", surface="překryv")], note=f"{q_} ⇐ překryv {p_}(kdy)")
+        return f"naučeno [{st.id}]: {q_}(A, B) platí, když se překrývají intervaly {p_}(kdy) u A i B"
+    if name == "porovnání":
+        q_, v_, test = args[0], args[1], args[2]
+        if test not in ("<=", ">=", "<", ">", "="):
+            return f"neznám test „{test}“ (<= | >= | < | > | =)"
+        m.learned.setdefault("binary", {})[q_] = {"test": test, "source": v_}
+        st = stmt("binární_pravidlo", "definice", [Role("jaký", [group(q_)], "·", "said"), Role("co", [group(v_.split(",")[0])], "·", "said", surface=test)], note=f"{q_} ⇐ {v_} {test}")
+        return f"naučeno [{st.id}]: {q_}(X, Y) platí, když {v_}(X) {test} {v_}(Y)"
     return f"šablona {name} zatím nemá provedení"
 
 
@@ -185,6 +199,24 @@ def navrhni(memory: Memory, q: Statement, verdict: "Verdict", question: str) -> 
         return None if n.key in refused else n
 
     miss = " ".join(verdict.missing)
+    # 0) binární dotaz bez pravidla: oba účastníci mají intervaly téhož děje → překryv;
+    #    oba mají touž veličinu → porovnání
+    from cb5.logic import Evaluator
+    ev = Evaluator(m)
+    parts = ev._participants(q)
+    if len(parts) == 2 and q.pred and q.pred not in m.learned.get("binary", {}):
+        a, b = parts
+        preds_a = {st.pred for st in m.statements_about(a) if st.pred and st.role("kdy") and st.role("kdy").terms}  # type: ignore[union-attr]
+        preds_b = {st.pred for st in m.statements_about(b) if st.pred and st.role("kdy") and st.role("kdy").terms}  # type: ignore[union-attr]
+        both = sorted(preds_a & preds_b)
+        if both and q.modality:
+            p_ = both[0]
+            return ok(Navrh("překryv", [q.pred, p_], f"o {m.label(a)} i {m.label(b)} znám {p_}(kdy); je „{q.pred}“ možné, když se ty časy překrývají?", question))
+        qn_a = {r.name for st in m.statements_about(a) for r in st.roles if r.counts and r.name in D.ADVERB_QUANTITY.values()}
+        qn_b = {r.name for st in m.statements_about(b) for r in st.roles if r.counts and r.name in D.ADVERB_QUANTITY.values()}
+        common = sorted(qn_a & qn_b)
+        if common:
+            return ok(Navrh("porovnání", [q.pred, ",".join(common), "<="], f"o {m.label(a)} i {m.label(b)} znám {', '.join(common)}; platí „{q.pred}“, když {common[0]}({m.label(a)}) <= {common[0]}({m.label(b)})? (test uprav: <=, >=, <, >, =)", question))
     # 1) neznámé srovnávací slovo
     mt = re.search(r"srovnání „([^“]+)“ neumím", miss)
     if mt:

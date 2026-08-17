@@ -104,7 +104,7 @@ běh trvá vteřiny; bible z ručních sad v korpusu není (vypíše se).
 | korpus conbond4 (238 vět): zapsáno | 8 | **233 s rolí**, zbytek 5,6 % tokenů |
 | korpus conBond2 (73 dok., 14 354 vět): zapsáno | — | **14 354** (38 987 výroků, zbytek 8,5 % tokenů, 10 277 otevřených položek) |
 | **ručně psané otázky (70): správně** | 0 | **59 (84 %)** — etalon 24/32, conbond 35/38; 67 má odpověď aspoň v „vím: …“; u `mode=unsure` je správně NEVÍM (jednou odpověděl navíc: „S kým se oženil Hrabal?“ → Eliška Plevová — pravdivě). Příbuzenské otázky (tchán, tchyně, švagrová, teta, děd) z **definic naučených textem** `vztahy_příbuzenské.txt` |
-| generované otázky (682): správná výplň | 0 | 433 (63 %); 577 v textu odpovědi |
+| generované otázky (682): správná výplň | 0 | 439 (64 %); 581 v textu odpovědi |
 | rozklad chyb (všech 752) | — | viz `mereni/bench-vse.md` |
 | dialogy A–F ze zadání conbond4 | — | zelené (`tests/test_dialogues_af.py`) |
 | „Bydlí Petr v Brně?“ po „Petr bydlí v Praze.“ | ANO (nepravda) | NEVÍM + „vím: bydlí v Praze“ |
@@ -121,6 +121,7 @@ volby (∀ z generického prézentu, podmět z aktivace, „platí o užší tř
 - **genitiv zužuje třídu**: `otec⟨Petr Novák⟩ ⊆ otec`, `příbuzný⟨pes[domácí]⟩ ⊆ příbuzný⟨pes⟩`
 - **meta‑otázky**: „Co dělá/umí X?“ (děje s X podmětem), „Co víš o X?“, „Jaké X znáš?“ (výčet s doložkou otevřeného světa), „Kdo je starší, A nebo B?“
 - **šablony místo volného dialogu**: `!šablony`, `!uč druh jezevčík pes`, `!uč složený tchán otec manžel manželka`, `!uč vyloučení kopytník šelma`… (ve viewBase okno „Vysvětlit vztah“); a **systém si o vysvětlení řekne sám**: při NEVÍM na tvou otázku nabídne jednu předvyplněnou šablonu s evidencí („vím: jet(kam: Praha); ptáš se na být(kde) — plyne z jednoho druhé?“) a čeká na `ano` / `ne` (odmítnutí si pamatuje) / `jen tady`
+- **binární pravidla nad fakty**: „Mohli se Magdalena a Superman potkat?“ → systém nabídne `!uč překryv potkat_se žít` (má intervaly života obou) → po `ano` NE/ANO s roky; „Vejde se telefon do kapsy?“ → `!uč porovnání vejít délka <=` → „10 <= 8: neplatí“ → NE
 - **hodnoty s jednotkou** („130 km/h“), díry na veličinu („Jak rychle / vysoká / dlouhá…?“) a **výchozí můstek** „veličina místa omezuje děj na něm“ (dialog A: „Jak rychle může jet automobil po dálnici?“ → nejvýše 130 km/h, přiznaně), věk („Kolik je Ronikovi let?“), elipsa přísudku („…, štěně 28 mléčných zubů“), obnova diakritiky z toho, co už četl (přiznaně), „nerozumím“ místo tichého fragmentu
 
 ## Meze v1 (řečené, ne mlčené)

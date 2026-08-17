@@ -5,9 +5,9 @@
   "written": 429,
   "with_role": 429,
   "statements": 1095,
-  "residue_tokens": 439,
+  "residue_tokens": 436,
   "tokens": 4057,
-  "open": 224,
+  "open": 223,
   "questions": 27,
   "hits": 20,
   "text_hits": 25,
@@ -151,7 +151,9 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Praha"
+     "Praha",
+     "práce (pedagogický)",
+     "činnost (literární)"
     ],
     "why": "",
     "reading": "pokračovat(kde:?, kdo:·Alois Jirásek)"
@@ -433,9 +435,9 @@
   "written": 232,
   "with_role": 232,
   "statements": 624,
-  "residue_tokens": 272,
+  "residue_tokens": 269,
   "tokens": 3385,
-  "open": 186,
+  "open": 184,
   "questions": 3,
   "hits": 0,
   "text_hits": 3,
@@ -494,9 +496,9 @@
   "written": 205,
   "with_role": 205,
   "statements": 665,
-  "residue_tokens": 194,
+  "residue_tokens": 193,
   "tokens": 2728,
-  "open": 161,
+  "open": 160,
   "questions": 20,
   "hits": 14,
   "text_hits": 16,
@@ -586,7 +588,8 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1948"
+     "1948",
+     "válka"
     ],
     "why": "",
     "reading": "odjet(kdy:?, kdo:·Arnošt Lustig)"
@@ -809,9 +812,9 @@
   "written": 448,
   "with_role": 446,
   "statements": 992,
-  "residue_tokens": 311,
+  "residue_tokens": 309,
   "tokens": 3563,
-  "open": 187,
+  "open": 185,
   "questions": 24,
   "hits": 17,
   "text_hits": 17,
@@ -926,7 +929,8 @@
     "verdict": "ANO",
     "fillers": [
      "Libeň",
-     "pivovar (místní)"
+     "pivovar (místní)",
+     "adresa"
     ],
     "why": "",
     "reading": "prožít(kde:?, kdo:·Bohumil Hrabal)"
@@ -985,6 +989,7 @@
     "verdict": "ANO",
     "fillers": [
      "1997",
+     "léta",
      "3. 2. 1997"
     ],
     "why": "",
@@ -1162,6 +1167,7 @@
     "verdict": "ANO",
     "fillers": [
      "1997",
+     "léta",
      "3. 2. 1997"
     ],
     "why": "",
@@ -1191,7 +1197,8 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Egon Bondy"
+     "Egon Bondy",
+     "Jiří Winter Neprakta"
     ],
     "why": "",
     "reading": "přátelit_se(s_kým:?, kdo:·Bohumil Hrabal)"
@@ -1206,9 +1213,9 @@
   "written": 925,
   "with_role": 922,
   "statements": 2881,
-  "residue_tokens": 1101,
+  "residue_tokens": 1098,
   "tokens": 12665,
-  "open": 661,
+  "open": 658,
   "questions": 24,
   "hits": 15,
   "text_hits": 21,
@@ -1307,9 +1314,9 @@
     "verdict": "ANO",
     "fillers": [
      "9/1851",
-     "1839",
+     "1839 – 1840",
      "1846 – 1847",
-     "1837"
+     "1837 – 1838"
     ],
     "why": "",
     "reading": "pobývat(kdy:?, kdo:·Božena Němcová)"
@@ -1586,13 +1593,14 @@
     "verdict": "ANO",
     "fillers": [
      "Slezsko",
-     "skutečnost"
+     "skutečnost",
+     "místo (neznámý)"
     ],
     "why": "špatná výplň",
     "reading": "narodit_se(kde:?, kdo:·Božena Němcová)"
    }
   ],
-  "t_ingest": 1.0,
+  "t_ingest": 1.1,
   "t_ask": 0.2
  },
  {
@@ -1681,8 +1689,8 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1914",
-     "1920"
+     "1914 – 1917",
+     "1920 – 1942"
     ],
     "why": "",
     "reading": "sloužit(kdy:?, kdo:·Eduard Bass)"
@@ -1715,8 +1723,8 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1914",
-     "1920"
+     "1914 – 1917",
+     "1920 – 1942"
     ],
     "why": "",
     "reading": "pracovat(kdy:?, kdo:·Eduard Bass)"
@@ -1744,7 +1752,8 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Podskalí"
+     "Podskalí",
+     "ulice (dřevný)"
     ],
     "why": "",
     "reading": "bydlet(kde:?, kdo:·Eduard Bass)"
@@ -1759,12 +1768,12 @@
   "written": 213,
   "with_role": 213,
   "statements": 869,
-  "residue_tokens": 352,
+  "residue_tokens": 350,
   "tokens": 4031,
   "open": 222,
   "questions": 17,
   "hits": 14,
-  "text_hits": 15,
+  "text_hits": 16,
   "misses": {
    "špatná výplň": 1,
    "role/logika (blízký výrok je)": 1,
@@ -1778,10 +1787,11 @@
     ],
     "sada": "otazky",
     "ok": true,
-    "text_ok": false,
+    "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Hronov"
+     "Hronov",
+     "rodina (židovský) Josef Hostovský"
     ],
     "why": "",
     "reading": "narodit_se(kde:?, kdo:·Egon Hostovský)"
@@ -1996,7 +2006,8 @@
     "verdict": "ANO",
     "fillers": [
      "Montclair",
-     "stát (spojený)"
+     "stát (spojený)",
+     "bydliště"
     ],
     "why": "",
     "reading": "zemřít(kde:?, kdo:·Egon Hostovský)"
@@ -2025,7 +2036,8 @@
     "verdict": "ANO",
     "fillers": [
      "Montclair",
-     "stát (spojený)"
+     "stát (spojený)",
+     "bydliště"
     ],
     "why": "",
     "reading": "zemřít(kde:?, kdo:·Egon Hostovský)"
@@ -2074,7 +2086,7 @@
   "written": 162,
   "with_role": 161,
   "statements": 450,
-  "residue_tokens": 159,
+  "residue_tokens": 157,
   "tokens": 1772,
   "open": 112,
   "questions": 15,
@@ -2312,12 +2324,12 @@
   "written": 162,
   "with_role": 162,
   "statements": 377,
-  "residue_tokens": 185,
+  "residue_tokens": 184,
   "tokens": 1468,
-  "open": 106,
+  "open": 105,
   "questions": 7,
   "hits": 6,
-  "text_hits": 6,
+  "text_hits": 7,
   "misses": {
    "bez výroku": 1
   },
@@ -2329,10 +2341,12 @@
     ],
     "sada": "otazky",
     "ok": true,
-    "text_ok": false,
+    "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Vinohrady"
+     "Vinohrady",
+     "ulice",
+     "rodina František Hrubín"
     ],
     "why": "",
     "reading": "narodit_se(kde:?, kdo:·František Hrubín)"
@@ -2581,9 +2595,9 @@
   "written": 141,
   "with_role": 141,
   "statements": 368,
-  "residue_tokens": 112,
+  "residue_tokens": 111,
   "tokens": 1598,
-  "open": 84,
+  "open": 83,
   "questions": 7,
   "hits": 4,
   "text_hits": 6,
@@ -2630,7 +2644,8 @@
     "text_ok": false,
     "verdict": "ANO",
     "fillers": [
-     "USA"
+     "USA",
+     "univerzita (michiganský)"
     ],
     "why": "špatná výplň",
     "reading": "pracovat(kde:?, kdo:·Ivan Klíma)"
@@ -2703,7 +2718,7 @@
   "written": 238,
   "with_role": 238,
   "statements": 658,
-  "residue_tokens": 203,
+  "residue_tokens": 202,
   "tokens": 2600,
   "open": 152,
   "questions": 23,
@@ -2802,7 +2817,7 @@
     "verdict": "ANO",
     "fillers": [
      "1920",
-     "1931"
+     "1931 – 1936"
     ],
     "why": "",
     "reading": "pobývat_se(kdy:?, kdo:·Ivan Olbracht)"
@@ -3071,7 +3086,7 @@
   "written": 296,
   "with_role": 295,
   "statements": 829,
-  "residue_tokens": 200,
+  "residue_tokens": 199,
   "tokens": 2842,
   "open": 174,
   "questions": 16,
@@ -3206,7 +3221,8 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1888"
+     "1888",
+     "zima"
     ],
     "why": "",
     "reading": "uklouznout(kdy:?, kdo:·Jan Neruda)"
@@ -3321,9 +3337,9 @@
   "written": 366,
   "with_role": 363,
   "statements": 1048,
-  "residue_tokens": 398,
+  "residue_tokens": 396,
   "tokens": 4599,
-  "open": 283,
+  "open": 281,
   "questions": 34,
   "hits": 24,
   "text_hits": 31,
@@ -3634,7 +3650,7 @@
     "verdict": "ANO",
     "fillers": [
      "1918",
-     "1916"
+     "1916 – 1920"
     ],
     "why": "",
     "reading": "působit(kdy:?, kdo:·Jaroslav Hašek)"
@@ -3865,7 +3881,7 @@
     "reading": "zemřít(kdy:?, kdo:·Jaroslav Hašek)"
    }
   ],
-  "t_ingest": 0.2,
+  "t_ingest": 0.3,
   "t_ask": 0.1
  },
  {
@@ -3874,9 +3890,9 @@
   "written": 338,
   "with_role": 336,
   "statements": 925,
-  "residue_tokens": 369,
+  "residue_tokens": 364,
   "tokens": 4003,
-  "open": 273,
+  "open": 269,
   "questions": 28,
   "hits": 17,
   "text_hits": 23,
@@ -3910,7 +3926,8 @@
     "verdict": "ANO",
     "fillers": [
      "Žižkov",
-     "rodina Antonín Seifert"
+     "rodina Antonín Seifert",
+     "ulice (dnešní)"
     ],
     "why": "",
     "reading": "narodit_se(kde:?, kdo:·Jaroslav Seifert)"
@@ -4309,14 +4326,14 @@
   "written": 337,
   "with_role": 337,
   "statements": 950,
-  "residue_tokens": 388,
+  "residue_tokens": 386,
   "tokens": 3916,
-  "open": 240,
+  "open": 238,
   "questions": 18,
-  "hits": 11,
+  "hits": 12,
   "text_hits": 17,
   "misses": {
-   "špatná výplň": 6,
+   "špatná výplň": 5,
    "role/logika (blízký výrok je)": 1
   },
   "results": [
@@ -4342,13 +4359,13 @@
      "roku 1862"
     ],
     "sada": "otazky",
-    "ok": false,
+    "ok": true,
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1861"
+     "1861 – 1862"
     ],
-    "why": "špatná výplň",
+    "why": "",
     "reading": "studovat(kdy:?, kdo:·Jaroslav Vrchlický)"
    },
    {
@@ -4439,7 +4456,8 @@
     "verdict": "ANO",
     "fillers": [
      "Merano",
-     "ústav (učitelský)"
+     "ústav (učitelský)",
+     "ulice (panský)"
     ],
     "why": "",
     "reading": "působit(kde:?, kdo:·Jaroslav Vrchlický)"
@@ -4455,7 +4473,8 @@
     "verdict": "ANO",
     "fillers": [
      "Merano",
-     "ústav (učitelský)"
+     "ústav (učitelský)",
+     "ulice (panský)"
     ],
     "why": "špatná výplň",
     "reading": "působit(kde:?, kdo:·Jaroslav Vrchlický)"
@@ -4591,6 +4610,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
+     "léta",
      "9. 9. 1912"
     ],
     "why": "",
@@ -4809,7 +4829,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1917"
+     "1917 – 1920"
     ],
     "why": "",
     "reading": "zabývat_se(kdy:?, kdo:·Jiří Wolker)"
@@ -4824,9 +4844,9 @@
   "written": 333,
   "with_role": 333,
   "statements": 874,
-  "residue_tokens": 445,
+  "residue_tokens": 444,
   "tokens": 3739,
-  "open": 214,
+  "open": 213,
   "questions": 31,
   "hits": 20,
   "text_hits": 27,
@@ -5126,7 +5146,7 @@
     "text_ok": false,
     "verdict": "ANO",
     "fillers": [
-     "1923"
+     "1923 – 1927"
     ],
     "why": "špatná výplň",
     "reading": "vytvářet(kdy:?, kdo:·Josef Čapek)"
@@ -5252,7 +5272,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1923"
+     "1923 – 1927"
     ],
     "why": "",
     "reading": "vytvářet(kdy:?, kdo:·Josef Čapek)"
@@ -5417,7 +5437,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1953"
+     "1953 – 1960"
     ],
     "why": "",
     "reading": "bydlet(kdy:?, kdo:·Josef Škvorecký)"
@@ -5503,7 +5523,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1969"
+     "1969 – 1990"
     ],
     "why": "",
     "reading": "vyučovat(kdy:?, kdo:·Josef Škvorecký)"
@@ -5870,7 +5890,8 @@
     "verdict": "ANO",
     "fillers": [
      "1899",
-     "život"
+     "život",
+     "doba"
     ],
     "why": "",
     "reading": "cestovat(kdy:?, kdo:·Julius Zeyer)"
@@ -5966,7 +5987,9 @@
     "fillers": [
      "Město",
      "Praha",
-     "ulice (libocký)"
+     "ulice (libocký)",
+     "ulice",
+     "dům"
     ],
     "why": "",
     "reading": "pobývat(kde:?, kdo:·Julius Zeyer)"
@@ -6028,9 +6051,9 @@
   "written": 313,
   "with_role": 313,
   "statements": 875,
-  "residue_tokens": 303,
+  "residue_tokens": 302,
   "tokens": 3841,
-  "open": 221,
+  "open": 220,
   "questions": 26,
   "hits": 19,
   "text_hits": 25,
@@ -6398,6 +6421,7 @@
     "verdict": "ANO",
     "fillers": [
      "Vídeň",
+     "sněm (říšský)",
      "noviny (pražský)",
      "příloha",
      "noviny (národní)",
@@ -6459,14 +6483,14 @@
   "written": 307,
   "with_role": 307,
   "statements": 857,
-  "residue_tokens": 342,
+  "residue_tokens": 339,
   "tokens": 3349,
-  "open": 193,
+  "open": 191,
   "questions": 32,
-  "hits": 24,
+  "hits": 27,
   "text_hits": 26,
   "misses": {
-   "špatná výplň": 5,
+   "špatná výplň": 2,
    "role/logika (blízký výrok je)": 2,
    "bez výroku": 1
   },
@@ -6560,9 +6584,9 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1824",
-     "1832",
-     "1831"
+     "1824 – 1830",
+     "1832 – 1836",
+     "1831 – 1832"
     ],
     "why": "",
     "reading": "studovat(kdy:?, kdo:·Karel Hynek Mácha)"
@@ -6590,15 +6614,15 @@
      "1830"
     ],
     "sada": "otazky",
-    "ok": false,
+    "ok": true,
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1824",
-     "1832",
-     "1831"
+     "1824 – 1830",
+     "1832 – 1836",
+     "1831 – 1832"
     ],
-    "why": "špatná výplň",
+    "why": "",
     "reading": "navštěvovat(kdy:?, kdo:·Karel Hynek Mácha)"
    },
    {
@@ -6611,9 +6635,9 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1824",
-     "1832",
-     "1831"
+     "1824 – 1830",
+     "1832 – 1836",
+     "1831 – 1832"
     ],
     "why": "",
     "reading": "navštěvovat(kdy:?, kdo:·Karel Hynek Mácha)"
@@ -6628,7 +6652,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1834"
+     "1834 – 1835"
     ],
     "why": "",
     "reading": "vystoupit(kdy:?, kdo:·Karel Hynek Mácha)"
@@ -6682,13 +6706,14 @@
      "4 . srpna 1834"
     ],
     "sada": "otazky",
-    "ok": false,
+    "ok": true,
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "pondělí"
+     "pondělí",
+     "4. 8. 1834"
     ],
-    "why": "špatná výplň",
+    "why": "",
     "reading": "vyrazit(kdy:?, kdo:·Karel Hynek Mácha)"
    },
    {
@@ -6912,13 +6937,15 @@
      "6 . listopadu 1836"
     ],
     "sada": "otazky",
-    "ok": false,
+    "ok": true,
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "neděle"
+     "neděle",
+     "6. 11. 1836",
+     "hodina"
     ],
-    "why": "špatná výplň",
+    "why": "",
     "reading": "zemřít(kdy:?, kdo:·Karel Hynek Mácha)"
    },
    {
@@ -7248,9 +7275,9 @@
   "written": 168,
   "with_role": 168,
   "statements": 458,
-  "residue_tokens": 158,
+  "residue_tokens": 157,
   "tokens": 1823,
-  "open": 121,
+  "open": 120,
   "questions": 13,
   "hits": 10,
   "text_hits": 9,
@@ -7455,7 +7482,7 @@
     "reading": "ztvárnit(kde:?, kdo:·Karel Poláček)"
    }
   ],
-  "t_ingest": 0.0,
+  "t_ingest": 0.1,
   "t_ask": 0.0
  },
  {
@@ -7464,12 +7491,12 @@
   "written": 522,
   "with_role": 521,
   "statements": 1323,
-  "residue_tokens": 476,
+  "residue_tokens": 475,
   "tokens": 4838,
   "open": 349,
   "questions": 23,
   "hits": 13,
-  "text_hits": 16,
+  "text_hits": 17,
   "misses": {
    "role/logika (blízký výrok je)": 5,
    "špatná výplň": 5
@@ -7482,10 +7509,11 @@
     ],
     "sada": "otazky",
     "ok": true,
-    "text_ok": false,
+    "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Svatoňovice"
+     "Svatoňovice",
+     "rodina MUDR. Antonín Čapek"
     ],
     "why": "",
     "reading": "narodit_se(kde:?, kdo:·Karel Čapek)"
@@ -7839,9 +7867,9 @@
   "written": 447,
   "with_role": 447,
   "statements": 1182,
-  "residue_tokens": 327,
+  "residue_tokens": 322,
   "tokens": 5857,
-  "open": 322,
+  "open": 318,
   "questions": 4,
   "hits": 4,
   "text_hits": 4,
@@ -7908,7 +7936,7 @@
     "reading": "mít(co:?count:∃zub, kdo:∀chrup⟨kočka⟩[trvalý])"
    }
   ],
-  "t_ingest": 0.1,
+  "t_ingest": 0.2,
   "t_ask": 0.0
  },
  {
@@ -7917,9 +7945,9 @@
   "written": 315,
   "with_role": 315,
   "statements": 747,
-  "residue_tokens": 438,
+  "residue_tokens": 436,
   "tokens": 4031,
-  "open": 236,
+  "open": 233,
   "questions": 1,
   "hits": 0,
   "text_hits": 0,
@@ -7950,9 +7978,9 @@
   "written": 159,
   "with_role": 159,
   "statements": 568,
-  "residue_tokens": 123,
+  "residue_tokens": 122,
   "tokens": 2356,
-  "open": 135,
+  "open": 134,
   "questions": 17,
   "hits": 11,
   "text_hits": 13,
@@ -8002,7 +8030,9 @@
     "text_ok": false,
     "verdict": "ANO",
     "fillers": [
-     "Praha"
+     "Praha",
+     "obor (novinářský)",
+     "škola (politický, sociální, vysoký)"
     ],
     "why": "špatná výplň",
     "reading": "absolvovat(kde:?, kdo:·Ludvík Vaculík)"
@@ -8226,9 +8256,9 @@
   "written": 370,
   "with_role": 370,
   "statements": 969,
-  "residue_tokens": 387,
+  "residue_tokens": 382,
   "tokens": 3851,
-  "open": 238,
+  "open": 235,
   "questions": 2,
   "hits": 0,
   "text_hits": 1,
@@ -8271,7 +8301,7 @@
     "reading": "mít(kde:?, kdo:·Marie Majerová)"
    }
   ],
-  "t_ingest": 0.5,
+  "t_ingest": 0.6,
   "t_ask": 0.0
  },
  {
@@ -8280,9 +8310,9 @@
   "written": 359,
   "with_role": 357,
   "statements": 1048,
-  "residue_tokens": 390,
+  "residue_tokens": 389,
   "tokens": 4486,
-  "open": 296,
+  "open": 295,
   "questions": 35,
   "hits": 26,
   "text_hits": 29,
@@ -8318,7 +8348,8 @@
     "verdict": "ANO",
     "fillers": [
      "Francie",
-     "Brno"
+     "Brno",
+     "ulice"
     ],
     "why": "",
     "reading": "žít(kde:?, kdo:·Milan Kundera)"
@@ -8520,7 +8551,8 @@
     "verdict": "ANO",
     "fillers": [
      "Francie",
-     "Brno"
+     "Brno",
+     "ulice"
     ],
     "why": "",
     "reading": "žít(kde:?, kdo:·Milan Kundera)"
@@ -8580,6 +8612,7 @@
     "verdict": "ANO",
     "fillers": [
      "Francie",
+     "Gallimard",
      "Sixty Eight Publishers"
     ],
     "why": "",
@@ -8686,7 +8719,8 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "11. 7. 2023"
+     "11. 7. 2023",
+     "věk"
     ],
     "why": "",
     "reading": "zemřít(kdy:?, kdo:·Milan Kundera)"
@@ -8883,6 +8917,8 @@
     "fillers": [
      "Praha",
      "Buštěhrad",
+     "ulice Farský",
+     "dům sbor",
      "léčebna (psychiatrický)"
     ],
     "why": "",
@@ -8915,6 +8951,8 @@
     "fillers": [
      "Praha",
      "Buštěhrad",
+     "ulice Farský",
+     "dům sbor",
      "léčebna (psychiatrický)"
     ],
     "why": "špatná výplň",
@@ -8973,7 +9011,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1949"
+     "1949 – 1956"
     ],
     "why": "",
     "reading": "působit(kdy:?, kdo:·Ota Pavel)"
@@ -8988,7 +9026,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1956"
+     "1956 – 1957"
     ],
     "why": "",
     "reading": "zastávat(kdy:?, kdo:·Ota Pavel)"
@@ -9031,9 +9069,9 @@
   "written": 653,
   "with_role": 652,
   "statements": 1790,
-  "residue_tokens": 645,
+  "residue_tokens": 640,
   "tokens": 9569,
-  "open": 548,
+  "open": 545,
   "questions": 8,
   "hits": 8,
   "text_hits": 8,
@@ -9153,7 +9191,7 @@
     "reading": "být(kdo:∀pes, co:∃šelma) ⟨subset⟩"
    }
   ],
-  "t_ingest": 0.2,
+  "t_ingest": 0.3,
   "t_ask": 0.1
  },
  {
@@ -9362,7 +9400,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1912"
+     "1912 – 1933"
     ],
     "why": "",
     "reading": "zúčastňovat_se(kdy:?, kdo:·Petr Bezruč)"
@@ -9411,7 +9449,8 @@
     "verdict": "ANO",
     "fillers": [
      "17. 2. 1958",
-     "1958"
+     "1958",
+     "věk"
     ],
     "why": "",
     "reading": "zemřít(kdy:?, kdo:·Petr Bezruč)"
@@ -9874,9 +9913,9 @@
   "written": 988,
   "with_role": 988,
   "statements": 2638,
-  "residue_tokens": 1045,
+  "residue_tokens": 1044,
   "tokens": 14254,
-  "open": 967,
+  "open": 966,
   "questions": 1,
   "hits": 1,
   "text_hits": 1,
@@ -9907,15 +9946,14 @@
   "written": 268,
   "with_role": 268,
   "statements": 689,
-  "residue_tokens": 272,
+  "residue_tokens": 271,
   "tokens": 2451,
-  "open": 157,
+  "open": 156,
   "questions": 10,
-  "hits": 8,
+  "hits": 9,
   "text_hits": 9,
   "misses": {
-   "role/logika (blízký výrok je)": 1,
-   "špatná výplň": 1
+   "role/logika (blízký výrok je)": 1
   },
   "results": [
    {
@@ -9944,7 +9982,11 @@
     "verdict": "ANO",
     "fillers": [
      "Benešovsko",
-     "městys"
+     "Ostředek",
+     "jezero",
+     "Střížkov",
+     "Postupice",
+     "Liteň"
     ],
     "why": "",
     "reading": "prožít(kde:?, kdo:·Svatopluk Čech)"
@@ -10005,7 +10047,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1873"
+     "1873 – 1876"
     ],
     "why": "",
     "reading": "působit(kdy:?, kdo:·Svatopluk Čech)"
@@ -10020,7 +10062,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1895",
+     "1895 – 1903",
      "doba"
     ],
     "why": "",
@@ -10053,7 +10095,10 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Praha"
+     "Praha",
+     "Letná",
+     "Holešovice",
+     "Trója"
     ],
     "why": "",
     "reading": "trávit(kde:?, kdo:·Svatopluk Čech)"
@@ -10064,14 +10109,18 @@
      "Liteň"
     ],
     "sada": "otazky",
-    "ok": false,
+    "ok": true,
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
      "Benešovsko",
-     "městys"
+     "Ostředek",
+     "jezero",
+     "Střížkov",
+     "Postupice",
+     "Liteň"
     ],
-    "why": "špatná výplň",
+    "why": "",
     "reading": "prožít(kde:?, kdo:·Svatopluk Čech)"
    }
   ],
@@ -10084,14 +10133,14 @@
   "written": 179,
   "with_role": 177,
   "statements": 522,
-  "residue_tokens": 165,
+  "residue_tokens": 162,
   "tokens": 2089,
-  "open": 133,
+  "open": 131,
   "questions": 10,
-  "hits": 5,
+  "hits": 6,
   "text_hits": 9,
   "misses": {
-   "špatná výplň": 3,
+   "špatná výplň": 2,
    "role/logika (blízký výrok je)": 2
   },
   "results": [
@@ -10105,7 +10154,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1919"
+     "1919 – 1926"
     ],
     "why": "",
     "reading": "studovat(kdy:?, kdo:·Vladimír Holan)"
@@ -10120,7 +10169,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1934"
+     "1934 – 1948"
     ],
     "why": "",
     "reading": "bydlet(kdy:?, kdo:·Vladimír Holan)"
@@ -10151,8 +10200,8 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1933",
-     "1939"
+     "1933 – 1938",
+     "1939 – 1940"
     ],
     "why": "",
     "reading": "působit(kdy:?, kdo:·Vladimír Holan)"
@@ -10167,8 +10216,8 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1933",
-     "1939"
+     "1933 – 1938",
+     "1939 – 1940"
     ],
     "why": "",
     "reading": "pracovat(kdy:?, kdo:·Vladimír Holan)"
@@ -10194,13 +10243,13 @@
      "roku 1948"
     ],
     "sada": "otazky",
-    "ok": false,
+    "ok": true,
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1934"
+     "1934 – 1948"
     ],
-    "why": "špatná výplň",
+    "why": "",
     "reading": "bydlet(kdy:?, kdo:·Vladimír Holan)"
    },
    {
@@ -10255,9 +10304,9 @@
   "written": 320,
   "with_role": 320,
   "statements": 852,
-  "residue_tokens": 308,
+  "residue_tokens": 305,
   "tokens": 3391,
-  "open": 216,
+  "open": 214,
   "questions": 27,
   "hits": 17,
   "text_hits": 23,
@@ -10696,12 +10745,12 @@
   "written": 563,
   "with_role": 563,
   "statements": 1838,
-  "residue_tokens": 386,
+  "residue_tokens": 384,
   "tokens": 8252,
-  "open": 425,
+  "open": 423,
   "questions": 65,
   "hits": 36,
-  "text_hits": 50,
+  "text_hits": 51,
   "misses": {
    "špatná výplň": 23,
    "role/logika (blízký výrok je)": 4,
@@ -10745,10 +10794,11 @@
     ],
     "sada": "otazky",
     "ok": true,
-    "text_ok": false,
+    "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Praha"
+     "Praha",
+     "rodina (intelektuálský, podnikatelský) Václav Havel"
     ],
     "why": "",
     "reading": "narodit_se(kde:?, kdo:·Václav Havel)"
@@ -11420,9 +11470,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Hrad",
-     "Letovice",
-     "Trutnov",
+     "Hrádeček",
      "chalupa"
     ],
     "why": "",
@@ -11757,7 +11805,7 @@
    }
   ],
   "t_ingest": 0.6,
-  "t_ask": 0.3
+  "t_ask": 0.4
  },
  {
   "doc": "vítězslav_hálek",
@@ -11786,7 +11834,8 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Dolínek"
+     "Dolínek",
+     "rodina hostinský"
     ],
     "why": "",
     "reading": "narodit_se(kde:?, kdo:·Vítězslav Hálek)"
@@ -11902,6 +11951,7 @@
     "fillers": [
      "Zbraslav",
      "závist",
+     "domek",
      "dům"
     ],
     "why": "",
@@ -11976,9 +12026,9 @@
   "written": 320,
   "with_role": 318,
   "statements": 836,
-  "residue_tokens": 357,
+  "residue_tokens": 356,
   "tokens": 3322,
-  "open": 193,
+  "open": 192,
   "questions": 26,
   "hits": 16,
   "text_hits": 23,
@@ -12334,8 +12384,8 @@
     "verdict": "ANO",
     "fillers": [
      "doba",
-     "1929",
-     "1935"
+     "1929 – 1934",
+     "1935 – 1938"
     ],
     "why": "",
     "reading": "vydat(kdy:?, kdo:·Vítězslav Nezval)"
@@ -12379,7 +12429,7 @@
   "written": 379,
   "with_role": 378,
   "statements": 878,
-  "residue_tokens": 268,
+  "residue_tokens": 265,
   "tokens": 4231,
   "open": 325,
   "questions": 1,
@@ -12404,7 +12454,7 @@
     "reading": "být(kdo:?count:∀dělnice, kde:∃úl, při+Loc:∃snůška[hlavní])"
    }
   ],
-  "t_ingest": 0.4,
+  "t_ingest": 0.1,
   "t_ask": 0.0
  },
  {
@@ -12413,9 +12463,9 @@
   "written": 411,
   "with_role": 410,
   "statements": 1303,
-  "residue_tokens": 521,
+  "residue_tokens": 517,
   "tokens": 6821,
-  "open": 366,
+  "open": 362,
   "questions": 2,
   "hits": 1,
   "text_hits": 2,
