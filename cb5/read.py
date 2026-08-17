@@ -609,11 +609,37 @@ class _Reader:
         p.roles.append(RoleFill(name, name, nested=nested, authority="surface"))
         self.mark(t.index, "nested")
 
+    def _gapping(self, t: Token, p: Predication) -> bool:
+        """Elipsa přísudku: „Dospělý pes má 42 zubů, štěně 28 mléčných zubů.“ — `conj` člen
+        v nominativu s `orphan` dětmi = druhá predikace s TÝMŽ přísudkem: mít(kdo: štěně, co: 28 zubů)."""
+        orphans = [c for c in self.p.children(t.index) if c.base_deprel == "orphan"]
+        if not orphans or t.upos not in ("NOUN", "PROPN", "PRON") or p.pred is None:
+            return False
+        sec = Predication(pred=p.pred, kind="verb", head=t.index, tense=p.tense, modality=p.modality, neg=p.neg)
+        sec.defaults.append("elipsa přísudku (orphan): přísudek doplněn z hlavní věty")
+        self.mark(t.index, f"role:kdo")
+        subj_first = t.feat("Case") in (None, "Nom")
+        if subj_first:
+            sec.roles.append(RoleFill("kdo", "conj", self._term_group(t), "default"))
+        for o in orphans:
+            if o.upos in ("NOUN", "PROPN", "PRON", "NUM", "ADJ"):
+                name, surface, authority = ("co", "orphan", "default") if not self.case_of(o.index) else self._obl_role(o, arg=False)
+                if not subj_first and sec.role("kdo") is None and o.feat("Case") in (None, "Nom"):
+                    name = "kdo"
+                self._add_role(sec, name, surface, o, authority=authority)
+            elif o.upos == "ADV":
+                self._advmod(o, sec)
+        self._quantify(sec)
+        p.secondary.append(sec)
+        return True
+
     def _conj_under_verb(self, t: Token, p: Predication) -> None:
         """Souřadný člen zavěšený pod sloveso/příslovce: `nejprve v Litomyšli a poté v Praze`."""
         for c in self.p.children(t.index):
             if c.base_deprel == "cc":
                 self.mark(c.index, "particle")
+        if self._gapping(t, p):
+            return
         if t.upos == "VERB" or self.kids(t.index, "cop") or (t.upos == "ADJ" and self.kids(t.index, "aux", "nsubj")):
             p.secondary.append(self._verb_or_cop(t) if t.upos != "ADJ" or self.kids(t.index, "cop") else self._participle(t))
             self.mark(t.index, "secondary")
@@ -1375,7 +1401,13 @@ class Reader(_Reader):
             p.roles.append(RoleFill("kdo", "head", [self._head_term(head)], "structural"))
             p.roles.append(RoleFill("co", "appos", self._term_group(dep), "structural"))
             self._quantify(p)
-            p.kernel = self._copula_kernel(p, p.roles[1])
+            hk, dk = p.roles[0].terms[0].kind, (p.roles[1].terms[0].kind if p.roles[1].terms else "")
+            if hk == "group" and dk == "entity" and dep.upos in ("PROPN", "X"):
+                # „Pes domácí (Canis familiaris)“ — jméno TŘÍDY (alias), ne prvek ani totožnost
+                p.kernel = "name"
+                p.defaults.append("appos: jméno třídy")
+            else:
+                p.kernel = self._copula_kernel(p, p.roles[1])
             p.defaults.append("appos jako být")
             out.append(p)
         elif d in ("acl", "amod", "advcl"):

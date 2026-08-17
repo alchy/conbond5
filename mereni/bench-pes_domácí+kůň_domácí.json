@@ -1,0 +1,166 @@
+[
+ {
+  "doc": "pes_domácí",
+  "sentences": 653,
+  "written": 653,
+  "with_role": 652,
+  "statements": 1781,
+  "residue_tokens": 668,
+  "tokens": 9569,
+  "open": 550,
+  "questions": 8,
+  "hits": 7,
+  "text_hits": 8,
+  "misses": {
+   "bez výroku": 1
+  },
+  "results": [
+   {
+    "q": "Kolik zubů má dospělý pes?",
+    "expect": [
+     "42"
+    ],
+    "sada": "etalon",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "count:42"
+    ],
+    "why": "",
+    "reading": "mít(co:?count:∃zub, kdo:∀pes[dospělý])"
+   },
+   {
+    "q": "Kolik mléčných zubů má štěně?",
+    "expect": [
+     "28"
+    ],
+    "sada": "etalon",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "bez výroku",
+    "reading": "mít(co:?count:∃zub[mléčný], kdo:∀štěně)"
+   },
+   {
+    "q": "Z kolika vlků pochází pes?",
+    "expect": [
+     "13",
+     "24"
+    ],
+    "sada": "etalon",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "count:13"
+    ],
+    "why": "",
+    "reading": "pocházet(z+Gen:?count:∃vlk, kdo:∀pes)"
+   },
+   {
+    "q": "Co je nejbližší příbuzný psa?",
+    "expect": [
+     "vlk"
+    ],
+    "sada": "etalon",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "vlk (obecný)"
+    ],
+    "why": "",
+    "reading": "být(kdo:∀příbuzný⟨pes⟩[blízký], co:?)"
+   },
+   {
+    "q": "Kdy se narodil pes domácí?",
+    "expect": [],
+    "sada": "etalon",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "",
+    "reading": "narodit_se(kdy:?, kdo:·pes[domácí])"
+   },
+   {
+    "q": "S kým se oženil pes domácí?",
+    "expect": [],
+    "sada": "etalon",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "",
+    "reading": "oženit_se(s_kým:?, kdo:·pes[domácí])"
+   },
+   {
+    "q": "Co je pes domácí?",
+    "expect": [
+     "šelma",
+     "savec"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "šelma (domestikovaný, velký)",
+     "jeden"
+    ],
+    "why": "",
+    "reading": "být(kdo:∀pes[domácí], co:?)"
+   },
+   {
+    "q": "Je pes šelma?",
+    "expect": [
+     "ano"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [],
+    "why": "",
+    "reading": "být(kdo:∀pes, co:∃šelma) ⟨subset⟩"
+   }
+  ],
+  "t_ingest": 0.2,
+  "t_ask": 0.1
+ },
+ {
+  "doc": "kůň_domácí",
+  "sentences": 315,
+  "written": 315,
+  "with_role": 315,
+  "statements": 739,
+  "residue_tokens": 464,
+  "tokens": 4031,
+  "open": 235,
+  "questions": 1,
+  "hits": 0,
+  "text_hits": 0,
+  "misses": {
+   "role/logika (blízký výrok je)": 1
+  },
+  "results": [
+   {
+    "q": "Je kůň šelma?",
+    "expect": [
+     "ne"
+    ],
+    "sada": "conbond",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "být(kdo:∀kůň, co:∃šelma) ⟨subset⟩"
+   }
+  ],
+  "t_ingest": 0.1,
+  "t_ask": 0.0
+ }
+]

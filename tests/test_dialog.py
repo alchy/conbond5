@@ -254,3 +254,11 @@ def test_quantity_holes_and_bridge(s: Session) -> None:
     s.say("Vltava měří 430 kilometrů.")
     d = s.say("Jak dlouhá je Vltava?")
     assert d.verdict is not None and d.verdict.fillers[0][0].startswith("count:430")
+
+
+def test_gapping_second_predication(s: Session) -> None:
+    """„Dospělý pes má 42 zubů, štěně 28 mléčných zubů.“ — elipsa přísudku = druhý výrok."""
+    a = s.say("Dospělý pes má 42 zubů, štěně 28 mléčných zubů.")
+    assert len(a.statements) == 2 and any("elipsa" in d for d in s.memory.statements[a.statements[1]].defaults)
+    v = s.say("Kolik mléčných zubů má štěně?")
+    assert v.verdict is not None and v.verdict.fillers[0][0] == "count:28"

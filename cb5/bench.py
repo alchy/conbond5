@@ -224,10 +224,16 @@ def run_doc(doc: str, corpus: Path, oracle: CachedOracle, strop: int) -> dict[st
             continue
         v = a.verdict
         fillers = [t for t, _ in v.fillers] if v is not None else []
+        expected_lower = [str(e).strip().lower() for e in item["expect"]]
         if not item["expect"]:
             # mode=unsure: zlatá sada čeká, že systém NIC netvrdí. Správně = NEVÍM.
             # (Když přesto odpoví, může mít pravdu — etalon je starý; hlásí se to zvlášť.)
             ok = bool(v is None or v.value == "NEVÍM")
+            text_ok = ok
+        elif expected_lower in (["ano"], ["ne"]):
+            # ano/ne otázka: rozhoduje verdikt, ne výplň
+            want = "ANO" if expected_lower == ["ano"] else "NE"
+            ok = bool(v is not None and v.value == want)
             text_ok = ok
         else:
             ok, text_ok = answer_matches(m, list(item["expect"]), fillers, a.text)

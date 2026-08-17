@@ -250,6 +250,17 @@ class Grounder:
             st.roles.append(role)
         st.defaults = list(dict.fromkeys(self._defaults))
         pending = list(self._pending_open)
+        if self.write and st.kernel == "name":
+            # alias třídy: jméno se připíše ke group uzlu, výrok zůstává kvůli provenienci
+            kdo, co = st.role("kdo"), st.role("co")
+            if kdo and co:
+                for g in kdo.terms:
+                    for e in co.terms:
+                        gn, en = self.m.nodes.get(g), self.m.nodes.get(e)
+                        if gn and en and gn.kind == "group":
+                            for nm in en.names:
+                                if nm not in gn.names:
+                                    gn.names.append(nm)
         if self.write:
             self.m.attach(st)
             self.out.statements.append(st)
