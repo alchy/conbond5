@@ -1,6 +1,6 @@
 """CLI: konverzace nad pamětí z terminálu.
 
-    python -m cb5 chat [--pamet p.json] [--zurnal rozhovor.jsonl]   # REPL: věty, otázky, !příkazy
+    python -m cb5 chat [--pamet p.json] [--zurnal rozhovor.jsonl] [--vazby moduly/x.txt]   # REPL: věty, otázky, !příkazy
     python -m cb5 ingest soubor.txt --dok jmeno [--pamet p.json]
     python -m cb5 ask "Kde se narodil Alois Jirásek?" --pamet p.json
     python -m cb5 replay rozhovor.jsonl [--pamet p.json]             # přehraj žurnál do čerstvé paměti
@@ -44,6 +44,7 @@ def main(argv: list[str]) -> int:
     chat = sub.add_parser("chat")
     chat.add_argument("--pamet", help="JSON paměti (načte se a při konci uloží)")
     chat.add_argument("--zurnal", help="JSONL žurnál rozhovoru: po každém tahu se připíše vstup i odpověď")
+    chat.add_argument("--vazby", action="append", default=[], help="modul vazeb k načtení při startu (lze víckrát), např. moduly/cas_a_veliciny.txt")
     rep = sub.add_parser("replay")
     rep.add_argument("zurnal")
     rep.add_argument("--pamet", help="kam uložit paměť po přehrání")
@@ -78,6 +79,8 @@ def main(argv: list[str]) -> int:
             s.memory.save(Path(args.pamet))
         return 0
     s = _session(args.pamet)
+    for modul in args.vazby:
+        print(s.load_program(Path(modul)))
     zurnal = Path(args.zurnal) if args.zurnal else None
     print("conbond5 — piš věty (zapíšu), otázky (odpovím), !nápověda pro příkazy, prázdný řádek končí.")
     while True:

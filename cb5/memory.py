@@ -779,6 +779,9 @@ class Memory:
                 g.add_edge(n.id, n.base, type="restricts", soft=False)
         for (sa, sb), w in self.soft.items():
             g.add_edge(sa, sb, type="co_mention", soft=True, weight=w)
+        # referent jen z otázky (žádný výrok, žádná hrana) v grafu neruší — v paměti zůstává (téma pro další tah)
+        for nid in [n for n in list(g.nodes) if g.degree(n) == 0 and g.nodes[n].get("kind") != "statement"]:
+            g.remove_node(nid)
         return g
 
     def render_short(self, st: Statement) -> str:

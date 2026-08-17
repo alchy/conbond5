@@ -13,7 +13,7 @@ python3.11 -m venv .venv && .venv/bin/pip install -e ".[dev]"
 .venv/bin/pip install -e ~/Projects/viewBase/python          # jen pro živý graf (volitelné)
 .venv/bin/python -m pytest -q && .venv/bin/python -m mypy cb5 # hermetické testy (nahrané rozbory), typy
 .venv/bin/python -m cb5 chat --pamet moje.json --zurnal rozhovor.jsonl   # REPL; !nápověda
-.venv/bin/python -m cb5.viewbase_app --pamet moje.json         # graf + konzole v prohlížeči (ukládá po každém tahu: moje.json + moje.jsonl)
+.venv/bin/python -m cb5.viewbase_app --pamet moje.json [--vazby moduly/cas_a_veliciny.txt]  # graf + konzole v prohlížeči (ukládá po každém tahu: moje.json + moje.jsonl)
 .venv/bin/python -m cb5 replay rozhovor.jsonl                  # deterministické přehrání
 .venv/bin/python -m cb5.bench [--dok alois_jirásek] [--vypis|--jen-chyby]   # měření nad korpusem conBond2
 ```
@@ -113,7 +113,7 @@ dělnic je v úlu…“ (rozsah 30 000–50 000), „Na kolika polích…“ (�
    pro synonymum, modul vazeb (export/import), odvolání vazby. Dál: mezera pro
    inverzi/roli, šablona „mez“ (dnes výchozí můstek u veličin), víc testů (překryv
    i „před/po“, porovnání s tolerancí, víc veličin najednou), další moduly v repu
-   (`moduly/pribuzenstvi.txt`) a volba `--moduly` při startu.
+   (`moduly/pribuzenstvi.txt`); `--vazby soubor` při startu (chat i viewbase_app) už je.
 1. **Můstková pravidla z věty** — dnes `!pravidlo`, šablona a výchozí můstek pro
    veličiny; cíl: „Kdo jede po dálnici, jede nejvýše maximální rychlostí
    dálnice.“ → pravidlo s hodnotou a komparátorem; obecně „Kdo …, ten …“.

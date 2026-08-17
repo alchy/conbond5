@@ -163,6 +163,7 @@ def main(argv: list[str]) -> int:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--pamet", help="JSON paměti (načte se, na konci uloží)")
     ap.add_argument("--port", type=int, default=8080)
+    ap.add_argument("--vazby", action="append", default=[], help="modul vazeb k načtení při startu (lze víckrát), např. moduly/cas_a_veliciny.txt")
     args = ap.parse_args(argv)
     try:
         import viewbase as vb  # type: ignore[import-not-found]
@@ -172,6 +173,8 @@ def main(argv: list[str]) -> int:
     memory = Memory.load(Path(args.pamet)) if args.pamet and Path(args.pamet).exists() else Memory()
     restorer = Restorer.load_or_build(HERE / "data" / "cache" / "diakritika.json", [CACHE, HERE / "tests" / "data" / "parses.json"])
     session = Session(memory, live_or_recorded(CACHE), restorer=restorer)
+    for modul in args.vazby:
+        print(session.load_program(Path(modul)))
     canvas = build(session, autosave=Path(args.pamet) if args.pamet else None)
     try:
         vb.serve(canvas, port=args.port, open_browser=True)
