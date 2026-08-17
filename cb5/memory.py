@@ -764,8 +764,11 @@ class Memory:
             if n.kind in ("document", "sentence"):
                 continue
             g.add_node(n.id, kind=n.kind, label=n.label(), activation=self.activation(n.id))
-        for st in self.active():
-            g.add_node(st.id, kind="statement", label=self.render_short(st), grade=st.grade, activation=0.0)
+        shown = list(self.active()) + [st for st in self.statements.values() if st.status == "embedded"
+                                          and st.derived_from in self.statements and self.statements[st.derived_from].status == "active"]
+        for st in shown:
+            g.add_node(st.id, kind="statement", label=self.render_short(st) + (f" ({st.reason})" if st.status == "embedded" else ""),
+                       grade=st.grade, activation=0.0, embedded=st.status == "embedded")
             for r in st.roles:
                 for t in r.terms:
                     g.add_edge(st.id, t, type=f"role:{r.name}", soft=False)

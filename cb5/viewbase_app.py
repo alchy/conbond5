@@ -37,6 +37,7 @@ TYPES = {
     "value": dict(shape="box", color="#c9c9c9", size=0.8),
     "statement": dict(shape="sphere", color="#ff2a6d", size=0.7),
     "statement_said": dict(shape="sphere", color="#ff5fa2", size=0.8),
+    "statement_embedded": dict(shape="sphere", color="#8a5a7a", size=0.6),  # podmínka/účel — netvrdí se
 }
 
 
@@ -65,10 +66,12 @@ def build(session: Session, *, title: str = "conbond5", autosave: Path | None = 
                 t = kind
                 if kind == "statement" and data.get("grade") == "said":
                     t = "statement_said"
+                if kind == "statement" and data.get("embedded"):
+                    t = "statement_embedded"
                 if t not in TYPES:
                     t = "group"
                 label = data.get("label", nid)
-                if kind == "statement":
+                if kind == "statement" and not data.get("embedded"):
                     label = m.render_short(m.statements[nid]) if nid in m.statements else label
                 if kind == "statement":
                     info = render_statement(m, m.statements[nid], with_source=True) if nid in m.statements else ""
