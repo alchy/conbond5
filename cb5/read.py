@@ -56,6 +56,12 @@ class TermSpec:
     kind: Kind
     attrs: tuple[str, ...] = ()
     count: int | None = None
+    #: horní mez rozsahu („30 000–50 000 dělnic“, „12–14 mm“): count = dolní mez
+    count_hi: int | None = None
+    #: původní zápis čísla/rozsahu, když ho int neunese („1–4,5“, „3,5“)
+    count_text: str = ""
+    #: jméno veličiny, když term vznikl z „velikosti 12–14 mm“ (hodnota s jednotkou pod substantivem veličiny)
+    quantity: str = ""
     time: TimeSpec | None = None
     gender: str | None = None
     number: str | None = None
@@ -348,6 +354,10 @@ class _Reader:
     def _quantity_roles(self, p: Predication) -> None:
         """„Telefon má na délku 10 cm.“ / „Kapsa je na délku 8 cm.“: role s jménem veličiny
         (na+Acc: délka) + role s hodnotou (co: 10 cm) → jedna role `délka: 10 cm`."""
+        for r in p.roles:
+            if len(r.terms) == 1 and r.terms[0].quantity and not r.wh and r.name not in ("kdo",):
+                p.defaults.append(f"veličina {r.terms[0].quantity}: „{r.surface}“ + hodnota → role {r.terms[0].quantity}")
+                r.name, r.authority = r.terms[0].quantity, "default"
         qnames = set(D.ADVERB_QUANTITY.values())
         qrole = next((r for r in p.roles if r.name not in ("kdo", "co", "jaký", "kde", "kdy", "kam") and r.terms and len(r.terms) == 1
                       and r.terms[0].kind == "group" and r.terms[0].lemma in qnames and r.terms[0].count is None and not r.wh), None)
@@ -806,6 +816,9 @@ class _Reader:
         name_lemmas = [t.lemma]
         attrs: list[str] = []
         count: int | None = None
+        count_hi: int | None = None
+        count_text = ""
+        quantity_name = ""
         possessor: tuple[str, str] | None = None
         quant: Quant | None = None
         qauth = ""
@@ -860,11 +873,28 @@ class _Reader:
                 n = D.number_of(c.form, c.lemma)
                 if n is not None:
                     count = n
-                    # „8×8 polí“: násobek dvou čísel spojených ×
+                    unit_kids = [u for u in self.p.children(c.index) if u.base_deprel in ("nmod", "flat", "compound") and not self.case_of(u.index)
+                                 and u.upos in ("NOUN", "SYM", "X") and (u.feat("Abbr") == "Yes" or len(u.form) <= 3 or u.lemma in ("metr", "kilometr", "gram", "kilogram", "litr", "sekunda", "hodina", "stupeň"))]
+                    if unit_kids and t.lemma in D.QUANTITY_NOUNS:
+                        # „velikosti 12–14 mm“: hodnota s jednotkou pod substantivem veličiny → term je HODNOTA, role = veličina
+                        unit_name = "".join(u.form for u in unit_kids)
+                        for u in unit_kids:
+                            for x in self.p.subtree(u.index):
+                                self.mark(x.index, where)
+                                consumed.append(x.index)
+                        quantity_name = t.lemma
+                        name_lemmas = [unit_name]
                     for g in self.p.children(c.index):
-                        if g.base_deprel in ("conj", "nmod") and g.upos == "NUM" and D.number_of(g.form, g.lemma) is not None and any(
-                                x.form in ("×", "x", "krát") for x in self.p.children(g.index)):
-                            count = n * (D.number_of(g.form, g.lemma) or 1)
+                        if g.base_deprel in ("conj", "nmod") and g.upos == "NUM" and D.number_of(g.form, g.lemma) is not None:
+                            joiners = {x.form for x in self.p.children(g.index) if x.base_deprel in ("cc", "punct")}
+                            if joiners & {"×", "x", "krát"}:
+                                count = n * (D.number_of(g.form, g.lemma) or 1)  # „8×8 polí“ = 64
+                            elif joiners & {"–", "-", "—", "až"}:
+                                count_hi = D.number_of(g.form, g.lemma)  # „30 000–50 000 dělnic“ = rozsah
+                                if "," in c.form or "," in g.form or "." in g.form.strip("."):
+                                    count_text = f"{c.form}–{g.form}"  # desetinná mez: int ji neunese
+                            else:
+                                continue
                             for x in self.p.subtree(g.index):
                                 self.mark(x.index, where)
                                 consumed.append(x.index)
@@ -980,6 +1010,8 @@ class _Reader:
                 kind = "time"
             else:
                 count = D.number_of(t.form, t.lemma)
+                if count is not None and ("," in t.form or "." in t.form.strip(".")):
+                    count_text = t.form  # „3,5 km“ — desetinné číslo zůstane v popisce
                 if unit:
                     time = None
                     for c in unit_tokens:
@@ -1022,9 +1054,11 @@ class _Reader:
                 kind = "place"
             else:
                 kind = "group"
+        if quantity_name:
+            kind, quant, qauth = "value", "·", "structural"
         spec = TermSpec(
             head=t.index, lemma=" ".join(name_lemmas) if kind in ("group", "value") else t.lemma, forms=tuple(forms), upos=t.upos, kind=kind,
-            attrs=tuple(a for a in attrs if a != "¬"), count=count, time=time,
+            attrs=tuple(a for a in attrs if a != "¬"), count=count, count_hi=count_hi, count_text=count_text, time=time, quantity=quantity_name,
             gender=t.feat("Gender"), number=t.feat("Number"), person=t.feat("Person"),
             quant=quant, quant_authority=qauth, tokens=tuple(sorted(set(consumed))),
             name_tokens=tuple(name_tokens), name_lemmas=tuple(name_lemmas), possessor=possessor, rel=rel,

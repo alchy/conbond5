@@ -419,3 +419,25 @@ def test_reported_speech_has_attribution(s: Session) -> None:
     s.say("Ježíš kázal, že Bůh je láska.")
     a = s.say("Je Bůh láska?")
     assert a.verdict is not None and a.verdict.value == "ANO" and "podle Ježíš (kázat)" in a.text
+
+
+def test_ranges_and_quantity_nouns(s: Session) -> None:
+    """Rozsah „30 000 až 50 000“ = počet s horní mezí; „tloušťku 1–4,5 km“ = veličina s jednotkou;
+    „Jak silný“ se ptá na tloušťku (synonymum veličiny), „Jakou velikost“ je dotaz na veličinu."""
+    s.say("V úlu je při hlavní snůšce 30 000 až 50 000 dělnic.")
+    a = s.say("Kolik dělnic je v úlu?")
+    assert a.verdict is not None and a.verdict.fillers[0][0] == "count:30 000–50 000"
+    assert s.say("Je v úlu 40 000 dělnic?").verdict.value == "ANO"  # type: ignore[union-attr]
+    assert s.say("Je v úlu 60 000 dělnic?").verdict.value == "NE"  # type: ignore[union-attr]
+    s.say("Ledový příkrov má tloušťku 1–4,5 km.")
+    b = s.say("Jak silný je ledový příkrov?")
+    assert b.verdict is not None and "1–4,5 km" in b.text
+    s.say("Dělnice vyrůstají do velikosti 12–14 mm.")
+    c = s.say("Jakou velikost mají dělnice?")
+    assert c.verdict is not None and "12–14 mm" in c.text
+
+
+def test_locative_verbs_match_byt_kde(s: Session) -> None:
+    s.say("Praha leží na Vltavě.")
+    a = s.say("Kde je Praha?")
+    assert a.verdict is not None and [s.memory.label(t) for t, _ in a.verdict.fillers] == ["Vltava"] and "být (kde) ~ ležet" in a.text

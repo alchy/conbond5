@@ -21,7 +21,7 @@ from dataclasses import dataclass, field
 from typing import Literal
 
 from cb5.chronos import MONTHS, TimeSpec, overlap as time_overlap
-from cb5.defaults import ADVERB_QUANTITY, COMPARATIVES_SEED, LOCATIVE_SURFACES, PLACE_NOUNS, QUANTITY_BOUNDS, RELATION_CONVERSE, RELATION_GENDER, synonym_class
+from cb5.defaults import ADVERB_QUANTITY, COMPARATIVES_SEED, LOCATIVE_SURFACES, LOCATIVE_VERBS, PLACE_NOUNS, QUANTITY_BOUNDS, QUANTITY_NOUNS, QUANTITY_SYNONYMS, RELATION_CONVERSE, RELATION_GENDER, synonym_class
 from cb5.memory import Memory, Role, Statement
 
 Grade = Literal["said", "read", "derived"]
@@ -89,12 +89,23 @@ class Evaluator:
         self.syn = memory.learned.get("synonyms", {})
         #: výroky, které by seděly, ale jejich podmínka není splněna (do odpovědi)
         self.unmet: list[str] = []
+        #: dotaz „být(kde)“ — sedí i slovesa umístění (nacházet_se, ležet…)
+        self._loc_query = False
         #: vazby proměnných pravidla z poslední shody (`match` je plní, `_gate_condition` čte)
         self._bind: dict[str, str] = {}
         self._rule_depth = 0
 
     def same_pred(self, a: str | None, b: str | None) -> str | None:
-        return _same_pred(a, b, self.syn)
+        step = _same_pred(a, b, self.syn)
+        if step is None and self._loc_query and {a, b} & {"být"} and ({a, b} - {"být"}) <= LOCATIVE_VERBS and a != b:
+            return f"být (kde) ~ {b if a == 'být' else a}"  # „Co je v úlu?“ × „v úlu se nachází …“
+        return step
+
+    def _with_loc(self, q: Statement) -> bool:
+        """Zapni shodu být(kde) ~ nacházet_se pro dobu jednoho dotazu; vrací předchozí stav."""
+        prev = self._loc_query
+        self._loc_query = q.pred == "být" and q.role("kde") is not None
+        return prev
 
     # ---- termy ---------------------------------------------------------------
 
@@ -185,7 +196,14 @@ class Evaluator:
                         fc = fr.counts[ft]
                 if fc is None:
                     return None
-                if fc != qr.counts[qt]:
+                hi = next((fr.hi[ft] for ft in fr.terms if ft in fr.hi and fr.counts.get(ft) == fc), None)
+                if hi is not None:
+                    if not (fc <= qr.counts[qt] <= hi):
+                        proof.steps.append(f"počet {qr.counts[qt]} mimo rozsah {fc}–{hi}")
+                        proof.defaults.append("__count_mismatch__")
+                    else:
+                        proof.steps.append(f"počet {qr.counts[qt]} je v rozsahu {fc}–{hi}")
+                elif fc != qr.counts[qt]:
                     proof.steps.append(f"počet {fc} ≠ {qr.counts[qt]}")
                     proof.defaults.append("__count_mismatch__")
         return proof
@@ -564,6 +582,13 @@ class Evaluator:
         return None
 
     def evaluate(self, q: Statement, *, depth: int = 0) -> Verdict:
+        prev = self._with_loc(q)
+        try:
+            return self._evaluate(q, depth=depth)
+        finally:
+            self._loc_query = prev
+
+    def _evaluate(self, q: Statement, *, depth: int = 0) -> Verdict:
         m = self.m
         if depth == 0:
             br = self.binary_rule(q)
@@ -703,6 +728,13 @@ class Evaluator:
     # ---- wh --------------------------------------------------------------------
 
     def enumerate(self, q: Statement) -> Verdict:
+        prev = self._with_loc(q)
+        try:
+            return self._enumerate(q)
+        finally:
+            self._loc_query = prev
+
+    def _enumerate(self, q: Statement) -> Verdict:
         m = self.m
         hole = next((r for r in q.roles if r.wh), None)
         if hole is None:
@@ -716,6 +748,13 @@ class Evaluator:
             v = self.quantity(q, hole)
             if v is not None:
                 return v
+        # „Jakou velikost mají dělnice?“ / „Jaká je tloušťka příkrovu?“: díra s termem‑veličinou → dotaz na veličinu
+        if hole.wh_kind == "attr" and hole.terms and q.pred in ("mít", "být", "dosahovat", "měřit"):
+            qn = m.nodes.get(hole.terms[0])
+            if qn is not None and qn.kind == "group" and qn.lemma in QUANTITY_NOUNS:
+                v = self.quantity(q, Role(qn.lemma, wh=True, wh_kind="value"))
+                if v is not None:
+                    return v
         # „Co víš o X?“ / „Jaké druhy X znáš?“ / „Jaké znáš spisovatele?“ → co paměť drží
         if q.pred in ("vědět", "znát", "pamatovat_si", "pamatovat"):
             about = q.role("o_čem") or q.role("co") or q.role("jaký")
@@ -818,7 +857,7 @@ class Evaluator:
             if hole.wh_kind == "count":
                 for t in fr.terms:
                     if t in fr.counts and (not hole.terms or any(self.match_term(qt, hole.quant, t, fr.quant, role=hole.name) is not None for qt in hole.terms)):
-                        key = f"count:{fr.counts[t]}"
+                        key = f"count:{Memory.count_label(fr, t)}"
                         if key not in seen:
                             seen.add(key)
                             fillers.append((key, p))
@@ -878,7 +917,7 @@ class Evaluator:
                 if fr is None or not fr.terms:
                     continue
                 for t in fr.terms:
-                    key = f"count:{fr.counts[t]}" if hole.wh_kind == "count" and t in fr.counts else t
+                    key = f"count:{Memory.count_label(fr, t)}" if hole.wh_kind == "count" and t in fr.counts else t
                     if hole.wh_kind == "count" and (t not in fr.counts or (hole.terms and not any(self.match_term(qt, hole.quant, t, fr.quant, role=hole.name) is not None for qt in hole.terms))):
                         continue
                     if key not in seen:
@@ -1001,6 +1040,10 @@ class Evaluator:
                 if not (kdo and any(self.match_term(x, subj.quant if subj else None, t, kdo.quant, role="kdo") is not None for t in kdo.terms)):
                     continue
                 r = st.role(Q)
+                if r is None:
+                    alt = next((a for a in QUANTITY_SYNONYMS.get(Q, ()) if st.role(a) is not None), None)
+                    if alt is not None:
+                        r = st.role(alt)  # „silný“ = tloušťka
                 if r is None and st.pred == "být" and st.role("jaký"):
                     jaky = st.role("jaký")
                     if jaky and any(ADVERB_QUANTITY.get(m.nodes[t].lemma) == Q for t in jaky.terms if t in m.nodes):
@@ -1013,7 +1056,7 @@ class Evaluator:
                     continue
                 for t in r.terms:
                     if t in r.counts:
-                        key = f"count:{r.counts[t]} {m.label(t)}"
+                        key = f"count:{Memory.count_label(r, t)} {m.label(t)}"
                         if key not in seen:
                             seen.add(key)
                             fillers.append((key, Proof([st.id], [f"{Q} z výroku o {m.label(x)}"], list(st.defaults), st.grade)))
@@ -1139,7 +1182,7 @@ class Evaluator:
                 for t in (co.terms if co else []):
                     if t in co.counts and t not in seen:  # type: ignore[union-attr]
                         seen.add(t)
-                        fillers.append((f"count:{co.counts[t]} {m.label(t)}", Proof([s.id], [], list(s.defaults), s.grade)))  # type: ignore[union-attr]
+                        fillers.append((f"count:{Memory.count_label(co, t)} {m.label(t)}", Proof([s.id], [], list(s.defaults), s.grade)))  # type: ignore[union-attr,arg-type]
         if not fillers and below:
             fillers = below
         if fillers:

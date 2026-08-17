@@ -249,6 +249,10 @@ class Grounder:
                 role.terms.append(nid)
                 if t.count is not None:
                     role.counts[nid] = t.count
+                    if t.count_hi is not None:
+                        role.hi[nid] = t.count_hi
+                    if t.count_text:
+                        role.count_text[nid] = t.count_text
                 if role.quant is None:
                     role.quant = t.quant
                 if t.quant_authority.startswith("default") and t.quant_authority not in ("default:předmět",):

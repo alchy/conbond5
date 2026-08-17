@@ -8263,6 +8263,192 @@
 }
 ]
 },
+"Dělnice vyrůstají do velikosti 12–14 mm.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Dělnice vyrůstají do velikosti 12–14 mm.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "Dělnice",
+"head": 2,
+"id": 1,
+"lemma": "dělnice",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Plur"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "vyrůstají",
+"head": 0,
+"id": 2,
+"lemma": "vyrůstat",
+"upos": "VERB"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Gen"
+]
+],
+"form": "do",
+"head": 4,
+"id": 3,
+"lemma": "do",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "velikosti",
+"head": 2,
+"id": 4,
+"lemma": "velikost",
+"upos": "NOUN"
+},
+{
+"deprel": "nummod",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "12",
+"head": 4,
+"id": 5,
+"lemma": "12",
+"upos": "NUM"
+},
+{
+"deprel": "cc",
+"feats": [],
+"form": "–",
+"head": 7,
+"id": 6,
+"lemma": "–",
+"upos": "CCONJ"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "14",
+"head": 5,
+"id": 7,
+"lemma": "14",
+"upos": "NUM"
+},
+{
+"deprel": "nmod",
+"feats": [
+[
+"Abbr",
+"Yes"
+],
+[
+"Animacy",
+"Inan"
+],
+[
+"Gender",
+"Masc"
+]
+],
+"form": "mm",
+"head": 5,
+"id": 8,
+"lemma": "milimetr",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 9,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
 "Filip má Ford.": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Filip má Ford.",
@@ -9909,6 +10095,171 @@
 }
 ]
 },
+"Jak silný je ledový příkrov?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Jak silný je ledový příkrov?",
+"tokens": [
+{
+"deprel": "advmod",
+"feats": [
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Jak",
+"head": 2,
+"id": 1,
+"lemma": "jak",
+"upos": "ADV"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "silný",
+"head": 0,
+"id": 2,
+"lemma": "silný",
+"upos": "ADJ"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 2,
+"id": 3,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "amod",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "ledový",
+"head": 5,
+"id": 4,
+"lemma": "ledový",
+"upos": "ADJ"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "příkrov",
+"head": 2,
+"id": 5,
+"lemma": "příkrov",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 2,
+"id": 6,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
 "Jak vysoká je Sněžka?": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Jak vysoká je Sněžka?",
@@ -10030,6 +10381,133 @@
 "feats": [],
 "form": "?",
 "head": 2,
+"id": 5,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Jakou velikost mají dělnice?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Jakou velikost mají dělnice?",
+"tokens": [
+{
+"deprel": "det",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+],
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Jakou",
+"head": 2,
+"id": 1,
+"lemma": "jaký",
+"upos": "DET"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "velikost",
+"head": 3,
+"id": 2,
+"lemma": "velikost",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Plur"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "mají",
+"head": 0,
+"id": 3,
+"lemma": "mít",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "dělnice",
+"head": 3,
+"id": 4,
+"lemma": "dělnice",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 3,
 "id": 5,
 "lemma": "?",
 "upos": "PUNCT"
@@ -13208,6 +13686,288 @@
 }
 ]
 },
+"Je v úlu 40 000 dělnic?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Je v úlu 40 000 dělnic?",
+"tokens": [
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Je",
+"head": 3,
+"id": 1,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "v",
+"head": 3,
+"id": 2,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "úlu",
+"head": 0,
+"id": 3,
+"lemma": "úl",
+"upos": "NOUN"
+},
+{
+"deprel": "nummod:gov",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "40 000",
+"head": 5,
+"id": 4,
+"lemma": "40 000",
+"upos": "NUM"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "dělnic",
+"head": 3,
+"id": 5,
+"lemma": "dělnice",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 3,
+"id": 6,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Je v úlu 60 000 dělnic?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Je v úlu 60 000 dělnic?",
+"tokens": [
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Je",
+"head": 3,
+"id": 1,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "v",
+"head": 3,
+"id": 2,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "úlu",
+"head": 0,
+"id": 3,
+"lemma": "úl",
+"upos": "NOUN"
+},
+{
+"deprel": "nummod:gov",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "60 000",
+"head": 5,
+"id": 4,
+"lemma": "60 000",
+"upos": "NUM"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "dělnic",
+"head": 3,
+"id": 5,
+"lemma": "dělnice",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 3,
+"id": 6,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
 "Je Škoda automobil?": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Je Škoda automobil?",
@@ -15976,6 +16736,103 @@
 "feats": [],
 "form": "?",
 "head": 2,
+"id": 4,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Kde je Praha?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kde je Praha?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Kde",
+"head": 0,
+"id": 1,
+"lemma": "kde",
+"upos": "ADV"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 1,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Praha",
+"head": 1,
+"id": 3,
+"lemma": "Praha",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
 "id": 4,
 "lemma": "?",
 "upos": "PUNCT"
@@ -21420,6 +22277,151 @@
 }
 ]
 },
+"Kolik dělnic je v úlu?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kolik dělnic je v úlu?",
+"tokens": [
+{
+"deprel": "det:numgov",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"NumType",
+"Card"
+],
+[
+"PronType",
+"Dem,Ind"
+]
+],
+"form": "Kolik",
+"head": 2,
+"id": 1,
+"lemma": "kolik",
+"upos": "DET"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "dělnic",
+"head": 5,
+"id": 2,
+"lemma": "dělnice",
+"upos": "NOUN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 5,
+"id": 3,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "v",
+"head": 5,
+"id": 4,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "úlu",
+"head": 0,
+"id": 5,
+"lemma": "úl",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 5,
+"id": 6,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
 "Kolik je Petrovi let?": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Kolik je Petrovi let?",
@@ -22870,6 +23872,212 @@
 "form": ".",
 "head": 2,
 "id": 5,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Ledový příkrov má tloušťku 1–4,5 km.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Ledový příkrov má tloušťku 1–4,5 km.",
+"tokens": [
+{
+"deprel": "amod",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "Ledový",
+"head": 2,
+"id": 1,
+"lemma": "ledový",
+"upos": "ADJ"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "příkrov",
+"head": 3,
+"id": 2,
+"lemma": "příkrov",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "má",
+"head": 0,
+"id": 3,
+"lemma": "mít",
+"upos": "VERB"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "tloušťku",
+"head": 3,
+"id": 4,
+"lemma": "tloušťka",
+"upos": "NOUN"
+},
+{
+"deprel": "nummod",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "1",
+"head": 4,
+"id": 5,
+"lemma": "1",
+"upos": "NUM"
+},
+{
+"deprel": "cc",
+"feats": [],
+"form": "–",
+"head": 7,
+"id": 6,
+"lemma": "–",
+"upos": "CCONJ"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "4,5",
+"head": 5,
+"id": 7,
+"lemma": "4,5",
+"upos": "NUM"
+},
+{
+"deprel": "nmod",
+"feats": [
+[
+"Abbr",
+"Yes"
+],
+[
+"Animacy",
+"Inan"
+],
+[
+"Gender",
+"Masc"
+]
+],
+"form": "km",
+"head": 5,
+"id": 8,
+"lemma": "kilometr",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 9,
 "lemma": ".",
 "upos": "PUNCT"
 }
@@ -30275,6 +31483,133 @@
 }
 ]
 },
+"Praha leží na Vltavě.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Praha leží na Vltavě.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Praha",
+"head": 2,
+"id": 1,
+"lemma": "Praha",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "leží",
+"head": 0,
+"id": 2,
+"lemma": "ležet",
+"upos": "VERB"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "na",
+"head": 4,
+"id": 3,
+"lemma": "na",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Geo"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Vltavě",
+"head": 2,
+"id": 4,
+"lemma": "Vltava",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 5,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
 "První sinice se objevily před 2 miliardami let.": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "První sinice se objevily před 2 miliardami let.",
@@ -33504,6 +34839,244 @@
 "form": ".",
 "head": 2,
 "id": 3,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"V úlu je při hlavní snůšce 30 000 až 50 000 dělnic.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "V úlu je při hlavní snůšce 30 000 až 50 000 dělnic.",
+"tokens": [
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "V",
+"head": 2,
+"id": 1,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "úlu",
+"head": 0,
+"id": 2,
+"lemma": "úl",
+"upos": "NOUN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 2,
+"id": 3,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "při",
+"head": 6,
+"id": 4,
+"lemma": "při",
+"upos": "ADP"
+},
+{
+"deprel": "amod",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Degree",
+"Pos"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "hlavní",
+"head": 6,
+"id": 5,
+"lemma": "hlavní",
+"upos": "ADJ"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "snůšce",
+"head": 2,
+"id": 6,
+"lemma": "snůška",
+"upos": "NOUN"
+},
+{
+"deprel": "nummod:gov",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "30 000",
+"head": 10,
+"id": 7,
+"lemma": "30 000",
+"upos": "NUM"
+},
+{
+"deprel": "cc",
+"feats": [],
+"form": "až",
+"head": 9,
+"id": 8,
+"lemma": "až",
+"upos": "CCONJ"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "50 000",
+"head": 7,
+"id": 9,
+"lemma": "50 000",
+"upos": "NUM"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "dělnic",
+"head": 2,
+"id": 10,
+"lemma": "dělnice",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 11,
 "lemma": ".",
 "upos": "PUNCT"
 }

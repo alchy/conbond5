@@ -100,6 +100,10 @@ class Role:
     surface: str = ""
     nested: str | None = None
     counts: dict[str, int] = field(default_factory=dict)
+    #: horní mez rozsahu k počtu („30 000–50 000“): counts = dolní mez
+    hi: dict[str, int] = field(default_factory=dict)
+    #: původní zápis, když int neunese desetiny („1–4,5“, „3,5“)
+    count_text: dict[str, str] = field(default_factory=dict)
     wh: bool = False
     wh_kind: str = ""
     #: proměnná pravidla („Každý, kdo …“ → X): role bez termu, kterou váže dotaz
@@ -789,6 +793,16 @@ class Memory:
             g.remove_node(nid)
         return g
 
+    @staticmethod
+    def count_label(role: "Role", t: str) -> str:
+        """Počet u termu jako text: „42“, „30 000–50 000“ (mezera po tisících od 10 000)."""
+        def fmt(n: int) -> str:
+            return f"{n:,}".replace(",", " ") if n >= 10000 else str(n)
+        if t in role.count_text:
+            return role.count_text[t]
+        lo = role.counts[t]
+        return fmt(lo) + (f"–{fmt(role.hi[t])}" if t in role.hi else "")
+
     def render_short(self, st: Statement) -> str:
         head = st.pred or "∅"
         if st.neg:
@@ -808,7 +822,7 @@ class Memory:
                 for t in r.terms:
                     lab = self.nodes[t].label() if t in self.nodes else t
                     if t in r.counts:
-                        lab += f"#{r.counts[t]}"
+                        lab += f"#{r.counts[t]}" + (f"–{r.hi[t]}" if t in r.hi else "")
                     labels.append((r.quant or "") + lab)
                 parts.append(f"{r.name}:{'+'.join(labels)}")
         k = f" ⟨{st.kernel}⟩" if st.kernel else ""

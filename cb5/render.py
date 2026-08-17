@@ -81,7 +81,7 @@ def render_statement(m: Memory, st: Statement, *, with_source: bool = False) -> 
         for t in r.terms:
             lab = describe_node(m, t)
             if t in r.counts:
-                lab = f"{r.counts[t]} {lab}"
+                lab = f"{Memory.count_label(r, t)} {lab}"
             labels.append(((r.quant or "") if r.quant in ("∀", "∃") else "") + lab)
         if labels:
             parts.append(f"{role_label(r.name)}: {' + '.join(labels)}")

@@ -289,6 +289,21 @@ ADVERB_QUANTITY: dict[str, str] = {
     "široký": "šířka", "starý": "věk", "často": "četnost", "teplý": "teplota", "silný": "síla",
 }
 
+#: slovesa umístění: dotaz „být(kde)“ („Co je v úlu?“, „Kde je Praha?“) sedí i na ně (přiznaně)
+LOCATIVE_VERBS: frozenset[str] = frozenset({"nacházet_se", "ležet", "rozkládat_se", "vyskytovat_se", "stát", "nalézat_se", "být_umístěn"})
+
+#: substantiva veličin: „do velikosti 12–14 mm“, „o hmotnosti 100 mg“ → role <veličina>: hodnota s jednotkou
+QUANTITY_NOUNS: frozenset[str] = frozenset(set(ADVERB_QUANTITY.values()) | {
+    "velikost", "plocha", "objem", "výkon", "spotřeba", "kapacita", "tloušťka", "průměr", "obvod", "nadmořská výška",
+    "rozloha", "hustota", "tlak", "napětí", "frekvence", "cena", "výška", "hmotnost", "teplota", "rychlost", "délka",
+})
+
+#: veličiny, které se ptají stejným slovem: „Jak silný je příkrov?“ = tloušťka; velikost ~ rozměr
+QUANTITY_SYNONYMS: dict[str, tuple[str, ...]] = {
+    "síla": ("tloušťka",), "tloušťka": ("síla",), "velikost": ("rozměr", "délka", "výška"), "rozměr": ("velikost",),
+    "hmotnost": ("váha",), "váha": ("hmotnost",), "vzdálenost": ("délka",),
+}
+
 #: Přívlastek veličiny → mez v odpovědi („maximální rychlost“ → „nejvýše“).
 QUANTITY_BOUNDS: dict[str, str] = {
     "maximální": "nejvýše", "nejvyšší": "nejvýše", "nejvýše": "nejvýše", "horní": "nejvýše", "povolený": "nejvýše",
