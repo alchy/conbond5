@@ -1273,7 +1273,8 @@ class _Reader:
         else:
             pred_role = RoleFill("co", "cop", self._term_group(root), "structural")
         # podmět
-        if subj and self._wh_of(subj[0]) is not None and root.upos in ("NOUN", "PROPN", "ADJ") and wh is None and not prep:
+        if subj and self._wh_of(subj[0]) is not None and root.upos in ("NOUN", "PROPN", "ADJ") and wh is None and not prep \
+                and root.upos != "ADJ":  # „Kdo/Co je hnědý?“ = kdo:?, jaký: hnědý (výčet nositelů vlastnosti), ne definice
             # („Co je v lednici?“ má předložkový kořen → NEprohazovat: kdo:? , kde: lednice)
             # „Co je jezevčík?“ — tázací podmět, nominál v kořeni: ptá se na definici kořene
             s = subj[0]

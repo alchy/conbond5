@@ -511,3 +511,9 @@ def test_naming_and_object_pronoun(s: Session) -> None:
     assert b.verdict is not None and [s.memory.label(t) for t, _ in b.verdict.fillers] == ["Petr"]
     c = s.say("Čí je Rex?")
     assert c.verdict is not None and [s.memory.label(t) for t, _ in c.verdict.fillers] == ["Petr"]
+
+
+def test_who_is_adjective_lists_bearers(s: Session) -> None:
+    s.say("Rex je hnědý.")
+    a = s.say("Kdo je hnědý?")
+    assert a.verdict is not None and [s.memory.label(t) for t, _ in a.verdict.fillers] == ["Rex"]

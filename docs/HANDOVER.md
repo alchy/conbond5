@@ -64,7 +64,7 @@ s proveniencí a dá se odvolat. Tak lze skládat modulární znalost: fakta z t
 | **ručně psané otázky (70)** | 0 | **60 (86 %)** — etalon 25/32, conbond 35/38 |
 | generované otázky (682, proxy) | 0 | 444 (65 %); 581 má odpověď v textu |
 | dialogy A–F ze zadání conbond4 | — | zelené; dialog A vč. „nejvýše 130 km/h“ (výchozí můstek) |
-| testy / typy | — | 114 pytest, mypy čistý |
+| testy / typy | — | 115 pytest, mypy čistý |
 
 Zbývající ruční chyby (etalon): „Kolik procent je Antarktida větší než
 Evropa?“ (procenta + komparativ), „Jaká je nejnižší naměřená teplota na

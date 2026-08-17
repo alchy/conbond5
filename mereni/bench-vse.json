@@ -803,7 +803,7 @@
     "reading": "napsat(kde:?, kdo:·Arnošt Lustig)"
    }
   ],
-  "t_ingest": 0.2,
+  "t_ingest": 0.1,
   "t_ask": 0.1
  },
  {
@@ -1602,7 +1602,7 @@
     "reading": "narodit_se(kde:?, kdo:·Božena Němcová)"
    }
   ],
-  "t_ingest": 1.6,
+  "t_ingest": 1.7,
   "t_ask": 0.3
  },
  {
@@ -1761,7 +1761,7 @@
     "reading": "bydlet(kde:?, kdo:·Eduard Bass)"
    }
   ],
-  "t_ingest": 0.0,
+  "t_ingest": 0.1,
   "t_ask": 0.0
  },
  {
@@ -4621,7 +4621,7 @@
     "reading": "zemřít(kdy:?, kdo:·Jaroslav Vrchlický)"
    }
   ],
-  "t_ingest": 0.3,
+  "t_ingest": 0.2,
   "t_ask": 0.1
  },
  {
@@ -5330,7 +5330,7 @@
     "reading": "oženit_se(s_kým:?, kdo:·Josef Čapek)"
    }
   ],
-  "t_ingest": 0.7,
+  "t_ingest": 0.6,
   "t_ask": 0.1
  },
  {
@@ -7943,7 +7943,7 @@
     "reading": "mít(co:?count:∃zub, kdo:∀chrup⟨kočka⟩[trvalý])"
    }
   ],
-  "t_ingest": 0.2,
+  "t_ingest": 0.3,
   "t_ask": 0.0
  },
  {
@@ -8881,7 +8881,7 @@
    }
   ],
   "t_ingest": 0.3,
-  "t_ask": 0.1
+  "t_ask": 0.2
  },
  {
   "doc": "ota_pavel",
@@ -9072,7 +9072,7 @@
     "reading": "potkat(kdy:?, kdo:·Ota Pavel)"
    }
   ],
-  "t_ingest": 0.1,
+  "t_ingest": 0.2,
   "t_ask": 0.0
  },
  {
@@ -9204,7 +9204,7 @@
     "reading": "být(kdo:∀pes, co:∃šelma) ⟨subset⟩"
    }
   ],
-  "t_ingest": 0.4,
+  "t_ingest": 1.0,
   "t_ask": 0.2
  },
  {
@@ -9950,7 +9950,7 @@
     "reading": "ležet(kde:?, kdo:·Ol Doinyo Lengai)"
    }
   ],
-  "t_ingest": 1.5,
+  "t_ingest": 1.2,
   "t_ask": 0.0
  },
  {
@@ -11815,7 +11815,7 @@
     "reading": "podepsat(kde:?, kdo:·Václav Havel)"
    }
   ],
-  "t_ingest": 1.0,
+  "t_ingest": 0.9,
   "t_ask": 0.7
  },
  {
@@ -12513,7 +12513,7 @@
     "reading": "vyhrát(kdy:?, kdo:·Deep Blue, co:∃zápas)"
    }
   ],
-  "t_ingest": 0.7,
+  "t_ingest": 0.9,
   "t_ask": 0.0
  }
 ]
