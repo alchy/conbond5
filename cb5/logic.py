@@ -227,7 +227,8 @@ class Evaluator:
                     out.append((e, Proof(path, [f"{m.label(e)} ∈ {m.label(g.id)}"], [], self._grade_of(path))))
         # 2) inverze: target ∈ R'⟨Z⟩, R' inverzní k lemma ⇒ Z ∈ lemma⟨target⟩ (rod Z podle lemma)
         need = RELATION_GENDER.get(lemma)
-        for conv in RELATION_CONVERSE.get(lemma, ()):
+        converses = list(RELATION_CONVERSE.get(lemma, ())) + [c for c in m.learned.get("inverse", {}).get(lemma, []) if c not in RELATION_CONVERSE.get(lemma, ())]
+        for conv in converses:
             for st in m.statements_about(target):
                 if st.kernel != "member" or st.neg or st.status != "active":
                     continue

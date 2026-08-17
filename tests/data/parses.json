@@ -12014,6 +12014,111 @@
 }
 ]
 },
+"Je kůň šelma?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Je kůň šelma?",
+"tokens": [
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Je",
+"head": 3,
+"id": 1,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "kůň",
+"head": 3,
+"id": 2,
+"lemma": "kůň",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "šelma",
+"head": 0,
+"id": 3,
+"lemma": "šelma",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 3,
+"id": 4,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
 "Je pes šelma?": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Je pes šelma?",
@@ -18662,6 +18767,115 @@
 "head": 3,
 "id": 6,
 "lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Kůň je kopytník.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kůň je kopytník.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Kůň",
+"head": 3,
+"id": 1,
+"lemma": "kůň",
+"upos": "NOUN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 3,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "kopytník",
+"head": 0,
+"id": 3,
+"lemma": "kopytník",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 4,
+"lemma": ".",
 "upos": "PUNCT"
 }
 ]
@@ -27412,6 +27626,50 @@
 }
 ]
 },
+"ano": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "ano",
+"tokens": [
+{
+"deprel": "root",
+"feats": [],
+"form": "ano",
+"head": 0,
+"id": 1,
+"lemma": "ano",
+"upos": "PART"
+}
+]
+},
+"jen tady": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "jen tady",
+"tokens": [
+{
+"deprel": "advmod:emph",
+"feats": [],
+"form": "jen",
+"head": 2,
+"id": 1,
+"lemma": "jen",
+"upos": "PART"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"PronType",
+"Dem"
+]
+],
+"form": "tady",
+"head": 0,
+"id": 2,
+"lemma": "tady",
+"upos": "ADV"
+}
+]
+},
 "kratší": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "kratší",
@@ -27445,6 +27703,21 @@
 "id": 1,
 "lemma": "krátký",
 "upos": "ADJ"
+}
+]
+},
+"ne": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "ne",
+"tokens": [
+{
+"deprel": "root",
+"feats": [],
+"form": "ne",
+"head": 0,
+"id": 1,
+"lemma": "ne",
+"upos": "PART"
 }
 ]
 },

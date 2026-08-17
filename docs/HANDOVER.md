@@ -42,6 +42,7 @@ Testy síť nepotřebují (`tests/data/parses.json`; nové věty: přidat do
 | `cb5/render.py` | verdikt + důvod + zdroj + doložka stupně |
 | `cb5/dialog.py` | `Session`: `ingest`, `say` (otázky, tvrzení, opravy „Ne, …“/„To není pravda.“/„Ne každý X.“, konflikt), **učení z vět** (definice srovnávacích slov, vztahových jmen), příkazy `!…` (i bez `!`), backlog, žurnál, `replay` |
 | `cb5/bench.py` | měření: míra zápisu + QA přesnost po sadách (ruční × generované), sdílená znalost (`vztahy_příbuzenské` k rodině Novákových), rozklad chyb → `mereni/` |
+| `cb5/sablony.py` | **šablony pro vysvětlení vztahu** (`!šablony`, `!uč druh jezevčík pes`, okno „Vysvětlit vztah“ ve viewBase) + **návrh šablony při NEVÍM** (můstek, srovnání, složený vztah, vyloučení) s odpovědí `ano` / `ne` (pamatuje se) / `jen tady` |
 | `cb5/cli.py`, `cb5/viewbase_app.py` | REPL a živý graf |
 
 Naučené věci drží **paměť** (`Memory.learned`: `roles`, `synonyms`,
@@ -56,7 +57,7 @@ Naučené věci drží **paměť** (`Memory.learned`: `roles`, `synonyms`,
 | **ručně psané otázky (70)** | 0 | **59 (84 %)** — etalon 24/32, conbond 35/38 |
 | generované otázky (682, proxy) | 0 | 433 (63 %); 577 má odpověď v textu |
 | dialogy A–F ze zadání conbond4 | — | zelené; dialog A vč. „nejvýše 130 km/h“ (výchozí můstek) |
-| testy / typy | — | 99 pytest, mypy čistý |
+| testy / typy | — | 100 pytest, mypy čistý |
 
 Zbývající ruční chyby (etalon): „Kolik procent je Antarktida větší než
 Evropa?“ (procenta + komparativ), „Jaká je nejnižší naměřená teplota na
@@ -88,7 +89,11 @@ dělnic je v úlu…“ (rozsah 30 000–50 000), „Na kolika polích…“ (�
 
 ## 5 · Otevřené směry (v pořadí, jak dávají smysl)
 
-1. **Můstková pravidla z věty** — dnes jen `!pravidlo` a výchozí můstek pro
+0. **Vysvětlování vztahů = šablony, ne volný dialog** (rozhodnutí J. 17. 8.): systém
+   se ptá sám jen při NEVÍM na otázku člověka, nabídne JEDNU předvyplněnou šablonu
+   (hypotéza s evidencí), člověk potvrdí/odmítne. Dál rozšiřovat detekci mezer
+   (synonymum predikátu, inverze, role) a šablonu „mez“ (dnes výchozí můstek u veličin).
+1. **Můstková pravidla z věty** — dnes `!pravidlo`, šablona a výchozí můstek pro
    veličiny; cíl: „Kdo jede po dálnici, jede nejvýše maximální rychlostí
    dálnice.“ → pravidlo s hodnotou a komparátorem; obecně „Kdo …, ten …“.
 2. **Sloučení částečných časů téhož děje** („v dubnu“ + „roku 1975“ → duben 1975).

@@ -28,6 +28,7 @@ from cb5.memory import Memory, Node, OpenItem, Provenance, Role, Statement
 from cb5.oracle import OracleError, Parse, SegmentationError
 from cb5.read import Reading, TermSpec, read
 from cb5.recall import recall
+from cb5 import sablony
 from cb5.render import describe_node, render_answer, render_statement
 
 
@@ -63,6 +64,7 @@ class Session:
         self._sent_no: dict[str, int] = {}
         self._last_said: list[str] = []
         self._last_restored: list[tuple[str, str]] = []
+        self._pending: sablony.Navrh | None = None
         self._restore_learned()
 
     # ---- pomocníci -------------------------------------------------------------
@@ -176,12 +178,26 @@ class Session:
     # ---- tah dialogu -----------------------------------------------------------
 
     #: Příkazy jdou i bez „!“, když věta začíná příkazovým slovem.
-    COMMAND_WORDS = frozenset({"zapomeň", "zapomen", "odvolej", "popiš", "popis", "otevřené", "otevrene", "backlog",
+    COMMAND_WORDS = frozenset({"zapomeň", "zapomen", "odvolej", "popiš", "popis", "otevřené", "otevrene", "backlog", "šablony", "sablony", "uč", "nauč",
                                "nápověda", "napoveda", "program", "ulož", "uloz", "načti", "nacti", "graf", "pravidlo",
                                "synonymum", "výjimka", "vyjimka", "odpověz", "odpovez", "role"})
 
     def say(self, text: str, doc: str = "dialog") -> Answer:
         text = text.strip()
+        low = text.lower().strip(".! ")
+        if self._pending is not None and low in ("ano", "ne", "jen tady", "jen tady.", "jen pro tuhle větu"):
+            navrh, self._pending = self._pending, None
+            self._turn("say", text, doc)
+            if low == "ano":
+                if any(a.startswith("<") for a in navrh.args):
+                    return Answer(f"šablona má nevyplněné sloty — pošli ji vyplněnou: {navrh.prikaz()}")
+                out = sablony.apply(self, navrh.sablona, navrh.args)
+                again = self.say(navrh.otazka, doc)
+                return Answer(out + "\n— znovu: " + navrh.otazka + "\n" + again.text, again.verdict)
+            if low == "ne":
+                self.memory.learned.setdefault("refused", {})[navrh.key] = {"turn": self.turn_no}
+                return Answer("dobře, tuhle hypotézu už nenabídnu")
+            return Answer("dobře, nechávám jen tuhle větu bez pravidla")
         first = text.split(None, 1)[0].lower().rstrip(".!:") if text else ""
         if first in self.COMMAND_WORDS and not text.startswith("!"):
             text = "!" + text
@@ -229,6 +245,13 @@ class Session:
         m.activate(q.term_ids(), 0.5)
         m.tick()
         text = f"čtu: {reading.main}\n" + render_answer(m, verdict, wh=wh, recalled=recalled)
+        self._pending = None
+        if verdict.value == "NEVÍM":
+            navrh = sablony.navrhni(m, q, verdict, reading.parse.text)
+            if navrh is not None:
+                self._pending = navrh
+                text += (f"\n   ? {navrh.proc}\n   → šablona: {navrh.prikaz()}   (odpověz „ano“ = naučit a odpovědět znovu, "
+                         f"„ne“ = nenabízet, „jen tady“ = nechat)")
         return Answer(text, verdict, reading=str(reading.main))
 
     def _assert(self, reading: Reading, doc: str) -> Answer:
@@ -538,6 +561,13 @@ class Session:
             for st in m.statements_about(target.id):
                 lines.append("  " + render_statement(m, st, with_source=True))
             return "\n".join(lines)
+        if cmd in ("šablony", "sablony", "jak-učit", "jak-ucit"):
+            return sablony.seznam()
+        if cmd in ("uč", "uc", "nauč", "nauc"):
+            parts2 = arg.split(None, 1)
+            if not parts2:
+                return sablony.seznam()
+            return sablony.apply(self, parts2[0], sablony._split_args(parts2[1]) if len(parts2) > 1 else [])
         if cmd in ("nápověda", "napoveda", "help", "?"):
             return self._help()
         return f"neznámý příkaz {cmd}\n" + self._help()
@@ -557,7 +587,7 @@ class Session:
     def _help() -> str:
         return (
             "příkazy: !zapomeň s0001 · !role v+Loc = kde · !synonymum kázat = hlásat · "
-            "!pravidlo jet(kam:X) => být(kde:X) · !výjimka létat pták tučňák · !srovnání vyšší = měřit co víc · !otevřené · "
+            "!pravidlo jet(kam:X) => být(kde:X) · !výjimka létat pták tučňák · !srovnání vyšší = měřit co víc · !šablony · !uč druh jezevčík pes · !otevřené · "
             "!odpověz o0001 kde · !program · !popiš Jirásek · !ulož p.json · !načti p.json · !graf g.json"
         )
 

@@ -262,3 +262,33 @@ def test_gapping_second_predication(s: Session) -> None:
     assert len(a.statements) == 2 and any("elipsa" in d for d in s.memory.statements[a.statements[1]].defaults)
     v = s.say("Kolik mléčných zubů má štěně?")
     assert v.verdict is not None and v.verdict.fillers[0][0] == "count:28"
+
+
+def test_templates_and_suggestions(s: Session) -> None:
+    """Šablony: !uč …; při NEVÍM systém sám nabídne předvyplněnou šablonu; ano/ne/jen tady."""
+    assert "!uč druh" in s.say("!šablony").text
+    assert "jezevčík ⊆ pes" in s.say("!uč druh jezevčík pes").text
+    s.say("Pes štěká.")
+    assert s.say("Štěká jezevčík?").verdict.value == "ANO"  # type: ignore[union-attr]
+    # návrh můstku
+    s.say("Petr jel v pondělí do Prahy.")
+    s.say("Praha je v Česku.")
+    a = s.say("Byl Petr v pondělí v Česku?")
+    assert a.verdict is not None and a.verdict.value == "NEVÍM" and "!uč pravidlo jet(kam:X) => být(kde:X)" in a.text
+    b = s.say("ano")
+    assert b.verdict is not None and b.verdict.value == "ANO" and "pravidlo r0001" in b.text
+    # návrh vyloučení a odmítnutí, které se pamatuje
+    s.say("Kůň je kopytník.")
+    c = s.say("Je kůň šelma?")
+    assert "!uč vyloučení kopytník šelma" in c.text
+    assert "nenabídnu" in s.say("ne").text
+    d = s.say("Je kůň šelma?")
+    assert d.verdict is not None and d.verdict.value == "NEVÍM" and "!uč vyloučení" not in d.text
+    assert "kopytník ∦ šelma" in s.say("!uč vyloučení kopytník šelma").text
+    assert s.say("Je kůň šelma?").verdict.value == "NE"  # type: ignore[union-attr]
+    # složený vztah šablonou + inverze
+    s.say("!uč složený tchán otec manžel manželka")
+    s.say("!uč inverze manžel manželka")
+    assert s.memory.learned["rel_defs"]["tchán"] == [["otec", "manžel"], ["otec", "manželka"]]
+    again = Session.replay(s.journal_json(), RecordedOracle(DATA))
+    assert again.memory.learned["rel_defs"] == s.memory.learned["rel_defs"]

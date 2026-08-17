@@ -127,7 +127,34 @@ def build(session: Session, *, title: str = "conbond5", autosave: Path | None = 
             canvas.terminal_write("dialog", f"[{nid}] {render_statement(m, m.statements[nid], with_source=True)}")
 
     canvas.open_terminal(konzole, on_input=on_input)
-    canvas.terminal_write("dialog", "conbond5: piš věty (zapíšu), otázky (odpovím), !nápověda pro příkazy.")
+    canvas.terminal_write("dialog", "conbond5: piš věty (zapíšu), otázky (odpovím), !nápověda pro příkazy; vztah vysvětlíš oknem „Vysvětlit vztah“ nebo !šablony.")
+
+    # okno „Vysvětlit vztah“: šablona = jedna operace jádra se sloty; parser do toho nemluví
+    from cb5 import sablony
+
+    okno = vb.ControlWindow("sablona", title="Vysvětlit vztah (šablona)")
+    okno.enum("sablona", "šablona", options=[(n, f"{n} — {s_.popis}") for n, s_ in sablony.SABLONY.items()], value="druh")
+    okno.string("a", "1. slot", maxlength=80)
+    okno.string("b", "2. slot", maxlength=80)
+    okno.string("c", "3. slot (volitelně)", maxlength=80)
+    okno.string("d", "4. slot (volitelně)", maxlength=80)
+
+    def on_submit(event: object) -> None:
+        values = getattr(event, "values", None) or {}
+        name = str(values.get("sablona", "druh"))
+        args = [str(values.get(k, "")).strip() for k in ("a", "b", "c", "d")]
+        args = [a for a in args if a]
+        line = f"!uč {name} " + " ".join(args)
+        canvas.terminal_write("dialog", f"» {line}")
+        try:
+            out = session.say(line).text
+        except Exception as exc:  # noqa: BLE001
+            out = f"✗ chyba: {exc}"
+        for l in out.splitlines():
+            canvas.terminal_write("dialog", l)
+        sync()
+
+    canvas.open_window(okno, on_submit=on_submit)
     sync()
     return canvas
 

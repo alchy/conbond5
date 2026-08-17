@@ -1,13 +1,13 @@
 {
  "format": "conbond5-memory/1",
  "counters": {
-  "e": 18,
+  "e": 20,
   "t": 9,
-  "z": 47,
-  "s": 60,
+  "z": 55,
+  "s": 79,
   "p": 3,
-  "g": 44,
-  "o": 13
+  "g": 56,
+  "o": 20
  },
  "nodes": [
   {
@@ -1843,6 +1843,324 @@
    "number": null,
    "doc": "dialog",
    "text": "Krabice je v koupelně.",
+   "rel": null
+  },
+  {
+   "id": "e0019",
+   "kind": "entity",
+   "lemma": "Motorola",
+   "names": [
+    "Motorola"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": "Masc",
+   "number": "Sing",
+   "doc": "dialog",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "z0048",
+   "kind": "sentence",
+   "lemma": "dialog#1",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Jindra má telefon Motorola.",
+   "rel": null
+  },
+  {
+   "id": "g0045",
+   "kind": "group",
+   "lemma": "telefon",
+   "names": [
+    "Telefon"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "common",
+   "rel": null
+  },
+  {
+   "id": "g0046",
+   "kind": "group",
+   "lemma": "zelený",
+   "names": [
+    "zelený"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "z0049",
+   "kind": "sentence",
+   "lemma": "dialog#2",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Telefon je zelený.",
+   "rel": null
+  },
+  {
+   "id": "g0047",
+   "kind": "group",
+   "lemma": "délka",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "common",
+   "rel": null
+  },
+  {
+   "id": "g0048",
+   "kind": "group",
+   "lemma": "cm",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "value",
+   "rel": null
+  },
+  {
+   "id": "z0050",
+   "kind": "sentence",
+   "lemma": "dialog#3",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Telefon má na délku 10 cm.",
+   "rel": null
+  },
+  {
+   "id": "g0049",
+   "kind": "group",
+   "lemma": "kapsa",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "common",
+   "rel": null
+  },
+  {
+   "id": "z0051",
+   "kind": "sentence",
+   "lemma": "dialog#4",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Jindra chce uložit telefon do kapsy.",
+   "rel": null
+  },
+  {
+   "id": "e0020",
+   "kind": "entity",
+   "lemma": "telefon",
+   "names": [],
+   "attrs": [],
+   "base": "g0045",
+   "time": null,
+   "gender": "Masc",
+   "number": "Sing",
+   "doc": "dialog",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "z0052",
+   "kind": "sentence",
+   "lemma": "dialog#5",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Kapsa je na délku 8 cm.",
+   "rel": null
+  },
+  {
+   "id": "g0050",
+   "kind": "group",
+   "lemma": "tvar",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "common",
+   "rel": null
+  },
+  {
+   "id": "g0051",
+   "kind": "group",
+   "lemma": "míra",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "common",
+   "rel": null
+  },
+  {
+   "id": "g0052",
+   "kind": "group",
+   "lemma": "podmět",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "common",
+   "rel": null
+  },
+  {
+   "id": "z0053",
+   "kind": "sentence",
+   "lemma": "dialog#6",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Vejít znamená, že ve tvaru podmět vejít podmět se vezmou míry( délka, šířka, hloubka) pro podmět 1 a srovnají s podmět 2.",
+   "rel": null
+  },
+  {
+   "id": "g0053",
+   "kind": "group",
+   "lemma": "velikost",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "common",
+   "rel": null
+  },
+  {
+   "id": "g0054",
+   "kind": "group",
+   "lemma": "malý",
+   "names": [
+    "menší"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "z0054",
+   "kind": "sentence",
+   "lemma": "dialog#7",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Vejít platí, pokud je velikost podmět 2 menší než velikost podmět 1, nebo pokud jsou míry shodné.",
+   "rel": null
+  },
+  {
+   "id": "g0055",
+   "kind": "group",
+   "lemma": "abstrakce",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "common",
+   "rel": null
+  },
+  {
+   "id": "g0056",
+   "kind": "group",
+   "lemma": "abstrakce",
+   "names": [],
+   "attrs": [
+    "velký"
+   ],
+   "base": "g0055",
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "common",
+   "rel": null
+  },
+  {
+   "id": "z0055",
+   "kind": "sentence",
+   "lemma": "dialog#8",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "To už je velká abstrakce...",
    "rel": null
   }
  ],
@@ -5140,6 +5458,1085 @@
    "sentence": "z0047",
    "tense": "Pres",
    "mood": "assert"
+  },
+  {
+   "id": "s0061",
+   "pred": "být",
+   "kind": "copula",
+   "neg": false,
+   "modality": null,
+   "kernel": "member",
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "e0019"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "g0045"
+     ],
+     "quant": "∃",
+     "authority": "structural",
+     "surface": "",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "titul „telefon“ před jménem = třída"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 1,
+    "text": "Jindra má telefon Motorola.",
+    "turn": 1,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0048",
+   "tense": null,
+   "mood": "assert"
+  },
+  {
+   "id": "s0062",
+   "pred": "mít",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "e0004"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "e0019"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "obj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 1,
+    "text": "Jindra má telefon Motorola.",
+    "turn": 1,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0048",
+   "tense": "Pres",
+   "mood": "assert"
+  },
+  {
+   "id": "s0063",
+   "pred": "být",
+   "kind": "copula",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0045"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "jaký",
+     "terms": [
+      "g0046"
+     ],
+     "quant": "∃",
+     "authority": "structural",
+     "surface": "cop",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "kdo:∀ generický prézens"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 2,
+    "text": "Telefon je zelený.",
+    "turn": 2,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0049",
+   "tense": "Pres",
+   "mood": "assert"
+  },
+  {
+   "id": "s0064",
+   "pred": "mít",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0045"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "na+Acc",
+     "terms": [
+      "g0047"
+     ],
+     "quant": "∃",
+     "authority": "surface",
+     "surface": "na+Acc",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "g0048"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "obj",
+     "nested": null,
+     "counts": {
+      "g0048": 10
+     },
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "kdo:∀ generický prézens"
+   ],
+   "residue": [],
+   "open": [
+    "o0014"
+   ],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 3,
+    "text": "Telefon má na délku 10 cm.",
+    "turn": 3,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0050",
+   "tense": "Pres",
+   "mood": "assert"
+  },
+  {
+   "id": "s0065",
+   "pred": "být",
+   "kind": "copula",
+   "neg": false,
+   "modality": null,
+   "kernel": "member",
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "e0020"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "g0045"
+     ],
+     "quant": "∃",
+     "authority": "structural",
+     "surface": "",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "instance: členství z neurčité zmínky"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 4,
+    "text": "Jindra chce uložit telefon do kapsy.",
+    "turn": 4,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0051",
+   "tense": null,
+   "mood": "assert"
+  },
+  {
+   "id": "s0066",
+   "pred": "uložit",
+   "kind": "verb",
+   "neg": false,
+   "modality": "vůle",
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "e0004"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "e0020"
+     ],
+     "quant": "∃",
+     "authority": "structural",
+     "surface": "obj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "do+Gen",
+     "terms": [
+      "g0049"
+     ],
+     "quant": "∃",
+     "authority": "surface",
+     "surface": "do+Gen",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "co: nová instance e0020 ∈ telefon (neurčitá zmínka)"
+   ],
+   "residue": [],
+   "open": [
+    "o0015"
+   ],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 4,
+    "text": "Jindra chce uložit telefon do kapsy.",
+    "turn": 4,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0051",
+   "tense": "Pres",
+   "mood": "assert"
+  },
+  {
+   "id": "s0067",
+   "pred": "být",
+   "kind": "copula",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0049"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "na+Acc",
+     "terms": [
+      "g0047"
+     ],
+     "quant": "∃",
+     "authority": "surface",
+     "surface": "na+Acc",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "obl",
+     "terms": [
+      "g0048"
+     ],
+     "quant": "·",
+     "authority": "surface",
+     "surface": "obl",
+     "nested": null,
+     "counts": {
+      "g0048": 8
+     },
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "kdo:∀ generický prézens"
+   ],
+   "residue": [],
+   "open": [
+    "o0016",
+    "o0017"
+   ],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 5,
+    "text": "Kapsa je na délku 8 cm.",
+    "turn": 5,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0052",
+   "tense": "Pres",
+   "mood": "assert"
+  },
+  {
+   "id": "s0068",
+   "pred": "znamenat",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "e0004"
+     ],
+     "quant": "·",
+     "authority": "prodrop",
+     "surface": "prodrop",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [],
+     "quant": null,
+     "authority": "structural",
+     "surface": "xcomp",
+     "nested": "s0069",
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [],
+     "quant": null,
+     "authority": "structural",
+     "surface": "ccomp",
+     "nested": "s0070",
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "kdo:pro-drop z kontextu",
+    "kdo: „nevyslovený podmět“ = Jindra (z aktivace)"
+   ],
+   "residue": [
+    [
+     "délka",
+     "ccomp>nsubj:pass>parataxis"
+    ],
+    [
+     "šířka",
+     "ccomp>nsubj:pass>parataxis>conj"
+    ],
+    [
+     "hloubka",
+     "ccomp>nsubj:pass>parataxis>conj"
+    ]
+   ],
+   "open": [
+    "o0018"
+   ],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 6,
+    "text": "Vejít znamená, že ve tvaru podmět vejít podmět se vezmou míry( délka, šířka, hloubka) pro podmět 1 a srovnají s podmět 2.",
+    "turn": 7,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0053",
+   "tense": "Pres",
+   "mood": "assert"
+  },
+  {
+   "id": "s0069",
+   "pred": "vejít",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [],
+   "grade": "said",
+   "defaults": [],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 6,
+    "text": "Vejít znamená, že ve tvaru podmět vejít podmět se vezmou míry( délka, šířka, hloubka) pro podmět 1 a srovnají s podmět 2.",
+    "turn": 7,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": "s0068",
+   "sentence": "z0053",
+   "tense": null,
+   "mood": "assert"
+  },
+  {
+   "id": "s0070",
+   "pred": "vzít",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kde",
+     "terms": [
+      "g0050"
+     ],
+     "quant": "∃",
+     "authority": "default",
+     "surface": "v+Loc",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "g0051"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj:pass",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "co:∀ generický prézens"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 6,
+    "text": "Vejít znamená, že ve tvaru podmět vejít podmět se vezmou míry( délka, šířka, hloubka) pro podmět 1 a srovnají s podmět 2.",
+    "turn": 7,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": "s0068",
+   "sentence": "z0053",
+   "tense": "Pres",
+   "mood": "assert"
+  },
+  {
+   "id": "s0071",
+   "pred": "nmod:Nom",
+   "kind": "nmod",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0050"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "head",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "g0052"
+     ],
+     "quant": "∃",
+     "authority": "surface",
+     "surface": "nmod:Nom",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 6,
+    "text": "Vejít znamená, že ve tvaru podmět vejít podmět se vezmou míry( délka, šířka, hloubka) pro podmět 1 a srovnají s podmět 2.",
+    "turn": 7,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0053",
+   "tense": null,
+   "mood": "assert"
+  },
+  {
+   "id": "s0072",
+   "pred": "vejít",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0050"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "acl",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "g0052"
+     ],
+     "quant": "∃",
+     "authority": "structural",
+     "surface": "obj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "acl: predikace o hlavě"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 6,
+    "text": "Vejít znamená, že ve tvaru podmět vejít podmět se vezmou míry( délka, šířka, hloubka) pro podmět 1 a srovnají s podmět 2.",
+    "turn": 7,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0053",
+   "tense": null,
+   "mood": "assert"
+  },
+  {
+   "id": "s0073",
+   "pred": "nmod:pro+Acc",
+   "kind": "nmod",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0051"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "head",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "g0052"
+     ],
+     "quant": "∃",
+     "authority": "surface",
+     "surface": "nmod:pro+Acc",
+     "nested": null,
+     "counts": {
+      "g0052": 1
+     },
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 6,
+    "text": "Vejít znamená, že ve tvaru podmět vejít podmět se vezmou míry( délka, šířka, hloubka) pro podmět 1 a srovnají s podmět 2.",
+    "turn": 7,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0053",
+   "tense": null,
+   "mood": "assert"
+  },
+  {
+   "id": "s0074",
+   "pred": "platit",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [],
+     "quant": null,
+     "authority": "structural",
+     "surface": "csubj",
+     "nested": "s0075",
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "advcl:pokud",
+     "terms": [],
+     "quant": null,
+     "authority": "surface",
+     "surface": "advcl:pokud",
+     "nested": "s0076",
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [],
+   "residue": [
+    [
+     "míry",
+     "advcl>conj>nsubj"
+    ],
+    [
+     "shodné",
+     "advcl>conj"
+    ]
+   ],
+   "open": [
+    "o0019",
+    "o0020"
+   ],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 7,
+    "text": "Vejít platí, pokud je velikost podmět 2 menší než velikost podmět 1, nebo pokud jsou míry shodné.",
+    "turn": 8,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0054",
+   "tense": "Pres",
+   "mood": "assert"
+  },
+  {
+   "id": "s0075",
+   "pred": "vejít",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [],
+   "grade": "said",
+   "defaults": [],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 7,
+    "text": "Vejít platí, pokud je velikost podmět 2 menší než velikost podmět 1, nebo pokud jsou míry shodné.",
+    "turn": 8,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": "s0074",
+   "sentence": "z0054",
+   "tense": null,
+   "mood": "assert"
+  },
+  {
+   "id": "s0076",
+   "pred": "srovnání",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0053"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "jaký",
+     "terms": [
+      "g0054"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "cop",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "než",
+     "terms": [
+      "g0053"
+     ],
+     "quant": "∃",
+     "authority": "structural",
+     "surface": "než",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "srovnání: komparativ + než",
+    "kdo:∀ generický prézens"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 7,
+    "text": "Vejít platí, pokud je velikost podmět 2 menší než velikost podmět 1, nebo pokud jsou míry shodné.",
+    "turn": 8,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": "s0074",
+   "sentence": "z0054",
+   "tense": "Pres",
+   "mood": "assert"
+  },
+  {
+   "id": "s0077",
+   "pred": "nmod:Nom",
+   "kind": "nmod",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0053"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "head",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "g0052"
+     ],
+     "quant": "∃",
+     "authority": "surface",
+     "surface": "nmod:Nom",
+     "nested": null,
+     "counts": {
+      "g0052": 2
+     },
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 7,
+    "text": "Vejít platí, pokud je velikost podmět 2 menší než velikost podmět 1, nebo pokud jsou míry shodné.",
+    "turn": 8,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0054",
+   "tense": null,
+   "mood": "assert"
+  },
+  {
+   "id": "s0078",
+   "pred": "nmod:Nom",
+   "kind": "nmod",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0053"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "head",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "g0052"
+     ],
+     "quant": "∃",
+     "authority": "surface",
+     "surface": "nmod:Nom",
+     "nested": null,
+     "counts": {
+      "g0052": 1
+     },
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 7,
+    "text": "Vejít platí, pokud je velikost podmět 2 menší než velikost podmět 1, nebo pokud jsou míry shodné.",
+    "turn": 8,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0054",
+   "tense": null,
+   "mood": "assert"
+  },
+  {
+   "id": "s0079",
+   "pred": "být",
+   "kind": "copula",
+   "neg": false,
+   "modality": null,
+   "kernel": "member",
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "e0004"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "g0056"
+     ],
+     "quant": "∃",
+     "authority": "structural",
+     "surface": "cop",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "kernel:member (určitý podmět)",
+    "kdo: „ten“ = Jindra (téma dokumentu)"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 8,
+    "text": "To už je velká abstrakce...",
+    "turn": 9,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0055",
+   "tense": "Pres",
+   "mood": "assert"
   }
  ],
  "open": [
@@ -5349,6 +6746,114 @@
     "komu"
    ],
    "answer": null
+  },
+  {
+   "id": "o0014",
+   "kind": "role_name",
+   "about": "na+Acc",
+   "question": "Co znamená role „na+Acc“ (na+Acc)? (kde, kdy, kudy, čím, …)",
+   "statement": "s0064",
+   "options": [
+    "kde",
+    "kdy",
+    "kam",
+    "odkud",
+    "kudy",
+    "čím",
+    "s_kým",
+    "komu"
+   ],
+   "answer": null
+  },
+  {
+   "id": "o0015",
+   "kind": "role_name",
+   "about": "do+Gen",
+   "question": "Co znamená role „do+Gen“ (do+Gen)? (kde, kdy, kudy, čím, …)",
+   "statement": "s0066",
+   "options": [
+    "kde",
+    "kdy",
+    "kam",
+    "odkud",
+    "kudy",
+    "čím",
+    "s_kým",
+    "komu"
+   ],
+   "answer": null
+  },
+  {
+   "id": "o0016",
+   "kind": "role_name",
+   "about": "na+Acc",
+   "question": "Co znamená role „na+Acc“ (na+Acc)? (kde, kdy, kudy, čím, …)",
+   "statement": "s0067",
+   "options": [
+    "kde",
+    "kdy",
+    "kam",
+    "odkud",
+    "kudy",
+    "čím",
+    "s_kým",
+    "komu"
+   ],
+   "answer": null
+  },
+  {
+   "id": "o0017",
+   "kind": "role_name",
+   "about": "obl",
+   "question": "Co znamená role „obl“ (obl)? (kde, kdy, kudy, čím, …)",
+   "statement": "s0067",
+   "options": [
+    "kde",
+    "kdy",
+    "kam",
+    "odkud",
+    "kudy",
+    "čím",
+    "s_kým",
+    "komu"
+   ],
+   "answer": null
+  },
+  {
+   "id": "o0018",
+   "kind": "residue",
+   "about": "„délka“, „šířka“, „hloubka“",
+   "question": "Do čtení se nedostalo: „délka“ (ccomp>nsubj:pass>parataxis), „šířka“ (ccomp>nsubj:pass>parataxis>conj), „hloubka“ (ccomp>nsubj:pass>parataxis>conj) — jakou roli to hraje?",
+   "statement": "s0068",
+   "options": [],
+   "answer": null
+  },
+  {
+   "id": "o0019",
+   "kind": "role_name",
+   "about": "advcl:pokud",
+   "question": "Co znamená role „advcl:pokud“ (advcl:pokud)? (kde, kdy, kudy, čím, …)",
+   "statement": "s0074",
+   "options": [
+    "kde",
+    "kdy",
+    "kam",
+    "odkud",
+    "kudy",
+    "čím",
+    "s_kým",
+    "komu"
+   ],
+   "answer": null
+  },
+  {
+   "id": "o0020",
+   "kind": "residue",
+   "about": "„míry“, „shodné“",
+   "question": "Do čtení se nedostalo: „míry“ (advcl>conj>nsubj), „shodné“ (advcl>conj) — jakou roli to hraje?",
+   "statement": "s0074",
+   "options": [],
+   "answer": null
   }
  ],
  "rules": [],
@@ -5426,6 +6931,26 @@
   [
    "e0003",
    "p0001",
+   1.0
+  ],
+  [
+   "e0004",
+   "e0019",
+   1.0
+  ],
+  [
+   "e0004",
+   "e0020",
+   1.0
+  ],
+  [
+   "e0004",
+   "g0049",
+   1.0
+  ],
+  [
+   "e0004",
+   "g0056",
    1.0
   ],
   [
@@ -5541,6 +7066,21 @@
   [
    "e0018",
    "g0037",
+   1.0
+  ],
+  [
+   "e0019",
+   "g0045",
+   1.0
+  ],
+  [
+   "e0020",
+   "g0045",
+   1.0
+  ],
+  [
+   "e0020",
+   "g0049",
    1.0
   ],
   [
@@ -5684,19 +7224,80 @@
    1.0
   ],
   [
+   "g0045",
+   "g0046",
+   1.0
+  ],
+  [
+   "g0045",
+   "g0047",
+   1.0
+  ],
+  [
+   "g0045",
+   "g0048",
+   1.0
+  ],
+  [
+   "g0047",
+   "g0048",
+   2.0
+  ],
+  [
+   "g0047",
+   "g0049",
+   1.0
+  ],
+  [
+   "g0048",
+   "g0049",
+   1.0
+  ],
+  [
+   "g0050",
+   "g0051",
+   1.0
+  ],
+  [
+   "g0050",
+   "g0052",
+   2.0
+  ],
+  [
+   "g0051",
+   "g0052",
+   1.0
+  ],
+  [
+   "g0052",
+   "g0053",
+   2.0
+  ],
+  [
+   "g0053",
+   "g0054",
+   1.0
+  ],
+  [
    "p0001",
    "t0004",
    1.0
   ]
  ],
  "activation": {
-  "e0001": 0.03751142399999999,
-  "g0038": 0.10886399999999999,
-  "g0039": 0.046655999999999996,
-  "g0040": 0.046655999999999996,
-  "g0042": 0.3744,
-  "g0043": 0.7535999999999999,
-  "g0044": 0.216,
-  "p0003": 0.010077695999999999
+  "e0004": 1.3091005439999999,
+  "e0019": 0.02519423999999999,
+  "e0020": 0.11663999999999997,
+  "g0045": 0.18871833599999993,
+  "g0046": 0.016796159999999997,
+  "g0047": 0.10575359999999998,
+  "g0048": 0.10575359999999998,
+  "g0049": 0.228096,
+  "g0050": 0.864,
+  "g0051": 0.5399999999999999,
+  "g0052": 1.3679999999999999,
+  "g0053": 1.9799999999999998,
+  "g0054": 0.36,
+  "g0056": 0.6
  }
 }

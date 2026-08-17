@@ -210,3 +210,8 @@ Sněžka měří 1603 metrů.
 Jak dlouhá je Vltava?
 Dospělý pes má 42 zubů, štěně 28 mléčných zubů.
 Kolik mléčných zubů má štěně?
+Kůň je kopytník.
+ano
+ne
+jen tady
+Je kůň šelma?

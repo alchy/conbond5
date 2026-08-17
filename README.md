@@ -120,6 +120,7 @@ volby (∀ z generického prézentu, podmět z aktivace, „platí o užší tř
 - **vztahová jména**: „Tchán je otec manžela nebo manželky.“ → řetěz `tchán = otec∘manžel | otec∘manželka`; „Kdo je tchán Jany Novákové?“ se rozvine přes inverze (manželka↔manžel, otec/matka↔syn/dcera) s důkazem; věta zůstává i faktem (týž tvar má „Foton je částice světla“)
 - **genitiv zužuje třídu**: `otec⟨Petr Novák⟩ ⊆ otec`, `příbuzný⟨pes[domácí]⟩ ⊆ příbuzný⟨pes⟩`
 - **meta‑otázky**: „Co dělá/umí X?“ (děje s X podmětem), „Co víš o X?“, „Jaké X znáš?“ (výčet s doložkou otevřeného světa), „Kdo je starší, A nebo B?“
+- **šablony místo volného dialogu**: `!šablony`, `!uč druh jezevčík pes`, `!uč složený tchán otec manžel manželka`, `!uč vyloučení kopytník šelma`… (ve viewBase okno „Vysvětlit vztah“); a **systém si o vysvětlení řekne sám**: při NEVÍM na tvou otázku nabídne jednu předvyplněnou šablonu s evidencí („vím: jet(kam: Praha); ptáš se na být(kde) — plyne z jednoho druhé?“) a čeká na `ano` / `ne` (odmítnutí si pamatuje) / `jen tady`
 - **hodnoty s jednotkou** („130 km/h“), díry na veličinu („Jak rychle / vysoká / dlouhá…?“) a **výchozí můstek** „veličina místa omezuje děj na něm“ (dialog A: „Jak rychle může jet automobil po dálnici?“ → nejvýše 130 km/h, přiznaně), věk („Kolik je Ronikovi let?“), elipsa přísudku („…, štěně 28 mléčných zubů“), obnova diakritiky z toho, co už četl (přiznaně), „nerozumím“ místo tichého fragmentu
 
 ## Meze v1 (řečené, ne mlčené)
