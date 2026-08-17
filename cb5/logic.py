@@ -490,11 +490,23 @@ class Evaluator:
                     if key not in seen:
                         seen.add(key)
                         fillers.append((key, narrowed))
-        # místo uvnitř výplně: „gymnázium v Broumově“ → nmod:v+Loc(gymnázium, Broumov)
-        if not fillers and hole.name in PLACE_FAMILY and hole.wh_kind == "filler":
+        # místo uvnitř výplně: „gymnázium v Broumově“ → nmod:v+Loc(gymnázium, Broumov);
+        # „strana Československa“ → zúžení group místem. Běží i tehdy, když sourozenecká
+        # role dala jen povrchové místo (radnice) — obojí se nabídne, s přiznáním.
+        weak_only = bool(fillers) and all(
+            pr.steps and pr.steps[-1].startswith("role „") and pr.steps[-1].split("„")[1].split("“")[0] in LOCATIVE_SURFACES
+            for _, pr in fillers
+        )
+        if (not fillers or weak_only) and hole.name in PLACE_FAMILY and hole.wh_kind == "filler":
             for f, p in matched:
                 for r in f.roles:
                     for t in r.terms:
+                        tn = m.nodes.get(t)
+                        if tn is not None and tn.rel and ":" in tn.rel:
+                            target = tn.rel.split(":", 1)[1]
+                            if self._kind(target) == "place" and target not in seen:
+                                seen.add(target)
+                                fillers.append((target, Proof(list(p.statements), list(p.steps) + [f"místo uvnitř: {m.label(t)}"], list(p.defaults), weakest(p.grade, "derived"))))
                         for st in m.statements_about(t):
                             if st.kind != "nmod" or st.status != "active":
                                 continue
@@ -507,7 +519,11 @@ class Evaluator:
                                     p2 = Proof(list(p.statements) + [st.id], list(p.steps) + [f"místo uvnitř: {m.label(t)} — {st.pred}"], list(p.defaults), weakest(p.grade, "derived"))
                                     fillers.append((pl, p2))
         if fillers:
-            fillers.sort(key=lambda x: (-GRADE_RANK[x[1].grade], len(x[1].statements)))
+            # u místa napřed skutečná místa, pak povrchové role; jinak podle stupně a délky důkazu
+            def rank(x: tuple[str, Proof]) -> tuple[int, int, int]:
+                is_place = 0 if (hole.name in PLACE_FAMILY and self._kind(x[0]) == "place") else 1
+                return (is_place, -GRADE_RANK[x[1].grade], len(x[1].statements))
+            fillers.sort(key=rank)
             return Verdict("ANO", [p for _, p in fillers], fillers=fillers, near=near)
         return Verdict("NEVÍM", missing=self._missing(q, near), near=near)
 

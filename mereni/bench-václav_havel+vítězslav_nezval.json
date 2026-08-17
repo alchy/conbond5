@@ -1,0 +1,1426 @@
+[
+ {
+  "doc": "václav_havel",
+  "sentences": 563,
+  "written": 563,
+  "with_role": 563,
+  "statements": 1837,
+  "residue_tokens": 459,
+  "tokens": 8252,
+  "open": 547,
+  "questions": 65,
+  "hits": 35,
+  "text_hits": 51,
+  "misses": {
+   "špatná výplň": 18,
+   "role/logika (blízký výrok je)": 9,
+   "bez výroku": 3
+  },
+  "results": [
+   {
+    "q": "Kde vyvedl Václav Havel?",
+    "expect": [
+     "Československo"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "ČSFR"
+    ],
+    "why": "špatná výplň",
+    "reading": "vyvést(kde:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy prosazoval Václav Havel?",
+    "expect": [
+     "roce 2004"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "prosazovat(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kde se narodil Václav Havel?",
+    "expect": [
+     "Praze"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "Praha"
+    ],
+    "why": "",
+    "reading": "narodit_se(kde:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy navštěvoval Václav Havel?",
+    "expect": [
+     "roce 1945"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "1957 – 1959",
+     "1966"
+    ],
+    "why": "špatná výplň",
+    "reading": "navštěvovat(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kde navštěvoval Václav Havel?",
+    "expect": [
+     "Československa"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "fakulta (divadelní) akademie umění (múzický)"
+    ],
+    "why": "špatná výplň",
+    "reading": "navštěvovat(kde:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy nastoupil Václav Havel?",
+    "expect": [
+     "roce 1951"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1951"
+    ],
+    "why": "",
+    "reading": "nastoupit(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy složil Václav Havel?",
+    "expect": [
+     "roku 1954"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1954"
+    ],
+    "why": "",
+    "reading": "složit(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy debutoval Václav Havel?",
+    "expect": [
+     "roce 1955"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1955"
+    ],
+    "why": "",
+    "reading": "debutovat(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy uveřejňoval Václav Havel?",
+    "expect": [
+     "roku 1969"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1969"
+    ],
+    "why": "",
+    "reading": "uveřejňovat(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kde uveřejňoval Václav Havel?",
+    "expect": [
+     "Československu"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "periodika"
+    ],
+    "why": "špatná výplň",
+    "reading": "uveřejňovat(kde:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy vystoupil Václav Havel?",
+    "expect": [
+     "roce 1956"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1956",
+     "10. 12. 1988"
+    ],
+    "why": "",
+    "reading": "vystoupit(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kde vystoupil Václav Havel?",
+    "expect": [
+     "Dobříši"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "USA",
+     "konference svaz spisovatel",
+     "manifestace (první) seskupení (opoziční)",
+     "zasedání (společný, zvláštní) komora kongres"
+    ],
+    "why": "špatná výplň",
+    "reading": "vystoupit(kde:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy pracoval Václav Havel?",
+    "expect": [
+     "letech 1957"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "20. století",
+     "1974"
+    ],
+    "why": "špatná výplň",
+    "reading": "pracovat(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy napsal Václav Havel?",
+    "expect": [
+     "Roku 1959"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "doba",
+     "1959",
+     "1966",
+     "2005",
+     "listopad"
+    ],
+    "why": "",
+    "reading": "napsat(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy studoval Václav Havel?",
+    "expect": [
+     "roku 1966"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1957 – 1959",
+     "1966"
+    ],
+    "why": "",
+    "reading": "studovat(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy se oženil Václav Havel?",
+    "expect": [
+     "9 . července 1964"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "9. 7. 1964"
+    ],
+    "why": "",
+    "reading": "oženit_se(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kde se oženil Václav Havel?",
+    "expect": [
+     "Praze"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Praha",
+     "radnice (žižkovský)"
+    ],
+    "why": "",
+    "reading": "oženit_se(kde:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy vydal Václav Havel?",
+    "expect": [
+     "Roku 1966"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "doba",
+     "1959",
+     "1966",
+     "2005",
+     "listopad"
+    ],
+    "why": "",
+    "reading": "vydat(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy se připojil Václav Havel?",
+    "expect": [
+     "1968"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "3/1968",
+     "2007",
+     "léta"
+    ],
+    "why": "",
+    "reading": "připojit_se(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy se zapojil Václav Havel?",
+    "expect": [
+     "1969"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "jaro",
+     "2/1969"
+    ],
+    "why": "",
+    "reading": "zapojit_se(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy podepsal Václav Havel?",
+    "expect": [
+     "roce 1972"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1972"
+    ],
+    "why": "",
+    "reading": "podepsat(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy pracoval Václav Havel?",
+    "expect": [
+     "Roku 1974"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "20. století",
+     "1974"
+    ],
+    "why": "",
+    "reading": "pracovat(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy strávil Václav Havel?",
+    "expect": [
+     "1977"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "5/1977",
+     "květen"
+    ],
+    "why": "",
+    "reading": "strávit(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy trpěl Václav Havel?",
+    "expect": [
+     "1982"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1982"
+    ],
+    "why": "",
+    "reading": "trpět(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy vykonával Václav Havel?",
+    "expect": [
+     "17 . května 1989"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "20. století",
+     "1974"
+    ],
+    "why": "špatná výplň",
+    "reading": "vykonávat(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kde vykonával Václav Havel?",
+    "expect": [
+     "Pankráci"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Pankrác",
+     "divadlo",
+     "divadlo ABC",
+     "divadlo (městský, pražský)"
+    ],
+    "why": "",
+    "reading": "vykonávat(kde:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy se zúčastnil Václav Havel?",
+    "expect": [
+     "19 . listopadu"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "1987",
+     "19. 11. 0"
+    ],
+    "why": "",
+    "reading": "zúčastnit_se(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy promluvil Václav Havel?",
+    "expect": [
+     "21 . listopadu"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "21. 11. 0"
+    ],
+    "why": "",
+    "reading": "promluvit(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kde promluvil Václav Havel?",
+    "expect": [
+     "Praze"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "promluvit(kde:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kde vystoupil Václav Havel?",
+    "expect": [
+     "USA"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "USA",
+     "konference svaz spisovatel",
+     "manifestace (první) seskupení (opoziční)",
+     "zasedání (společný, zvláštní) komora kongres"
+    ],
+    "why": "",
+    "reading": "vystoupit(kde:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy se navštívil Václav Havel?",
+    "expect": [
+     "1990"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "2/1990"
+    ],
+    "why": "",
+    "reading": "navštívit_se(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kde se podílel Václav Havel?",
+    "expect": [
+     "Evropy"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "vznik noviny (lidový, samizdatový)",
+     "navázání vztah"
+    ],
+    "why": "špatná výplň",
+    "reading": "podílet_se(kde:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy odstoupil Václav Havel?",
+    "expect": [
+     "17 . července 1992"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "17. 7. 1992"
+    ],
+    "why": "",
+    "reading": "odstoupit(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kde odstoupil Václav Havel?",
+    "expect": [
+     "Československa"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "odstoupit(kde:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy se oženil Václav Havel?",
+    "expect": [
+     "1989"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "9. 7. 1964"
+    ],
+    "why": "špatná výplň",
+    "reading": "oženit_se(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy obhájil Václav Havel?",
+    "expect": [
+     "20 . ledna 1998"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "20. 1. 1998"
+    ],
+    "why": "",
+    "reading": "obhájit(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy podporoval Václav Havel?",
+    "expect": [
+     "roce 1999"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "léta"
+    ],
+    "why": "špatná výplň",
+    "reading": "podporovat(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kde podporoval Václav Havel?",
+    "expect": [
+     "Jugoslávie"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "podporovat(kde:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy podporoval Václav Havel?",
+    "expect": [
+     "roku 2001"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "léta"
+    ],
+    "why": "špatná výplň",
+    "reading": "podporovat(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kde podporoval Václav Havel?",
+    "expect": [
+     "USA"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "podporovat(kde:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy podpořil Václav Havel?",
+    "expect": [
+     "roku 1997"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "podpořit(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy se opustil Václav Havel?",
+    "expect": [
+     "2 . února 2003"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "bez výroku",
+    "reading": "opustit(kdy:?, co:·Václav Havel)"
+   },
+   {
+    "q": "Kdy se založil Václav Havel?",
+    "expect": [
+     "26 . července 2004"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "bez výroku",
+    "reading": "založit(kdy:?, co:·Václav Havel)"
+   },
+   {
+    "q": "Kdy vyjádřil Václav Havel?",
+    "expect": [
+     "roce 2006"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "2006"
+    ],
+    "why": "",
+    "reading": "vyjádřit(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kde odpočíval Václav Havel?",
+    "expect": [
+     "Hrádečku"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Hrádeček"
+    ],
+    "why": "",
+    "reading": "odpočívat(kde:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kde se vystoupil Václav Havel?",
+    "expect": [
+     "Praze"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "USA",
+     "konference svaz spisovatel",
+     "manifestace (první) seskupení (opoziční)",
+     "zasedání (společný, zvláštní) komora kongres"
+    ],
+    "why": "špatná výplň",
+    "reading": "vystoupit_se(kde:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy zemřel Václav Havel?",
+    "expect": [
+     "18 . prosince 2011"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "18. 12. 2011",
+     "1979",
+     "neděle"
+    ],
+    "why": "",
+    "reading": "zemřít(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy obdržel Václav Havel?",
+    "expect": [
+     "24 . května 1997"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1968",
+     "24. 5. 1997",
+     "19. 4. 2010"
+    ],
+    "why": "",
+    "reading": "obdržet(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy obdržel Václav Havel?",
+    "expect": [
+     "19 . dubna 2010"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1968",
+     "24. 5. 1997",
+     "19. 4. 2010"
+    ],
+    "why": "",
+    "reading": "obdržet(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kde obdržel Václav Havel?",
+    "expect": [
+     "Trutnova"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "hrad (pražský)",
+     "nemocnice (pražský)"
+    ],
+    "why": "špatná výplň",
+    "reading": "obdržet(kde:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy daroval Václav Havel?",
+    "expect": [
+     "letech 1986"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1986 – 1997",
+     "1996"
+    ],
+    "why": "",
+    "reading": "darovat(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy se publikoval Václav Havel?",
+    "expect": [
+     "roce 2005"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "bez výroku",
+    "reading": "publikovat(kdy:?, co:·Václav Havel)"
+   },
+   {
+    "q": "Kde získal Václav Havel?",
+    "expect": [
+     "Zlíně"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "hrad (pražský)",
+     "nemocnice (pražský)"
+    ],
+    "why": "špatná výplň",
+    "reading": "získat(kde:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy prodal Václav Havel?",
+    "expect": [
+     "roce 1993"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1993",
+     "1997",
+     "2005"
+    ],
+    "why": "",
+    "reading": "prodat(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy daroval Václav Havel?",
+    "expect": [
+     "roce 1996"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1986 – 1997",
+     "1996"
+    ],
+    "why": "",
+    "reading": "darovat(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kde daroval Václav Havel?",
+    "expect": [
+     "Zlín"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "podmínka využití"
+    ],
+    "why": "špatná výplň",
+    "reading": "darovat(kde:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy prodal Václav Havel?",
+    "expect": [
+     "roce 1997"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1993",
+     "1997",
+     "2005"
+    ],
+    "why": "",
+    "reading": "prodat(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy pořídil Václav Havel?",
+    "expect": [
+     "roce 2000"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "2000"
+    ],
+    "why": "",
+    "reading": "pořídit(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kde pořídil Václav Havel?",
+    "expect": [
+     "Albufeira"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "pořídit(kde:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy se vrátil Václav Havel?",
+    "expect": [
+     "roce 1993"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1993"
+    ],
+    "why": "",
+    "reading": "vrátit_se(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kde získal Václav Havel?",
+    "expect": [
+     "Bulovce"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "hrad (pražský)",
+     "nemocnice (pražský)"
+    ],
+    "why": "špatná výplň",
+    "reading": "získat(kde:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kde zdůvodnil Václav Havel?",
+    "expect": [
+     "Rusku"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Mnichov"
+    ],
+    "why": "špatná výplň",
+    "reading": "zdůvodnit(kde:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kdy podpořil Václav Havel?",
+    "expect": [
+     "roce 2003"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "podpořit(kdy:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kde podpořil Václav Havel?",
+    "expect": [
+     "Iráku"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "podpořit(kde:?, kdo:·Václav Havel)"
+   },
+   {
+    "q": "Kde podepsal Václav Havel?",
+    "expect": [
+     "Francie"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "reakce"
+    ],
+    "why": "špatná výplň",
+    "reading": "podepsat(kde:?, kdo:·Václav Havel)"
+   }
+  ],
+  "t_ingest": 0.3,
+  "t_ask": 0.3
+ },
+ {
+  "doc": "vítězslav_nezval",
+  "sentences": 320,
+  "written": 320,
+  "with_role": 318,
+  "statements": 843,
+  "residue_tokens": 387,
+  "tokens": 3322,
+  "open": 228,
+  "questions": 26,
+  "hits": 16,
+  "text_hits": 23,
+  "misses": {
+   "špatná výplň": 2,
+   "role/logika (blízký výrok je)": 6,
+   "bez výroku": 2
+  },
+  "results": [
+   {
+    "q": "Kdy bydlel Vítězslav Nezval?",
+    "expect": [
+     "roku 1903"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1903"
+    ],
+    "why": "",
+    "reading": "bydlet(kdy:?, kdo:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kde bydlel Vítězslav Nezval?",
+    "expect": [
+     "Šemíkovicích"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Šemíkovice"
+    ],
+    "why": "",
+    "reading": "bydlet(kde:?, kdo:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kdy studoval Vítězslav Nezval?",
+    "expect": [
+     "roku 1911"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1911"
+    ],
+    "why": "",
+    "reading": "studovat(kdy:?, kdo:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kde studoval Vítězslav Nezval?",
+    "expect": [
+     "Třebíči"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "Šemíkovice"
+    ],
+    "why": "špatná výplň",
+    "reading": "studovat(kde:?, kdo:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kde studoval Vítězslav Nezval?",
+    "expect": [
+     "Brně"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "Šemíkovice"
+    ],
+    "why": "špatná výplň",
+    "reading": "studovat(kde:?, kdo:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kde si oblíbil Vítězslav Nezval?",
+    "expect": [
+     "Brno"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "oblíbit_si(kde:?, kdo:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kde jezdil Vítězslav Nezval?",
+    "expect": [
+     "Žabovřesk"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Žabovřesky"
+    ],
+    "why": "",
+    "reading": "jezdit(kde:?, kdo:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kdy se vstoupil Vítězslav Nezval?",
+    "expect": [
+     "Roku 1922"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "bez výroku",
+    "reading": "vstoupit(kdy:?, co:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kdy vstoupil Vítězslav Nezval?",
+    "expect": [
+     "Roku 1924"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1922",
+     "1924"
+    ],
+    "why": "",
+    "reading": "vstoupit(kdy:?, kdo:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kdy se seznámil Vítězslav Nezval?",
+    "expect": [
+     "roku 1938"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "seznámit_se(kdy:?, kdo:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kde se seznámil Vítězslav Nezval?",
+    "expect": [
+     "ČSR"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "seznámit_se(kde:?, kdo:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kdy vstoupil Vítězslav Nezval?",
+    "expect": [
+     "roce 1924"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1922",
+     "1924"
+    ],
+    "why": "",
+    "reading": "vstoupit(kdy:?, kdo:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kde vstoupil Vítězslav Nezval?",
+    "expect": [
+     "Československa"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Československo"
+    ],
+    "why": "",
+    "reading": "vstoupit(kde:?, kdo:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kdy podepsal Vítězslav Nezval?",
+    "expect": [
+     "roce 1946"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1946",
+     "1948"
+    ],
+    "why": "",
+    "reading": "podepsat(kdy:?, kdo:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kdy podepsal Vítězslav Nezval?",
+    "expect": [
+     "roce 1948"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1946",
+     "1948"
+    ],
+    "why": "",
+    "reading": "podepsat(kdy:?, kdo:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kdy se oženil Vítězslav Nezval?",
+    "expect": [
+     "roce 1948"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1948"
+    ],
+    "why": "",
+    "reading": "oženit_se(kdy:?, kdo:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kdy měl Vítězslav Nezval?",
+    "expect": [
+     "roku 1937"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "1937"
+    ],
+    "why": "",
+    "reading": "mít(kdy:?, kdo:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kdy se poznal Vítězslav Nezval?",
+    "expect": [
+     "Roku 1952"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "bez výroku",
+    "reading": "poznat(kdy:?, co:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kdy onemocněl Vítězslav Nezval?",
+    "expect": [
+     "roku 1950"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "onemocnět(kdy:?, kdo:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kdy podnikl Vítězslav Nezval?",
+    "expect": [
+     "1958"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "3/1958"
+    ],
+    "why": "",
+    "reading": "podniknout(kdy:?, kdo:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kde podnikl Vítězslav Nezval?",
+    "expect": [
+     "Itálie"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "podniknout(kde:?, kdo:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kdy zemřel Vítězslav Nezval?",
+    "expect": [
+     "6 . dubna 1958"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "6. 4. 1958"
+    ],
+    "why": "",
+    "reading": "zemřít(kdy:?, kdo:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kde zemřel Vítězslav Nezval?",
+    "expect": [
+     "Praze"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "Praha"
+    ],
+    "why": "",
+    "reading": "zemřít(kde:?, kdo:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kdy vydal Vítězslav Nezval?",
+    "expect": [
+     "letech 1935"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "doba",
+     "1929",
+     "1935"
+    ],
+    "why": "",
+    "reading": "vydat(kdy:?, kdo:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kdy se ohlíží Vítězslav Nezval?",
+    "expect": [
+     "1935"
+    ],
+    "sada": "otazky",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "ohlížet_se(kdy:?, kdo:·Vítězslav Nezval)"
+   },
+   {
+    "q": "Kde se ohlíží Vítězslav Nezval?",
+    "expect": [
+     "Paříži"
+    ],
+    "sada": "otazky",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Paříž",
+     "iniciace"
+    ],
+    "why": "",
+    "reading": "ohlížet_se(kde:?, kdo:·Vítězslav Nezval)"
+   }
+  ],
+  "t_ingest": 0.1,
+  "t_ask": 0.1
+ }
+]

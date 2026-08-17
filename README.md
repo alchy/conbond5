@@ -90,23 +90,28 @@ python3.11 -m venv .venv && .venv/bin/pip install -e ".[dev]"
 ## Měření (17. 8. 2026, `mereni/bench-vse.md`)
 
 `python -m cb5.bench` klonuje conBond2 do `data/corpus/`, každý dokument
-vloží do čerstvé paměti a položí k němu zlaté otázky (682 automaticky
-generovaných kde/kdy z `otazky.json` + 40 z `etalon.json`, k dokumentům
-se sadou). Rozbory se kešují, druhý běh trvá vteřiny.
+vloží do čerstvé paměti a položí k němu zlaté otázky. **Sady se hlásí
+zvlášť a nesčítají**: `etalon.json` a `conbond.json` jsou psané ručně
+(smysluplné otázky — hlavní metrika); `otazky.json` (682) si conBond2
+vygeneroval šablonou „Kdy/Kde + sloveso + jméno“ a jsou často
+kostrbaté až nesmyslné („Kdy trávil Arnošt Lustig?“) — slouží jen jako
+hrubá proxy „dostal se fakt z věty do paměti“. Rozbory se kešují, druhý
+běh trvá vteřiny; bible z ručních sad v korpusu není (vypíše se).
 
 | | conbond4 (16. 8.) | conbond5 v1 (17. 8.) |
 |---|---|---|
 | korpus conbond4 (238 vět): zapsáno | 8 | **233 s rolí**, zbytek 5,6 % tokenů |
-| korpus conBond2 (66 dok., 13 899 vět): zapsáno | — | **13 899** (46 256 výroků, zbytek 8,6 % tokenů, 11 839 otevřených položek) |
-| zlaté otázky (722): správná výplň | 0 | **440 (60,9 %)** |
-| zlaté otázky: správná odpověď aspoň v „vím: …“ | 0 | 610 (84 %) |
-| rozklad chyb | — | role/logika 134 · špatná výplň 100 · bez výroku 45 · predikát chybí 3 |
+| korpus conBond2 (73 dok., 14 354 vět): zapsáno | — | **14 354** (40 590 výroků, zbytek 8,6 % tokenů, 12 063 otevřených položek) |
+| **ručně psané otázky (70): správná výplň** | 0 | **44 (63 %)** — etalon 17/32, conbond 27/38; 55 má odpověď aspoň v „vím: …“ |
+| generované otázky (682): správná výplň | 0 | 421 (62 %); 577 v textu odpovědi |
+| rozklad chyb (všech 752) | — | role/logika 117 · špatná výplň 115 · bez výroku 46 · entita neznámá 7 · predikát chybí 2 |
 | dialogy A–F ze zadání conbond4 | — | zelené (`tests/test_dialogues_af.py`) |
 | „Bydlí Petr v Brně?“ po „Petr bydlí v Praze.“ | ANO (nepravda) | NEVÍM + „vím: bydlí v Praze“ |
 
-Čas: celý korpus (13 899 vět) se z keše vloží za ~10 s a 722 otázek se
-zodpoví za ~4 s. Poctivost zůstává: každá odpověď cituje větu a přiznává
-výchozí volby (∀ z generického prézentu, podmět z aktivace…).
+Čas: celý korpus se z keše vloží za ~10 s a 752 otázek se zodpoví za
+~4 s. Poctivost zůstává: každá odpověď cituje větu a přiznává výchozí
+volby (∀ z generického prézentu, podmět z aktivace, „platí o užší třídě“,
+„role kam — ptal ses kde“…).
 
 ## Meze v1 (řečené, ne mlčené)
 

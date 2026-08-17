@@ -775,6 +775,8 @@ class _Reader:
                     # třídu (péče⟨majitel⟩ ⊆ péče); paměť z toho dělá zúženou group
                     rel = ("Gen", self._term(c))
                     consumed.append(c.index)
+                    for cc in self.kids(c.index, "conj"):
+                        self._pending_secondary.append((t, cc))  # „péče a pozornosti“ — druhý člen jako výrok vedle
                     continue
                 self._pending_secondary.append((t, c))
             elif d == "advmod" and c.lemma in D.PARTICLES:
@@ -1094,7 +1096,14 @@ class Reader(_Reader):
         if is_time_noun(head.lemma):
             kind = "time"
         attrs = tuple(c.lemma for c in self.p.children(head.index) if c.base_deprel == "amod" and c.feat("Poss") != "Yes" and not (c.feat("VerbForm") == "Part" and self.kids(c.index, "obl", "obj", "nsubj", "advmod", "nmod")))
-        return TermSpec(head.index, head.lemma, tuple(forms), head.upos, kind, attrs=attrs, quant="·", quant_authority="structural", tokens=(head.index,), name_tokens=(head.index,) + tuple(f.index for f in flats), name_lemmas=lemmas, gender=head.feat("Gender"), number=head.feat("Number"))
+        # totéž zúžení genitivem jako v `_term`, aby hlava vedlejšího výroku byl TÝŽ uzel
+        rel: tuple[str, TermSpec] | None = None
+        for c in self.p.children(head.index):
+            if (c.base_deprel == "nmod" and head.upos in ("NOUN", "ADJ") and c.upos in ("PROPN", "NOUN") and c.feat("Case") == "Gen"
+                    and not self.case_of(c.index)):
+                rel = ("Gen", self._head_term(c))
+                break
+        return TermSpec(head.index, head.lemma, tuple(forms), head.upos, kind, attrs=attrs, rel=rel, quant="·", quant_authority="structural", tokens=(head.index,), name_tokens=(head.index,) + tuple(f.index for f in flats), name_lemmas=lemmas, gender=head.feat("Gender"), number=head.feat("Number"))
 
     def _secondary_from(self, head: Token, dep: Token, main: Predication) -> list[Predication]:
         d = dep.base_deprel
@@ -1106,12 +1115,15 @@ class Reader(_Reader):
                 out.append(self._verb_or_cop(dep))
                 self.mark(dep.index, "secondary")
             return out
-        if d == "nmod":
+        if d in ("nmod", "conj"):
+            # `conj` sem přijde jen jako sourozenec genitivního zúžení („péče a pozornosti“)
             # životopisná závorka: `Jirásek (23. srpna 1851 Hronov – 12. března 1930 Praha)`
-            if head.upos == "PROPN":
+            if head.upos == "PROPN" and d == "nmod":
                 bio = self._bio_parenthesis(head)
                 if bio:
                     return bio
+            for cc in self.kids(dep.index, "cc"):
+                self.mark(cc.index, "particle")
             prep = self.case_of(dep.index)
             case = dep.feat("Case") or ""
             surface = f"nmod:{prep}+{case}" if prep else f"nmod:{case}"
