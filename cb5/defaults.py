@@ -118,7 +118,8 @@ WH: dict[str, tuple[str, str]] = {
 PLACE_NOUNS = frozenset(
     {"město", "vesnice", "ves", "obec", "země", "stát", "říše", "království", "kraj",
      "oblast", "region", "provincie", "okres", "čtvrť", "ulice", "náměstí", "řeka",
-     "hora", "pohoří", "ostrov", "moře", "oceán", "jezero", "les", "pole", "louka",
+     "hora", "pohoří", "ostrov", "moře", "oceán", "jezero", "rybník", "les", "pole", "louka",
+     "údolí", "sopka", "kopec", "vrch", "poloostrov", "záliv", "pobřeží", "břeh", "pramen",
      "škola", "gymnázium", "univerzita", "fakulta", "akademie", "ústav", "institut",
      "kavárna", "hospoda", "dům", "byt", "vila", "zámek", "hrad", "klášter", "kostel",
      "divadlo", "nemocnice", "továrna", "závod", "podnik", "kancelář", "redakce",
@@ -127,6 +128,9 @@ PLACE_NOUNS = frozenset(
      "emigrace", "zahraničí", "venkov", "centrum", "střed", "okraj", "sever", "jih",
      "východ", "západ", "Evropa", "Amerika", "Asie", "Afrika"}
 )
+
+#: Povrchové role s místní předložkou — na „kde“ odpovídají s přiznáním.
+LOCATIVE_SURFACES = frozenset({"u+Gen", "v+Loc", "na+Loc", "před+Ins", "za+Ins", "mezi+Ins", "nad+Ins", "pod+Ins", "vedle+Gen", "kolem+Gen", "okolo+Gen", "poblíž+Gen", "blízko+Gen", "uvnitř+Gen", "při+Loc"})
 
 #: Předložky, po nichž je PROPN skoro jistě místo (i bez NameType).
 PLACE_PREPS = frozenset({"v", "do", "z", "u", "na", "k", "od", "přes", "po", "za", "mezi", "nad", "pod", "vedle", "před", "kolem", "okolo"})

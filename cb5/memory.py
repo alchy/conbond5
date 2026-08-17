@@ -50,15 +50,20 @@ class Node:
     number: str | None = None
     doc: str = ""
     text: str = ""
+    #: Zúžení group vztahem: „Gen:e0003“ (otec Petra Nováka).
+    rel: str | None = None
 
     def label(self) -> str:
         if self.kind == "time" and self.time is not None:
             return self.time.label
         if self.kind in ("entity", "place") and self.names:
             return self.names[0]
+        out = self.lemma or self.text or self.id
         if self.attrs:
-            return f"{self.lemma}[{','.join(self.attrs)}]"
-        return self.lemma or self.text or self.id
+            out = f"{self.lemma}[{','.join(self.attrs)}]"
+        if self.rel:
+            out += f"⟨{self.rel.split(':', 1)[1]}⟩"
+        return out
 
     def to_json(self) -> dict[str, Any]:
         d = asdict(self)
@@ -79,7 +84,7 @@ class Node:
             id=str(d["id"]), kind=str(d["kind"]), lemma=str(d.get("lemma", "")),
             names=list(d.get("names", [])), attrs=list(d.get("attrs", [])),  # type: ignore[call-overload]
             base=d.get("base"), time=time, gender=d.get("gender"), number=d.get("number"),  # type: ignore[arg-type]
-            doc=str(d.get("doc", "")), text=str(d.get("text", "")),
+            doc=str(d.get("doc", "")), text=str(d.get("text", "")), rel=d.get("rel"),
         )
 
 
@@ -282,17 +287,25 @@ class Memory:
         names = [" ".join(name_lemmas)] + [f for f in forms if f]
         return self.new_node(kind, " ".join(name_lemmas), names=names, gender=gender, number=number, doc=doc), True
 
-    def ensure_group(self, lemma: str, attrs: Sequence[str] = ()) -> Node:
-        key = (lemma, tuple(sorted(set(attrs))))
+    def ensure_group(self, lemma: str, attrs: Sequence[str] = (), rel: str | None = None) -> Node:
+        """Group podle lemmatu, případně zúžená přívlastky (`mazlíček[domácí]`)
+        a/nebo vztahem k uzlu (`otec⟨e0003⟩`); zúžená group má `base` = širší
+        (nejdřív bez vztahu, pak bez přívlastků) → `subset` strukturálně."""
+        key = (lemma, tuple(sorted(set(attrs))) + ((f"rel={rel}",) if rel else ()))
         if key in self._groups:
             return self.nodes[self._groups[key]]
-        base = self.ensure_group(lemma).id if attrs else None
+        base: str | None = None
+        if rel:
+            base = self.ensure_group(lemma, attrs).id
+        elif attrs:
+            base = self.ensure_group(lemma).id
         node = self.new_node("group", lemma, attrs=attrs, base=base)
+        node.rel = rel
         self._groups[key] = node.id
         return node
 
-    def find_group(self, lemma: str, attrs: Sequence[str] = ()) -> Node | None:
-        key = (lemma, tuple(sorted(set(attrs))))
+    def find_group(self, lemma: str, attrs: Sequence[str] = (), rel: str | None = None) -> Node | None:
+        key = (lemma, tuple(sorted(set(attrs))) + ((f"rel={rel}",) if rel else ()))
         return self.nodes.get(self._groups.get(key, ""))
 
     def ensure_place(self, name_lemmas: Sequence[str], forms: Sequence[str] = ()) -> Node:
@@ -317,6 +330,19 @@ class Memory:
 
     def node(self, node_id: str) -> Node:
         return self.nodes[node_id]
+
+    def label(self, node_id: str) -> str:
+        """Popiska uzlu s rozřešeným zúžením: `otec⟨Petr Novák⟩` místo `otec⟨e0003⟩`."""
+        n = self.nodes.get(node_id)
+        if n is None:
+            return node_id
+        if n.kind == "entity" and not n.names and n.base:
+            return self.label(n.base)
+        out = n.label()
+        if n.rel and ":" in n.rel:
+            surface, target = n.rel.split(":", 1)
+            out = out.replace(f"⟨{target}⟩", f"⟨{self.label(target)}⟩")
+        return out
 
     # ---- výroky ---------------------------------------------------------------
 
@@ -687,7 +713,7 @@ class Memory:
             n = Node.from_json(nd)
             m.nodes[n.id] = n
             if n.kind == "group":
-                m._groups[(n.lemma, tuple(n.attrs))] = n.id
+                m._groups[(n.lemma, tuple(n.attrs) + ((f"rel={n.rel}",) if n.rel else ()))] = n.id
             if n.kind == "time" and n.time:
                 m._times[(n.time.kind, n.time.label, n.time.start, n.time.end)] = n.id
         for sd in d.get("statements", []):  # type: ignore[union-attr]

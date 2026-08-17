@@ -20,7 +20,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Literal
 
-from cb5.defaults import PLACE_NOUNS, synonym_class
+from cb5.defaults import LOCATIVE_SURFACES, PLACE_NOUNS, synonym_class
 from cb5.memory import Memory, Role, Statement
 
 Grade = Literal["said", "read", "derived"]
@@ -79,6 +79,7 @@ def _same_pred(a: str | None, b: str | None, learned: dict[str, str] | None = No
 
 PLACE_FAMILY = ("kde", "kam", "odkud", "kudy")
 TIME_FAMILY = ("kdy", "od_kdy", "do_kdy", "po_kdy", "před_kdy", "jak_dlouho")
+PERSON_FAMILY = ("s_kým", "co", "komu", "kdo")
 
 
 class Evaluator:
@@ -106,36 +107,36 @@ class Evaluator:
             return Proof()
         same = m.same_as_star(q, f)
         if same is not None:
-            return Proof(same, [f"{m.node(q).label()} = {m.node(f).label()}"])
+            return Proof(same, [f"{m.label(q)} = {m.label(f)}"])
         qk, fk = self._kind(q), self._kind(f)
         # místa: kde/kam/odkud dotazu obsahuje místo výroku
         if qk == "place" and fk == "place":
             w = m.within_star(f, q)
             if w is not None:
-                return Proof(w, [f"{m.node(f).label()} ⊆ {m.node(q).label()} (místo)"], grade="derived")
+                return Proof(w, [f"{m.label(f)} ⊆ {m.label(q)} (místo)"], grade="derived")
             return None
         if qk == "time" and fk == "time":
             if m.time_within(f, q):
-                return Proof([], [f"{m.node(f).label()} je v {m.node(q).label()}"])
+                return Proof([], [f"{m.label(f)} je v {m.label(q)}"])
             return None
         # entita / instance dotazu × group výroku
         if qk in ("entity", "place") and fk == "group":
             if fquant == "∀":
                 mem = m.member_star(q, f)
                 if mem is not None:
-                    return Proof(mem, [f"{m.node(q).label()} ∈ {m.node(f).label()} (∀ se přenáší dolů)"], grade="derived")
+                    return Proof(mem, [f"{m.label(q)} ∈ {m.label(f)} (∀ se přenáší dolů)"], grade="derived")
             return None
         # group dotazu × group výroku
         if qk == "group" and fk == "group":
             if fquant == "∀":
                 sub = m.subset_star(q, f)
                 if sub is not None:
-                    return Proof(sub, [f"{m.node(q).label()} ⊆ {m.node(f).label()} (∀ se přenáší dolů)"], grade="derived" if sub else "read")
+                    return Proof(sub, [f"{m.label(q)} ⊆ {m.label(f)} (∀ se přenáší dolů)"], grade="derived" if sub else "read")
                 return None
             # ∃ / · výrok: dotaz sedí, když je výrok stejně nebo víc konkrétní
             sub = m.subset_star(f, q)
             if sub is not None and qquant != "∀":
-                return Proof(sub, [f"{m.node(f).label()} ⊆ {m.node(q).label()}"] if sub else [], grade="derived" if sub else "read")
+                return Proof(sub, [f"{m.label(f)} ⊆ {m.label(q)}"] if sub else [], grade="derived" if sub else "read")
             return None
         # group dotazu × instance výroku („Napsal román?“ × r1 ∈ román)
         if qk == "group" and fk in ("entity", "place"):
@@ -143,7 +144,7 @@ class Evaluator:
                 return None
             mem = m.member_star(f, q)
             if mem is not None:
-                return Proof(mem, [f"{m.node(f).label()} ∈ {m.node(q).label()}"], grade="derived")
+                return Proof(mem, [f"{m.label(f)} ∈ {m.label(q)}"], grade="derived")
             return None
         return None
 
@@ -219,12 +220,12 @@ class Evaluator:
                 if q.kernel == "within" or (q.kernel is None and self._kind(o) == "place" and q.role("kde") is not None):
                     w = m.within_star(s, o)
                     if w is not None:
-                        proofs.append(Proof(w, [f"{m.node(s).label()} ⊆ {m.node(o).label()}"], grade=self._grade_of(w)))
+                        proofs.append(Proof(w, [f"{m.label(s)} ⊆ {m.label(o)}"], grade=self._grade_of(w)))
                     continue
                 if sk in ("entity", "place"):
                     mem = m.member_star(s, o)
                     if mem is not None:
-                        proofs.append(Proof(mem, [f"{m.node(s).label()} ∈ {m.node(o).label()}"], grade=self._grade_of(mem)))
+                        proofs.append(Proof(mem, [f"{m.label(s)} ∈ {m.label(o)}"], grade=self._grade_of(mem)))
                         continue
                     # disjunktnost: s ∈ H, H ∦ o
                     for st in m.active():
@@ -233,15 +234,15 @@ class Evaluator:
                             for h in (st_co.terms if st_co else []):
                                 d = m.disjoint(h, o)
                                 if d is not None:
-                                    counter.append(Proof([st.id, d], [f"{m.node(s).label()} ∈ {m.node(h).label()}", f"{m.node(h).label()} ∦ {m.node(o).label()}"], grade="derived"))
+                                    counter.append(Proof([st.id, d], [f"{m.label(s)} ∈ {m.label(h)}", f"{m.label(h)} ∦ {m.label(o)}"], grade="derived"))
                 elif sk == "group":
                     sub = m.subset_star(s, o)
                     if sub is not None:
-                        proofs.append(Proof(sub, [f"{m.node(s).label()} ⊆ {m.node(o).label()}"], grade=self._grade_of(sub)))
+                        proofs.append(Proof(sub, [f"{m.label(s)} ⊆ {m.label(o)}"], grade=self._grade_of(sub)))
                         continue
                     d = m.disjoint(s, o)
                     if d is not None:
-                        counter.append(Proof([d], [f"{m.node(s).label()} ∦ {m.node(o).label()}"], grade="derived"))
+                        counter.append(Proof([d], [f"{m.label(s)} ∦ {m.label(o)}"], grade="derived"))
         if proofs and counter:
             return Verdict("KONFLIKT", proofs, counter)
         if proofs:
@@ -290,6 +291,18 @@ class Evaluator:
                 modal.append(p)
                 continue
             (neg if f.neg else pos).append(p)
+        # užší shoda (otázka o třídě, výrok o její ∀‑podtřídě): ANO s přiznáním
+        if not pos and not neg:
+            for f in candidates:
+                if f.neg or f.mood == "question":
+                    continue
+                p = self._match_narrower(q, f)
+                if p is not None and "__count_mismatch__" not in p.defaults:
+                    if q.modality is None and f.modality in ("možnost", "vůle", "fáze"):
+                        p.steps.append(f"výrok je jen {f.modality}")
+                        modal.append(p)
+                    else:
+                        pos.append(p)
         # pravidla (můstky)
         if depth == 0:
             for rule in m.rules:
@@ -314,6 +327,35 @@ class Evaluator:
             return Verdict("MOŽNÁ", modal, near=near)
         return Verdict("NEVÍM", missing=self._missing(q, near), near=near)
 
+    def _match_narrower(self, q: Statement, f: Statement) -> Proof | None:
+        """Shoda, kde term dotazu je ŠIRŠÍ třída než ∀‑term výroku (kočka × kočka[dospělý]).
+        Odpověď pak platí jen o té užší třídě — důkaz to říká."""
+        proof = Proof([f.id], [], list(f.defaults), f.grade)
+        narrowed_once = False
+        for qr in q.roles:
+            if qr.wh:
+                continue
+            fr = f.role(qr.name)
+            if fr is None:
+                if not qr.terms:
+                    continue
+                return None
+            p = self.match_role(qr, fr, pred=f.pred)
+            if p is not None:
+                proof = proof.merged(p)
+                continue
+            ok = False
+            for qt in qr.terms:
+                for ft in fr.terms:
+                    if self._kind(qt) == "group" and self._kind(ft) == "group" and fr.quant == "∀":
+                        sub = self.m.subset_star(ft, qt)
+                        if sub is not None:
+                            proof = proof.merged(Proof(sub, [f"platí o užší třídě {self.m.label(ft)} ⊆ {self.m.label(qt)}"], [], "derived"))
+                            ok = narrowed_once = True
+            if not ok:
+                return None
+        return proof if narrowed_once else None
+
     def _near(self, q: Statement, f: Statement) -> bool:
         """Blízký výrok: týž predikát a aspoň jeden term dotazu sedí."""
         for qr in q.roles:
@@ -332,7 +374,7 @@ class Evaluator:
         for r in q.roles:
             for t in r.terms:
                 if not m.statements_about(t) and self._kind(t) in ("entity", "place"):
-                    out.append(f"o {m.node(t).label()} nevím nic")
+                    out.append(f"o {m.label(t)} nevím nic")
         if not near and not out and q.pred:
             preds = {s.pred for s in m.active() if s.pred}
             if not any(self.same_pred(q.pred, p) is not None for p in preds):
@@ -371,6 +413,9 @@ class Evaluator:
                 continue
             matched.append((f, p))
             fr = f.role(hole.name)
+            if hole.wh_kind == "count" and not hole.terms and (fr is None or not fr.counts):
+                # „Kolik měří Vltava?“ — počet bez pojmenované role: kterákoli role s číslem
+                fr = next((r for r in f.roles if r.counts), fr)
             if fr is None or (not fr.terms and not fr.nested):
                 # díra bez výplně ve výroku: dotaz na roli, kterou výrok nemá
                 if self._near(q, f):
@@ -378,7 +423,7 @@ class Evaluator:
                 continue
             if hole.wh_kind == "count":
                 for t in fr.terms:
-                    if t in fr.counts:
+                    if t in fr.counts and (not hole.terms or any(self.match_term(qt, hole.quant, t, fr.quant, role=hole.name) is not None for qt in hole.terms)):
                         key = f"count:{fr.counts[t]}"
                         if key not in seen:
                             seen.add(key)
@@ -404,10 +449,11 @@ class Evaluator:
                     p.steps.append(f"pravidlo {rule.id}: {rule.src_pred}→{rule.dst_pred}")
                     fillers.append((t, p))
         # rodina rolí: „kde“ bez `kde` → sourozenci (kam/odkud/kudy) s přiznáním; totéž čas
-        family = PLACE_FAMILY if hole.name in PLACE_FAMILY else TIME_FAMILY if hole.name in TIME_FAMILY else ()
+        family = PLACE_FAMILY if hole.name in PLACE_FAMILY else TIME_FAMILY if hole.name in TIME_FAMILY else PERSON_FAMILY if hole.name in ("s_kým", "komu") else ()
         if not fillers and family and hole.wh_kind == "filler":
             for f, p in matched:
-                for sib in family:
+                sibs = list(family) + ([r.name for r in f.roles if r.name in LOCATIVE_SURFACES] if family is PLACE_FAMILY else [])
+                for sib in sibs:
                     if sib == hole.name:
                         continue
                     fr = f.role(sib)
@@ -418,12 +464,32 @@ class Evaluator:
                         k = self._kind(t)
                         if family is TIME_FAMILY and k != "time":
                             continue
-                        if family is PLACE_FAMILY and not (k == "place" or (k == "group" and m.nodes[t].lemma in PLACE_NOUNS)):
+                        if family is PLACE_FAMILY and not (k == "place" or (k == "group" and m.nodes[t].lemma in PLACE_NOUNS) or sib in LOCATIVE_SURFACES):
+                            continue
+                        if family is PERSON_FAMILY and (k != "entity" or t in q.term_ids()):
                             continue
                         if t not in seen:
                             seen.add(t)
                             p2 = Proof(list(p.statements), list(p.steps) + [f"role „{sib}“ — ptal ses „{hole.name}“"], list(p.defaults), p.grade)
                             fillers.append((t, p2))
+        # užší shoda: otázka o kočce, výrok o dospělé kočce (∀ užší třída) — s přiznáním
+        if not fillers and hole.wh_kind in ("filler", "count"):
+            for f in m.active():
+                if self.same_pred(q.pred, f.pred) is None or f.neg or f.id in {x.id for x, _ in matched}:
+                    continue
+                narrowed = self._match_narrower(q, f)
+                if narrowed is None:
+                    continue
+                fr = f.role(hole.name)
+                if fr is None or not fr.terms:
+                    continue
+                for t in fr.terms:
+                    key = f"count:{fr.counts[t]}" if hole.wh_kind == "count" and t in fr.counts else t
+                    if hole.wh_kind == "count" and (t not in fr.counts or (hole.terms and not any(self.match_term(qt, hole.quant, t, fr.quant, role=hole.name) is not None for qt in hole.terms))):
+                        continue
+                    if key not in seen:
+                        seen.add(key)
+                        fillers.append((key, narrowed))
         # místo uvnitř výplně: „gymnázium v Broumově“ → nmod:v+Loc(gymnázium, Broumov)
         if not fillers and hole.name in PLACE_FAMILY and hole.wh_kind == "filler":
             for f, p in matched:
@@ -438,7 +504,7 @@ class Evaluator:
                             for pl in co.terms:
                                 if self._kind(pl) == "place" and pl not in seen:
                                     seen.add(pl)
-                                    p2 = Proof(list(p.statements) + [st.id], list(p.steps) + [f"místo uvnitř: {m.node(t).label()} — {st.pred}"], list(p.defaults), weakest(p.grade, "derived"))
+                                    p2 = Proof(list(p.statements) + [st.id], list(p.steps) + [f"místo uvnitř: {m.label(t)} — {st.pred}"], list(p.defaults), weakest(p.grade, "derived"))
                                     fillers.append((pl, p2))
         if fillers:
             fillers.sort(key=lambda x: (-GRADE_RANK[x[1].grade], len(x[1].statements)))
@@ -465,6 +531,19 @@ class Evaluator:
         m = self.m
         fillers: list[tuple[str, Proof]] = []
         seen: set[str] = set()
+        node = m.nodes.get(node_id)
+        if node is not None and node.kind == "group" and hole.name == "co":
+            # „Kdo je otec Petra Nováka?“ / „Co je nejbližší příbuzný psa?“ → známé prvky a podtřídy
+            for e, path in m.known_members(node_id):
+                if e not in seen:
+                    seen.add(e)
+                    fillers.append((e, Proof(path, [f"{m.label(e)} ∈ {m.label(node_id)}"], [], self._grade_of(path))))
+            for g, path in m.known_subsets(node_id):
+                if g not in seen and not path[0].startswith("restricts:"):
+                    seen.add(g)
+                    fillers.append((g, Proof(path, [f"{m.label(g)} ⊆ {m.label(node_id)}"], [], self._grade_of(path))))
+            if fillers:
+                return Verdict("ANO", [p for _, p in fillers], fillers=fillers)
         for s in self.describe(node_id):
             kdo = s.role("kdo")
             if not (kdo and node_id in kdo.terms) or s.neg:
@@ -483,7 +562,7 @@ class Evaluator:
         if fillers:
             return Verdict("ANO", [p for _, p in fillers], fillers=fillers)
         near = [s.id for s in self.describe(node_id)]
-        return Verdict("NEVÍM", near=near, missing=[] if near else [f"o {m.node(node_id).label()} nevím nic"])
+        return Verdict("NEVÍM", near=near, missing=[] if near else [f"o {m.label(node_id)} nevím nic"])
 
 
 def evaluate(memory: Memory, q: Statement) -> Verdict:

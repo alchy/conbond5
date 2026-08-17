@@ -60,29 +60,64 @@ def _tokens(s: str) -> list[str]:
     return [t for t in re.split(r"[\s.,;:()–\-]+", _norm(s)) if t]
 
 
+#: Předpony zdrojů v ručních sadách, které korpus ve jménech souborů nemá.
+_PREFIXES = ("wiki_", "wikisofia_")
+
+
+def doc_key(name: str) -> str:
+    """Jméno dokumentu → porovnatelný klíč (bez předpony zdroje, diakritiky
+    a interpunkce): `wiki_pes_domácí` = `pes_domácí`, `rodina_novakovi` =
+    `rodina_novákovi`, `wiki_r.u.r.` = `rur`. Zlatá sada a korpus se ve
+    jménech rozešly (poznatek conbond4-utils); co nesedne ani takhle
+    (bible), se vypíše, ne zamlčí."""
+    text = name.strip().lower()
+    for pre in _PREFIXES:
+        if text.startswith(pre):
+            text = text[len(pre):]
+    text = unicodedata.normalize("NFKD", text)
+    return "".join(ch for ch in text if ch.isalnum())
+
+
+def _refs(item: dict[str, Any], key: str) -> list[str]:
+    """Odkaz na dokument(y) — smí být i „a+b“."""
+    raw = str(item.get(key) or "")
+    return [x for x in raw.split("+") if x]
+
+
 def gold_questions(corpus: Path, doc: str) -> list[dict[str, Any]]:
-    """Zlaté otázky k dokumentu ze tří sad, sjednocené na {q, expect, sada, veta}."""
+    """Zlaté otázky k dokumentu: `otazky` = generované šablonou (levné,
+    velké, gramaticky kostrbaté — conBond2 to o nich sám říká), `etalon`
+    a `conbond` = psané ručně. Sady se v reportu **nesčítají do jednoho
+    čísla**."""
     out: list[dict[str, Any]] = []
     gold = corpus / "data" / "gold"
+    dk = doc_key(doc)
     for item in json.loads((gold / "otazky.json").read_text(encoding="utf-8")):
         if item.get("dok") == doc:
             out.append({"q": item["text"], "expect": [item["odpoved"]], "sada": "otazky", "veta": item.get("veta"), "typ": item.get("typ", "")})
     for name, key in (("etalon.json", "dok"), ("conbond.json", "src")):
         for item in json.loads((gold / name).read_text(encoding="utf-8")):
-            if item.get(key) == doc:
+            if any(doc_key(r) == dk for r in _refs(item, key)):
                 out.append({"q": item["q"], "expect": list(item.get("expect", [])), "sada": name.split(".")[0], "veta": None, "typ": item.get("mode", "")})
     return out
 
 
 def docs_with_gold(corpus: Path) -> list[str]:
     gold = corpus / "data" / "gold"
+    available = {doc_key(p.stem): p.stem for p in (corpus / "data" / "raw").glob("*.txt")}
     names: set[str] = set()
+    unmatched: set[str] = set()
     for item in json.loads((gold / "otazky.json").read_text(encoding="utf-8")):
         names.add(str(item["dok"]))
     for name, key in (("etalon.json", "dok"), ("conbond.json", "src")):
         for item in json.loads((gold / name).read_text(encoding="utf-8")):
-            if item.get(key):
-                names.add(str(item[key]))
+            for r in _refs(item, key):
+                if doc_key(r) in available:
+                    names.add(available[doc_key(r)])
+                else:
+                    unmatched.add(r)
+    if unmatched:
+        print("ruční otázky bez textu v korpusu: " + ", ".join(sorted(unmatched)), file=sys.stderr)
     return sorted(n for n in names if (corpus / "data" / "raw" / f"{n}.txt").exists())
 
 
@@ -207,6 +242,23 @@ def render_report(rows: list[dict[str, Any]]) -> str:
             tot[k] += int(r[k])
     pct = f"{100 * tot['hits'] / max(tot['questions'], 1):.1f} %"
     out.append(f"| **celkem** | {tot['sentences']} | {tot['written']} | {tot['statements']} | {tot['residue_tokens']}/{tot['tokens']} | {tot['open']} | {tot['questions']} | {tot['hits']} ({pct}) | {tot['text_hits']} |")
+    # po sadách: ruční × generované se nesčítají
+    per: dict[str, list[int]] = {}
+    for r in rows:
+        for q in r["results"]:
+            sada = str(q.get("sada", "?"))
+            per.setdefault(sada, [0, 0, 0])
+            per[sada][0] += 1
+            per[sada][1] += int(bool(q.get("ok")))
+            per[sada][2] += int(bool(q.get("text_ok")))
+    out.append("")
+    out.append("| sada | druh | otázek | správně | v textu |")
+    out.append("|---|---|---|---|---|")
+    labels = {"otazky": "generované šablonou (kde/kdy)", "etalon": "ručně psané", "conbond": "ručně psané (starý conBond)"}
+    for sada in ("etalon", "conbond", "otazky"):
+        if sada in per:
+            n, h, th = per[sada]
+            out.append(f"| {sada} | {labels.get(sada, sada)} | {n} | {h} ({100 * h / max(n, 1):.0f} %) | {th} |")
     misses: Counter[str] = Counter()
     for r in rows:
         misses.update(r["misses"])

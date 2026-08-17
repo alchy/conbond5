@@ -1182,12 +1182,12 @@
   "residue_tokens": 1108,
   "tokens": 12665,
   "open": 788,
-  "questions": 23,
+  "questions": 24,
   "hits": 15,
   "text_hits": 20,
   "misses": {
    "role/logika (blízký výrok je)": 4,
-   "špatná výplň": 3,
+   "špatná výplň": 4,
    "bez výroku": 1
   },
   "results": [
@@ -1535,10 +1535,26 @@
     "fillers": [],
     "why": "role/logika (blízký výrok je)",
     "reading": "umístit_se(kdy:?, kdo:·Božena Němcová)"
+   },
+   {
+    "q": "Kde se narodila Božena Němcová?",
+    "expect": [
+     "vídeň",
+     "vídni"
+    ],
+    "sada": "conbond",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "ANO",
+    "fillers": [
+     "Slezsko"
+    ],
+    "why": "špatná výplň",
+    "reading": "narodit_se(kde:?, kdo:·Božena Němcová)"
    }
   ],
   "t_ingest": 1.0,
-  "t_ask": 0.3
+  "t_ask": 0.4
  },
  {
   "doc": "eduard_bass",
@@ -1692,7 +1708,7 @@
     "reading": "bydlet(kde:?, kdo:·Eduard Bass)"
    }
   ],
-  "t_ingest": 0.1,
+  "t_ingest": 0.0,
   "t_ask": 0.0
  },
  {
@@ -1970,7 +1986,7 @@
     "reading": "zemřít(kde:?, kdo:·Egon Hostovský)"
    }
   ],
-  "t_ingest": 0.3,
+  "t_ingest": 0.2,
   "t_ask": 0.1
  },
  {
@@ -2004,7 +2020,7 @@
     "reading": "objevit_se(kdy:?, kdo:·sinice[první])"
    }
   ],
-  "t_ingest": 0.3,
+  "t_ingest": 0.1,
   "t_ask": 0.0
  },
  {
@@ -3242,9 +3258,9 @@
   "residue_tokens": 398,
   "tokens": 4599,
   "open": 329,
-  "questions": 33,
-  "hits": 22,
-  "text_hits": 29,
+  "questions": 34,
+  "hits": 23,
+  "text_hits": 30,
   "misses": {
    "role/logika (blízký výrok je)": 6,
    "špatná výplň": 4,
@@ -3756,10 +3772,27 @@
     ],
     "why": "špatná výplň",
     "reading": "mít(kde:?, kdo:·Jaroslav Hašek)"
+   },
+   {
+    "q": "Kdy zemřel Jaroslav Hašek?",
+    "expect": [
+     "1923"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "24. 9. 1915",
+     "3. 1. 1923",
+     "1923"
+    ],
+    "why": "",
+    "reading": "zemřít(kdy:?, kdo:·Jaroslav Hašek)"
    }
   ],
-  "t_ingest": 0.4,
-  "t_ask": 0.1
+  "t_ingest": 0.2,
+  "t_ask": 0.2
  },
  {
   "doc": "jaroslav_seifert",
@@ -4188,7 +4221,7 @@
     "reading": "lež(kdy:?, kdo:·Jaroslav Seifert)"
    }
   ],
-  "t_ingest": 0.4,
+  "t_ingest": 0.2,
   "t_ask": 0.1
  },
  {
@@ -5192,8 +5225,8 @@
     "reading": "oženit_se(s_kým:?, kdo:·Josef Čapek)"
    }
   ],
-  "t_ingest": 0.2,
-  "t_ask": 0.3
+  "t_ingest": 0.1,
+  "t_ask": 0.1
  },
  {
   "doc": "josef_škvorecký",
@@ -5555,7 +5588,7 @@
    }
   ],
   "t_ingest": 0.1,
-  "t_ask": 0.2
+  "t_ask": 0.0
  },
  {
   "doc": "julius_zeyer",
@@ -6310,7 +6343,7 @@
     "reading": "navrhnout(kdy:?, co:·Karel Havlíček Borovský)"
    }
   ],
-  "t_ingest": 0.5,
+  "t_ingest": 0.2,
   "t_ask": 0.1
  },
  {
@@ -6820,7 +6853,7 @@
    }
   ],
   "t_ingest": 0.2,
-  "t_ask": 0.3
+  "t_ask": 0.1
  },
  {
   "doc": "karel_jaromír_erben",
@@ -7314,12 +7347,12 @@
   "residue_tokens": 494,
   "tokens": 4838,
   "open": 396,
-  "questions": 21,
-  "hits": 9,
-  "text_hits": 14,
+  "questions": 23,
+  "hits": 10,
+  "text_hits": 16,
   "misses": {
    "role/logika (blízký výrok je)": 6,
-   "špatná výplň": 6
+   "špatná výplň": 7
   },
   "results": [
    {
@@ -7627,10 +7660,46 @@
     "fillers": [],
     "why": "role/logika (blízký výrok je)",
     "reading": "mít(kdy:?, kdo:·Karel Čapek)"
+   },
+   {
+    "q": "Kdo je Karel Čapek?",
+    "expect": [
+     "spisovatel",
+     "dramatik"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "spisovatel (český)",
+     "intelektuál",
+     "novinář",
+     "dramatik",
+     "překladatel",
+     "fotograf (amatérský)"
+    ],
+    "why": "",
+    "reading": "být(kdo:·Karel Čapek, co:?)"
+   },
+   {
+    "q": "Kdo byl bratr Karla Čapka?",
+    "expect": [
+     "josef"
+    ],
+    "sada": "conbond",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "malíř"
+    ],
+    "why": "špatná výplň",
+    "reading": "být(kdo:·bratr, co:?)"
    }
   ],
   "t_ingest": 0.2,
-  "t_ask": 0.1
+  "t_ask": 0.2
  },
  {
   "doc": "kočka_domácí",
@@ -7703,7 +7772,40 @@
     "reading": "mít(co:?count:∃zub, kdo:∀chrup[trvalý])"
    }
   ],
-  "t_ingest": 0.6,
+  "t_ingest": 0.7,
+  "t_ask": 0.0
+ },
+ {
+  "doc": "kůň_domácí",
+  "sentences": 315,
+  "written": 315,
+  "with_role": 315,
+  "statements": 963,
+  "residue_tokens": 461,
+  "tokens": 4031,
+  "open": 295,
+  "questions": 1,
+  "hits": 0,
+  "text_hits": 1,
+  "misses": {
+   "role/logika (blízký výrok je)": 1
+  },
+  "results": [
+   {
+    "q": "Je kůň šelma?",
+    "expect": [
+     "ne"
+    ],
+    "sada": "conbond",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "být(kdo:∀kůň, co:∃šelma) ⟨subset⟩"
+   }
+  ],
+  "t_ingest": 65.2,
   "t_ask": 0.0
  },
  {
@@ -8788,12 +8890,12 @@
   "residue_tokens": 640,
   "tokens": 9569,
   "open": 702,
-  "questions": 6,
-  "hits": 2,
-  "text_hits": 4,
+  "questions": 8,
+  "hits": 3,
+  "text_hits": 5,
   "misses": {
    "bez výroku": 2,
-   "role/logika (blízký výrok je)": 1,
+   "role/logika (blízký výrok je)": 2,
    "predikát chybí": 1
   },
   "results": [
@@ -8875,6 +8977,37 @@
     "fillers": [],
     "why": "predikát chybí",
     "reading": "oženit_se(s_kým:?, kdo:·pes[domácí])"
+   },
+   {
+    "q": "Co je pes domácí?",
+    "expect": [
+     "šelma",
+     "savec"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "šelma (domestikovaný, velký)",
+     "jeden",
+     "Canis familiaris"
+    ],
+    "why": "",
+    "reading": "být(kdo:∀pes[domácí], co:?)"
+   },
+   {
+    "q": "Je pes šelma?",
+    "expect": [
+     "ano"
+    ],
+    "sada": "conbond",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "být(kdo:∀pes, co:∃šelma) ⟨subset⟩"
    }
   ],
   "t_ingest": 0.2,
@@ -9138,7 +9271,425 @@
    }
   ],
   "t_ingest": 0.2,
-  "t_ask": 0.1
+  "t_ask": 0.0
+ },
+ {
+  "doc": "poznámky_domácnost",
+  "sentences": 20,
+  "written": 20,
+  "with_role": 20,
+  "statements": 32,
+  "residue_tokens": 0,
+  "tokens": 97,
+  "open": 4,
+  "questions": 6,
+  "hits": 5,
+  "text_hits": 6,
+  "misses": {
+   "role/logika (blízký výrok je)": 1
+  },
+  "results": [
+   {
+    "q": "Kdo je Rex?",
+    "expect": [
+     "retrívr"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "retrívr (zlatý)"
+    ],
+    "why": "",
+    "reading": "být(kdo:·Rex, co:?)"
+   },
+   {
+    "q": "Kdy se narodil Rex?",
+    "expect": [
+     "2021"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "2021"
+    ],
+    "why": "",
+    "reading": "narodit_se(kdy:?, kdo:·Rex)"
+   },
+   {
+    "q": "Kdo je pan Dvořák?",
+    "expect": [
+     "truhlář",
+     "soused"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "truhlář"
+    ],
+    "why": "",
+    "reading": "být(kdo:∀pan Dvořák, co:?)"
+   },
+   {
+    "q": "Kde bydlí babička?",
+    "expect": [
+     "tábor",
+     "táboře"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Tábor"
+    ],
+    "why": "",
+    "reading": "bydlet(kde:?, kdo:∀babička)"
+   },
+   {
+    "q": "Kde bydlí Josef?",
+    "expect": [
+     "písek",
+     "písku"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Písek"
+    ],
+    "why": "",
+    "reading": "bydlet(kde:?, kdo:·Josef)"
+   },
+   {
+    "q": "Kde stojí chata?",
+    "expect": [
+     "hejtman",
+     "rybník"
+    ],
+    "sada": "conbond",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "stát(kde:?, kdo:∀chata)"
+   }
+  ],
+  "t_ingest": 0.2,
+  "t_ask": 0.2
+ },
+ {
+  "doc": "příroda_česká",
+  "sentences": 20,
+  "written": 20,
+  "with_role": 20,
+  "statements": 31,
+  "residue_tokens": 0,
+  "tokens": 110,
+  "open": 0,
+  "questions": 8,
+  "hits": 5,
+  "text_hits": 6,
+  "misses": {
+   "bez výroku": 2,
+   "role/logika (blízký výrok je)": 1
+  },
+  "results": [
+   {
+    "q": "Co je Šumava?",
+    "expect": [
+     "pohoří",
+     "oblast"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "pohoří",
+     "oblast (chráněný, krajinný, velký)"
+    ],
+    "why": "",
+    "reading": "být(kdo:·Šumava, co:?)"
+   },
+   {
+    "q": "Co je Vltava?",
+    "expect": [
+     "řeka"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "řeka (dlouhý, český)"
+    ],
+    "why": "",
+    "reading": "být(kdo:·Vltava, co:?)"
+   },
+   {
+    "q": "Kde pramení Vltava?",
+    "expect": [
+     "šumava",
+     "šumavě"
+    ],
+    "sada": "conbond",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "bez výroku",
+    "reading": "pramenit(kde:?, kdo:·Vltava)"
+   },
+   {
+    "q": "Co je Sněžka?",
+    "expect": [
+     "hora"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "hora (vysoký)"
+    ],
+    "why": "",
+    "reading": "být(kdo:·sněžka, co:?)"
+   },
+   {
+    "q": "Kde leží Sněžka?",
+    "expect": [
+     "krkonoše",
+     "krkonoších"
+    ],
+    "sada": "conbond",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "bez výroku",
+    "reading": "ležet(kde:?, kdo:·Sněžka)"
+   },
+   {
+    "q": "Kde žije rys?",
+    "expect": [
+     "šumava",
+     "šumavě",
+     "beskydy",
+     "beskydech"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "Šumava",
+     "Beskydy"
+    ],
+    "why": "",
+    "reading": "žít(kde:?, kdo:∀rys)"
+   },
+   {
+    "q": "Co je rys ostrovid?",
+    "expect": [
+     "šelma"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "šelma (evropský, kočkovitý, velký)"
+    ],
+    "why": "",
+    "reading": "být(kdo:∀rys, co:?)"
+   },
+   {
+    "q": "Kolik měří Vltava?",
+    "expect": [
+     "430"
+    ],
+    "sada": "conbond",
+    "ok": false,
+    "text_ok": true,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "role/logika (blízký výrok je)",
+    "reading": "měřit(co:·kolik, kdo:·Vltava)"
+   }
+  ],
+  "t_ingest": 0.2,
+  "t_ask": 0.2
+ },
+ {
+  "doc": "rodina_novákovi",
+  "sentences": 15,
+  "written": 15,
+  "with_role": 15,
+  "statements": 19,
+  "residue_tokens": 0,
+  "tokens": 74,
+  "open": 0,
+  "questions": 8,
+  "hits": 2,
+  "text_hits": 2,
+  "misses": {
+   "entita neznámá": 6
+  },
+  "results": [
+   {
+    "q": "Kdo je otec Petra Nováka?",
+    "expect": [
+     "karel"
+    ],
+    "sada": "conbond",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "entita neznámá",
+    "reading": "být(kdo:∀otec, co:?)"
+   },
+   {
+    "q": "Kdo je tchán Jany Novákové?",
+    "expect": [
+     "karel"
+    ],
+    "sada": "conbond",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "entita neznámá",
+    "reading": "být(kdo:∀tchán, co:?)"
+   },
+   {
+    "q": "Kdo je tchyně Jany Novákové?",
+    "expect": [
+     "věra"
+    ],
+    "sada": "conbond",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "entita neznámá",
+    "reading": "být(kdo:∀tchyně, co:?)"
+   },
+   {
+    "q": "Kdo je švagrová Jany Novákové?",
+    "expect": [
+     "lucie"
+    ],
+    "sada": "conbond",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "entita neznámá",
+    "reading": "být(kdo:∀švagrová, co:?)"
+   },
+   {
+    "q": "Kdo je teta Tomáše Nováka?",
+    "expect": [
+     "lucie"
+    ],
+    "sada": "conbond",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "entita neznámá",
+    "reading": "být(kdo:∀teta, co:?)"
+   },
+   {
+    "q": "Kdo je děd Tomáše Nováka?",
+    "expect": [
+     "karel"
+    ],
+    "sada": "conbond",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "entita neznámá",
+    "reading": "být(kdo:∀děd, co:?)"
+   },
+   {
+    "q": "Kdo je Karel Novák?",
+    "expect": [
+     "truhlář"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "otec Petr",
+     "truhlář"
+    ],
+    "why": "",
+    "reading": "být(kdo:·Karel Novák, co:?)"
+   },
+   {
+    "q": "Čím je Milan Novák?",
+    "expect": [
+     "řidič"
+    ],
+    "sada": "conbond",
+    "ok": true,
+    "text_ok": true,
+    "verdict": "ANO",
+    "fillers": [
+     "bratr Karel",
+     "řidič"
+    ],
+    "why": "",
+    "reading": "být(kdo:·Milan Novák, co:?)"
+   }
+  ],
+  "t_ingest": 0.2,
+  "t_ask": 0.2
+ },
+ {
+  "doc": "rur",
+  "sentences": 85,
+  "written": 85,
+  "with_role": 85,
+  "statements": 291,
+  "residue_tokens": 91,
+  "tokens": 977,
+  "open": 69,
+  "questions": 1,
+  "hits": 0,
+  "text_hits": 0,
+  "misses": {
+   "bez výroku": 1
+  },
+  "results": [
+   {
+    "q": "Kdo napsal R.U.R.?",
+    "expect": [
+     "čapek"
+    ],
+    "sada": "conbond",
+    "ok": false,
+    "text_ok": false,
+    "verdict": "NEVÍM",
+    "fillers": [],
+    "why": "bez výroku",
+    "reading": "napsat(kdo:?, co:·R.U.r.)"
+   }
+  ],
+  "t_ingest": 16.5,
+  "t_ask": 0.0
  },
  {
   "doc": "sopka",
@@ -9170,7 +9721,7 @@
     "reading": "ležet(kde:?, kdo:∀sopka)"
    }
   ],
-  "t_ingest": 0.7,
+  "t_ingest": 0.5,
   "t_ask": 0.0
  },
  {
@@ -9949,7 +10500,7 @@
     "reading": "obdržet(kdy:?, kdo:·Vladislav Vančura)"
    }
   ],
-  "t_ingest": 0.8,
+  "t_ingest": 0.1,
   "t_ask": 0.1
  },
  {
@@ -10957,8 +11508,8 @@
     "reading": "podepsat(kde:?, kdo:·Václav Havel)"
    }
   ],
-  "t_ingest": 0.5,
-  "t_ask": 0.7
+  "t_ingest": 0.4,
+  "t_ask": 0.6
  },
  {
   "doc": "vítězslav_hálek",

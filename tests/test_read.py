@@ -69,7 +69,7 @@ def test_modality_advcl_and_negated_aux(oracle: RecordedOracle) -> None:
     r = R(oracle, "Chov domácích zvířat může mít negativní dopad na jejich zdraví, pokud nejsou splněny určité požadavky.")
     m = r.main
     assert m.pred == "mít" and m.modality == "možnost"
-    assert terms(m, "kdo") == ["chov"]
+    assert [t.lemma for t in m.role("kdo").terms] == ["chov"] and m.role("kdo").terms[0].rel is not None  # type: ignore[union-attr]
     co = m.role("co")
     assert co and co.terms[0].lemma == "dopad" and co.terms[0].attrs == ("negativní",)
     adv = m.role("advcl:pokud")
@@ -77,7 +77,7 @@ def test_modality_advcl_and_negated_aux(oracle: RecordedOracle) -> None:
     assert terms(adv.nested, "co") == ["požadavek"]
     assert r.residue == []
     kinds = {s.pred for s in m.secondary}
-    assert "nmod:Gen" in kinds and "nmod:na+Acc" in kinds
+    assert "nmod:na+Acc" in kinds  # genitiv „domácích zvířat“ je teď zúžení třídy chov⟨zvíře⟩, ne výrok vedle věty
 
 
 def test_time_name_and_direction(oracle: RecordedOracle) -> None:
@@ -102,7 +102,7 @@ def test_prodrop_and_coordinated_places(oracle: RecordedOracle) -> None:
     kdo = m.role("kdo")
     assert kdo and kdo.authority == "prodrop" and kdo.terms[0].kind == "pron" and kdo.terms[0].gender == "Masc"
     assert set(terms(m, "kde")) == {"gymnázium", "Litomyšl", "Praha"}
-    assert terms(m, "jako") == ["učitel"]
+    assert [t.lemma for t in m.role("jako").terms] == ["učitel"]  # type: ignore[union-attr]
     assert m.role("jak_dlouho") is not None
     assert r.residue == []
 

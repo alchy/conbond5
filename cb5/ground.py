@@ -63,11 +63,13 @@ class Grounder:
                 self.out.notes.append(f"{' '.join(t.forms)} → {node.id} ({node.label()}; týž uzel)")
                 if " ".join(t.name_lemmas) != node.lemma:
                     self._defaults.append(f"identita: „{' '.join(t.name_lemmas)}“ = {node.label()} (částečné jméno)")
+            self._title(t, node)
             return node.id
         if t.kind == "place":
             node = self.m.ensure_place(t.name_lemmas or (t.lemma,), t.forms)
             if node.gender is None:
                 node.gender, node.number = t.gender, t.number
+            self._title(t, node)
             return node.id
         if t.kind == "time":
             if t.time is None:
@@ -77,8 +79,13 @@ class Grounder:
             return self._resolve_pron(t, role)
         if t.kind == "value":
             return self.m.ensure_group(t.lemma).id
-        # group
-        group = self.m.ensure_group(t.lemma, t.attrs)
+        # group (případně zúžená vztahem: „otec Petra Nováka“)
+        rel: str | None = None
+        if t.rel is not None:
+            rel_id = self.resolve_term(t.rel[1], role=role, subject_specific=False, pred=pred)
+            if rel_id is not None:
+                rel = f"{t.rel[0]}:{rel_id}"
+        group = self.m.ensure_group(t.lemma, t.attrs, rel)
         if t.possessor is not None:
             owned = self._resolve_possessed(t, group, role)
             if owned is not None:
@@ -99,6 +106,19 @@ class Grounder:
             self._member(inst.id, group.id)
             return inst.id
         return group.id
+
+    def _title(self, t: TermSpec, node: Node) -> None:
+        """„řeka Vltava“ → Vltava ∈ řeka (titul = třída), jen při zápisu a jen jednou."""
+        if not t.note.startswith("titul:") or not self.write:
+            return
+        group = self.m.ensure_group(t.note.split(":", 1)[1], t.attrs)
+        if self.m.member_star(node.id, group.id) is not None:
+            return
+        st = Statement("", "být", "copula", kernel="member", grade=self.grade, prov=self.prov, sentence=self.out.sentence,  # type: ignore[arg-type]
+                       roles=[Role("kdo", [node.id], "·", "structural"), Role("co", [group.id], "∃", "structural")],
+                       defaults=[f"titul „{group.lemma}“ před jménem = třída"])
+        self.m.attach(st)
+        self.out.statements.append(st)
 
     def _member(self, elem: str, group: str) -> None:
         st = Statement("", "být", "copula", kernel="member", grade=self.grade, prov=self.prov, sentence=self.out.sentence,  # type: ignore[arg-type]

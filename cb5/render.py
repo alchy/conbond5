@@ -55,8 +55,11 @@ def describe_node(m: Memory, node_id: str) -> str:
             if st.pred == "být" and kdo and node_id in kdo.terms and jaky and not st.neg:
                 attrs.extend(m.nodes[t].lemma for t in jaky.terms if t in m.nodes)
         return base.lemma + (f" ({', '.join(dict.fromkeys(attrs))})" if attrs else "")
-    if n.kind == "group" and n.attrs:
-        return f"{n.lemma} ({', '.join(n.attrs)})"
+    if n.kind == "group":
+        out = n.lemma + (f" ({', '.join(n.attrs)})" if n.attrs else "")
+        if n.rel and ":" in n.rel:
+            out += " " + describe_node(m, n.rel.split(":", 1)[1])  # „otec Petr Novák“, „péče majitel“
+        return out
     return n.label()
 
 

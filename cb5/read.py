@@ -70,6 +70,8 @@ class TermSpec:
     possessor: tuple[str, str] | None = None
     #: Zúžení group vztažnou / participiální větou apod. jen jako poznámka pro render.
     note: str = ""
+    #: Zúžení třídy genitivem vlastního jména: „otec Petra Nováka“ → ("Gen", term Petr Novák).
+    rel: "tuple[str, TermSpec] | None" = None
 
     def label(self) -> str:
         if self.kind in ("entity", "place") and self.name_lemmas:
@@ -81,6 +83,8 @@ class TermSpec:
             out += f"#{self.count}"
         if self.possessor:
             out += f"⟨{self.possessor[1]}⟩"
+        if self.rel is not None:
+            out += f"⟨{self.rel[1].label()}⟩"
         return out
 
 
@@ -317,6 +321,7 @@ class _Reader:
         self._subject_from_ambiguity(p)
         self._prodrop(p, heads)
         self._quantify(p)
+        self._membership_verb(p)
         # souřadné přísudky: druhá predikace se sdíleným podmětem
         for h in heads:
             for c in self.kids(h.index, "conj"):
@@ -331,11 +336,25 @@ class _Reader:
                     self.mark(c.index, "secondary")
         return p
 
+    def _membership_verb(self, p: Predication) -> None:
+        """„Pes patří mezi šelmy“ / „patří do skupiny“ / „náleží k“ → jádrová
+        relace subset (obecný podmět) nebo member (určitý), role `co`."""
+        if p.pred not in ("patřit", "náležet", "řadit_se", "spadat"):
+            return
+        target = next((r for r in p.roles if r.surface in ("mezi+Acc", "do+Gen", "k+Dat", "pod+Acc") and r.terms), None)
+        subj = p.role("kdo")
+        if target is None or subj is None or not subj.terms:
+            return
+        target.name, target.authority = "co", "default"
+        st = subj.terms[0]
+        p.kernel = "member" if (st.kind in ("entity", "pron", "place") or st.quant == "·") else "subset"
+        p.defaults.append(f"kernel:{p.kernel} (patřit {target.surface})")
+
     def _lemma_with_refl(self, t: Token) -> str:
         lemma = t.lemma
         for c in self.p.children(t.index):
-            if c.deprel in ("expl:pv", "expl") and c.lemma in ("se", "si"):
-                lemma = f"{lemma}_{c.lemma}"
+            if c.deprel in ("expl:pv", "expl") and c.form.lower() in ("se", "si"):
+                lemma = f"{lemma}_{c.form.lower()}"  # UDPipe má pro „si“ lemma „se“ — rozhoduje tvar
                 self.mark(c.index, "particle")
         return lemma
 
@@ -450,7 +469,9 @@ class _Reader:
         """Je token tázací díra? Vrací (jméno role, druh)."""
         if self.mood != "question":
             return None
-        if "Int" in (t.feat("PronType") or "") and t.lemma in D.WH:
+        if t.lemma in D.WH and (
+            "Int" in (t.feat("PronType") or "") or t.upos in ("PRON", "DET", "ADV") and not self.p.children(t.index) or D.WH[t.lemma][1] == "count"
+        ):
             return D.WH[t.lemma]
         for c in self.p.children(t.index):
             if c.base_deprel == "det" and c.lemma in D.WH and (
@@ -474,9 +495,7 @@ class _Reader:
         sub = [x for x in self.p.subtree(t.index) if x.index == t.index or (x.head == t.index and x.base_deprel in ("nummod", "case", "flat"))]
         if is_time_noun(t.lemma):
             sub = [x for x in self.p.subtree(t.index) if x.index == t.index or x.lemma in MONTH_LEMMAS or x.upos in ("NUM", "PUNCT") or is_time_noun(x.lemma)]
-        if is_time_noun(t.lemma) or (t.upos == "NUM" and time_from_tokens([t])) or (
-            t.upos in ("NOUN", "NUM", "ADJ") and time_from_tokens(sub) is not None and not (t.feat("NameType"))
-        ):
+        if is_time_noun(t.lemma) or (t.upos in ("NUM", "ADJ") and time_from_tokens(sub) is not None and not t.feat("NameType")):
             spec = time_from_tokens(sub)
             if is_time_noun(t.lemma) and spec is None:
                 return "duration"  # „celý život“, „čtrnáct let“ — bez ukotveného data
@@ -684,13 +703,19 @@ class _Reader:
         qauth = ""
         kind: Kind
         # víceslovné jméno
+        titled: list[int] = []  # obecné jméno + vlastní jméno („řeka Vltava“, „prezident Bill Clinton“)
+        rel: tuple[str, TermSpec] | None = None
         for f in self.p.children(t.index):
             if f.base_deprel == "flat" or f.deprel == "compound" or (
                 f.base_deprel == "nmod" and t.upos == "NOUN" and not self.case_of(f.index)
-                and not self.p.children(f.index) and f.feat("NameType") != "Geo"
+                and not [c for c in self.p.children(f.index) if c.base_deprel not in ("flat", "punct")]
+                and (f.feat("NameType") != "Geo" or t.lemma in D.PLACE_NOUNS)
+                and f.feat("Case") in (None, "Nom", t.feat("Case"))
                 and (f.upos in ("PROPN", "X", "SYM", "NUM") or f.feat("Abbr") == "Yes" or (len(f.form) <= 2 and not f.feat("Case")))
             ):
                 # víceslovné jméno; i „vitamín C“, „skupina B“ (holé nmod bez pádu a bez dětí)
+                if t.upos == "NOUN" and f.upos == "PROPN" and f.feat("Abbr") != "Yes":
+                    titled.append(f.index)
                 forms.append(f.form)
                 name_tokens.append(f.index)
                 name_lemmas.append(f.lemma)
@@ -744,6 +769,13 @@ class _Reader:
             elif d in ("nmod", "appos", "acl", "parataxis", "obl", "advcl"):
                 if c.index in consumed:
                     continue
+                if (d == "nmod" and t.upos in ("NOUN", "ADJ") and c.upos in ("PROPN", "NOUN") and c.feat("Case") == "Gen"
+                        and not self.case_of(c.index) and rel is None):
+                    # „otec Petra Nováka“, „příbuzný psa“, „péče majitele“ — holý genitiv ZUŽUJE
+                    # třídu (péče⟨majitel⟩ ⊆ péče); paměť z toho dělá zúženou group
+                    rel = ("Gen", self._term(c))
+                    consumed.append(c.index)
+                    continue
                 self._pending_secondary.append((t, c))
             elif d == "advmod" and c.lemma in D.PARTICLES:
                 self.mark(c.index, "particle")
@@ -754,6 +786,17 @@ class _Reader:
         elif t.upos == "PROPN":
             kind = "place" if (t.feat("NameType") == "Geo" or self._filler_kind(t) == "place?") else "entity"
             quant, qauth = quant or "·", qauth or "structural"
+        elif t.upos == "NOUN" and titled:
+            # „řeka Vltava“, „sopka Ol Doinyo Lengai“: entita pojmenovaná vlastním jménem,
+            # obecné jméno je její třída (paměť přidá member) — jméno bez titulu
+            kind = "entity"
+            quant, qauth = quant or "·", qauth or "structural"
+            name_tokens = [i for i in name_tokens if i != t.index]
+            name_lemmas = [self.p.token(i).lemma for i in name_tokens]
+            forms = [self.p.token(i).form for i in name_tokens]
+            geo = any(self.p.token(i).feat("NameType") == "Geo" for i in name_tokens)
+            if geo or t.lemma in D.PLACE_NOUNS:
+                kind = "place"
         elif t.upos == "PRON" or (t.upos == "DET" and not self.p.children(t.index)):
             kind = "pron"
             quant, qauth = "·", "structural"
@@ -773,7 +816,9 @@ class _Reader:
                 # „dne 12. srpna 1879“, „v sobotu 21. prosince“: datum visí pod časovým
                 # substantivem hlouběji (nmod) — u časového slova je celý podstrom jeho
                 sub = [x for x in self.p.subtree(t.index) if x.upos in ("NUM", "NOUN", "ADP", "PUNCT", "ADJ") and (x.index == t.index or x.lemma in MONTH_LEMMAS or x.upos in ("NUM", "PUNCT") or is_time_noun(x.lemma))]
-            time = time_from_tokens(sub) if (is_time_noun(t.lemma) or any(x.upos == "NUM" for x in sub)) else None
+            # čas jen u ČASOVÉHO substantiva („roku 1851“, „v letech …“); „244 kostí“
+            # a „430 kilometrů“ nejsou letopočty
+            time = time_from_tokens(sub) if is_time_noun(t.lemma) else None
             if is_time_noun(t.lemma) or time is not None:
                 kind = "time"
                 count = None  # letopočet není počet
@@ -790,8 +835,10 @@ class _Reader:
             attrs=tuple(a for a in attrs if a != "¬"), count=count, time=time,
             gender=t.feat("Gender"), number=t.feat("Number"), person=t.feat("Person"),
             quant=quant, quant_authority=qauth, tokens=tuple(sorted(set(consumed))),
-            name_tokens=tuple(name_tokens), name_lemmas=tuple(name_lemmas), possessor=possessor,
+            name_tokens=tuple(name_tokens), name_lemmas=tuple(name_lemmas), possessor=possessor, rel=rel,
         )
+        if kind in ("entity", "place") and t.upos == "NOUN" and titled:
+            spec.note = f"titul:{t.lemma}"
         if possessor is not None and spec.quant is None:
             spec.quant, spec.quant_authority = "·", "default:přivlastnění"
         if "¬" in attrs:
