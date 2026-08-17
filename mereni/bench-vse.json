@@ -7,14 +7,14 @@
   "statements": 1086,
   "residue_tokens": 432,
   "tokens": 4057,
-  "open": 220,
+  "open": 219,
   "questions": 27,
   "hits": 20,
   "text_hits": 25,
   "misses": {
    "špatná výplň": 1,
-   "role/logika (blízký výrok je)": 4,
-   "bez výroku": 2
+   "role/logika (blízký výrok je)": 5,
+   "bez výroku": 1
   },
   "results": [
    {
@@ -362,7 +362,7 @@
     "text_ok": true,
     "verdict": "NEVÍM",
     "fillers": [],
-    "why": "bez výroku",
+    "why": "role/logika (blízký výrok je)",
     "reading": "¬dokončit(kdy:?, kdo:·Alois Jirásek)"
    },
    {
@@ -437,7 +437,7 @@
   "statements": 616,
   "residue_tokens": 257,
   "tokens": 3385,
-  "open": 171,
+  "open": 165,
   "questions": 3,
   "hits": 0,
   "text_hits": 3,
@@ -498,7 +498,7 @@
   "statements": 657,
   "residue_tokens": 193,
   "tokens": 2728,
-  "open": 155,
+  "open": 151,
   "questions": 20,
   "hits": 14,
   "text_hits": 16,
@@ -803,7 +803,7 @@
     "reading": "napsat(kde:?, kdo:·Arnošt Lustig)"
    }
   ],
-  "t_ingest": 0.2,
+  "t_ingest": 0.1,
   "t_ask": 0.1
  },
  {
@@ -814,7 +814,7 @@
   "statements": 989,
   "residue_tokens": 306,
   "tokens": 3563,
-  "open": 178,
+  "open": 175,
   "questions": 24,
   "hits": 17,
   "text_hits": 17,
@@ -1215,12 +1215,12 @@
   "statements": 2847,
   "residue_tokens": 1092,
   "tokens": 12665,
-  "open": 642,
+  "open": 628,
   "questions": 24,
-  "hits": 15,
-  "text_hits": 20,
+  "hits": 16,
+  "text_hits": 21,
   "misses": {
-   "špatná výplň": 7,
+   "špatná výplň": 6,
    "bez výroku": 1,
    "role/logika (blízký výrok je)": 1
   },
@@ -1559,13 +1559,13 @@
      "roce 1989"
     ],
     "sada": "otazky",
-    "ok": false,
-    "text_ok": false,
+    "ok": true,
+    "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1861"
+     "1989"
     ],
-    "why": "špatná výplň",
+    "why": "",
     "reading": "¬opustit(kdy:?, kdo:·Božena Němcová)"
    },
    {
@@ -1611,7 +1611,7 @@
   "statements": 262,
   "residue_tokens": 179,
   "tokens": 1182,
-  "open": 79,
+  "open": 78,
   "questions": 9,
   "hits": 5,
   "text_hits": 9,
@@ -1759,7 +1759,7 @@
     "reading": "bydlet(kde:?, kdo:·Eduard Bass)"
    }
   ],
-  "t_ingest": 0.1,
+  "t_ingest": 0.0,
   "t_ask": 0.0
  },
  {
@@ -1770,7 +1770,7 @@
   "statements": 855,
   "residue_tokens": 345,
   "tokens": 4031,
-  "open": 214,
+  "open": 213,
   "questions": 17,
   "hits": 14,
   "text_hits": 16,
@@ -2054,7 +2054,7 @@
   "statements": 1082,
   "residue_tokens": 385,
   "tokens": 4659,
-  "open": 401,
+  "open": 391,
   "questions": 1,
   "hits": 1,
   "text_hits": 1,
@@ -2090,12 +2090,12 @@
   "tokens": 1772,
   "open": 110,
   "questions": 15,
-  "hits": 8,
+  "hits": 9,
   "text_hits": 12,
   "misses": {
    "špatná výplň": 2,
-   "bez výroku": 2,
-   "role/logika (blízký výrok je)": 3
+   "role/logika (blízký výrok je)": 3,
+   "bez výroku": 1
   },
   "results": [
    {
@@ -2180,11 +2180,13 @@
      "Brna"
     ],
     "sada": "otazky",
-    "ok": false,
+    "ok": true,
     "text_ok": true,
-    "verdict": "NEVÍM",
-    "fillers": [],
-    "why": "bez výroku",
+    "verdict": "ANO",
+    "fillers": [
+     "Brno"
+    ],
+    "why": "",
     "reading": "¬vrátit_se(kde:?, kdo:·František Halas)"
    },
    {
@@ -2720,13 +2722,13 @@
   "statements": 648,
   "residue_tokens": 195,
   "tokens": 2600,
-  "open": 144,
+  "open": 140,
   "questions": 23,
-  "hits": 12,
-  "text_hits": 19,
+  "hits": 13,
+  "text_hits": 20,
   "misses": {
    "role/logika (blízký výrok je)": 3,
-   "špatná výplň": 7,
+   "špatná výplň": 6,
    "bez výroku": 1
   },
   "results": [
@@ -2964,13 +2966,13 @@
      "Rusínech"
     ],
     "sada": "otazky",
-    "ok": false,
-    "text_ok": false,
+    "ok": true,
+    "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "Tábor"
+     "Rusín"
     ],
-    "why": "špatná výplň",
+    "why": "",
     "reading": "¬záležet(kde:?, kdo:·Ivan Olbracht)"
    },
    {
@@ -3088,7 +3090,7 @@
   "statements": 827,
   "residue_tokens": 193,
   "tokens": 2842,
-  "open": 169,
+  "open": 167,
   "questions": 16,
   "hits": 8,
   "text_hits": 14,
@@ -3339,7 +3341,7 @@
   "statements": 1043,
   "residue_tokens": 394,
   "tokens": 4599,
-  "open": 280,
+  "open": 276,
   "questions": 34,
   "hits": 24,
   "text_hits": 31,
@@ -3892,14 +3894,14 @@
   "statements": 919,
   "residue_tokens": 357,
   "tokens": 4003,
-  "open": 262,
+  "open": 258,
   "questions": 28,
   "hits": 17,
   "text_hits": 23,
   "misses": {
-   "role/logika (blízký výrok je)": 4,
-   "bez výroku": 3,
-   "špatná výplň": 4
+   "role/logika (blízký výrok je)": 5,
+   "špatná výplň": 4,
+   "bez výroku": 2
   },
   "results": [
    {
@@ -3957,7 +3959,7 @@
     "text_ok": true,
     "verdict": "NEVÍM",
     "fillers": [],
-    "why": "bez výroku",
+    "why": "role/logika (blízký výrok je)",
     "reading": "¬dokončit(kde:?, kdo:·Jaroslav Seifert)"
    },
    {
@@ -4317,8 +4319,8 @@
     "reading": "lež(kdy:?, kdo:·Jaroslav Seifert)"
    }
   ],
-  "t_ingest": 0.3,
-  "t_ask": 0.2
+  "t_ingest": 0.2,
+  "t_ask": 0.1
  },
  {
   "doc": "jaroslav_vrchlický",
@@ -4617,7 +4619,7 @@
     "reading": "zemřít(kdy:?, kdo:·Jaroslav Vrchlický)"
    }
   ],
-  "t_ingest": 0.5,
+  "t_ingest": 0.2,
   "t_ask": 0.1
  },
  {
@@ -4846,7 +4848,7 @@
   "statements": 867,
   "residue_tokens": 439,
   "tokens": 3739,
-  "open": 208,
+  "open": 207,
   "questions": 31,
   "hits": 20,
   "text_hits": 27,
@@ -5696,7 +5698,7 @@
     "reading": "oženit_se(s_kým:?, kdo:·Josef Škvorecký)"
    }
   ],
-  "t_ingest": 0.2,
+  "t_ingest": 0.1,
   "t_ask": 0.1
  },
  {
@@ -5707,7 +5709,7 @@
   "statements": 944,
   "residue_tokens": 266,
   "tokens": 3712,
-  "open": 217,
+  "open": 214,
   "questions": 21,
   "hits": 10,
   "text_hits": 19,
@@ -5845,7 +5847,7 @@
     "sada": "otazky",
     "ok": false,
     "text_ok": true,
-    "verdict": "NEVÍM",
+    "verdict": "NE",
     "fillers": [],
     "why": "role/logika (blízký výrok je)",
     "reading": "navštívit(kdy:?, kdo:·Julius Zeyer)"
@@ -5858,7 +5860,7 @@
     "sada": "otazky",
     "ok": false,
     "text_ok": true,
-    "verdict": "NEVÍM",
+    "verdict": "NE",
     "fillers": [],
     "why": "role/logika (blízký výrok je)",
     "reading": "navštívit(kde:?, kdo:·Julius Zeyer)"
@@ -6042,7 +6044,7 @@
     "reading": "procházet(kde:?, kdo:·Julius Zeyer)"
    }
   ],
-  "t_ingest": 0.4,
+  "t_ingest": 0.3,
   "t_ask": 0.1
  },
  {
@@ -6053,7 +6055,7 @@
   "statements": 863,
   "residue_tokens": 299,
   "tokens": 3841,
-  "open": 215,
+  "open": 212,
   "questions": 26,
   "hits": 19,
   "text_hits": 25,
@@ -6474,7 +6476,7 @@
     "reading": "navrhnout(kdy:?, co:·Karel Havlíček Borovský)"
    }
   ],
-  "t_ingest": 0.3,
+  "t_ingest": 0.2,
   "t_ask": 0.1
  },
  {
@@ -6485,7 +6487,7 @@
   "statements": 850,
   "residue_tokens": 335,
   "tokens": 3349,
-  "open": 188,
+  "open": 186,
   "questions": 32,
   "hits": 28,
   "text_hits": 26,
@@ -6994,7 +6996,7 @@
     "reading": "pracovat(kdy:?, co:·Karel Hynek Mácha)"
    }
   ],
-  "t_ingest": 0.4,
+  "t_ingest": 0.3,
   "t_ask": 0.1
  },
  {
@@ -7005,7 +7007,7 @@
   "statements": 493,
   "residue_tokens": 250,
   "tokens": 2006,
-  "open": 100,
+  "open": 99,
   "questions": 17,
   "hits": 10,
   "text_hits": 13,
@@ -7278,7 +7280,7 @@
   "statements": 454,
   "residue_tokens": 153,
   "tokens": 1823,
-  "open": 118,
+  "open": 116,
   "questions": 13,
   "hits": 10,
   "text_hits": 9,
@@ -7494,7 +7496,7 @@
   "statements": 1309,
   "residue_tokens": 470,
   "tokens": 4838,
-  "open": 344,
+  "open": 340,
   "questions": 23,
   "hits": 13,
   "text_hits": 17,
@@ -7871,7 +7873,7 @@
   "statements": 1160,
   "residue_tokens": 318,
   "tokens": 5857,
-  "open": 306,
+  "open": 294,
   "questions": 4,
   "hits": 4,
   "text_hits": 4,
@@ -7949,7 +7951,7 @@
   "statements": 735,
   "residue_tokens": 426,
   "tokens": 4031,
-  "open": 227,
+  "open": 225,
   "questions": 1,
   "hits": 0,
   "text_hits": 0,
@@ -7982,7 +7984,7 @@
   "statements": 564,
   "residue_tokens": 120,
   "tokens": 2356,
-  "open": 123,
+  "open": 122,
   "questions": 17,
   "hits": 11,
   "text_hits": 13,
@@ -8260,7 +8262,7 @@
   "statements": 959,
   "residue_tokens": 377,
   "tokens": 3851,
-  "open": 231,
+  "open": 230,
   "questions": 2,
   "hits": 0,
   "text_hits": 1,
@@ -8303,7 +8305,7 @@
     "reading": "mít(kde:?, kdo:·Marie Majerová)"
    }
   ],
-  "t_ingest": 0.3,
+  "t_ingest": 0.8,
   "t_ask": 0.0
  },
  {
@@ -8314,7 +8316,7 @@
   "statements": 1039,
   "residue_tokens": 388,
   "tokens": 4486,
-  "open": 293,
+  "open": 287,
   "questions": 35,
   "hits": 26,
   "text_hits": 29,
@@ -8871,7 +8873,7 @@
    }
   ],
   "t_ingest": 0.3,
-  "t_ask": 0.1
+  "t_ask": 0.2
  },
  {
   "doc": "ota_pavel",
@@ -8881,7 +8883,7 @@
   "statements": 556,
   "residue_tokens": 239,
   "tokens": 2046,
-  "open": 129,
+  "open": 127,
   "questions": 11,
   "hits": 8,
   "text_hits": 10,
@@ -9073,7 +9075,7 @@
   "statements": 1749,
   "residue_tokens": 621,
   "tokens": 9569,
-  "open": 527,
+  "open": 523,
   "questions": 8,
   "hits": 8,
   "text_hits": 8,
@@ -9205,7 +9207,7 @@
   "statements": 850,
   "residue_tokens": 297,
   "tokens": 3487,
-  "open": 180,
+  "open": 177,
   "questions": 16,
   "hits": 10,
   "text_hits": 15,
@@ -9885,7 +9887,7 @@
   "statements": 252,
   "residue_tokens": 91,
   "tokens": 977,
-  "open": 61,
+  "open": 58,
   "questions": 1,
   "hits": 0,
   "text_hits": 0,
@@ -9918,7 +9920,7 @@
   "statements": 2583,
   "residue_tokens": 979,
   "tokens": 14254,
-  "open": 913,
+  "open": 875,
   "questions": 1,
   "hits": 1,
   "text_hits": 1,
@@ -9940,7 +9942,7 @@
     "reading": "ležet(kde:?, kdo:·Ol Doinyo Lengai)"
    }
   ],
-  "t_ingest": 1.5,
+  "t_ingest": 1.4,
   "t_ask": 0.0
  },
  {
@@ -9951,7 +9953,7 @@
   "statements": 688,
   "residue_tokens": 267,
   "tokens": 2451,
-  "open": 152,
+  "open": 151,
   "questions": 10,
   "hits": 9,
   "text_hits": 9,
@@ -10308,13 +10310,13 @@
   "statements": 845,
   "residue_tokens": 295,
   "tokens": 3391,
-  "open": 204,
+  "open": 202,
   "questions": 27,
-  "hits": 17,
-  "text_hits": 23,
+  "hits": 18,
+  "text_hits": 24,
   "misses": {
    "role/logika (blízký výrok je)": 5,
-   "špatná výplň": 4,
+   "špatná výplň": 3,
    "bez výroku": 1
   },
   "results": [
@@ -10628,14 +10630,13 @@
      "roku 1933"
     ],
     "sada": "otazky",
-    "ok": false,
-    "text_ok": false,
+    "ok": true,
+    "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "1919",
-     "6/1921"
+     "1933"
     ],
-    "why": "špatná výplň",
+    "why": "",
     "reading": "¬věnovat_se(kdy:?, kdo:·Vladislav Vančura)"
    },
    {
@@ -10749,7 +10750,7 @@
   "statements": 1819,
   "residue_tokens": 379,
   "tokens": 8252,
-  "open": 415,
+  "open": 408,
   "questions": 65,
   "hits": 36,
   "text_hits": 50,
@@ -10784,7 +10785,7 @@
     "sada": "otazky",
     "ok": false,
     "text_ok": true,
-    "verdict": "NEVÍM",
+    "verdict": "NE",
     "fillers": [],
     "why": "role/logika (blízký výrok je)",
     "reading": "prosazovat(kdy:?, kdo:·Václav Havel)"
@@ -11807,7 +11808,7 @@
    }
   ],
   "t_ingest": 0.9,
-  "t_ask": 0.6
+  "t_ask": 0.7
  },
  {
   "doc": "vítězslav_hálek",
@@ -12030,7 +12031,7 @@
   "statements": 832,
   "residue_tokens": 346,
   "tokens": 3322,
-  "open": 187,
+  "open": 184,
   "questions": 26,
   "hits": 16,
   "text_hits": 23,
@@ -12433,7 +12434,7 @@
   "statements": 846,
   "residue_tokens": 257,
   "tokens": 4231,
-  "open": 311,
+  "open": 308,
   "questions": 1,
   "hits": 0,
   "text_hits": 1,
@@ -12467,7 +12468,7 @@
   "statements": 1263,
   "residue_tokens": 508,
   "tokens": 6821,
-  "open": 339,
+  "open": 330,
   "questions": 2,
   "hits": 1,
   "text_hits": 2,
@@ -12504,7 +12505,7 @@
     "reading": "vyhrát(kdy:?, kdo:·Deep Blue, co:∃zápas)"
    }
   ],
-  "t_ingest": 0.7,
+  "t_ingest": 0.9,
   "t_ask": 0.0
  }
 ]

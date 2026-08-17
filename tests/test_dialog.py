@@ -465,3 +465,14 @@ def test_restrictive_relative_on_generic_subject_is_rule(s: Session) -> None:
     assert a.verdict is not None and a.verdict.value == "NEVÍM" and "platí jen pod podmínkou: štěkat(kdo:·Alík)" in a.text and "šablona" not in a.text
     b = s.say("Kdo je hlídač?")
     assert [s.memory.label(t) for t, _ in b.verdict.fillers] == ["Rex"]  # type: ignore[union-attr]
+
+
+def test_why_questions_and_failed_presupposition(s: Session) -> None:
+    s.say("Petr nepřišel, protože byl nemocný.")
+    a = s.say("Proč Petr nepřišel?")
+    assert a.verdict is not None and "nemocný" in a.text.splitlines()[1]
+    b = s.say("Proč Petr přišel?")
+    assert b.verdict is not None and b.verdict.value == "NE" and "předpoklad otázky neplatí" in b.text
+    s.say("Kvůli dešti se zápas nehrál.")
+    c = s.say("Proč se zápas nehrál?")
+    assert c.verdict is not None and [s.memory.label(t) for t, _ in c.verdict.fillers] == ["déšť"]

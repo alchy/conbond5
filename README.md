@@ -104,7 +104,7 @@ běh trvá vteřiny; bible z ručních sad v korpusu není (vypíše se).
 | korpus conbond4 (238 vět): zapsáno | 8 | **233 s rolí**, zbytek 5,6 % tokenů |
 | korpus conBond2 (73 dok., 14 354 vět): zapsáno | — | **14 354** (38 987 výroků, zbytek 8,5 % tokenů, 10 277 otevřených položek) |
 | **ručně psané otázky (70): správně** | 0 | **60 (86 %)** — etalon 25/32, conbond 35/38; 66 má odpověď aspoň v „vím: …“; u `mode=unsure` je správně NEVÍM (jednou odpověděl navíc: „S kým se oženil Hrabal?“ → Eliška Plevová — pravdivě). Příbuzenské otázky (tchán, tchyně, švagrová, teta, děd) z **definic naučených textem** `vztahy_příbuzenské.txt` |
-| generované otázky (682): správná výplň | 0 | 440 (65 %); 581 v textu odpovědi |
+| generované otázky (682): správná výplň | 0 | 444 (65 %); 581 v textu odpovědi |
 | rozklad chyb (všech 752) | — | viz `mereni/bench-vse.md` |
 | dialogy A–F ze zadání conbond4 | — | zelené (`tests/test_dialogues_af.py`) |
 | „Bydlí Petr v Brně?“ po „Petr bydlí v Praze.“ | ANO (nepravda) | NEVÍM + „vím: bydlí v Praze“ |
@@ -127,6 +127,7 @@ volby (∀ z generického prézentu, podmět z aktivace, „platí o užší tř
 - **podmínky a pravidla z věty**: „Petr půjde na oslavu, pokud půjde Karel.“ → „Půjde Petr?“ NEVÍM („platí jen pod podmínkou: jít(Karel) — to nevím“) → po „Karel půjde.“ ANO (odvozeno, podmínka splněna); „Každý, kdo bydlí v Praze, bydlí v Česku.“ + „Petr bydlí v Praze.“ → „Bydlí Petr v Česku?“ ANO (X := Petr), „Kdo bydlí v Česku?“ → Petr; totéž „Kdo jede po dálnici, jede rychle.“, „Pokud někdo …“, „Nikdo nebydlí na Marsu.“ → NE; „Každý pes, který štěká, je hlídač.“ → „Je Rex hlídač?“ ANO jen když Rex je pes *a* štěká, „Štěká každý pes?“ NEVÍM (omezovací vztažná věta nic netvrdí)
 - vztahová jména dědí třídy: „Otec je rodič.“ + „Petr je otec Jany.“ → „Je Petr rodič Jany?“ ANO, „Kdo je rodič Jany?“ → Petr (otec ⊆ rodič se přenáší na ⟨Jana⟩)
 - rozsahy a veličiny: „30 000 až 50 000 dělnic“ → „Je v úlu 40 000 dělnic?“ ANO / 60 000 → NE („mimo rozsah“); „tloušťku 1–4,5 km“ → „Jak silný je příkrov?“ → 1–4,5 km; „Praha leží na Vltavě.“ → „Kde je Praha?“ (být(kde) ~ ležet, přiznaně)
+- „proč“: „Petr nepřišel, protože byl nemocný.“ → „Proč Petr nepřišel?“ → být(Petr, nemocný); „Proč Petr přišel?“ → NE — předpoklad otázky neplatí (výrok je záporný)
 - čas: „před 2 miliardami let“ = kdy; „v dubnu“ + „roku 1975“ o témže ději → „4/1975 (sloučeno ze dvou vět)“; „Kde je sýr?“ přes lednici v Petrovicích (tranzitivita umístění, přiznaná)
 - **hodnoty s jednotkou** („130 km/h“), díry na veličinu („Jak rychle / vysoká / dlouhá…?“) a **výchozí můstek** „veličina místa omezuje děj na něm“ (dialog A: „Jak rychle může jet automobil po dálnici?“ → nejvýše 130 km/h, přiznaně), věk („Kolik je Ronikovi let?“), elipsa přísudku („…, štěně 28 mléčných zubů“), obnova diakritiky z toho, co už četl (přiznaně), „nerozumím“ místo tichého fragmentu
 

@@ -828,8 +828,8 @@ class Evaluator:
         near: list[str] = []
         matched: list[tuple[Statement, Proof]] = []
         for f in m.active():
-            if self.same_pred(q.pred, f.pred) is None or f.neg:
-                continue
+            if self.same_pred(q.pred, f.pred) is None or f.neg != q.neg:
+                continue  # „Proč Petr nepřišel?“ hledá záporný výrok
             p = self.match(q, f)
             if p is None:
                 if self._near(q, f):
@@ -939,7 +939,7 @@ class Evaluator:
         # užší shoda: otázka o kočce, výrok o dospělé kočce (∀ užší třída) — s přiznáním
         if not fillers and hole.wh_kind in ("filler", "count"):
             for f in m.active():
-                if self.same_pred(q.pred, f.pred) is None or f.neg or f.id in {x.id for x, _ in matched}:
+                if self.same_pred(q.pred, f.pred) is None or f.neg != q.neg or f.id in {x.id for x, _ in matched}:
                     continue
                 narrowed = self._match_narrower(q, f)
                 if narrowed is None:
@@ -1048,6 +1048,16 @@ class Evaluator:
                 return (is_place, -GRADE_RANK[x[1].grade], len(x[1].statements))
             fillers.sort(key=rank)
             return Verdict("ANO", [p for _, p in fillers], fillers=fillers, near=near)
+        # předpoklad otázky neplatí: „Proč Petr přišel?“ × „Petr nepřišel“ → NE s důkazem
+        qbare = Statement("", q.pred, q.kind, neg=not q.neg, modality=q.modality, kernel=q.kernel, mood="question",
+                          roles=[Role(r.name, list(r.terms), r.quant, r.authority, r.surface, counts=dict(r.counts)) for r in q.roles if not r.wh])
+        for f in (m.active() if not q.neg else []):
+            if self.same_pred(q.pred, f.pred) is None or not f.neg or f.mood == "question":
+                continue
+            p = self.match(qbare, f)
+            if p is not None and "__count_mismatch__" not in p.defaults and "__modal__" not in p.defaults:
+                p.steps.append("předpoklad otázky neplatí" + (" (výrok je záporný)" if f.neg else " (výrok je kladný)"))
+                return Verdict("NE", [], [p], near=near)
         return Verdict("NEVÍM", missing=self._missing(q, near), near=near)
 
     def quantity(self, q: Statement, hole: Role) -> Verdict | None:

@@ -666,6 +666,8 @@ class _Reader:
                     self.mark(c.index, "particle")
         elif marker in D.NON_ASSERTED_MARKERS:
             nested.embedded = D.NON_ASSERTED_MARKERS[marker]
+        elif marker in D.CAUSAL_MARKERS:
+            name, authority = "proč", "default"  # „protože byl nemocný“ = důvod (odpověď na „proč“)
         p.roles.append(RoleFill(name, name, nested=nested, authority=authority))
         self.mark(t.index, "nested")
 

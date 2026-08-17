@@ -289,3 +289,8 @@ Je Rex hlídač?
 Alík je pes.
 Je Alík hlídač?
 Kdo je hlídač?
+Petr nepřišel, protože byl nemocný.
+Proč Petr nepřišel?
+Proč Petr přišel?
+Kvůli dešti se zápas nehrál.
+Proč se zápas nehrál?

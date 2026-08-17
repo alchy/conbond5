@@ -839,7 +839,7 @@ class Memory:
     def program(self) -> list[str]:
         out = []
         for st in self.statements.values():
-            flag = "" if st.status == "active" else f" ✗({st.reason})"
+            flag = "" if st.status == "active" else (f" ⊂({st.reason})" if st.status == "embedded" else f" ✗({st.reason})")
             out.append(f"{st.id}: {self.render_short(st)} @{st.grade} @{st.prov.doc}#{st.prov.sent_no}{flag}")
         return out
 

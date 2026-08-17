@@ -49,8 +49,8 @@ ROLE_BY_CASE: dict[tuple[str, str], dict[str, str]] = {
     ("bez", "Gen"): {"*": "bez+Gen"},
     ("podle", "Gen"): {"*": "podle+Gen"},
     ("proti", "Dat"): {"*": "proti+Dat"},
-    ("díky", "Dat"): {"*": "díky+Dat"},
-    ("kvůli", "Dat"): {"*": "kvůli+Dat"},
+    ("díky", "Dat"): {"*": "proč"},
+    ("kvůli", "Dat"): {"*": "proč"},
     ("jako", ""): {"*": "jako"},
     ("", "Ins"): {"*": "čím"},
     ("", "Dat"): {"*": "komu"},
@@ -101,6 +101,9 @@ IMPERSONAL_VERBS: frozenset[str] = frozenset({
     "fouknout", "lít", "chumelit", "jednat_se", "stát_se", "dařit_se", "zdát_se", "podařit_se", "hodit_se",
 })
 
+#: příčinné spojky: věta pod nimi platí a je odpovědí na „proč“
+CAUSAL_MARKERS: frozenset[str] = frozenset({"protože", "jelikož", "neboť", "poněvadž", "kvůli", "díky"})
+
 #: spojky vedlejších vět, které NETVRDÍ obsah věty: podmínka („pokud prší“ netvrdí, že prší),
 #: účel, „než/dokud/aniž“. Věta pod nimi se uloží jako vložený výrok (status `embedded`),
 #: který se hodnotí jen skrze rodičovský výrok. „když“ je podmínka jen v přítomném/budoucím čase
@@ -140,7 +143,7 @@ WH: dict[str, tuple[str, str]] = {
     "dokdy": ("do_kdy", "filler"), "kdo": ("kdo", "filler"), "co": ("co", "filler"),
     "koho": ("co", "filler"), "komu": ("komu", "filler"), "čím": ("čím", "filler"),
     "kolik": ("count", "count"), "jaký": ("jaký", "attr"), "který": ("který", "attr"),
-    "proč": ("advcl:protože", "filler"), "čí": ("čí", "filler"), "jak": ("jak", "filler"),
+    "proč": ("proč", "filler"), "čí": ("čí", "filler"), "jak": ("jak", "filler"),
     "jak_dlouho": ("jak_dlouho", "filler"),
 }
 

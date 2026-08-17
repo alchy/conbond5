@@ -149,6 +149,11 @@ def render_answer(m: Memory, verdict: Verdict, *, wh: bool, recalled: Sequence[S
             for _, labels, proof in groups:
                 lines.append("→ " + "; ".join(labels))
                 lines.extend(_proof_lines(m, proof))
+        elif verdict.value == "NE" and verdict.counter:
+            # předpoklad otázky neplatí („Proč Petr přišel?“ × „Petr nepřišel“)
+            lines.append(TEMPLATES["NE"] + " — předpoklad otázky neplatí:")
+            for proof in verdict.counter:
+                lines.extend(_proof_lines(m, proof, "   "))
         else:
             lines.append(TEMPLATES["wh_empty"])
     else:

@@ -37,7 +37,7 @@ Testy síť nepotřebují (`tests/data/parses.json`; nové věty: přidat do
 | `cb5/read.py` | rozbor → predikace (sloveso/kopula/fragment; role; koordinace; vnořené, vztažné, přívlastkové výroky; genitivní zúžení `⟨…⟩`; tituly a cizí jména; závorka; elipsa; věk; srovnání; definice; veličiny; číslovky slovem, `8×8`, **rozsahy** „30 000–50 000“ / „1–4,5 km“ (`count` + `hi` + `count_text`), **substantivum veličiny s hodnotou** „do velikosti 12–14 mm“ → role `velikost`; díry; **podmínkové věty** „X, pokud/když Y“ → role `podmínka` (Y se netvrdí, `embedded`); **pravidla z věty s proměnnou** „Každý, kdo …“ / „Kdo …, ten …“ / „Pokud někdo …“ / „Nikdo …“ → term `var` (X); neosobní „prší“, „je mokro“ bez podmětu); **každý token má místo, jinak zbytek** |
 | `cb5/memory.py` | graf výroků: uzly, `attach/revoke/inspect` (odvolání definičního výroku **vypne i naučenou vazbu**), uzávěry (`member*/subset*/within*/same_as*`, strukturální ⊆ přes zúžení, **otec ⊆ rodič ⇒ otec⟨Jana⟩ ⊆ rodič⟨Jana⟩**), disjunktnost, výjimky, pravidla, aktivace (sliding window), měkké hrany, `graph()`, JSON, `learned_program()` = **modul vazeb** |
 | `cb5/ground.py` | čtení → paměť: identita jmen (celé jméno, viděné tvary, třída↔jméno, titul), instance z neurčité zmínky, pro‑drop/zájmena (aktivace, téma dokumentu), přivlastnění, otevřené položky |
-| `cb5/logic.py` | hodnocení: shoda dotazu s výroky přes uzávěry, NE/KONFLIKT/MOŽNÁ, dotaz `být(kde)` sedí i na slovesa umístění (`LOCATIVE_VERBS`: nacházet_se, ležet…, přiznaně), wh‑výčty (rodina rolí, místo uvnitř, užší shoda, **sloučení částečných časů** „v dubnu“+„roku 1975“, tranzitivita umístění), definice/třídy, meta‑otázky, srovnání, veličiny + můstek, vztahová jména (`rel_members`: přímo, inverze, naučené řetězy), pravidla; **podmínka**: výrok s rolí `podmínka` platí, jen když podmínka (s dosazenými proměnnými, `cond_query`) plyne z paměti — jinak „platí jen pod podmínkou: … — to nevím“; proměnná `X` se váže z dotazu (`X := Petr`) a u wh‑otázky se vyčísluje z podmínky |
+| `cb5/logic.py` | hodnocení: shoda dotazu s výroky přes uzávěry, NE/KONFLIKT/MOŽNÁ, **„proč“** (příčinná věta „protože…“ / „kvůli“ = role `proč`, odpověď je vnořený výrok), wh‑otázka nad záporným výrokem („Proč Petr nepřišel?“) hledá záporný výrok, kladná wh‑otázka × záporný výrok → **NE „předpoklad otázky neplatí“**, dotaz `být(kde)` sedí i na slovesa umístění (`LOCATIVE_VERBS`: nacházet_se, ležet…, přiznaně), wh‑výčty (rodina rolí, místo uvnitř, užší shoda, **sloučení částečných časů** „v dubnu“+„roku 1975“, tranzitivita umístění), definice/třídy, meta‑otázky, srovnání, veličiny + můstek, vztahová jména (`rel_members`: přímo, inverze, naučené řetězy), pravidla; **podmínka**: výrok s rolí `podmínka` platí, jen když podmínka (s dosazenými proměnnými, `cond_query`) plyne z paměti — jinak „platí jen pod podmínkou: … — to nevím“; proměnná `X` se váže z dotazu (`X := Petr`) a u wh‑otázky se vyčísluje z podmínky |
 | `cb5/recall.py` | propad „vím: …“ (jen řadí) |
 | `cb5/render.py` | verdikt + důvod + zdroj + doložka stupně |
 | `cb5/dialog.py` | `Session`: `ingest`, `say` (otázky, tvrzení, opravy „Ne, …“/„To není pravda.“/„Ne každý X.“, konflikt), **učení z vět** (definice srovnávacích slov, vztahových jmen), příkazy `!…` (i bez `!`), backlog, žurnál, `replay`, **`!ulož-vazby` / `!načti-vazby`** (modul vazeb) |
@@ -60,11 +60,11 @@ s proveniencí a dá se odvolat. Tak lze skládat modulární znalost: fakta z t
 | | conbond4 (16. 8.) | conbond5 |
 |---|---|---|
 | korpus conbond4 (238 vět) zapsáno | 8 | 233 s rolí, zbytek 5,6 % |
-| korpus conBond2 (14 354 vět) zapsáno | — | 14 354 (38 513 výroků, zbytek 8,3 %, 9 897 otevřených) |
+| korpus conBond2 (14 354 vět) zapsáno | — | 14 354 (38 513 výroků, zbytek 8,3 %, 9 730 otevřených) |
 | **ručně psané otázky (70)** | 0 | **60 (86 %)** — etalon 25/32, conbond 35/38 |
-| generované otázky (682, proxy) | 0 | 440 (65 %); 578 má odpověď v textu |
+| generované otázky (682, proxy) | 0 | 444 (65 %); 581 má odpověď v textu |
 | dialogy A–F ze zadání conbond4 | — | zelené; dialog A vč. „nejvýše 130 km/h“ (výchozí můstek) |
-| testy / typy | — | 110 pytest, mypy čistý |
+| testy / typy | — | 111 pytest, mypy čistý |
 
 Zbývající ruční chyby (etalon): „Kolik procent je Antarktida větší než
 Evropa?“ (procenta + komparativ), „Jaká je nejnižší naměřená teplota na
