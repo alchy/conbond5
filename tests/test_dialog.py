@@ -201,3 +201,17 @@ def test_transport_domain_meta_questions(s: Session) -> None:
     v = s.say("Jaká je maximální rychlost na dálnici?")
     assert v.verdict is not None and v.verdict.fillers[0][0].startswith("count:130")
     assert "130 km/h" in v.text
+
+
+def test_meta_questions_and_enumeration_by_names(s: Session) -> None:
+    s.say("Automobil má motor.")
+    v = s.say("Co víš o automobilu?")
+    assert v.verdict is not None and "mít(kdo: ∀automobil, co: ∃motor)" in v.text
+    s.say("Automobil může být Ford, Mazda, Škoda.")   # výčet jmen = prvky třídy, ne automobil ⊆ Ford
+    assert s.say("Je Škoda automobil?").verdict.value == "ANO"  # type: ignore[union-attr]
+    s.say("Druh automobilu je Ford, Škoda, Mazda.")
+    z = s.say("Jaké druhy automobilu znáš?")
+    assert {s.memory.label(t) for t, _ in z.verdict.fillers} == {"Ford", "Škoda", "Mazda"}  # type: ignore[union-attr]
+    assert "jestli je to všechno, nevím" in z.text
+    s.say("Hrabal je spisovatel.")
+    assert s.memory.label(s.say("Jaké znáš spisovatele?").verdict.fillers[0][0]) == "Hrabal"  # type: ignore[union-attr]

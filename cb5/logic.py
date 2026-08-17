@@ -494,6 +494,24 @@ class Evaluator:
             cv = self.compare(q)
             if cv is not None:
                 return cv
+        # „Co víš o X?“ / „Jaké druhy X znáš?“ / „Jaké znáš spisovatele?“ → co paměť drží
+        if q.pred in ("vědět", "znát", "pamatovat_si", "pamatovat"):
+            about = q.role("o_čem") or q.role("co") or q.role("jaký")
+            targets = [t for r in (about,) if r for t in r.terms]
+            if targets:
+                t0 = targets[0]
+                if self._kind(t0) == "group" and (about is not None and about.wh):
+                    # výčet známých prvků / podtříd třídy — otevřený svět: „znám tyhle, jestli všechny, nevím“
+                    v = self.describe_verdict(t0, Role("co", wh=True))
+                    if v.fillers:
+                        for _, pr in v.fillers:
+                            pr.steps.append("výčet známého — jestli je to všechno, nevím")
+                        return v
+                    return Verdict("NEVÍM", missing=[f"o třídě {m.label(t0)} neznám žádný prvek ani podtřídu"])
+                items = [(st.id, Proof([st.id], [], list(st.defaults), st.grade)) for st in self.describe(t0) if not st.derived_from]
+                if items:
+                    return Verdict("ANO", [p for _, p in items], fillers=items)
+                return Verdict("NEVÍM", missing=[f"o {m.label(t0)} nevím nic"])
         # „Co dělá X?“ / „Co umí X?“ → děje, kde je X podmětem (i přes ∀ nadtřídu)
         if q.pred in ("dělat", "činit", "umět", "dokázat", "provádět") and hole.name == "co" and q.role("kdo") and q.role("kdo").terms:  # type: ignore[union-attr]
             subj = q.role("kdo")
@@ -504,10 +522,10 @@ class Evaluator:
                 fk = f.role("kdo")
                 if not fk or not fk.terms:
                     continue
-                pr = self.match_role(subj, fk, pred=f.pred)  # type: ignore[arg-type]
-                if pr is None:
+                matched_role = self.match_role(subj, fk, pred=f.pred)  # type: ignore[arg-type]
+                if matched_role is None:
                     continue
-                proof = pr.merged(Proof([f.id], [], list(f.defaults), f.grade))
+                proof = matched_role.merged(Proof([f.id], [], list(f.defaults), f.grade))
                 if q.pred in ("umět", "dokázat") and f.modality is None:
                     proof.steps.append("děj, ne schopnost — beru jako doklad")
                 acts.append((f.id, proof))

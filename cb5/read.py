@@ -458,8 +458,9 @@ class _Reader:
                     role.name, role.surface = rname, rsurface
             self.mark(t.index, f"role:{role.name}")
             self._mark_structure(t.index, f"role:{role.name}")
-            if role.wh_kind == "count" and t.lemma not in D.WH:
-                # „kolik zubů“: díra je počet, term zůstává („kolik“ samo term není)
+            if role.wh_kind in ("count", "attr") and t.lemma not in D.WH:
+                # „kolik zubů“ / „jaké druhy“: díra je počet / vlastnost, term ZŮSTÁVÁ
+                # („kolik“ / „jaký“ samo term není)
                 role.terms = [self._term(t)]
                 role.name = name
             p.roles.append(role)
@@ -1096,6 +1097,18 @@ class _Reader:
         if subj is None or not subj.terms or pred_role.wh:
             return None
         s = subj.terms[0]
+        if (s.kind == "group" and s.quant in ("∀", "∃") and pred_role.name == "co" and pred_role.terms
+                and all(t.kind == "entity" for t in pred_role.terms)):
+            # „Druh automobilu je Ford, Škoda, Mazda.“ / „Automobil může být Ford…“ — třída = výčet
+            # jmen: jména jsou PRVKY třídy, ne naopak. Role se prohodí, jádro member.
+            subj.terms, pred_role.terms = pred_role.terms, subj.terms
+            subj.authority = "default"
+            for t in subj.terms:
+                t.quant, t.quant_authority = "·", "structural"
+            for t in pred_role.terms:
+                t.quant = "∃"
+            p.defaults.append("kernel:member (výčet jmen = prvky třídy; role prohozeny)")
+            return "member"
         if pred_role.name == "kde" and s.kind == "place":
             p.defaults.append("kernel:within (místo v místě)")
             return "within"

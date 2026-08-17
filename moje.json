@@ -1,12 +1,12 @@
 {
  "format": "conbond5-memory/1",
  "counters": {
-  "e": 14,
+  "e": 18,
   "t": 9,
-  "z": 41,
-  "s": 54,
+  "z": 43,
+  "s": 56,
   "p": 2,
-  "g": 35,
+  "g": 37,
   "o": 13
  },
  "nodes": [
@@ -1544,6 +1544,128 @@
    "number": null,
    "doc": "dialog",
    "text": "Automobil má motor.",
+   "rel": null
+  },
+  {
+   "id": "e0015",
+   "kind": "entity",
+   "lemma": "Ford",
+   "names": [
+    "Ford"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": "Masc",
+   "number": "Sing",
+   "doc": "dialog",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "e0016",
+   "kind": "entity",
+   "lemma": "Mazda",
+   "names": [
+    "Mazda"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": "Fem",
+   "number": "Sing",
+   "doc": "dialog",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "e0017",
+   "kind": "entity",
+   "lemma": "Skoda",
+   "names": [
+    "Skoda"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": "Fem",
+   "number": "Sing",
+   "doc": "dialog",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "z0042",
+   "kind": "sentence",
+   "lemma": "dialog#13",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Automobil může být Ford, Mazda, Skoda.",
+   "rel": null
+  },
+  {
+   "id": "e0018",
+   "kind": "entity",
+   "lemma": "Škoda",
+   "names": [
+    "Škoda"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": "Fem",
+   "number": "Sing",
+   "doc": "dialog",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "g0036",
+   "kind": "group",
+   "lemma": "druh",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "g0037",
+   "kind": "group",
+   "lemma": "druh",
+   "names": [
+    "Druh"
+   ],
+   "attrs": [],
+   "base": "g0036",
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "cap",
+   "rel": "Gen:g0018"
+  },
+  {
+   "id": "z0043",
+   "kind": "sentence",
+   "lemma": "dialog#14",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Druh automobilu je Ford, Škoda, Mazda.",
    "rel": null
   }
  ],
@@ -4493,6 +4615,123 @@
    "sentence": "z0041",
    "tense": "Pres",
    "mood": "assert"
+  },
+  {
+   "id": "s0055",
+   "pred": "být",
+   "kind": "copula",
+   "neg": false,
+   "modality": "možnost",
+   "kernel": "subset",
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0018"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "e0015",
+      "e0016",
+      "e0017"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "cop",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "kdo:∀ generický prézens",
+    "kernel:subset (obecný podmět)"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 13,
+    "text": "Automobil může být Ford, Mazda, Skoda.",
+    "turn": 25,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0042",
+   "tense": null,
+   "mood": "assert"
+  },
+  {
+   "id": "s0056",
+   "pred": "být",
+   "kind": "copula",
+   "neg": false,
+   "modality": null,
+   "kernel": "subset",
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0037"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "e0015",
+      "e0018",
+      "e0016"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "cop",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "kdo:∀ generický prézens",
+    "kernel:subset (obecný podmět)",
+    "diakritika doplněna: Skoda→Škoda"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 14,
+    "text": "Druh automobilu je Ford, Škoda, Mazda.",
+    "turn": 27,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0043",
+   "tense": "Pres",
+   "mood": "assert"
   }
  ],
  "open": [
@@ -4837,6 +5076,61 @@
    1.0
   ],
   [
+   "e0015",
+   "e0016",
+   2.0
+  ],
+  [
+   "e0015",
+   "e0017",
+   1.0
+  ],
+  [
+   "e0015",
+   "e0018",
+   1.0
+  ],
+  [
+   "e0015",
+   "g0018",
+   1.0
+  ],
+  [
+   "e0015",
+   "g0037",
+   1.0
+  ],
+  [
+   "e0016",
+   "e0017",
+   1.0
+  ],
+  [
+   "e0016",
+   "e0018",
+   1.0
+  ],
+  [
+   "e0016",
+   "g0018",
+   1.0
+  ],
+  [
+   "e0016",
+   "g0037",
+   1.0
+  ],
+  [
+   "e0017",
+   "g0018",
+   1.0
+  ],
+  [
+   "e0018",
+   "g0037",
+   1.0
+  ],
+  [
    "g0001",
    "g0007",
    3.0
@@ -4958,14 +5252,14 @@
   ]
  ],
  "activation": {
-  "g0014": 0.06409414655999998,
-  "g0018": 1.3953081738924011,
-  "g0026": 0.2278597109907456,
-  "g0028": 0.030233087999999984,
-  "g0029": 0.015116543999999992,
-  "g0030": 0.010077695999999999,
-  "g0034": 0.046655999999999996,
-  "g0035": 0.36,
-  "t0009": 0.010077695999999999
+  "e0015": 0.29375999999999997,
+  "e0016": 0.29375999999999997,
+  "e0017": 0.07776,
+  "e0018": 0.2808,
+  "g0018": 0.28993916360187305,
+  "g0026": 0.017718371126640372,
+  "g0035": 0.027993599999999997,
+  "g0037": 0.32399999999999995,
+  "p0002": 0.3
  }
 }

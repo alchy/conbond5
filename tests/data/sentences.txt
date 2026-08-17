@@ -174,3 +174,12 @@ Co dělá automobil?
 Co umí automobil?
 Maximální rychlost na dálnici je 130 km/h.
 Jaká je maximální rychlost na dálnici?
+# --- meta-otázky a výčty
+Automobil má motor.
+Co víš o automobilu?
+Automobil může být Ford, Mazda, Škoda.
+Je Škoda automobil?
+Druh automobilu je Ford, Škoda, Mazda.
+Jaké druhy automobilu znáš?
+Jaké znáš automobily?
+Jaké znáš spisovatele?

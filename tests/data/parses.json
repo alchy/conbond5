@@ -1199,6 +1199,320 @@
 }
 ]
 },
+"Automobil má motor.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Automobil má motor.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Automobil",
+"head": 2,
+"id": 1,
+"lemma": "automobil",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "má",
+"head": 0,
+"id": 2,
+"lemma": "mít",
+"upos": "VERB"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "motor",
+"head": 2,
+"id": 3,
+"lemma": "motor",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 4,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Automobil může být Ford, Mazda, Škoda.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Automobil může být Ford, Mazda, Škoda.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Automobil",
+"head": 2,
+"id": 1,
+"lemma": "automobil",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "může",
+"head": 0,
+"id": 2,
+"lemma": "moci",
+"upos": "VERB"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"VerbForm",
+"Inf"
+]
+],
+"form": "být",
+"head": 4,
+"id": 3,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "xcomp",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Oth"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Ford",
+"head": 2,
+"id": 4,
+"lemma": "Ford",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ",",
+"head": 6,
+"id": 5,
+"lemma": ",",
+"upos": "PUNCT"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Oth"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Mazda",
+"head": 4,
+"id": 6,
+"lemma": "Mazda",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ",",
+"head": 8,
+"id": 7,
+"lemma": ",",
+"upos": "PUNCT"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Oth"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Škoda",
+"head": 4,
+"id": 8,
+"lemma": "Škoda",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 2,
+"id": 9,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
 "Automobil slouží k přepravě nákladu a osob.": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Automobil slouží k přepravě nákladu a osob.",
@@ -4772,6 +5086,129 @@
 }
 ]
 },
+"Co víš o automobilu?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Co víš o automobilu?",
+"tokens": [
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Acc"
+],
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Co",
+"head": 2,
+"id": 1,
+"lemma": "co",
+"upos": "PRON"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"2"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "víš",
+"head": 0,
+"id": 2,
+"lemma": "vědět",
+"upos": "VERB"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "o",
+"head": 4,
+"id": 3,
+"lemma": "o",
+"upos": "ADP"
+},
+{
+"deprel": "obl:arg",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "automobilu",
+"head": 2,
+"id": 4,
+"lemma": "automobil",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 2,
+"id": 5,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
 "Delší je ten, kdo měří víc.": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Delší je ten, kdo měří víc.",
@@ -6235,6 +6672,215 @@
 "form": ".",
 "head": 3,
 "id": 6,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Druh automobilu je Ford, Škoda, Mazda.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Druh automobilu je Ford, Škoda, Mazda.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Druh",
+"head": 4,
+"id": 1,
+"lemma": "druh",
+"upos": "NOUN"
+},
+{
+"deprel": "nmod",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "automobilu",
+"head": 1,
+"id": 2,
+"lemma": "automobil",
+"upos": "NOUN"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 4,
+"id": 3,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Oth"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Ford",
+"head": 0,
+"id": 4,
+"lemma": "Ford",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ",",
+"head": 6,
+"id": 5,
+"lemma": ",",
+"upos": "PUNCT"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Oth"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Škoda",
+"head": 4,
+"id": 6,
+"lemma": "Škoda",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ",",
+"head": 8,
+"id": 7,
+"lemma": ",",
+"upos": "PUNCT"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Oth"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Mazda",
+"head": 4,
+"id": 8,
+"lemma": "Mazda",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 4,
+"id": 9,
 "lemma": ".",
 "upos": "PUNCT"
 }
@@ -8152,6 +8798,141 @@
 }
 ]
 },
+"Jaké druhy automobilu znáš?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Jaké druhy automobilu znáš?",
+"tokens": [
+{
+"deprel": "det",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Plur"
+],
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Jaké",
+"head": 2,
+"id": 1,
+"lemma": "jaký",
+"upos": "DET"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "druhy",
+"head": 4,
+"id": 2,
+"lemma": "druh",
+"upos": "NOUN"
+},
+{
+"deprel": "nmod",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Gen"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "automobilu",
+"head": 2,
+"id": 3,
+"lemma": "automobil",
+"upos": "NOUN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"2"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "znáš",
+"head": 0,
+"id": 4,
+"lemma": "znát",
+"upos": "VERB"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 4,
+"id": 5,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
 "Jaké je Filipovo auto?": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Jaké je Filipovo auto?",
@@ -8286,6 +9067,115 @@
 "form": "?",
 "head": 1,
 "id": 5,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Jaké znáš automobily?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Jaké znáš automobily?",
+"tokens": [
+{
+"deprel": "det",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Plur"
+],
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Jaké",
+"head": 3,
+"id": 1,
+"lemma": "jaký",
+"upos": "DET"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"2"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "znáš",
+"head": 0,
+"id": 2,
+"lemma": "znát",
+"upos": "VERB"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Plur"
+]
+],
+"form": "automobily",
+"head": 2,
+"id": 3,
+"lemma": "automobil",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 2,
+"id": 4,
 "lemma": "?",
 "upos": "PUNCT"
 }
@@ -9912,6 +10802,115 @@
 "head": 4,
 "id": 5,
 "lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Je Škoda automobil?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Je Škoda automobil?",
+"tokens": [
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Je",
+"head": 3,
+"id": 1,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Oth"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Škoda",
+"head": 3,
+"id": 2,
+"lemma": "Škoda",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "automobil",
+"head": 0,
+"id": 3,
+"lemma": "automobil",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 3,
+"id": 4,
+"lemma": "?",
 "upos": "PUNCT"
 }
 ]
