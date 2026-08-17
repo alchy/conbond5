@@ -261,8 +261,63 @@ class Evaluator:
 
     # ---- ano/ne --------------------------------------------------------------
 
+    #: Komparativ → (predikát, časová role, „dřív = pravda“). starší = narodil se dřív.
+    COMPARATIVES = {"starý": ("narodit_se", "kdy", True), "mladý": ("narodit_se", "kdy", False)}
+
+    def _birth(self, node_id: str) -> tuple[str, str] | None:
+        """(id času, id výroku) narození entity, je-li známo."""
+        for st in self.m.statements_about(node_id):
+            if st.pred and self.same_pred(st.pred, "narodit_se") is not None and not st.neg:
+                kdo, kdy = st.role("kdo"), st.role("kdy")
+                if kdo and node_id in kdo.terms and kdy and kdy.terms and self._kind(kdy.terms[0]) == "time":
+                    return kdy.terms[0], st.id
+        return None
+
+    def compare(self, q: Statement) -> Verdict | None:
+        """Srovnání věku z narození: „Je Pavla starší než Jindřich?“, „Kdo je starší, A nebo B?“."""
+        m = self.m
+        adj = q.role("jaký")
+        if q.pred != "srovnání" or not adj or not adj.terms:
+            return None
+        lemma = m.nodes[adj.terms[0]].lemma
+        if lemma not in self.COMPARATIVES:
+            return Verdict("NEVÍM", missing=[f"srovnání „{lemma}“ neumím (znám: starší/mladší z narození)"])
+        _, _, earlier_wins = self.COMPARATIVES[lemma]
+        kdo, than, cands = q.role("kdo"), q.role("než"), q.role("z")
+        if kdo and kdo.wh and cands and cands.terms:
+            births = [(c, self._birth(c)) for c in cands.terms]
+            known = [(c, b) for c, b in births if b]
+            missing = [f"chybí narození: {m.label(c)}" for c, b in births if not b]
+            if len(known) < 2:
+                return Verdict("NEVÍM", missing=missing or ["málo kandidátů se známým narozením"])
+            known.sort(key=lambda cb: m.nodes[cb[1][0]].time.start or (0, 0, 0))  # type: ignore[union-attr]
+            pick = known[0] if earlier_wins else known[-1]
+            steps = [f"{m.label(c)}: {m.label(b[0])}" for c, b in known]
+            proof = Proof([b[1] for _, b in known], steps + [f"{lemma}: {'dřívější' if earlier_wins else 'pozdější'} narození"], ["srovnání z narození"], "derived")
+            return Verdict("ANO", [proof], fillers=[(pick[0], proof)], missing=missing)
+        if kdo and kdo.terms and than and than.terms:
+            a, b = kdo.terms[0], than.terms[0]
+            ba, bb = self._birth(a), self._birth(b)
+            missing = [f"chybí narození: {m.label(x)}" for x, bx in ((a, ba), (b, bb)) if not bx]
+            if not ba or not bb:
+                return Verdict("NEVÍM", missing=missing)
+            before = m.before(ba[0], bb[0])
+            if before is None:
+                return Verdict("NEVÍM", missing=["narození nejdou srovnat (bez roku)"])
+            truth = before if earlier_wins else (m.before(bb[0], ba[0]) is True)
+            proof = Proof([ba[1], bb[1]], [f"{m.label(a)}: {m.label(ba[0])}", f"{m.label(b)}: {m.label(bb[0])}", f"{lemma}: {'dřívější' if earlier_wins else 'pozdější'} narození"], ["srovnání z narození"], "derived")
+            return Verdict("ANO" if truth else "NE", [proof] if truth else [], [] if truth else [proof])
+        return None
+
     def evaluate(self, q: Statement, *, depth: int = 0) -> Verdict:
         m = self.m
+        if q.pred == "srovnání":
+            direct = self._direct(q)
+            if direct is not None:
+                return direct
+            cv = self.compare(q)
+            if cv is not None:
+                return cv
         pos: list[Proof] = []
         neg: list[Proof] = []
         modal: list[Proof] = []
@@ -356,6 +411,12 @@ class Evaluator:
                 return None
         return proof if narrowed_once else None
 
+    def _direct(self, q: Statement) -> Verdict | None:
+        """Přímý výrok téhož tvaru (řekls „Pavla je mladší než Jindřich“)."""
+        pos = [self.match(q, f) for f in self.m.by_pred("srovnání") if not f.neg]
+        proofs = [p for p in pos if p is not None]
+        return Verdict("ANO", proofs) if proofs else None
+
     def _near(self, q: Statement, f: Statement) -> bool:
         """Blízký výrok: týž predikát a aspoň jeden term dotazu sedí."""
         for qr in q.roles:
@@ -388,6 +449,10 @@ class Evaluator:
         hole = next((r for r in q.roles if r.wh), None)
         if hole is None:
             return self.evaluate(q)
+        if q.pred == "srovnání":
+            cv = self.compare(q)
+            if cv is not None:
+                return cv
         # definice: „Kdo/co je X?“
         if q.pred == "být" and hole.name in ("co", "jaký") and q.role("kdo") and q.role("kdo").terms:  # type: ignore[union-attr]
             v = self.describe_verdict(q.role("kdo").terms[0], hole)  # type: ignore[union-attr]

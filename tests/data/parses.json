@@ -7225,6 +7225,310 @@
 }
 ]
 },
+"Je Pavla mladší než Matěj?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Je Pavla mladší než Matěj?",
+"tokens": [
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Je",
+"head": 3,
+"id": 1,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Pavla",
+"head": 3,
+"id": 2,
+"lemma": "Pavla",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Cmp"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "mladší",
+"head": 0,
+"id": 3,
+"lemma": "mladý",
+"upos": "ADJ"
+},
+{
+"deprel": "mark",
+"feats": [],
+"form": "než",
+"head": 5,
+"id": 4,
+"lemma": "než",
+"upos": "SCONJ"
+},
+{
+"deprel": "advcl",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Matěj",
+"head": 3,
+"id": 5,
+"lemma": "Matěj",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 3,
+"id": 6,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Je Pavla starší než Jindřich?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Je Pavla starší než Jindřich?",
+"tokens": [
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Je",
+"head": 3,
+"id": 1,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Pavla",
+"head": 3,
+"id": 2,
+"lemma": "Pavla",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Cmp"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "starší",
+"head": 0,
+"id": 3,
+"lemma": "starý",
+"upos": "ADJ"
+},
+{
+"deprel": "mark",
+"feats": [],
+"form": "než",
+"head": 5,
+"id": 4,
+"lemma": "než",
+"upos": "SCONJ"
+},
+{
+"deprel": "advcl",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Jindřich",
+"head": 3,
+"id": 5,
+"lemma": "Jindřich",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 3,
+"id": 6,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
 "Je Praha v Česku?": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Je Praha v Česku?",
@@ -8138,6 +8442,177 @@
 "form": ".",
 "head": 3,
 "id": 4,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Jindřich se narodil v roce 1975.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Jindřich se narodil v roce 1975.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Jindřich",
+"head": 3,
+"id": 1,
+"lemma": "Jindřich",
+"upos": "PROPN"
+},
+{
+"deprel": "expl:pv",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"PronType",
+"Prs"
+],
+[
+"Reflex",
+"Yes"
+],
+[
+"Variant",
+"Short"
+]
+],
+"form": "se",
+"head": 3,
+"id": 2,
+"lemma": "se",
+"upos": "PRON"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "narodil",
+"head": 0,
+"id": 3,
+"lemma": "narodit",
+"upos": "VERB"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "v",
+"head": 5,
+"id": 4,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "roce",
+"head": 3,
+"id": 5,
+"lemma": "rok",
+"upos": "NOUN"
+},
+{
+"deprel": "nummod",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "1975",
+"head": 5,
+"id": 6,
+"lemma": "1975",
+"upos": "NUM"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 7,
 "lemma": ".",
 "upos": "PUNCT"
 }
@@ -10518,6 +10993,298 @@
 }
 ]
 },
+"Kdo je starší, Pavla nebo Jindřich?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kdo je starší, Pavla nebo Jindřich?",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Kdo",
+"head": 3,
+"id": 1,
+"lemma": "kdo",
+"upos": "PRON"
+},
+{
+"deprel": "cop",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "je",
+"head": 3,
+"id": 2,
+"lemma": "být",
+"upos": "AUX"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Degree",
+"Cmp"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Polarity",
+"Pos"
+]
+],
+"form": "starší",
+"head": 0,
+"id": 3,
+"lemma": "starý",
+"upos": "ADJ"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ",",
+"head": 5,
+"id": 4,
+"lemma": ",",
+"upos": "PUNCT"
+},
+{
+"deprel": "appos",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Pavla",
+"head": 3,
+"id": 5,
+"lemma": "Pavla",
+"upos": "PROPN"
+},
+{
+"deprel": "cc",
+"feats": [],
+"form": "nebo",
+"head": 7,
+"id": 6,
+"lemma": "nebo",
+"upos": "CCONJ"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Jindřich",
+"head": 5,
+"id": 7,
+"lemma": "Jindřich",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 3,
+"id": 8,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Kdo má syna?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Kdo má syna?",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Kdo",
+"head": 2,
+"id": 1,
+"lemma": "kdo",
+"upos": "PRON"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "má",
+"head": 0,
+"id": 2,
+"lemma": "mít",
+"upos": "VERB"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "syna",
+"head": 2,
+"id": 3,
+"lemma": "syn",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 2,
+"id": 4,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
 "Kdo napsal Postřižiny?": {
 "provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
 "text": "Kdo napsal Postřižiny?",
@@ -11281,6 +12048,115 @@
 "form": "?",
 "head": 2,
 "id": 5,
+"lemma": "?",
+"upos": "PUNCT"
+}
+]
+},
+"Koho má Pavla?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Koho má Pavla?",
+"tokens": [
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Acc"
+],
+[
+"PronType",
+"Int,Rel"
+]
+],
+"form": "Koho",
+"head": 2,
+"id": 1,
+"lemma": "kdo",
+"upos": "PRON"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "má",
+"head": 0,
+"id": 2,
+"lemma": "mít",
+"upos": "VERB"
+},
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Pavla",
+"head": 2,
+"id": 3,
+"lemma": "Pavel",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 2,
+"id": 4,
 "lemma": "?",
 "upos": "PUNCT"
 }
@@ -12788,6 +13664,119 @@
 "head": 1,
 "id": 7,
 "lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Má Pavla syna?": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Má Pavla syna?",
+"tokens": [
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Sing"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "Má",
+"head": 0,
+"id": 1,
+"lemma": "mít",
+"upos": "VERB"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Pavla",
+"head": 1,
+"id": 2,
+"lemma": "Pavel",
+"upos": "PROPN"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "syna",
+"head": 1,
+"id": 3,
+"lemma": "syn",
+"upos": "NOUN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": "?",
+"head": 1,
+"id": 4,
+"lemma": "?",
 "upos": "PUNCT"
 }
 ]
@@ -15474,6 +16463,351 @@
 "form": ".",
 "head": 4,
 "id": 5,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Pavla a Jindřich mají syna Matěje.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Pavla a Jindřich mají syna Matěje.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Pavla",
+"head": 4,
+"id": 1,
+"lemma": "Pavla",
+"upos": "PROPN"
+},
+{
+"deprel": "cc",
+"feats": [],
+"form": "a",
+"head": 3,
+"id": 2,
+"lemma": "a",
+"upos": "CCONJ"
+},
+{
+"deprel": "conj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Jindřich",
+"head": 1,
+"id": 3,
+"lemma": "Jindřich",
+"upos": "PROPN"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Imp"
+],
+[
+"Mood",
+"Ind"
+],
+[
+"Number",
+"Plur"
+],
+[
+"Person",
+"3"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Pres"
+],
+[
+"VerbForm",
+"Fin"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "mají",
+"head": 0,
+"id": 4,
+"lemma": "mít",
+"upos": "VERB"
+},
+{
+"deprel": "obj",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "syna",
+"head": 4,
+"id": 5,
+"lemma": "syn",
+"upos": "NOUN"
+},
+{
+"deprel": "flat",
+"feats": [
+[
+"Animacy",
+"Anim"
+],
+[
+"Case",
+"Acc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Matěje",
+"head": 5,
+"id": 6,
+"lemma": "Matěj",
+"upos": "PROPN"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 4,
+"id": 7,
+"lemma": ".",
+"upos": "PUNCT"
+}
+]
+},
+"Pavla se narodila v roce 1978.": {
+"provenance": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8",
+"text": "Pavla se narodila v roce 1978.",
+"tokens": [
+{
+"deprel": "nsubj",
+"feats": [
+[
+"Case",
+"Nom"
+],
+[
+"Gender",
+"Fem"
+],
+[
+"NameType",
+"Giv"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "Pavla",
+"head": 3,
+"id": 1,
+"lemma": "Pavla",
+"upos": "PROPN"
+},
+{
+"deprel": "expl:pv",
+"feats": [
+[
+"Case",
+"Acc"
+],
+[
+"PronType",
+"Prs"
+],
+[
+"Reflex",
+"Yes"
+],
+[
+"Variant",
+"Short"
+]
+],
+"form": "se",
+"head": 3,
+"id": 2,
+"lemma": "se",
+"upos": "PRON"
+},
+{
+"deprel": "root",
+"feats": [
+[
+"Aspect",
+"Perf"
+],
+[
+"Gender",
+"Fem,Neut"
+],
+[
+"Number",
+"Plur,Sing"
+],
+[
+"Polarity",
+"Pos"
+],
+[
+"Tense",
+"Past"
+],
+[
+"VerbForm",
+"Part"
+],
+[
+"Voice",
+"Act"
+]
+],
+"form": "narodila",
+"head": 0,
+"id": 3,
+"lemma": "narodit",
+"upos": "VERB"
+},
+{
+"deprel": "case",
+"feats": [
+[
+"AdpType",
+"Prep"
+],
+[
+"Case",
+"Loc"
+]
+],
+"form": "v",
+"head": 5,
+"id": 4,
+"lemma": "v",
+"upos": "ADP"
+},
+{
+"deprel": "obl",
+"feats": [
+[
+"Animacy",
+"Inan"
+],
+[
+"Case",
+"Loc"
+],
+[
+"Gender",
+"Masc"
+],
+[
+"Number",
+"Sing"
+]
+],
+"form": "roce",
+"head": 3,
+"id": 5,
+"lemma": "rok",
+"upos": "NOUN"
+},
+{
+"deprel": "nummod",
+"feats": [
+[
+"NumForm",
+"Digit"
+],
+[
+"NumType",
+"Card"
+]
+],
+"form": "1978",
+"head": 5,
+"id": 6,
+"lemma": "1978",
+"upos": "NUM"
+},
+{
+"deprel": "punct",
+"feats": [],
+"form": ".",
+"head": 3,
+"id": 7,
 "lemma": ".",
 "upos": "PUNCT"
 }

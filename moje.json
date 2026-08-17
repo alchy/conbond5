@@ -1,13 +1,13 @@
 {
  "format": "conbond5-memory/1",
  "counters": {
-  "e": 12,
-  "t": 6,
-  "z": 23,
-  "s": 30,
-  "p": 1,
-  "g": 10,
-  "o": 10
+  "e": 14,
+  "t": 8,
+  "z": 29,
+  "s": 37,
+  "p": 2,
+  "g": 13,
+  "o": 12
  },
  "nodes": [
   {
@@ -810,6 +810,223 @@
    "number": null,
    "doc": "",
    "text": "",
+   "rel": null
+  },
+  {
+   "id": "e0013",
+   "kind": "entity",
+   "lemma": "Pavel",
+   "names": [
+    "Pavel",
+    "Pavla"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "t0007",
+   "kind": "time",
+   "lemma": "duben",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": {
+    "kind": "name",
+    "label": "duben",
+    "start": null,
+    "end": null
+   },
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "z0024",
+   "kind": "sentence",
+   "lemma": "dialog#4",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Jindrich se narodil v dubnu.",
+   "rel": null
+  },
+  {
+   "id": "t0008",
+   "kind": "time",
+   "lemma": "září",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": {
+    "kind": "name",
+    "label": "září",
+    "start": null,
+    "end": null
+   },
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "z0025",
+   "kind": "sentence",
+   "lemma": "dialog#5",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Pavla se narodila v září.",
+   "rel": null
+  },
+  {
+   "id": "e0014",
+   "kind": "entity",
+   "lemma": "Matěj",
+   "names": [
+    "Matěj",
+    "Matěje"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": "Masc",
+   "number": "Sing",
+   "doc": "dialog",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "z0026",
+   "kind": "sentence",
+   "lemma": "dialog#6",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Jindrich a Pavla maji syna Matěje.",
+   "rel": null
+  },
+  {
+   "id": "g0011",
+   "kind": "group",
+   "lemma": "okurka",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "g0012",
+   "kind": "group",
+   "lemma": "lednice",
+   "names": [
+    "Lednice"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "cap",
+   "rel": null
+  },
+  {
+   "id": "z0027",
+   "kind": "sentence",
+   "lemma": "dialog#7",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "V lednici jsou okurky.",
+   "rel": null
+  },
+  {
+   "id": "g0013",
+   "kind": "group",
+   "lemma": "sýr",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "z0028",
+   "kind": "sentence",
+   "lemma": "dialog#8",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "V lednici je sýr.",
+   "rel": null
+  },
+  {
+   "id": "p0002",
+   "kind": "place",
+   "lemma": "Petrovice",
+   "names": [
+    "Petrovice",
+    "Petrovicích"
+   ],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": "Fem",
+   "number": "Plur",
+   "doc": "",
+   "text": "",
+   "rel": null
+  },
+  {
+   "id": "z0029",
+   "kind": "sentence",
+   "lemma": "dialog#9",
+   "names": [],
+   "attrs": [],
+   "base": null,
+   "time": null,
+   "gender": null,
+   "number": null,
+   "doc": "dialog",
+   "text": "Lednice je v Petrovicích.",
    "rel": null
   }
  ],
@@ -2454,6 +2671,392 @@
    "sentence": "z0023",
    "tense": "Past",
    "mood": "assert"
+  },
+  {
+   "id": "s0031",
+   "pred": "narodit_se",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "e0002"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "kdy",
+     "terms": [
+      "t0007"
+     ],
+     "quant": "·",
+     "authority": "default",
+     "surface": "v+Loc",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 4,
+    "text": "Jindrich se narodil v dubnu.",
+    "turn": 9,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0024",
+   "tense": "Past",
+   "mood": "assert"
+  },
+  {
+   "id": "s0032",
+   "pred": "narodit_se",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "e0001"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "kdy",
+     "terms": [
+      "t0008"
+     ],
+     "quant": "·",
+     "authority": "default",
+     "surface": "v+Loc",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 5,
+    "text": "Pavla se narodila v září.",
+    "turn": 11,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0025",
+   "tense": "Past",
+   "mood": "assert"
+  },
+  {
+   "id": "s0033",
+   "pred": "být",
+   "kind": "copula",
+   "neg": false,
+   "modality": null,
+   "kernel": "member",
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "e0014"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "g0010"
+     ],
+     "quant": "∃",
+     "authority": "structural",
+     "surface": "",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "titul „syn“ před jménem = třída"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 6,
+    "text": "Jindrich a Pavla maji syna Matěje.",
+    "turn": 12,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0026",
+   "tense": null,
+   "mood": "assert"
+  },
+  {
+   "id": "s0034",
+   "pred": "mít",
+   "kind": "verb",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "e0002",
+      "e0001"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "co",
+     "terms": [
+      "e0014"
+     ],
+     "quant": "·",
+     "authority": "structural",
+     "surface": "obj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "koordinace:kdo:distribuce"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 6,
+    "text": "Jindrich a Pavla maji syna Matěje.",
+    "turn": 12,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0026",
+   "tense": "Past",
+   "mood": "assert"
+  },
+  {
+   "id": "s0035",
+   "pred": "být",
+   "kind": "copula",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0011"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "v+Loc",
+     "terms": [
+      "g0012"
+     ],
+     "quant": "∃",
+     "authority": "surface",
+     "surface": "v+Loc",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "kdo:∀ generický prézens"
+   ],
+   "residue": [],
+   "open": [
+    "o0011"
+   ],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 7,
+    "text": "V lednici jsou okurky.",
+    "turn": 14,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0027",
+   "tense": "Pres",
+   "mood": "assert"
+  },
+  {
+   "id": "s0036",
+   "pred": "být",
+   "kind": "copula",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0013"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "v+Loc",
+     "terms": [
+      "g0012"
+     ],
+     "quant": "∃",
+     "authority": "surface",
+     "surface": "v+Loc",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "kdo:∀ generický prézens"
+   ],
+   "residue": [],
+   "open": [
+    "o0012"
+   ],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 8,
+    "text": "V lednici je sýr.",
+    "turn": 15,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0028",
+   "tense": "Pres",
+   "mood": "assert"
+  },
+  {
+   "id": "s0037",
+   "pred": "být",
+   "kind": "copula",
+   "neg": false,
+   "modality": null,
+   "kernel": null,
+   "roles": [
+    {
+     "name": "kdo",
+     "terms": [
+      "g0012"
+     ],
+     "quant": "∀",
+     "authority": "structural",
+     "surface": "nsubj",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    },
+    {
+     "name": "kde",
+     "terms": [
+      "p0002"
+     ],
+     "quant": "·",
+     "authority": "default",
+     "surface": "v+Loc",
+     "nested": null,
+     "counts": {},
+     "wh": false,
+     "wh_kind": ""
+    }
+   ],
+   "grade": "said",
+   "defaults": [
+    "kdo:∀ generický prézens"
+   ],
+   "residue": [],
+   "open": [],
+   "prov": {
+    "doc": "dialog",
+    "sent_no": 9,
+    "text": "Lednice je v Petrovicích.",
+    "turn": 17,
+    "model": "udpipe2 model?=cs_all-ud-2.17-251125 tokenizer=6247b8b7a5c8"
+   },
+   "status": "active",
+   "reason": "",
+   "derived_from": null,
+   "sentence": "z0029",
+   "tense": "Pres",
+   "mood": "assert"
   }
  ],
  "open": [
@@ -2609,6 +3212,42 @@
    "statement": "s0020",
    "options": [],
    "answer": null
+  },
+  {
+   "id": "o0011",
+   "kind": "role_name",
+   "about": "v+Loc",
+   "question": "Co znamená role „v+Loc“ (v+Loc)? (kde, kdy, kudy, čím, …)",
+   "statement": "s0035",
+   "options": [
+    "kde",
+    "kdy",
+    "kam",
+    "odkud",
+    "kudy",
+    "čím",
+    "s_kým",
+    "komu"
+   ],
+   "answer": null
+  },
+  {
+   "id": "o0012",
+   "kind": "role_name",
+   "about": "v+Loc",
+   "question": "Co znamená role „v+Loc“ (v+Loc)? (kde, kdy, kudy, čím, …)",
+   "statement": "s0036",
+   "options": [
+    "kde",
+    "kdy",
+    "kam",
+    "odkud",
+    "kudy",
+    "čím",
+    "s_kým",
+    "komu"
+   ],
+   "answer": null
   }
  ],
  "rules": [],
@@ -2621,11 +3260,16 @@
   [
    "e0001",
    "e0002",
-   1.0
+   2.0
   ],
   [
    "e0001",
    "e0012",
+   1.0
+  ],
+  [
+   "e0001",
+   "e0014",
    1.0
   ],
   [
@@ -2644,14 +3288,29 @@
    1.0
   ],
   [
+   "e0001",
+   "t0008",
+   1.0
+  ],
+  [
    "e0002",
    "e0012",
    1.0
   ],
   [
    "e0002",
+   "e0014",
+   1.0
+  ],
+  [
+   "e0002",
    "t0002",
    2.0
+  ],
+  [
+   "e0002",
+   "t0007",
+   1.0
   ],
   [
    "e0003",
@@ -2719,6 +3378,11 @@
    1.0
   ],
   [
+   "e0014",
+   "g0010",
+   1.0
+  ],
+  [
    "g0001",
    "g0007",
    3.0
@@ -2729,22 +3393,35 @@
    1.0
   ],
   [
+   "g0011",
+   "g0012",
+   1.0
+  ],
+  [
+   "g0012",
+   "g0013",
+   1.0
+  ],
+  [
+   "g0012",
+   "p0002",
+   1.0
+  ],
+  [
    "p0001",
    "t0004",
    1.0
   ]
  ],
  "activation": {
-  "e0001": 0.7343999999999999,
-  "e0002": 0.864,
-  "e0010": 0.146511240565203,
-  "e0012": 0.8999999999999999,
-  "g0001": 0.03629076699533426,
-  "g0007": 0.02545240443487552,
-  "g0009": 0.046655999999999996,
-  "g0010": 0.36,
-  "p0001": 0.04018606940159999,
-  "t0001": 0.1296,
-  "t0002": 0.216
+  "e0001": 0.092560208536535,
+  "e0002": 0.08236960364298238,
+  "e0014": 0.06998399999999998,
+  "g0010": 0.028463784984575993,
+  "g0011": 0.11663999999999997,
+  "g0012": 0.85536,
+  "g0013": 0.19439999999999996,
+  "p0002": 0.66,
+  "t0008": 0.016796159999999997
  }
 }

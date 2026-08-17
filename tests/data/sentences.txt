@@ -144,3 +144,13 @@ Ronik bydlí v Petrovicích.
 zapomeň Ronik
 Kolik je Petrovi let?
 Pes ji maso.
+# --- živý dialog: koordinace, koho, srovnání
+Pavla se narodila v roce 1978.
+Jindřich se narodil v roce 1975.
+Pavla a Jindřich mají syna Matěje.
+Koho má Pavla?
+Má Pavla syna?
+Kdo má syna?
+Je Pavla starší než Jindřich?
+Kdo je starší, Pavla nebo Jindřich?
+Je Pavla mladší než Matěj?

@@ -474,6 +474,12 @@ class _Reader:
         if t.lemma in D.WH and (
             "Int" in (t.feat("PronType") or "") or t.upos in ("PRON", "DET", "ADV") and not self.p.children(t.index) or D.WH[t.lemma][1] == "count"
         ):
+            if t.lemma in ("kdo", "co") and t.upos == "PRON":
+                # pád rozhoduje roli: koho/co → co, komu → komu, čím → čím, koho (Gen) → čeho
+                by_case = {"Acc": "co", "Dat": "komu", "Ins": "čím", "Gen": "čeho", "Loc": "o_čem"}
+                case = t.feat("Case") or "Nom"
+                if case in by_case and not self.case_of(t.index):
+                    return (by_case[case], "filler")
             return D.WH[t.lemma]
         for c in self.p.children(t.index):
             if c.base_deprel == "det" and c.lemma in D.WH and (
@@ -900,11 +906,45 @@ class _Reader:
                 self._roles_of_single(child, p)
         return p
 
+    def _comparison(self, root: Token, cop: Token) -> Predication | None:
+        """„Pavla je starší než Jindřich.“ / „Kdo je starší, Pavla nebo Jindřich?“ →
+        srovnání(kdo, jaký: starý, než: X | z: kandidáti). Vyhodnocení dělá logika
+        (věk z narození); tady jen tvar."""
+        if root.upos != "ADJ" or root.feat("Degree") != "Cmp":
+            return None
+        than = [c for c in self.p.children(root.index) if c.base_deprel in ("advcl", "obl", "nmod")
+                and any(m.lemma == "než" for m in self.p.children(c.index) if m.base_deprel in ("mark", "case"))]
+        cands = [c for c in self.p.children(root.index) if c.base_deprel == "appos"]
+        subj = [c for c in self.p.children(root.index) if c.base_deprel == "nsubj"]
+        if not than and not cands:
+            return None
+        p = Predication(pred="srovnání", kind="verb", head=root.index)
+        p.tense = cop.feat("Tense")
+        self.mark(cop.index, "pred")
+        self.mark(root.index, "pred")
+        p.defaults.append("srovnání: komparativ + než")
+        if subj:
+            self._add_role(p, "kdo", subj[0].deprel, subj[0])
+        adj = TermSpec(root.index, root.lemma, (root.form,), "ADJ", "group", quant="·", quant_authority="structural", tokens=(root.index,))
+        p.roles.append(RoleFill("jaký", "cop", [adj], "structural"))
+        for c in than:
+            for m in self.p.children(c.index):
+                if m.base_deprel in ("mark", "case"):
+                    self.mark(m.index, "particle")
+            self._add_role(p, "než", "než", c, authority="structural")
+        for c in cands:
+            self._add_role(p, "z", "appos", c, authority="structural")
+        self._quantify(p)
+        return p
+
     def _copula(self, root: Token, cop: Token | None, *, shared_subject: RoleFill | None = None) -> Predication:
         if cop is not None:
             age = self._age(root, cop)
             if age is not None:
                 return age
+            cmp_ = self._comparison(root, cop)
+            if cmp_ is not None:
+                return cmp_
         p = Predication(pred="být", kind="copula", head=root.index)
         p.tense = cop.feat("Tense") if cop else None
         if cop is not None:

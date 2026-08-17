@@ -267,6 +267,13 @@ class Memory:
         """Najdi entitu podle jména, nebo ji založ. Vrací (uzel, nová?).
         Při víc kandidátech vyhrává `prefer` (téma dokumentu), jinak aktivace."""
         found = self.find_entity(name_lemmas, kinds=(kind,) if kind == "place" else ("entity", "place"))
+        if not found and forms:
+            # lemma je z parseru dvojznačné („Pavla“ = Nom Pavla i Acc Pavel) — zkus přesný TVAR,
+            # který už paměť u nějakého jména viděla
+            by_form = [n for n in self.nodes.values() if n.kind in (("entity", "place") if kind != "place" else ("place",))
+                       and any(f and f in n.names for f in forms)]
+            if len(by_form) >= 1:
+                found = by_form
         if len(found) == 1:
             n = found[0]
             full = " ".join(name_lemmas)

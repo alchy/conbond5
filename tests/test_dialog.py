@@ -153,3 +153,18 @@ def test_diacritics_restored_and_noise_refused() -> None:
     b = Session(Memory(), RecordedOracle(DATA))
     n = b.say("Pes ji maso.")
     assert n.text.startswith("✗ nerozumím") and not n.statements and not list(b.memory.active())
+
+
+def test_coordinated_subject_case_ambiguity_and_comparison(s: Session) -> None:
+    s.say("Pavla se narodila v roce 1978.")
+    s.say("Jindřich se narodil v roce 1975.")
+    s.say("Pavla a Jindřich mají syna Matěje.")
+    a = s.say("Koho má Pavla?")  # „Pavla“ čte parser jako Acc od Pavel — musí se najít podle tvaru
+    assert a.verdict is not None and [s.memory.label(t) for t, _ in a.verdict.fillers] == ["Matěj"]
+    assert s.say("Má Pavla syna?").verdict.value == "ANO"  # type: ignore[union-attr]
+    kdo = s.say("Kdo má syna?")
+    assert {s.memory.label(t) for t, _ in kdo.verdict.fillers} == {"Pavla", "Jindřich"}  # type: ignore[union-attr]
+    assert s.say("Je Pavla starší než Jindřich?").verdict.value == "NE"  # type: ignore[union-attr]
+    w = s.say("Kdo je starší, Pavla nebo Jindřich?")
+    assert w.verdict is not None and s.memory.label(w.verdict.fillers[0][0]) == "Jindřich"
+    assert s.say("Je Pavla mladší než Matěj?").verdict.value == "NEVÍM"  # type: ignore[union-attr]
