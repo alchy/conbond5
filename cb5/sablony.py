@@ -217,6 +217,24 @@ def navrhni(memory: Memory, q: Statement, verdict: "Verdict", question: str) -> 
         common = sorted(qn_a & qn_b)
         if common:
             return ok(Navrh("porovnání", [q.pred, ",".join(common), "<="], f"o {m.label(a)} i {m.label(b)} znám {', '.join(common)}; platí „{q.pred}“, když {common[0]}({m.label(a)}) <= {common[0]}({m.label(b)})? (test uprav: <=, >=, <, >, =)", question))
+    kdo = q.role("kdo")
+    # 0b) neznámý/nedoložený predikát: podmět má výroky s JINÝM predikátem, který má stejné role
+    #     jako otázka → nabídni synonymum (jen když se role skutečně kryjí)
+    if kdo and kdo.terms and q.pred and not verdict.near and q.pred not in ("být", "dělat", "umět", "vědět", "znát"):
+        wanted = {r.name for r in q.roles if r.name != "kdo"}
+        cands: dict[str, int] = {}
+        for x in kdo.terms:
+            for st in m.statements_about(x):
+                if st.kind != "verb" or not st.pred or st.status != "active" or st.derived_from or st.pred == q.pred:
+                    continue
+                if st.pred in ("být", "mít", "věk", "srovnání", "definice"):
+                    continue
+                have = {r.name for r in st.roles if r.name != "kdo"}
+                if wanted and wanted <= have:
+                    cands[st.pred] = cands.get(st.pred, 0) + 1
+        if cands:
+            best = max(cands, key=lambda k: cands[k])
+            return ok(Navrh("synonymum", [q.pred, "=", best], f"o {m.label(kdo.terms[0])} nemám „{q.pred}“, ale mám „{best}“ se stejnými rolemi ({', '.join(sorted(wanted)) or 'bez rolí'}). Znamená „{q.pred}“ totéž co „{best}“?", question))
     # 1) neznámé srovnávací slovo
     mt = re.search(r"srovnání „([^“]+)“ neumím", miss)
     if mt:
@@ -226,7 +244,6 @@ def navrhni(memory: Memory, q: Statement, verdict: "Verdict", question: str) -> 
         pred = max(set(preds), key=preds.count) if preds else "měřit"
         return ok(Navrh("srovnání", [word, pred, "*", "víc"], f"neznám slovo „{word}“; o věcech mám číselné hodnoty u děje „{pred}“ — je „{word}“ ten, kdo má víc/míň (dřív/později)?", question))
     # 2) vztahové jméno bez prvků a bez definice
-    kdo = q.role("kdo")
     if kdo and kdo.terms and q.pred == "být":
         n = m.nodes.get(kdo.terms[0])
         if n is not None and n.kind == "group" and n.rel and n.lemma not in m.learned.get("rel_defs", {}):

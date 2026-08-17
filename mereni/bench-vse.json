@@ -135,7 +135,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "léta",
+     "Čtrnáct let",
      "1903"
     ],
     "why": "",
@@ -437,7 +437,7 @@
   "statements": 624,
   "residue_tokens": 269,
   "tokens": 3385,
-  "open": 184,
+  "open": 182,
   "questions": 3,
   "hits": 0,
   "text_hits": 3,
@@ -989,7 +989,7 @@
     "verdict": "ANO",
     "fillers": [
      "1997",
-     "léta",
+     "83 letech",
      "3. 2. 1997"
     ],
     "why": "",
@@ -1167,7 +1167,7 @@
     "verdict": "ANO",
     "fillers": [
      "1997",
-     "léta",
+     "83 letech",
      "3. 2. 1997"
     ],
     "why": "",
@@ -1990,7 +1990,7 @@
     "verdict": "ANO",
     "fillers": [
      "7. 5. 1973",
-     "věk"
+     "věku 65 let"
     ],
     "why": "",
     "reading": "zemřít(kdy:?, kdo:·Egon Hostovský)"
@@ -2054,13 +2054,11 @@
   "statements": 1101,
   "residue_tokens": 398,
   "tokens": 4659,
-  "open": 408,
+  "open": 407,
   "questions": 1,
-  "hits": 0,
+  "hits": 1,
   "text_hits": 1,
-  "misses": {
-   "role/logika (blízký výrok je)": 1
-  },
+  "misses": {},
   "results": [
    {
     "q": "Kdy se objevily první sinice?",
@@ -2069,11 +2067,13 @@
      "miliardami"
     ],
     "sada": "etalon",
-    "ok": false,
+    "ok": true,
     "text_ok": true,
-    "verdict": "NEVÍM",
-    "fillers": [],
-    "why": "role/logika (blízký výrok je)",
+    "verdict": "ANO",
+    "fillers": [
+     "před 2 miliardami let"
+    ],
+    "why": "",
     "reading": "objevit_se(kdy:?, kdo:·sinice[první])"
    }
   ],
@@ -3078,7 +3078,7 @@
    }
   ],
   "t_ingest": 0.1,
-  "t_ask": 0.0
+  "t_ask": 0.1
  },
  {
   "doc": "jan_neruda",
@@ -4317,7 +4317,7 @@
     "reading": "lež(kdy:?, kdo:·Jaroslav Seifert)"
    }
   ],
-  "t_ingest": 0.1,
+  "t_ingest": 0.2,
   "t_ask": 0.1
  },
  {
@@ -4610,7 +4610,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "léta",
+     "59 letech",
      "9. 9. 1912"
     ],
     "why": "",
@@ -4925,7 +4925,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "léta",
+     "tří let",
      "1904"
     ],
     "why": "",
@@ -5326,7 +5326,7 @@
     "reading": "oženit_se(s_kým:?, kdo:·Josef Čapek)"
    }
   ],
-  "t_ingest": 0.5,
+  "t_ingest": 0.6,
   "t_ask": 0.1
  },
  {
@@ -5759,7 +5759,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "léta",
+     "jedenadvaceti letech",
      "1873"
     ],
     "why": "",
@@ -6243,7 +6243,7 @@
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
-     "léta",
+     "devíti letech",
      "1848"
     ],
     "why": "",
@@ -6474,7 +6474,7 @@
     "reading": "navrhnout(kdy:?, co:·Karel Havlíček Borovský)"
    }
   ],
-  "t_ingest": 0.1,
+  "t_ingest": 0.2,
   "t_ask": 0.1
  },
  {
@@ -6943,7 +6943,7 @@
     "fillers": [
      "neděle",
      "6. 11. 1836",
-     "hodina"
+     "tři hodiny ráno"
     ],
     "why": "",
     "reading": "zemřít(kdy:?, kdo:·Karel Hynek Mácha)"
@@ -7649,7 +7649,7 @@
     "text_ok": false,
     "verdict": "ANO",
     "fillers": [
-     "měsíc"
+     "pět měsíců"
     ],
     "why": "špatná výplň",
     "reading": "působit(kdy:?, kdo:·Karel Čapek)"
@@ -7757,8 +7757,8 @@
     "text_ok": false,
     "verdict": "ANO",
     "fillers": [
-     "polovina",
-     "rok"
+     "polovině 28 10",
+     "třech rocích života"
     ],
     "why": "špatná výplň",
     "reading": "žít(kdy:?, kdo:·Karel Čapek)"
@@ -7866,10 +7866,10 @@
   "sentences": 447,
   "written": 447,
   "with_role": 447,
-  "statements": 1182,
-  "residue_tokens": 322,
+  "statements": 1180,
+  "residue_tokens": 321,
   "tokens": 5857,
-  "open": 318,
+  "open": 316,
   "questions": 4,
   "hits": 4,
   "text_hits": 4,
@@ -7947,7 +7947,7 @@
   "statements": 747,
   "residue_tokens": 436,
   "tokens": 4031,
-  "open": 233,
+  "open": 231,
   "questions": 1,
   "hits": 0,
   "text_hits": 0,
@@ -8301,7 +8301,7 @@
     "reading": "mít(kde:?, kdo:·Marie Majerová)"
    }
   ],
-  "t_ingest": 0.6,
+  "t_ingest": 0.2,
   "t_ask": 0.0
  },
  {
@@ -8720,7 +8720,7 @@
     "verdict": "ANO",
     "fillers": [
      "11. 7. 2023",
-     "věk"
+     "věku 94 let"
     ],
     "why": "",
     "reading": "zemřít(kdy:?, kdo:·Milan Kundera)"
@@ -9191,7 +9191,7 @@
     "reading": "být(kdo:∀pes, co:∃šelma) ⟨subset⟩"
    }
   ],
-  "t_ingest": 0.3,
+  "t_ingest": 0.2,
   "t_ask": 0.1
  },
  {
@@ -9450,7 +9450,7 @@
     "fillers": [
      "17. 2. 1958",
      "1958",
-     "věk"
+     "věku devadesáti let"
     ],
     "why": "",
     "reading": "zemřít(kdy:?, kdo:·Petr Bezruč)"
@@ -9915,7 +9915,7 @@
   "statements": 2638,
   "residue_tokens": 1044,
   "tokens": 14254,
-  "open": 966,
+  "open": 961,
   "questions": 1,
   "hits": 1,
   "text_hits": 1,
@@ -10749,10 +10749,10 @@
   "tokens": 8252,
   "open": 423,
   "questions": 65,
-  "hits": 36,
+  "hits": 39,
   "text_hits": 51,
   "misses": {
-   "špatná výplň": 23,
+   "špatná výplň": 20,
    "role/logika (blízký výrok je)": 4,
    "bez výroku": 2
   },
@@ -11066,7 +11066,7 @@
     "fillers": [
      "3/1968",
      "2007",
-     "léta"
+     "60. letech"
     ],
     "why": "",
     "reading": "připojit_se(kdy:?, kdo:·Václav Havel)"
@@ -11129,7 +11129,7 @@
     "verdict": "ANO",
     "fillers": [
      "5/1977",
-     "květen"
+     "až květnu"
     ],
     "why": "",
     "reading": "strávit(kdy:?, kdo:·Václav Havel)"
@@ -11193,8 +11193,7 @@
     "text_ok": false,
     "verdict": "ANO",
     "fillers": [
-     "1987",
-     "19. 11. 0"
+     "19. 11. 1987"
     ],
     "why": "",
     "reading": "zúčastnit_se(kdy:?, kdo:·Václav Havel)"
@@ -11553,15 +11552,15 @@
      "Trutnova"
     ],
     "sada": "otazky",
-    "ok": false,
+    "ok": true,
     "text_ok": false,
     "verdict": "ANO",
     "fillers": [
      "Nemocnice",
      "hrad (pražský)",
-     "počátek léta"
+     "počátek 90. let"
     ],
-    "why": "špatná výplň",
+    "why": "",
     "reading": "obdržet(kde:?, kdo:·Václav Havel)"
    },
    {
@@ -11599,15 +11598,15 @@
      "Zlíně"
     ],
     "sada": "otazky",
-    "ok": false,
+    "ok": true,
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
      "Nemocnice",
      "hrad (pražský)",
-     "počátek léta"
+     "počátek 90. let"
     ],
-    "why": "špatná výplň",
+    "why": "",
     "reading": "získat(kde:?, kdo:·Václav Havel)"
    },
    {
@@ -11729,15 +11728,15 @@
      "Bulovce"
     ],
     "sada": "otazky",
-    "ok": false,
+    "ok": true,
     "text_ok": true,
     "verdict": "ANO",
     "fillers": [
      "Nemocnice",
      "hrad (pražský)",
-     "počátek léta"
+     "počátek 90. let"
     ],
-    "why": "špatná výplň",
+    "why": "",
     "reading": "získat(kde:?, kdo:·Václav Havel)"
    },
    {
@@ -11805,7 +11804,7 @@
    }
   ],
   "t_ingest": 0.6,
-  "t_ask": 0.4
+  "t_ask": 0.3
  },
  {
   "doc": "vítězslav_hálek",
@@ -12502,7 +12501,7 @@
     "reading": "vyhrát(kdy:?, kdo:·Deep Blue, co:∃zápas)"
    }
   ],
-  "t_ingest": 0.2,
+  "t_ingest": 0.6,
   "t_ask": 0.0
  }
 ]

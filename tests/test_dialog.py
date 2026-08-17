@@ -317,3 +317,47 @@ def test_binary_rules_overlap_and_comparison(s: Session) -> None:
     s.say("Krabice je v koupelně.")
     k = s.say("Kde je prací prášek?")
     assert [s.memory.label(t) for t, _ in k.verdict.fillers] == ["krabice", "koupelna"] and "přes krabice" in k.text  # type: ignore[union-attr]
+
+
+def test_revoke_definition_disables_rule_and_module_roundtrip(s: Session, tmp_path: Path) -> None:
+    """Nic se nemaže, jen odvolá — i pravidlo. Modul vazeb = přehratelné příkazy bez faktů."""
+    s.say("Magdalena žila mezi lety 1900 až 2000.")
+    s.say("Petr žil mezi lety 1950 až 2020.")
+    s.say("!uč překryv potkat_se žít")
+    s.say("!uč složený tchán otec manžel manželka")
+    s.say("!synonymum kázat = hlásat")
+    s.say("!pravidlo jet(kam:X) => být(kde:X)")
+    assert s.say("Mohli se Magdalena a Petr potkat?").verdict.value == "ANO"  # type: ignore[union-attr]
+    modul = tmp_path / "vazby.txt"
+    out = s.say(f"!ulož-vazby {modul}").text
+    assert "4 vazeb" in out  # složený má obě alternativy v jednom řádku
+    text = modul.read_text(encoding="utf-8")
+    assert "!uč překryv potkat_se žít" in text and "!uč složený tchán otec manžel manželka" in text and "!pravidlo jet(kam:X0) => být(kde:X0)" in text
+    sid = next(st.id for st in s.memory.active() if st.pred == "binární_pravidlo")
+    s.say(f"!zapomeň {sid}")
+    assert "potkat_se" not in s.memory.learned["binary"]
+    assert s.say("Mohli se Magdalena a Petr potkat?").verdict.value == "NEVÍM"  # type: ignore[union-attr]
+    # čerstvá paměť: fakta + modul → totéž odvození, a vazby mají výroky s proveniencí
+    t = Session(Memory(), RecordedOracle(DATA))
+    t.say("Magdalena žila mezi lety 1900 až 2000.")
+    t.say("Petr žil mezi lety 1950 až 2020.")
+    assert "načteno 4 z 4" in t.say(f"!načti-vazby {modul}").text
+    assert t.say("Mohli se Magdalena a Petr potkat?").verdict.value == "ANO"  # type: ignore[union-attr]
+    assert t.memory.learned["rel_defs"]["tchán"] == [["otec", "manžel"], ["otec", "manželka"]]
+    assert any(st.pred == "binární_pravidlo" for st in t.memory.active())
+
+
+def test_relative_time_time_merge_and_synonym_gap(s: Session) -> None:
+    """„před 2 miliardami let“ = kdy; „v dubnu“ + „roku 1975“ = duben 1975; NEVÍM nabídne synonymum."""
+    s.say("První sinice se objevily před 2 miliardami let.")
+    a = s.say("Kdy se objevily první sinice?")
+    assert a.verdict is not None and "před 2 miliardami let" in a.text
+    s.say("Jindřich se narodil v dubnu.")
+    s.say("Jindřich se narodil roku 1975.")
+    m = s.say("Kdy se narodil Jindřich?")
+    assert m.verdict is not None and "4/1975" in m.text and "sloučeno ze dvou vět" in m.text
+    s.say("Alois Jirásek působil v Litomyšli.")
+    b = s.say("Kde učil Alois Jirásek?")
+    assert b.verdict is not None and b.verdict.value == "NEVÍM" and "!uč synonymum učit = působit" in b.text
+    c = s.say("ano")
+    assert c.verdict is not None and "Litomyšl" in c.text

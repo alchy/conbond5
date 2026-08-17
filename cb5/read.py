@@ -526,6 +526,10 @@ class _Reader:
         sub = [x for x in self.p.subtree(t.index) if x.index == t.index or (x.head == t.index and x.base_deprel in ("nummod", "case", "flat"))]
         if is_time_noun(t.lemma):
             sub = [x for x in self.p.subtree(t.index) if x.index == t.index or x.lemma in MONTH_LEMMAS or x.upos in ("NUM", "PUNCT") or is_time_noun(x.lemma)]
+        full = self.p.subtree(t.index)
+        ago = self.case_of(t.index) == "před" and time_from_tokens(full) is None and any(is_time_noun(x.lemma) and x.index != t.index for x in full)
+        if ago:
+            return "ago"  # „před 2 miliardami let“, „před třemi lety“ = bod v čase (relativně k teď)
         if is_time_noun(t.lemma) or (t.upos in ("NUM", "ADJ") and time_from_tokens(sub) is not None and not t.feat("NameType")):
             spec = time_from_tokens(sub)
             if is_time_noun(t.lemma) and spec is None:
@@ -553,8 +557,12 @@ class _Reader:
                 return table["time"], surface, "default"
             if kind == "duration" and "duration" in table:
                 return table["duration"], surface, "default"
+            if kind == "ago" or (kind == "duration" and prep == "před"):
+                return "kdy", surface, "default"  # „před 2 miliardami let“ = kdy (relativně k teď)
             if kind == "duration" and "time" in table:
                 return table["time"], surface, "default"
+            if kind == "time" and not prep and "time" not in table:
+                return "kdy", surface, "default"  # holý pád s časovým údajem („mezil lety 1900 až 2000“) = kdy
         if "*" in table:
             name = table["*"]
             return name, surface, ("default" if name != surface else "surface")
@@ -894,6 +902,16 @@ class _Reader:
         elif t.upos == "PRON" or (t.upos == "DET" and not self.p.children(t.index)):
             kind = "pron"
             quant, qauth = "·", "structural"
+        elif self.case_of(t.index) == "před" and t.upos in ("NUM", "NOUN") and time_from_tokens(self.p.subtree(t.index)) is None and any(
+                is_time_noun(x.lemma) and x.index != t.index for x in self.p.subtree(t.index)):
+            # „před 2 miliardami let“ — relativní čas; popiska = celý tvar
+            kind = "time"
+            body = [x for x in self.p.subtree(t.index) if x.upos not in ("ADP", "PUNCT")]
+            time = TimeSpec("name", " ".join(x.form for x in sorted(body, key=lambda x: x.index)))
+            for x in body:
+                self.mark(x.index, where)
+                consumed.append(x.index)
+            count = None
         elif t.upos == "NUM":
             kind = "value"
             time = time_from_tokens([t])
@@ -930,7 +948,12 @@ class _Reader:
                 kind = "time"
                 count = None  # letopočet není počet
                 if time is None:
-                    time = TimeSpec("name", t.lemma)
+                    # „před 2 miliardami let“, „v dětství“: pojmenovaný čas s celým tvarem jako popiskou
+                    body = [x for x in sub if x.upos not in ("ADP", "PUNCT")]
+                    label = " ".join(x.form for x in sorted(body, key=lambda x: x.index)) if len(body) > 1 else t.lemma
+                    if len(body) > 1 and self.case_of(t.index) == "před":
+                        label = "před " + label  # relativní čas: „před 2 miliardami let“
+                    time = TimeSpec("name", label if len(body) > 1 else t.lemma)
                 for x in sub:
                     self.mark(x.index, where)
             elif t.lemma in D.PLACE_NOUNS and False:

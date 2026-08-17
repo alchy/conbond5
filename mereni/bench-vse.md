@@ -1,13 +1,62 @@
+ruční otázky bez textu v korpusu: bible_exodus, bible_galaťanům, bible_genesis, bible_jan, bible_lukas, bible_markus, bible_matous, bible_skutky_apoštolské, wikisofia_pribuzenstvi
+… alois_jirásek
+… antarktida
+… arnošt_lustig
+… bohumil_hrabal
+… božena_němcová
+… eduard_bass
+… egon_hostovský
+… fotosyntéza
+… františek_halas
+… františek_hrubín
+… fyzika_gravitace
+… ivan_klíma
+… ivan_olbracht
+… jan_neruda
+… jaroslav_hašek
+… jaroslav_seifert
+… jaroslav_vrchlický
+… jiří_wolker
+… josef_čapek
+… josef_škvorecký
+… julius_zeyer
+… karel_havlíček_borovský
+… karel_hynek_mácha
+… karel_jaromír_erben
+… karel_poláček
+… karel_čapek
+… kočka_domácí
+… kůň_domácí
+… ludvík_vaculík
+… marie_majerová
+… milan_kundera
+… ota_pavel
+… pes_domácí
+… petr_bezruč
+… poznámky_domácnost
+… příroda_česká
+… rodina_novákovi
+   + sdílená znalost: vztahy_příbuzenské
+… rur
+… sopka
+… svatopluk_čech
+… vladimír_holan
+… vladislav_vančura
+… václav_havel
+… vítězslav_hálek
+… vítězslav_nezval
+… včela_medonosná
+… šachy
 | dokument | vět | zapsáno | výroků | zbytek tok. | otevř. | otázek | správně | v textu |
 |---|---|---|---|---|---|---|---|---|
 | alois_jirásek | 429 | 429 | 1095 | 436/4057 | 223 | 27 | 20 (74 %) | 25 |
-| antarktida | 232 | 232 | 624 | 269/3385 | 184 | 3 | 0 (0 %) | 3 |
+| antarktida | 232 | 232 | 624 | 269/3385 | 182 | 3 | 0 (0 %) | 3 |
 | arnošt_lustig | 205 | 205 | 665 | 193/2728 | 160 | 20 | 14 (70 %) | 16 |
 | bohumil_hrabal | 448 | 448 | 992 | 309/3563 | 185 | 24 | 17 (71 %) | 17 |
 | božena_němcová | 925 | 925 | 2881 | 1098/12665 | 658 | 24 | 15 (62 %) | 21 |
 | eduard_bass | 127 | 127 | 263 | 184/1182 | 81 | 9 | 5 (56 %) | 9 |
 | egon_hostovský | 213 | 213 | 869 | 350/4031 | 222 | 17 | 14 (82 %) | 16 |
-| fotosyntéza | 564 | 564 | 1101 | 398/4659 | 408 | 1 | 0 (0 %) | 1 |
+| fotosyntéza | 564 | 564 | 1101 | 398/4659 | 407 | 1 | 1 (100 %) | 1 |
 | františek_halas | 162 | 162 | 450 | 157/1772 | 112 | 15 | 8 (53 %) | 12 |
 | františek_hrubín | 162 | 162 | 377 | 184/1468 | 105 | 7 | 6 (86 %) | 7 |
 | fyzika_gravitace | 19 | 19 | 31 | 5/136 | 4 | 8 | 8 (100 %) | 8 |
@@ -26,8 +75,8 @@
 | karel_jaromír_erben | 207 | 207 | 497 | 257/2006 | 103 | 17 | 10 (59 %) | 14 |
 | karel_poláček | 168 | 168 | 458 | 157/1823 | 120 | 13 | 10 (77 %) | 9 |
 | karel_čapek | 522 | 522 | 1323 | 475/4838 | 349 | 23 | 13 (57 %) | 17 |
-| kočka_domácí | 447 | 447 | 1182 | 322/5857 | 318 | 4 | 4 (100 %) | 4 |
-| kůň_domácí | 315 | 315 | 747 | 436/4031 | 233 | 1 | 0 (0 %) | 0 |
+| kočka_domácí | 447 | 447 | 1180 | 321/5857 | 316 | 4 | 4 (100 %) | 4 |
+| kůň_domácí | 315 | 315 | 747 | 436/4031 | 231 | 1 | 0 (0 %) | 0 |
 | ludvík_vaculík | 159 | 159 | 568 | 122/2356 | 134 | 17 | 11 (65 %) | 13 |
 | marie_majerová | 370 | 370 | 969 | 382/3851 | 235 | 2 | 0 (0 %) | 1 |
 | milan_kundera | 359 | 359 | 1048 | 389/4486 | 295 | 35 | 26 (74 %) | 29 |
@@ -38,21 +87,21 @@
 | příroda_česká | 20 | 20 | 27 | 0/110 | 0 | 8 | 8 (100 %) | 8 |
 | rodina_novákovi | 15 | 15 | 49 | 0/175 | 0 | 8 | 8 (100 %) | 8 |
 | rur | 85 | 85 | 258 | 91/977 | 61 | 1 | 0 (0 %) | 0 |
-| sopka | 988 | 988 | 2638 | 1044/14254 | 966 | 1 | 1 (100 %) | 1 |
+| sopka | 988 | 988 | 2638 | 1044/14254 | 961 | 1 | 1 (100 %) | 1 |
 | svatopluk_čech | 268 | 268 | 689 | 271/2451 | 156 | 10 | 9 (90 %) | 9 |
 | vladimír_holan | 179 | 179 | 522 | 162/2089 | 131 | 10 | 6 (60 %) | 9 |
 | vladislav_vančura | 320 | 320 | 852 | 305/3391 | 214 | 27 | 17 (63 %) | 23 |
-| václav_havel | 563 | 563 | 1838 | 384/8252 | 423 | 65 | 36 (55 %) | 51 |
+| václav_havel | 563 | 563 | 1838 | 384/8252 | 423 | 65 | 39 (60 %) | 51 |
 | vítězslav_hálek | 173 | 173 | 509 | 154/1884 | 112 | 13 | 8 (62 %) | 12 |
 | vítězslav_nezval | 320 | 320 | 836 | 356/3322 | 192 | 26 | 16 (62 %) | 23 |
 | včela_medonosná | 379 | 379 | 878 | 265/4231 | 325 | 1 | 0 (0 %) | 1 |
 | šachy | 411 | 411 | 1303 | 517/6821 | 362 | 2 | 1 (50 %) | 2 |
-| **celkem** | 14354 | 14354 | 38987 | 14342/169844 | 10225 | 752 | 498 (66.2 %) | 647 |
+| **celkem** | 14354 | 14354 | 38985 | 14341/169844 | 10213 | 752 | 502 (66.8 %) | 647 |
 
 | sada | druh | otázek | správně | v textu |
 |---|---|---|---|---|
-| etalon | ručně psané | 32 | 24 (75 %) | 30 |
+| etalon | ručně psané | 32 | 25 (78 %) | 30 |
 | conbond | ručně psané (starý conBond) | 38 | 35 (92 %) | 36 |
-| otazky | generované šablonou (kde/kdy) | 682 | 439 (64 %) | 581 |
+| otazky | generované šablonou (kde/kdy) | 682 | 442 (65 %) | 581 |
 
-Rozklad chyb: špatná výplň: 118; role/logika (blízký výrok je): 95; bez výroku: 39; predikát chybí: 1; odpověděl navíc (etalon čekal NEVÍM): 1
+Rozklad chyb: špatná výplň: 115; role/logika (blízký výrok je): 94; bez výroku: 39; predikát chybí: 1; odpověděl navíc (etalon čekal NEVÍM): 1

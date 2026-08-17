@@ -20,7 +20,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 from typing import Literal
 
-from cb5.chronos import overlap as time_overlap
+from cb5.chronos import MONTHS, TimeSpec, overlap as time_overlap
 from cb5.defaults import ADVERB_QUANTITY, COMPARATIVES_SEED, LOCATIVE_SURFACES, PLACE_NOUNS, QUANTITY_BOUNDS, RELATION_CONVERSE, RELATION_GENDER, synonym_class
 from cb5.memory import Memory, Role, Statement
 
@@ -838,6 +838,29 @@ class Evaluator:
                                     seen.add(pl)
                                     p2 = Proof(list(p.statements) + [st.id], list(p.steps) + [f"místo uvnitř: {m.label(t)} — {st.pred}"], list(p.defaults), weakest(p.grade, "derived"))
                                     fillers.append((pl, p2))
+        # sloučení částečných časů TÉHOŽ děje: „v dubnu“ + „roku 1975“ → duben 1975 (přiznaně)
+        if hole.name in TIME_FAMILY and hole.wh_kind == "filler" and len(fillers) >= 2:
+            years = [(t, p) for t, p in fillers if not t.startswith("count:") and m.nodes[t].time and m.nodes[t].time.kind == "year"]  # type: ignore[union-attr]
+            partial = [(t, p) for t, p in fillers if not t.startswith("count:") and m.nodes[t].time and (
+                (m.nodes[t].time.kind == "name" and m.nodes[t].time.label in MONTHS) or (m.nodes[t].time.kind == "point" and (m.nodes[t].time.start or (0,))[0] == 0))]  # type: ignore[union-attr]
+            if len(years) == 1 and len(partial) == 1:
+                (ty, py), (tp, pp) = years[0], partial[0]
+                yspec = m.nodes[ty].time
+                pspec = m.nodes[tp].time
+                assert yspec is not None and pspec is not None and yspec.start is not None
+                yr = yspec.start[0]
+                if pspec.kind == "name":
+                    mo = MONTHS[pspec.label]
+                    merged_spec = TimeSpec("point", f"{mo}/{yr}", (yr, mo, 0), (yr, mo, 0))
+                else:
+                    ms, ds = (pspec.start or (0, 0, 0))[1], (pspec.start or (0, 0, 0))[2]
+                    merged_spec = TimeSpec("point", f"{ds}. {ms}. {yr}" if ds else f"{ms}/{yr}", (yr, ms, ds), (yr, ms, ds))
+                node = m.ensure_time(merged_spec)
+                proof = py.merged(pp)
+                proof.steps.append(f"sloučeno ze dvou vět: {m.label(ty)} + {m.label(tp)} → {merged_spec.label} (týž děj, týž podmět)")
+                proof.grade = "derived"
+                fillers = [(node.id, proof)] + [f for f in fillers if f[0] not in (ty, tp)]
+                seen.add(node.id)
         # tranzitivita umístění: prášek v krabici, krabice v koupelně → i koupelna (přiznaně, přes krabici)
         if hole.name == "kde" and hole.wh_kind == "filler" and fillers:
             frontier = [(t, p) for t, p in fillers if not t.startswith("count:")]

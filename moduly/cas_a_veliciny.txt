@@ -1,0 +1,7 @@
+# conbond5 — modul vazeb: čas a veličiny (přehratelné příkazy, bez faktů)
+# načtení: !načti-vazby moduly/cas_a_veliciny.txt   (každá vazba dostane výrok s proveniencí; !zapomeň sXXXX ji odvolá)
+!srovnání starší = narodit_se kdy dřív
+!srovnání mladší = narodit_se kdy později
+!uč překryv potkat_se žít
+!uč překryv setkat_se žít
+!uč porovnání vejít délka <=

@@ -33,6 +33,10 @@ zdrojové věty) a **vazby mezi pojmy se učí z definic v textu i v dialogu**
    (`!pravidlo jet(kam:X) => být(kde:X)`), výjimky (`!výjimka létat pták
    tučňák`). Jádro nikdy nezíská novou sémantiku dialogem — jen se dozví,
    *které slovo spouští kterou už existující operaci* (§ 3.6 zadání conbond4).
+   Naučené vazby jsou v paměti (`learned`) s výrokem‑proveniencí; dají se
+   vypsat jako **modul vazeb** (`!ulož-vazby`) — program příkazů bez faktů —
+   a přehrát do jiné paměti (`!načti-vazby`); tak lze skládat vrstvy: fakta
+   z textu + vazby (příbuzenství, časové překryvy, veličiny) z modulů.
 
 Guard, který platí doslova (I‑8 conbond4): **pravdivost neteče po měkké
 hraně** — aktivace (sliding window kontextu) jen řadí a navrhuje, nikdy

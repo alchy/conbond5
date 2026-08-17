@@ -520,11 +520,11 @@ class Session:
                 return "užití: !výjimka létat pták tučňák"
             pred, g1, g2 = ws
             a, b = m.find_group(g1), m.find_group(g2)
-            if a is None or b is None:
+            if a is None:
+                a = m.ensure_group(g1)  # výjimka smí třídu založit (modul vazeb ji nese bez faktů)
+            if b is None:
                 ents = m.find_entity([g2])
-                if a is None or not ents:
-                    return f"neznám skupinu {g1 if a is None else g2}"
-                b = ents[0]
+                b = ents[0] if ents else (m.ensure_entity([g2], [g2])[0] if g2[:1].isupper() else m.ensure_group(g2))
             m.add_exception(pred, a.id, b.id)
             return f"výjimka: {pred} o {a.label()} neplatí pro {b.label()}"
         if cmd in ("otevřené", "otevrene", "backlog"):
@@ -546,6 +546,12 @@ class Session:
             self.memory = Memory.load(Path(arg))
             self._restore_learned()
             return f"načteno z {arg}: {len(list(self.memory.active()))} výroků"
+        if cmd in ("ulož-vazby", "uloz-vazby", "export-vazby"):
+            prog = m.learned_program()
+            Path(arg).write_text("# conbond5 — modul vazeb (přehratelné příkazy, bez faktů)\n" + "\n".join(prog) + "\n", encoding="utf-8")
+            return f"modul vazeb uložen do {arg}: {len(prog)} vazeb"
+        if cmd in ("načti-vazby", "nacti-vazby", "import-vazby"):
+            return self.load_program(Path(arg))
         if cmd == "graf":
             g = m.graph()
             data = nx.node_link_data(g, edges="links")
@@ -572,6 +578,22 @@ class Session:
             return self._help()
         return f"neznámý příkaz {cmd}\n" + self._help()
 
+    def load_program(self, path: Path) -> str:
+        """Načti modul vazeb: každý řádek je příkaz (nebo věta) — jde touž cestou jako
+        dialog, takže vazby dostanou výroky s proveniencí a lze je odvolat."""
+        lines = [l.strip() for l in path.read_text(encoding="utf-8").splitlines()]
+        lines = [l for l in lines if l and not l.startswith("#")]
+        n = 0
+        bad: list[str] = []
+        for line in lines:
+            out = self.command(line) if line.startswith("!") else self.say(line).text
+            if out.startswith(("neznám", "užití", "neznámý", "šablona")):
+                bad.append(f"{line} → {out.splitlines()[0]}")
+            else:
+                n += 1
+        tail = ("\n  nepřijato: " + "; ".join(bad)) if bad else ""
+        return f"načteno {n} z {len(lines)} vazeb z {path}{tail}"
+
     def _adj_lemma(self, word: str) -> str:
         """Lemma přídavného jména („starší“ → „starý“) — přes orákulum, jinak slovo samo."""
         try:
@@ -587,7 +609,7 @@ class Session:
     def _help() -> str:
         return (
             "příkazy: !zapomeň s0001 · !role v+Loc = kde · !synonymum kázat = hlásat · "
-            "!pravidlo jet(kam:X) => být(kde:X) · !výjimka létat pták tučňák · !srovnání vyšší = měřit co víc · !šablony · !uč druh jezevčík pes · !otevřené · "
+            "!pravidlo jet(kam:X) => být(kde:X) · !výjimka létat pták tučňák · !srovnání vyšší = měřit co víc · !šablony · !uč druh jezevčík pes · !ulož-vazby vazby.json · !načti-vazby vazby.json · !otevřené · "
             "!odpověz o0001 kde · !program · !popiš Jirásek · !ulož p.json · !načti p.json · !graf g.json"
         )
 

@@ -386,7 +386,8 @@ class Memory:
         return stmt
 
     def revoke(self, sid: str, reason: str) -> list[str]:
-        """Zneplatni výrok (a vše z něj odvozené / do něj vnořené). Vrací id."""
+        """Zneplatni výrok (a vše z něj odvozené / do něj vnořené). Vrací id.
+        Výrok kind=definice nese naučené pravidlo → i to se vypne (nic se nemaže, jen odvolá)."""
         out: list[str] = []
         st = self.statements.get(sid)
         if st is None or st.status != "active":
@@ -395,9 +396,77 @@ class Memory:
         st.reason = reason
         self.version += 1
         out.append(sid)
+        if st.kind == "definice":
+            self._unlearn(st)
         for other in list(self.statements.values()):
             if other.derived_from == sid and other.status == "active":
                 out.extend(self.revoke(other.id, f"odvoláno s {sid}: {reason}"))
+        return out
+
+    def _unlearn(self, st: Statement) -> None:
+        """Odvolání definičního výroku vypne odpovídající naučenou vazbu v `learned`."""
+        jaky = st.role("jaký")
+        head = self.nodes[jaky.terms[0]].lemma if jaky and jaky.terms and jaky.terms[0] in self.nodes else None
+        if head is None:
+            return
+        if st.pred == "definice_vztahu":
+            defs = self.learned.get("rel_defs", {})
+            chains = [r.surface.split("∘") for r in st.roles if r.name == "co" and r.surface and "∘" in r.surface]
+            if chains and head in defs:
+                defs[head] = [c for c in defs[head] if c not in chains]
+                if not defs[head]:
+                    defs.pop(head)
+            else:
+                defs.pop(head, None)
+        elif st.pred == "definice":
+            self.learned.get("comparatives", {}).pop(head, None)
+        elif st.pred == "binární_pravidlo":
+            self.learned.get("binary", {}).pop(head, None)
+        elif st.pred == "inverze":
+            co = st.role("co")
+            other = self.nodes[co.terms[0]].lemma if co and co.terms else None
+            inv = self.learned.get("inverse", {})
+            if other:
+                inv.get(head, []) and inv[head].remove(other) if other in inv.get(head, []) else None
+                inv.get(other, []) and inv[other].remove(head) if head in inv.get(other, []) else None
+
+    def learned_program(self) -> list[str]:
+        """Modul vazeb: naučené vazby jako přehratelné příkazy (`!role`, `!synonymum`,
+        `!srovnání`, `!uč složený/inverze/překryv/porovnání`, `!pravidlo`, `!výjimka`).
+        Bez faktů — přenositelné mezi paměťmi; načtení jde touž cestou jako dialog,
+        takže každá vazba má i v cílové paměti výrok s proveniencí (lze ji odvolat)."""
+        out: list[str] = []
+        for surface, name in self.learned.get("roles", {}).items():
+            out.append(f"!role {surface} = {name}")
+        for a, b in self.learned.get("synonyms", {}).items():
+            out.append(f"!synonymum {a} = {b}")
+        dirs = {"earlier": "dřív", "later": "později", "more": "víc", "less": "míň"}
+        for lemma, c in self.learned.get("comparatives", {}).items():
+            out.append(f"!srovnání {lemma} = {c['pred']} {c['role']} {dirs.get(c['dir'], c['dir'])}")
+        for head, chains in self.learned.get("rel_defs", {}).items():
+            by_first: dict[str, list[str]] = {}
+            for ch in chains:
+                by_first.setdefault(ch[0], []).append(ch[1])
+            for r1, seconds in by_first.items():
+                for i in range(0, len(seconds), 2):  # šablona bere r2 a volitelně alternativu
+                    out.append(f"!uč složený {head} {r1} {' '.join(seconds[i:i + 2])}")
+        seen: set[tuple[str, str]] = set()
+        for a, bs in self.learned.get("inverse", {}).items():
+            for b in bs:
+                if (b, a) not in seen:
+                    seen.add((a, b))
+                    out.append(f"!uč inverze {a} {b}")
+        for q, spec in self.learned.get("binary", {}).items():
+            if spec["test"] == "překryv":
+                out.append(f"!uč překryv {q} {spec['source']}")
+            else:
+                out.append(f"!uč porovnání {q} {spec['source']} {spec['test']}")
+        for r in self.rules:
+            src = ",".join(f"{k}:X{i}" for i, k in enumerate(r.role_map))
+            dst = ",".join(f"{v}:X{i}" for i, v in enumerate(r.role_map.values()))
+            out.append(f"!pravidlo {r.src_pred}({src}) => {r.dst_pred}({dst})")
+        for pred, g, x in self.exceptions:
+            out.append(f"!výjimka {pred} {self.label(g)} {self.label(x)}")
         return out
 
     def revoke_utterance(self, sentence_id: str, reason: str) -> list[str]:
