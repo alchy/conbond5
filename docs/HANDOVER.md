@@ -10,13 +10,22 @@
 ```bash
 cd ~/Projects/conbond5
 python3.11 -m venv .venv && .venv/bin/pip install -e ".[dev]"
-.venv/bin/pip install -e ~/Projects/viewBase/python          # jen pro živý graf (volitelné)
+.venv/bin/pip install -e ~/Projects/viewBase2/python         # jen pro živý graf (volitelné)
 .venv/bin/python -m pytest -q && .venv/bin/python -m mypy cb5 # hermetické testy (nahrané rozbory), typy
 .venv/bin/python -m cb5 chat --pamet moje.json --zurnal rozhovor.jsonl   # REPL; !nápověda
-.venv/bin/python -m cb5.viewbase_app --pamet moje.json [--vazby moduly/cas_a_veliciny.txt]  # graf + konzole v prohlížeči (ukládá po každém tahu: moje.json + moje.jsonl)
+.venv/bin/python -m cb5.viewbase_app --pamet moje.json [--vazby moduly/cas_a_veliciny.txt] [--user workbench]  # graf + konzole v prohlížeči (ukládá po každém tahu: moje.json + moje.jsonl)
 .venv/bin/python -m cb5 replay rozhovor.jsonl                  # deterministické přehrání
 .venv/bin/python -m cb5.bench [--dok alois_jirásek] [--vypis|--jen-chyby]   # měření nad korpusem conBond2
 ```
+
+**viewBase2 (živý graf).** Adaptér `cb5/viewbase_app.py` jede na modelu
+`Project` → `Screen` → okna (dřív jedno `vb.Canvas` a `vb.serve(canvas)`).
+Uživatel viewBase2 je v konfiguraci (`VIEWBASE_USER = "workbench"`, přebije
+ho `--user`); jeho TOTP tajemství a QR **nejsou v gitu** — vzniknou při první
+instanciaci v `~/.viewbase/user-<jméno>/` (0600) a naskenují se do
+autentikátoru z `cat ~/.viewbase/user-workbench/totp-workbench.txt`. Odemykají
+zabezpečená okna (`secured=True`), která tenhle adaptér zatím nepoužívá.
+
 
 Předpoklad: služba UDPipe `cb-udpipe` na `127.0.0.1:42200` (conBond3 nebo
 [conbond4-deps](https://github.com/alchy/conbond4-deps)); model

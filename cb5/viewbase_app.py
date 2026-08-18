@@ -1,7 +1,17 @@
-"""Konverzace nad živým grafem ve viewBase (volitelný adaptér).
+"""Konverzace nad živým grafem ve viewBase2 (volitelný adaptér).
 
-    pip install -e /Users/j/Projects/viewBase/python      # viewbase (lokálně)
-    python -m cb5.viewbase_app [--pamet p.json] [--port 8080]
+    pip install -e /Users/j/Projects/viewBase2/python     # viewbase (github.com/alchy/viewBase2)
+    python -m cb5.viewbase_app [--pamet p.json] [--port 8080] [--user workbench]
+
+Model viewBase2 (od verze se screeny): `Project` (služba a port) → `Screen`
+(plocha) → okna na ní (`GraphWindow`, `TerminalWindow`, `ControlWindow`).
+Dřív tu bylo jedno `vb.Canvas` a `vb.serve(canvas)`; metody grafu zůstaly
+stejné, jen se plátno jmenuje `GraphWindow` a sedí na screenu.
+
+UŽIVATEL: `Project(user=…)` říká, čí kód odemyká zabezpečená okna
+(`secured=True`). Výchozí `workbench` je součástí konfigurace tady v kódu –
+do gitu se nedostane jen jeho tajemství: to se generuje spolu s QR při první
+instanciaci do `~/.viewbase/user-<jméno>/` (0600).
 
 Proč: paměť conbond5 JE graf (spec § 3) a člověk má vidět, čím systém
 myslí. Adaptér drží mimo jádro: po každém tahu se rozdíl paměti promítne
@@ -29,6 +39,10 @@ from cb5.render import describe_node, render_statement
 HERE = Path(__file__).resolve().parent.parent
 CACHE = HERE / "data" / "cache" / "parses.json"
 
+#: Uživatel viewBase2 pro tenhle projekt. Je součástí konfigurace (v gitu),
+#: tajemství NE – to se generuje při první instanciaci do ~/.viewbase/.
+VIEWBASE_USER = "workbench"
+
 TYPES = {
     "entity": dict(shape="sphere", color="#28d7fe", size=1.4),
     "group": dict(shape="box", color="#7bd389", size=1.2),
@@ -41,15 +55,22 @@ TYPES = {
 }
 
 
-def build(session: Session, *, title: str = "conbond5", autosave: Path | None = None) -> object:
-    """Plátno + konzole nad sezením. `autosave` = po každém tahu uložit paměť
-    (`p.json`) a připsat tah do žurnálu (`p.jsonl`) — aby šel rozhovor
-    sledovat zvenčí a přehrát."""
+def build(session: Session, *, title: str = "conbond5", autosave: Path | None = None,
+          port: int = 8080, user: str = VIEWBASE_USER) -> tuple[object, object]:
+    """Projekt + screen s grafem a konzolí nad sezením. `autosave` = po každém
+    tahu uložit paměť (`p.json`) a připsat tah do žurnálu (`p.jsonl`) — aby šel
+    rozhovor sledovat zvenčí a přehrát.
+
+    Vrací `(project, screen)`; volající zavolá `project.serve(screen, …)`."""
     import json
 
     import viewbase as vb  # type: ignore[import-not-found]
 
-    canvas = vb.Canvas(title=title, theme="cyber", highlight_neighbors=1)
+    project = vb.Project(port=port, user=user)   # port i uživatel PŘED vším
+    screen = vb.Screen(title=title, theme="cyber")
+    canvas = vb.GraphWindow(screen=screen, title=f"{title} — graf paměti",
+                            theme="cyber", highlight_neighbors=1)
+    vb.LogWindow(screen=screen)
     for name, style in TYPES.items():
         canvas.define_type(name, **style)
     canvas.define_type("soft", color="#333333", size=0.1)
@@ -159,7 +180,7 @@ def build(session: Session, *, title: str = "conbond5", autosave: Path | None = 
 
     canvas.open_window(okno, on_submit=on_submit)
     sync()
-    return canvas
+    return project, screen
 
 
 def main(argv: list[str]) -> int:
@@ -167,20 +188,25 @@ def main(argv: list[str]) -> int:
     ap.add_argument("--pamet", help="JSON paměti (načte se, na konci uloží)")
     ap.add_argument("--port", type=int, default=8080)
     ap.add_argument("--vazby", action="append", default=[], help="modul vazeb k načtení při startu (lze víckrát), např. moduly/cas_a_veliciny.txt")
+    ap.add_argument("--user", default=VIEWBASE_USER,
+                    help="uživatel viewBase2 (odemyká zabezpečená okna); "
+                         "tajemství a QR vzniknou při prvním startu v ~/.viewbase/")
     args = ap.parse_args(argv)
     try:
         import viewbase as vb  # type: ignore[import-not-found]
     except ImportError:
-        print("viewbase není nainstalované: pip install -e /Users/j/Projects/viewBase/python", file=sys.stderr)
+        print("viewbase není nainstalované: pip install -e /Users/j/Projects/viewBase2/python",
+              file=sys.stderr)
         return 2
     memory = Memory.load(Path(args.pamet)) if args.pamet and Path(args.pamet).exists() else Memory()
     restorer = Restorer.load_or_build(HERE / "data" / "cache" / "diakritika.json", [CACHE, HERE / "tests" / "data" / "parses.json"])
     session = Session(memory, live_or_recorded(CACHE), restorer=restorer)
     for modul in args.vazby:
         print(session.load_program(Path(modul)))
-    canvas = build(session, autosave=Path(args.pamet) if args.pamet else None)
+    project, screen = build(session, autosave=Path(args.pamet) if args.pamet else None,
+                            port=args.port, user=args.user)
     try:
-        vb.serve(canvas, port=args.port, open_browser=True)
+        project.serve(screen, open_browser=True)
     finally:
         if args.pamet:
             session.memory.save(Path(args.pamet))
