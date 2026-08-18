@@ -13,6 +13,8 @@ Koncept: [`docs/KONCEPT.md`](docs/KONCEPT.md) · stav a předávka: [`docs/HANDO
 návrh v1: [`docs/superpowers/specs/2026-08-16-conbond5-design.md`](docs/superpowers/specs/2026-08-16-conbond5-design.md) ·
 plán v1: [`docs/superpowers/plans/2026-08-16-conbond5-v1.md`](docs/superpowers/plans/2026-08-16-conbond5-v1.md).
 
+**Úvod a průvodce ukázkami:** [`docs/UVOD.md`](docs/UVOD.md) · koncept [`docs/KONCEPT.md`](docs/KONCEPT.md) · předávka [`docs/HANDOVER.md`](docs/HANDOVER.md)
+
 ## Proč (a v čem je to jinak než conbond4)
 
 conbond4 měl nad korpusem 220/238 vět přečteno, ale **8 zapsáno** — brána

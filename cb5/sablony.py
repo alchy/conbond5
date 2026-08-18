@@ -222,7 +222,10 @@ def navrhni(memory: Memory, q: Statement, verdict: "Verdict", question: str) -> 
     #     jako otázka → nabídni synonymum (jen když se role skutečně kryjí)
     if kdo and kdo.terms and q.pred and not verdict.near and q.pred not in ("být", "dělat", "umět", "vědět", "znát"):
         wanted = {r.name for r in q.roles if r.name != "kdo"}
-        cands: dict[str, int] = {}
+        # termy otázky mimo podmět (Brno v „Bydlí Jirásek v Brně?“) musí kandidát znát — jinak by
+        # synonymum nic nezodpovědělo a návrh by byl šum
+        other_terms = {t for r in q.roles if r.name != "kdo" and not r.wh for t in r.terms}
+        cands: dict[str, tuple[int, str]] = {}  # pred → (počet, poslední id výroku)
         for x in kdo.terms:
             for st in m.statements_about(x):
                 if st.kind != "verb" or not st.pred or st.status != "active" or st.derived_from or st.pred == q.pred:
@@ -230,9 +233,11 @@ def navrhni(memory: Memory, q: Statement, verdict: "Verdict", question: str) -> 
                 if st.pred in ("být", "mít", "věk", "srovnání", "definice"):
                     continue
                 have = {r.name for r in st.roles if r.name != "kdo"}
-                if wanted and wanted <= have:
-                    cands[st.pred] = cands.get(st.pred, 0) + 1
+                if wanted and wanted <= have and other_terms <= set(st.term_ids()):
+                    cnt, _ = cands.get(st.pred, (0, ""))
+                    cands[st.pred] = (cnt + 1, st.id)
         if cands:
+            # víc dokladů vítězí; při shodě naposled řečené (nejbližší v rozhovoru)
             best = max(cands, key=lambda k: cands[k])
             return ok(Navrh("synonymum", [q.pred, "=", best], f"o {m.label(kdo.terms[0])} nemám „{q.pred}“, ale mám „{best}“ se stejnými rolemi ({', '.join(sorted(wanted)) or 'bez rolí'}). Znamená „{q.pred}“ totéž co „{best}“?", question))
     # 1) neznámé srovnávací slovo

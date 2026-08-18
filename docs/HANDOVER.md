@@ -1,7 +1,7 @@
 # conbond5 — předávka (průběžně aktualizovaná)
 
 **Poslední aktualizace:** 17. 8. 2026 (HEAD viz `git log -1`).
-**Repo:** https://github.com/alchy/conbond5 · **Koncept:** [`KONCEPT.md`](KONCEPT.md) ·
+**Repo:** https://github.com/alchy/conbond5 · **Úvod s ukázkami:** [`UVOD.md`](UVOD.md) (výstupy generuje `docs/ukazky.py`) · **Koncept:** [`KONCEPT.md`](KONCEPT.md) ·
 **Návrh v1:** [`superpowers/specs/2026-08-16-conbond5-design.md`](superpowers/specs/2026-08-16-conbond5-design.md) ·
 **Plán v1:** [`superpowers/plans/2026-08-16-conbond5-v1.md`](superpowers/plans/2026-08-16-conbond5-v1.md) (10 úkolů, hotovo).
 
